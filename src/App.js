@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import MyImdb from '../src/Containers/MyImdb';
 import './App.css';
 
 
