@@ -1,0 +1,42 @@
+.moviesFiltersBar-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menus-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown-menu {
+     display: flex;
+     align-items: center;
+     margin-right: 5rem;
+     cursor: pointer;
+}
+
+.filter p {
+    cursor: pointer;
+}
+
+.filter {
+    margin-right: 5rem;
+}
+
+.dropdown-menu .fa-w-8, .fa-w-10 {
+    margin-left: 5rem;
+    cursor: pointer;
+}
+
+#genres-filter-hide, #ratings-filter-hide,
+#years-filter-hide, #languages-filter-hide{
+    display: none;
+}
+
+#genres-filter-display, #ratings-filter-display,
+#years-filter-display, #languages-filter-display{
+    display: flex;
+    flex-direction: column;
+}
+

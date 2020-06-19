@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import HomePage from '../Containers/HomePage/HomePage';
 import './MyImdb.css';
 import {MovieCard} from '../Components/MovieCard/MovieCard'
+import {ExploreComp} from './ExploreComp/ExploreComp'
 
 class MyImdb extends Component {
     render() {
@@ -18,6 +19,7 @@ class MyImdb extends Component {
                 /> */}
 
                 <HomePage />
+                {/*<ExploreComp/>*/}
             </div>
         );
     }
