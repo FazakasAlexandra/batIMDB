@@ -20,6 +20,7 @@ class DinamicComp extends Component {
         axios.get('https://movies-app-siit.herokuapp.com/movies?take=3&skip=0').then(response => {
             /* this.setState({ movies: response.data.results }) */  //am comentat-o sa nu va incurce cand randati
             console.log(response)
+            console.log(this.state.movies)
         })
     }
 
@@ -37,10 +38,11 @@ class DinamicComp extends Component {
         })
 
         return (
-            <div>
-                <div className="DinamicCompMovies">
+            <div className="DinamicCompMovies">
+                <div className="DinamicCompMoviesList">
                     {movies}
                 </div>
+                <img src={this.state.movies.length? this.state.movies[0].Poster :''} />
             </div>
         )
     }
