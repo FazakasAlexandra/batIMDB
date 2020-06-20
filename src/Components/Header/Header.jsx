@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import 'fontsource-roboto';
 import './Header.css';
 
@@ -6,12 +7,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch,faMoon } from '@fortawesome/free-solid-svg-icons';
 
 
-export default class Header extends React.Component {
+class Header extends React.Component {
+
+    exploreFunction = () => {
+        this.props.history.push('/explore');            
+     }
+
+     hompageFunction = () => {
+        this.props.history.push('/hompage');      
+     }
+
     render() {
+        console.log('props la header,',this.props.history)
         return (
             <nav className='navBar'>
                 <img className='logo' alt='logo' src={require('../Images/imdbLogo.png')} />
-                <button className='explore'>Explore</button>
+                <button className='explore' onClick={this.exploreFunction} >Explore</button>
+                <button className='explore' onClick={this.hompageFunction} >Hompage</button>
                 {/* {this.state.auth && <button>ADD</button>} */}
                 <div>
                     <FontAwesomeIcon icon={faSearch} />
@@ -47,7 +59,7 @@ export default class Header extends React.Component {
         )
     }
 }
-
+export default withRouter(Header);
 
 // import AppBar from '@material-ui/core/AppBar';
 // import Toolbar from '@material-ui/core/Toolbar';
