@@ -19,8 +19,8 @@
 }
 
 .DinamicCompMoviesList {
-  height: auto;
-  max-width: 470px;
+  height: 530px;
+  width: 360px;
   flex:2;
   display: flex;
   flex-direction: column;
@@ -33,3 +33,5 @@
         flex-direction: column-reverse;
   }
 }
+
+
