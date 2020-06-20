@@ -9,18 +9,15 @@ class LoginForm extends React.Component{
         this.state = {
             userName:'',
             password:'',
-            loginError:'',
+            loginError:false,
         }
-        
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleChange(event){
+    handleChange =(event) =>{
         this.setState({
             [event.target.name] : event.target.value
         })
     }
-    handleSubmit(event){
+    handleSubmit = (event) => {
         const {userName, password} = this.state;
         axios.post(
             'https://movies-app-siit.herokuapp.com/auth/login',
@@ -34,13 +31,17 @@ class LoginForm extends React.Component{
               
         }).catch(error=>{
             console.log("login error msg:",error)
+            this.setState({ loginError : true })
         })
         event.preventDefault();
     }
-    
+    handleCancel = (event) =>{
+        this.props.onCancel();
+    }
     
     render(){
         const {userName, password} = this.state;
+
         return(
             <form className='log-form' onSubmit={this.handleSubmit}>
                 <input type='text'
@@ -58,6 +59,14 @@ class LoginForm extends React.Component{
                        onChange={this.handleChange} 
                        required/>
                 <button type='submit'className='submitBtn'>SUBMIT</button>
+                <button className='cancelBtn' onClick={this.handleCancel}>CANCEL</button>
+                {
+                    this.state.loginError && 
+                        <div className='loginError'>
+                            <p className='loginMsg'>Invalid username or password</p>
+                            <p classname='tryAgain'>Try again or REGISTER</p>
+                        </div>
+                }
             </form>
         )
     }

@@ -9,18 +9,15 @@ class RegisterForm extends React.Component{
         this.state = {
             userName:'',
             password:'',
-            registerError:'',
+            registerError: false,
         }
-        
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleChange(event){
+    handleChange=(event)=>{
         this.setState({
             [event.target.name] : event.target.value
         })
     }
-    handleSubmit(event){
+    handleSubmit=(event)=>{
         const {userName, password} = this.state;
         
         axios.post(
@@ -35,12 +32,17 @@ class RegisterForm extends React.Component{
               
         }).catch(error=>{
             console.log("register error msg:", error)
+            this.setState({ registerError : true })
         })
        
         event.preventDefault();
     }
+    handleCancel = (event) =>{
+        this.props.onCancel();
+    }
     render(){
         const {userName, password} = this.state;
+        
         return(
             <form className='reg-form'>
                 <input type='text'
@@ -58,6 +60,13 @@ class RegisterForm extends React.Component{
                        onChange={this.handleChange} 
                        required/>
                 <button type='submit'className='submitBtn'onClick={()=>this.handleSubmit}>SUBMIT</button>
+                <button className='cancelBtn' onClick={this.handleCancel}>CANCEL</button>
+                {
+                    this.state.registerError && 
+                        <div className='registerError'>
+                            <p className='loginMsg'>Ceva mesaj de eroare</p>
+                        </div>
+                }
             </form>
         )
     }

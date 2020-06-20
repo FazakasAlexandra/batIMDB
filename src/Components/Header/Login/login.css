@@ -22,3 +22,14 @@
     border:none;
     border-radius: 0.5em;
 }
+.cancelBtn {
+    margin-top:0.5em;
+    padding:0.5em;
+    background-color:#d6d4d0;
+    border:none;
+    border-radius: 0.5em;
+}
+.loginError{
+    margin-top: 0.5em;
+    color: #d6d4d0
+}

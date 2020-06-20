@@ -30,13 +30,15 @@ class MyImdb extends Component {
                       token:data.accessToken,
                       regForm:false}))
     }  
-    handleSubmitLogin =(data)=>{
+    handleSubmitLogin = (data) =>{
         this.setState({auth:data.authenticated,
                        token:data.accessToken,
                        logForm:false})
         console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
     }
-    
+    handleCancelBtn = () =>{
+        this.setState({logForm: false, regForm: false})
+    }
     render() {
         return (
             <div className="MyImdb">
