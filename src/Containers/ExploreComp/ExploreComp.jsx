@@ -1,15 +1,24 @@
 import React from 'react'
 import { MoviesFiltersBar } from './MoviesFiltersBar/MoviesFiltersBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
-import './ExploreComp.css'
+import './exploreComp.css'
 import Axios from 'axios'
 
 export class ExploreComp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            moviesList: []
+            moviesList: [],
         }
+    }
+    
+    componentDidMount() {
+        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=12`)
+        .then((response) => {
+            console.log(response.data.results)
+            this.setState({ moviesList: response.data.results })
+        }
+        )
     }
 
     getMovies(filterClass, filter) {
