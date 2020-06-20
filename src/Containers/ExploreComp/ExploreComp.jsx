@@ -9,16 +9,22 @@ export class ExploreComp extends React.Component {
         super(props)
         this.state = {
             moviesList: [],
+            search: ''
         }
     }
     
     componentDidMount() {
+        console.log(localStorage.getItem('search'))
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=12`)
         .then((response) => {
             console.log(response.data.results)
             this.setState({ moviesList: response.data.results })
         }
         )
+    }
+
+    getSearchedMovies(){
+        console.log(this.state.search)
     }
 
     getMovies(filterClass, filter) {
@@ -46,6 +52,8 @@ export class ExploreComp extends React.Component {
         return movies
     }
 
+    
+
     render() {
         return (
             <div className="exploreComp-container">
@@ -54,6 +62,7 @@ export class ExploreComp extends React.Component {
                 />
                 <div className="filtered-movies-container">
                     {this.displayMovies()}
+                    {this.state.search !== '' ? this.getSearchedMovies() : null}
                 </div>
             </div>
         )

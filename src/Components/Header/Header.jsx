@@ -17,6 +17,11 @@ class Header extends React.Component {
         this.props.history.push('/hompage');      
      }
 
+     storeSeach = (event) => {
+        this.exploreFunction()
+        this.props.history.push(`/explore/${event.target.value}`)
+     }
+
     render() {
         console.log('props la header,',this.props.history)
         return (
@@ -27,7 +32,7 @@ class Header extends React.Component {
                 {/* {this.state.auth && <button>ADD</button>} */}
                 <div>
                     <FontAwesomeIcon icon={faSearch} />
-                    <input type='search' className='searchBar'/>
+                    <input type='search' className='searchBar' onChange={(event)=>this.storeSeach(event)}/>
                     <button className='searchBtn' value="search">Search</button>
                 </div>
 

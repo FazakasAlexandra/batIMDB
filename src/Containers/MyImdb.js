@@ -75,7 +75,7 @@ class MyImdb extends Component {
                     imdbRating='8.3'
                 /> */}
                 <Switch>
-                    <Route path="/explore" exact component={ExploreComp} />
+                    <Route path="/explore" exact component={ExploreComp} search={localStorage.getItem('search')}/>
                     <Route path="/hompage" exact component={HomePage} />
                     <Route path="/" exact component={HomePage} />
                 </Switch>
