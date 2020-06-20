@@ -4,18 +4,18 @@ import 'fontsource-roboto';
 import './Header.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch,faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 
 class Header extends React.Component {
 
     exploreFunction = () => {
-        this.props.history.push('/explore');            
-     }
+        this.props.history.push('/explore');
+    }
 
-     hompageFunction = () => {
-        this.props.history.push('/hompage');      
-     }
+    hompageFunction = () => {
+        this.props.history.push('/hompage');
+    }
 
      storeSeach = (event) => {
         this.exploreFunction()
@@ -23,42 +23,30 @@ class Header extends React.Component {
      }
 
     render() {
-        console.log('props la header,',this.props.history)
+        console.log('props la header,', this.props.history)
         return (
             <nav className='navBar'>
-                <img className='logo' alt='logo' src={require('../Images/imdbLogo.png')} />
-                <button className='explore' onClick={this.exploreFunction} >Explore</button>
-                <button className='explore' onClick={this.hompageFunction} >Hompage</button>
-                {/* {this.state.auth && <button>ADD</button>} */}
-                <div>
+                <img
+                    className='logo'
+                    alt='logo'
+                    src={require('../Images/imdbLogo.png')}
+                    onClick={this.hompageFunction}
+                />
+                <button
+                    className='exploreBtn'
+                    onClick={this.exploreFunction}
+                >Explore</button>
+                <div className='searchBar'>
                     <FontAwesomeIcon icon={faSearch} />
-                    <input type='search' className='searchBar' onChange={(event)=>this.storeSeach(event)}/>
+                    <input type='search' className='searchInput' onChange={(event)=>this.storeSeach(event)}/>
                     <button className='searchBtn' value="search">Search</button>
                 </div>
-
                 <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
-                {/* <button className='log-btn'onClick={()=>this.handleRegisterBtnClick()}>REGISTER</button> */}
-                <button className='addNewMovie-btn'>Add Movie</button>
-                <div>
-                    {/* <button className='log-btn' onClick={()=>this.handleLoginBtnClick()} */}
+                <button className='addMovieBtn'>Add Movie</button>
+                <div className='buttonsLogReg'>
                     <button className='login-btn'>Login</button>
                     <button className='register-btn'>Register</button>
-                    {/* {this.state.regForm && <RegisterForm 
-                                          auth = {this.state.auth}
-                                          onSubmitRegister = {this.handleSubmitRegister}
-                                        />
-                }
-                {this.state.logForm && <LoginForm 
-                                          auth = {this.state.auth}
-                                          onSubmitLogin = {this.handleSubmitLogin}
-                                        />
-                } */}
                 </div>
-
-
-                {/* <div className='logo'>
-                    <img src={ require('../Images/imdbLogo.png') } />
-                </div> */}
             </nav>
 
         )
