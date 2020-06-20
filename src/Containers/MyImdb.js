@@ -6,6 +6,7 @@ import HomePage from '../Containers/HomePage/HomePage';
 import MovieCard from '../Components/MovieCard/MovieCard'
 import  LoginForm  from '../Components/Header/Login/Login';
 import  RegisterForm  from '../Components/Header/Register/Register';
+import {ExploreComp} from '../Containers/ExploreComp/ExploreComp'
 import './MyImdb.css';
 
 class MyImdb extends Component {
@@ -69,6 +70,8 @@ class MyImdb extends Component {
                     imdbRating='8.3'
                 /> */}
                 <HomePage />
+                <ExploreComp/>
+
             </div>
         );
     }
