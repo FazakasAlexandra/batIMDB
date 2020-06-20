@@ -34,4 +34,12 @@
   }
 }
 
-
+.DinamicCompMoviesTest {
+    height: 530px;
+  width: 360px;
+  flex:2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 10px;
+}

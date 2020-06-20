@@ -12,7 +12,7 @@ class SingleMovie extends Component {
             <div className="DinamicSingleMovie">
                 <img id="imgMovie" src={this.props.poster} />
                 <div className="DinamicInfo">
-                    <p isParagraph={true}>{this.props.runtime}</p>
+                    <p>{this.props.runtime}</p>
                     <p>{this.props.title}</p>
                     <p>{this.props.year}</p>
                 </div>

@@ -10,42 +10,32 @@ class DinamicComp extends Component {
         super(props)
         this.state = {
             movies: [],
-            pic: ''
+            pics: []
         }
     }
 
     componentDidMount() {
         this.getMovies();
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.intervalID);
+        if (this.state.movies.length) {
+            this.renderPic()
+        }
     }
 
     getMovies = () => {
         axios.get('https://movies-app-siit.herokuapp.com/movies?take=6&skip=0').then(response => {
-            this.setState({ movies: response.data.results })  //am comentat-o sa nu va incurce cand randati
+            this.setState({
+                movies: response.data.results,
+            })  //am comentat-o sa nu va incurce cand randati
             console.log(response)
             console.log(this.state.movies)
         })
     }
 
-    renderPic = () => {
-        if (this.state.movies.length) {
-            let render = true;
-            while (render) {
-                for (let i = 0; i < this.state.movies.length; i++) {
-                    this.setState({
-                        pic: this.state.movies[i].Poster
-                    })
-                }
-            }
-        }
-    }
-
     render() {
+        console.log('lista refreshhh')
         let movies = this.state.movies.map((movie, idx) => {
-            this.poster = movie.Poster
+            this.state.pics.push(movie.Poster)
+            console.log('lista pics', this.state.pics)
             return (
                 <SingleMovie
                     title={movie.Title}
@@ -56,18 +46,23 @@ class DinamicComp extends Component {
                     index={idx}
                 />
             )
-        })
+        });
+        let pic = this.state.pics.map(pic => {
+            return (
+                <img src={pic} />
+            )
+        });
         return (
             <div className="DinamicCompMovies">
                 <div className="DinamicCompMoviesList">
-                    <RotateList height={550}>
+                    <RotateList height={550} autoplay={true}>
                         {movies}
                     </RotateList>
                 </div>
-                <div className="DinamicCompMoviesTest">
-                    <img src={this.state.movies.length ? this.state.movies[1].Poster : ''} />
+                <div className="DinamicCompMoviesTest">                    
+                        <img src={this.state.movies.length ? this.state.movies[1].Poster : ''} />
+                        {/* {pic} */}                   
                 </div>
-
             </div>
         )
     }
