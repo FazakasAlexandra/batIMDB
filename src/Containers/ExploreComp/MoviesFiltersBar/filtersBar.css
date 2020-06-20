@@ -5,8 +5,14 @@
 
 .dropdown-menus-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    margin: 0 auto;
+}
+
+.dropdown-menu-container{
+    display: flex;
+    flex-direction: column;
+
 }
 
 .dropdown-menu {
@@ -21,7 +27,20 @@
 }
 
 .filter {
-    margin-right: 5rem;
+    margin-left: 7.8rem;
+    margin-top:1rem
+}
+
+#imdbRating-filter-display{
+    margin-left: 10.2rem;
+}
+
+#Year-filter-display{
+    margin-left: 6.8rem;
+}
+
+#Language-filter-display{
+    margin-left: 9.5rem;
 }
 
 .dropdown-menu .fa-w-8, .fa-w-10 {

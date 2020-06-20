@@ -1,7 +1,7 @@
 import React from 'react'
 import { MoviesFiltersBar } from './MoviesFiltersBar/MoviesFiltersBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
-import './ExploreComp.css'
+import './exploreComp.css'
 import Axios from 'axios'
 
 export class ExploreComp extends React.Component {
@@ -27,6 +27,7 @@ export class ExploreComp extends React.Component {
         let { moviesList } = this.state
         let movies = moviesList.map(movie => {
             return (<MovieCard
+                key={movie._id}
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
