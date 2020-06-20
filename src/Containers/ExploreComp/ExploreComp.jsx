@@ -9,12 +9,11 @@ export class ExploreComp extends React.Component {
         super(props)
         this.state = {
             moviesList: [],
-            search: ''
+            search: localStorage.getItem('search')
         }
     }
     
     componentDidMount() {
-        console.log(localStorage.getItem('search'))
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=12`)
         .then((response) => {
             console.log(response.data.results)
