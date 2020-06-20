@@ -45,13 +45,7 @@ class MyImdb extends Component {
     render() {
         return (
             <div className="MyImdb">
-<<<<<<< HEAD
-                /* header component */   // componenta Alex
-=======
                 <Header />
->>>>>>> b3b2aea39ec994ad2a365c1045a44ea31ce99d52
-
-
                 <button className='log-btn'onClick={()=>this.handleRegisterBtnClick()}>REGISTER</button>
                 <div className='btn-container'>
                 <button className='log-btn' onClick={()=>this.handleLoginBtnClick()}>LOGIN</button>
