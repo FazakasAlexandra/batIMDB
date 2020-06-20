@@ -66,7 +66,6 @@ class MyImdb extends Component {
                     title='Pioneer Card'
                     imdbRating='8.3'
                 /> */}
-
                 <HomePage />
             </div>
         );

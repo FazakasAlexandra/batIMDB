@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <MyImdb></MyImdb>
+          <MyImdb/>
         </div>
       </BrowserRouter>
     );
