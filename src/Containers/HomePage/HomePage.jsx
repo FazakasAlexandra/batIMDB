@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import DinamicComp from '../HomePage/DinamicComp/DinamicComp';
 import './HomePage.css';
 
@@ -13,4 +14,4 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage
+export default withRouter(HomePage);
