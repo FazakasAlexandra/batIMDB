@@ -1,0 +1,10 @@
+.filtered-movies-container{
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+}
+
+.filtered-movies-container .movieCard{
+    width: 100%;
+}

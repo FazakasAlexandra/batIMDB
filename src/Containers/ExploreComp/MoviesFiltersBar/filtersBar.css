@@ -29,13 +29,13 @@
     cursor: pointer;
 }
 
-#genres-filter-hide, #ratings-filter-hide,
-#years-filter-hide, #languages-filter-hide{
+#Genre-filter-hide, #imdbRating-filter-hide,
+#Year-filter-hide, #Language-filter-hide{
     display: none;
 }
 
-#genres-filter-display, #ratings-filter-display,
-#years-filter-display, #languages-filter-display{
+#Genre-filter-display, #imdbRating-filter-display,
+#Year-filter-display, #Language-filter-display{
     display: flex;
     flex-direction: column;
 }
