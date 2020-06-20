@@ -1,5 +1,7 @@
-import React from 'react'
-import './MovieCard.css'
+import React from 'react';
+import './MovieCard.css';
+
+
 class MovieCard extends React.Component{
     constructor(props){
         super(props)
@@ -17,4 +19,4 @@ class MovieCard extends React.Component{
         )
     }
 }
-export {MovieCard}
+export default MovieCard

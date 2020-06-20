@@ -1,0 +1,24 @@
+.reg-form{
+    position:absolute;
+    border-radius: 0.5em;
+    z-index :1;
+    padding:1.5em;
+    margin-top:2.5em;
+    background-color: dimgray;
+    display:flex;
+    flex-direction: column ;
+}
+.log-field {
+    padding:0.5em;
+    margin-bottom: 1em;
+    outline: 0;
+    border:0;
+    background-color:rgb(253, 253, 252);
+    border-radius: 0.5em;
+}
+.submitBtn {
+    padding:0.5em;
+    background-color: gold;
+    border:none;
+    border-radius: 0.5em;
+}
