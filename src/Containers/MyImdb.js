@@ -9,6 +9,8 @@ import  RegisterForm  from '../Components/Header/Register/Register';
 import {ExploreComp} from '../Containers/ExploreComp/ExploreComp'
 import './MyImdb.css';
 
+import Header from '../Components/Header/Header';
+
 class MyImdb extends Component {
     constructor(props){
         super(props)
@@ -43,7 +45,11 @@ class MyImdb extends Component {
     render() {
         return (
             <div className="MyImdb">
+<<<<<<< HEAD
                 /* header component */   // componenta Alex
+=======
+                <Header />
+>>>>>>> b3b2aea39ec994ad2a365c1045a44ea31ce99d52
 
 
                 <button className='log-btn'onClick={()=>this.handleRegisterBtnClick()}>REGISTER</button>
