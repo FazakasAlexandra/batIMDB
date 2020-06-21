@@ -54,7 +54,7 @@ class Header extends React.Component {
 
     storeSeach = (event) => {
         if (event.target.value === '') {
-            this.props.history.push(`/explore${event.target.value}`)
+            this.exploreFunction()
         } else {
             localStorage.setItem('search', event.target.value)
             this.exploreFunction()

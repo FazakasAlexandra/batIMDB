@@ -20,7 +20,7 @@ export function LargeMenu(props) {
             showMenu={props.showLanguageMenu}
             filterOne={'Romanian'}
             filterTwo={'English'}
-            filterThree={'German'}
+            filterThree={'French'}
             filterMovies={(filterClass, filter) => props.filter(filterClass, filter)}
         />
 
