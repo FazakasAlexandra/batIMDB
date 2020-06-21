@@ -12,7 +12,7 @@ class Picture extends Component {
         });
         return (
         <div className="Picture">
-            <RotateList height={580} duration={900} delay={3000} >
+            <RotateList height={580} duration={900} delay={5000} >
               {pics}
             </RotateList>
         </div>            

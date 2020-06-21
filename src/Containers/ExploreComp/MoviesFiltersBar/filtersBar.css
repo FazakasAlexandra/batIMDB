@@ -6,7 +6,7 @@
 .dropdown-menus-container {
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
+    margin-left: 2.7rem;
 }
 
 .dropdown-menu-container{
@@ -18,33 +18,42 @@
 .dropdown-menu {
      display: flex;
      align-items: center;
-     margin-right: 5rem;
+     margin-right: 2.5rem;
      cursor: pointer;
 }
 
+.dropdown-menu p {
+    color: rgba(255, 255, 255, 0.705);
+}
+
 .filter p {
+    color: rgba(255, 255, 255, 0.603);
     cursor: pointer;
 }
 
 .filter {
-    margin-left: 7.8rem;
-    margin-top:1rem
+    margin-top:1rem;
+     line-height: 2rem;
 }
 
+#Genre-filter-display{
+    margin-left: 6.5rem;
+}
 #imdbRating-filter-display{
-    margin-left: 10.2rem;
+    margin-left: 9rem;
 }
 
 #Year-filter-display{
-    margin-left: 6.8rem;
+    margin-left: 6rem;
 }
 
 #Language-filter-display{
-    margin-left: 9.5rem;
+    margin-left: 8.5rem;
 }
 
 .dropdown-menu .fa-w-8, .fa-w-10 {
-    margin-left: 5rem;
+    margin-left: 4rem;
+    color: rgba(255, 255, 255, 0.856); 
     cursor: pointer;
 }
 
@@ -57,5 +66,6 @@
 #Year-filter-display, #Language-filter-display{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 

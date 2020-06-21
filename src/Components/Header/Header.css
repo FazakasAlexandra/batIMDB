@@ -117,6 +117,18 @@
 
 }
 
+.search-input-container{
+position: relative;
+}
+
+.search-input-container .fa-w-16{
+	position: absolute;
+	color: grey;
+	left: 90%;
+	top: 10%;
+	font-size: 1.2rem;
+}
+
 .searchInput {
     border-color:#dcdcdc; 
     border-style:solid; 

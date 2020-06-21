@@ -51,6 +51,13 @@ class Header extends React.Component {
         this.setState({ logForm : this.props.logForm,
                         auth : this.props.auth})
     }
+
+     storeSeach = (event) => {
+        localStorage.setItem('search', event.target.value)
+        this.exploreFunction()
+        this.props.history.push(`/explore/${event.target.value}`)
+     }
+
     render() {
         // console.log('props history la header,', this.props.history, 'props header', this.props)
         return (
@@ -66,9 +73,11 @@ class Header extends React.Component {
                     onClick={this.exploreFunction}
                 >Explore</button>
                 <div className='searchBar'>
+                    <span className="search-input-container">
                     <FontAwesomeIcon icon={faSearch} />
-                    <input type='search' className='searchInput' />
-                    <button className='searchBtn' value="search">Search</button>
+                    <input type='search' className='searchInput' onChange={(event)=>this.storeSeach(event)}/>
+                    </span>
+                    {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
                 <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
                 <button className='addMovieBtn'>Add Movie</button>
