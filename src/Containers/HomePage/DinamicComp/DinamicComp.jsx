@@ -4,6 +4,8 @@ import axios from 'axios';
 import RotateList from 'react-rotate-list';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import "./DinamicComp.css";
+import { Fragment } from 'react';
+import Picture from './Picture/Picture';
 
 class DinamicComp extends Component {
     constructor(props) {
@@ -22,20 +24,31 @@ class DinamicComp extends Component {
     }
 
     getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=6&skip=0').then(response => {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=20&skip=0').then(response => {
             this.setState({
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
             console.log(response)
-            console.log(this.state.movies)
+            /* console.log(this.state.movies) */
         })
+    }
+
+    renderPic =()=> {
+        if(this.state.pics.length) {
+            return (
+                <Picture 
+                picturesArray={this.state.pics} 
+                key={this.state.movies._id} 
+                />
+            )
+        }
     }
 
     render() {
         console.log('lista refreshhh')
         let movies = this.state.movies.map((movie, idx) => {
             this.state.pics.push(movie.Poster)
-            console.log('lista pics', this.state.pics)
+            /* console.log('lista pics', this.state.pics) */
             return (
                 <SingleMovie
                     title={movie.Title}
@@ -47,23 +60,25 @@ class DinamicComp extends Component {
                 />
             )
         });
-        let pic = this.state.pics.map(pic => {
-            return (
-                <img src={pic} />
-            )
-        });
+        
         return (
-            <div className="DinamicCompMovies">
-                <div className="DinamicCompMoviesList">
-                    <RotateList height={550} autoplay={true}>
-                        {movies}
-                    </RotateList>
+            <Fragment>
+                <div className="DinamicCompMovies">
+                    <div className="DinamicCompMoviesList">
+                        <RotateList height={550} autoplay={true} duration={900} delay={3000}>
+                            {movies}
+                        </RotateList>
+                    </div>
+                    <div className="DinamicCompMoviesPicture">
+                        {this.renderPic()} 
+                    </div>
+                                            
+                        {/* <img src={this.state.movies.length ? this.state.movies[1].Poster : ''} /> */}
+                        {/* {pic} */}                    
                 </div>
-                <div className="DinamicCompMoviesTest">                    
-                        <img src={this.state.movies.length ? this.state.movies[1].Poster : ''} />
-                        {/* {pic} */}                   
-                </div>
-            </div>
+                {/* <Picture picturesArray={this.state.pics.length ? this.state.pics : ''}/> */}
+                
+            </Fragment>
         )
     }
 }

@@ -1,9 +1,9 @@
 .DinamicSingleMovie {
   display: flex;
   height: auto;
-  max-width: 450px;
+  width: 250px;
   flex-direction: row;
-  margin: 12px;
+  margin: unset;
 }
 #imgMovie {
   width: 100%;
@@ -16,7 +16,8 @@
   display: flex;
   flex-direction: column;
   margin-left: 10px;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .DinamicInfo p {
   max-width: 300px;
@@ -26,4 +27,5 @@
 .DinamicInfo p:nth-child(2) {
   font-weight: bolder;
   color: yellow;
+  text-align: start;
 }
