@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
+import styled from 'styled-components';
+import Bounce from '../../../Theme/Styledcomponents/Bounce';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import "./DinamicComp.css";
 import { Fragment } from 'react';
@@ -17,10 +19,7 @@ class DinamicComp extends Component {
     }
 
     componentDidMount() {
-        this.getMovies();
-        if (this.state.movies.length) {
-            this.renderPic()
-        }
+        this.getMovies();        
     }
 
     getMovies = () => {
@@ -48,7 +47,6 @@ class DinamicComp extends Component {
         console.log('lista refreshhh')
         let movies = this.state.movies.map((movie, idx) => {
             this.state.pics.push(movie.Poster)
-            /* console.log('lista pics', this.state.pics) */
             return (
                 <SingleMovie
                     title={movie.Title}
@@ -57,27 +55,24 @@ class DinamicComp extends Component {
                     poster={movie.Poster}
                     runtime={movie.Runtime}
                     index={idx}
+                    imdbID={movie.imdbID}
                 />
             )
         });
         
         return (
             <Fragment>
+                <Bounce><h1 style={{color: "yellow"}}>Batman forever</h1></Bounce>
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
-                        <RotateList height={550} autoplay={true} duration={900} delay={3000}>
+                        <RotateList height={550} autoplay={true} duration={900} delay={5000}>
                             {movies}
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
                         {this.renderPic()} 
-                    </div>
-                                            
-                        {/* <img src={this.state.movies.length ? this.state.movies[1].Poster : ''} /> */}
-                        {/* {pic} */}                    
-                </div>
-                {/* <Picture picturesArray={this.state.pics.length ? this.state.pics : ''}/> */}
-                
+                    </div>                
+                </div>                
             </Fragment>
         )
     }
