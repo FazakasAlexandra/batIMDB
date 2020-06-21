@@ -40,7 +40,7 @@ class Header extends React.Component {
                 <div className='searchBar'>
                     <FontAwesomeIcon icon={faSearch} />
                     <input type='search' className='searchInput' onChange={(event)=>this.storeSeach(event)}/>
-                    <button className='searchBtn' value="search">Search</button>
+                    {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
                 <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
                 <button className='addMovieBtn'>Add Movie</button>
