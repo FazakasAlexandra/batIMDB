@@ -1,0 +1,16 @@
+ .categoriesList{
+    margin: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2.5rem;
+}
+
+.categoriesList .movieCard{
+    width: 100%;
+}
+
+h2 {
+    margin-left: 2.5rem;
+    text-align: left;
+    color: yellow;
+}

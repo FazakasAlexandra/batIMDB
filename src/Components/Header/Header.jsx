@@ -67,7 +67,7 @@ class Header extends React.Component {
 
     storeSeach = (event) => {
         if (event.target.value === '') {
-            this.props.history.push(`/explore${event.target.value}`)
+            this.exploreFunction()
         } else {
             localStorage.setItem('search', event.target.value)
             this.exploreFunction()
@@ -96,7 +96,7 @@ class Header extends React.Component {
                     </span>
                     {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
-                <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
+                <FontAwesomeIcon icon={faMoon} className="moon"/>
                 <button className='addMovieBtn'>Add Movie</button>
 
                 <button className='register-btn'
