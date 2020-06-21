@@ -111,10 +111,12 @@
     
 
 } */
-.searchBar>svg {
-    
+.searchBar>svg {    
     padding-right: 2px;
+}
 
+.moon{
+	cursor: pointer;
 }
 
 .search-input-container{

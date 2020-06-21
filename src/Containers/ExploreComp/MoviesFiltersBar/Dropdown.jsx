@@ -1,5 +1,5 @@
 import React from 'react'
-import './filtersBar.css'
+import './MoviesFiltersBar.css'
 import '../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
