@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     width: 100%;
     height: auto;
-    background-color:black;
+    background-color:rgba(0, 0, 0, 0.397);
     color: cornsilk;
     padding: 15px 0px;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import './filtersBar.css'
 import { Dropdown } from './Dropdown'
 import '../../../Fontawesome/fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 export class MoviesFiltersBar extends React.Component {
@@ -12,6 +13,7 @@ export class MoviesFiltersBar extends React.Component {
             ratingsOn: false,
             yearsOn: false,
             languagesOn: false,
+            menuOn: false
         }
     }
 
@@ -20,9 +22,14 @@ export class MoviesFiltersBar extends React.Component {
     }
 
     render() {
-        let { genresOn, ratingsOn, yearsOn, languagesOn } = this.state
+        let { genresOn, ratingsOn, yearsOn, languagesOn, menuOn} = this.state
         return (
-                <div className='dropdown-menus-container'>
+            <>
+                <span className="bars-container">
+                    <FontAwesomeIcon icon={'bars'} onClick={()=>{this.setState({menuOn : !menuOn})}}/>
+                </span>
+
+                <div className='dropdown-menus-container' style={{display : menuOn? 'none' : 'flex'}}>
                     <Dropdown
                         filterClass={'Genre'}
                         filterOn={genresOn}
@@ -34,12 +41,12 @@ export class MoviesFiltersBar extends React.Component {
                     />
 
                     <Dropdown
-                        filterClass={'imdbRating'}
-                        filterOn={ratingsOn}
-                        showMenu={() => this.setState({ ratingsOn: !ratingsOn })}
-                        filterOne={'7.0'}
-                        filterTwo={'8.0'}
-                        filterThree={'9.0'}
+                        filterClass={'Language'}
+                        filterOn={languagesOn}
+                        showMenu={() => this.setState({ languagesOn: !languagesOn })}
+                        filterOne={'Romanian'}
+                        filterTwo={'English'}
+                        filterThree={'German'}
                         filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
                     />
 
@@ -54,15 +61,16 @@ export class MoviesFiltersBar extends React.Component {
                     />
 
                     <Dropdown
-                        filterClass={'Language'}
-                        filterOn={languagesOn}
-                        showMenu={() => this.setState({ languagesOn: !languagesOn })}
-                        filterOne={'Romanian'}
-                        filterTwo={'English'}
-                        filterThree={'German'}
+                        filterClass={'imdbRating'}
+                        filterOn={ratingsOn}
+                        showMenu={() => this.setState({ ratingsOn: !ratingsOn })}
+                        filterOne={'7.0'}
+                        filterTwo={'8.0'}
+                        filterThree={'9.0'}
                         filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
                     />
                 </div>
+            </>
         )
     }
 }

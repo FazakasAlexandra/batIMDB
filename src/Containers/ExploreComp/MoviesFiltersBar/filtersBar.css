@@ -1,4 +1,4 @@
-.moviesFiltersBar-container{
+.moviesFiltersBar-container {
     display: flex;
     flex-direction: column;
 }
@@ -9,17 +9,21 @@
     margin-left: 2.7rem;
 }
 
-.dropdown-menu-container{
+.dropdown-menu-container {
     display: flex;
     flex-direction: column;
 
 }
 
+.hide-dropdown-menus-container{
+    display: none;
+}
+
 .dropdown-menu {
-     display: flex;
-     align-items: center;
-     margin-right: 2.5rem;
-     cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 2.5rem;
+    cursor: pointer;
 }
 
 .dropdown-menu p {
@@ -32,40 +36,117 @@
 }
 
 .filter {
-    margin-top:1rem;
-     line-height: 2rem;
+    margin-top: 1rem;
+    line-height: 2rem;
 }
 
-#Genre-filter-display{
+#Genre-filter-display {
     margin-left: 6.5rem;
 }
-#imdbRating-filter-display{
+
+#imdbRating-filter-display {
     margin-left: 9rem;
 }
 
-#Year-filter-display{
+#Year-filter-display {
     margin-left: 6rem;
 }
 
-#Language-filter-display{
+#Language-filter-display {
     margin-left: 8.5rem;
 }
 
-.dropdown-menu .fa-w-8, .fa-w-10 {
+.dropdown-menu .fa-w-8,
+.fa-w-10 {
     margin-left: 4rem;
-    color: rgba(255, 255, 255, 0.856); 
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 
-#Genre-filter-hide, #imdbRating-filter-hide,
-#Year-filter-hide, #Language-filter-hide{
+#Genre-filter-hide,
+#imdbRating-filter-hide,
+#Year-filter-hide,
+#Language-filter-hide {
     display: none;
 }
 
-#Genre-filter-display, #imdbRating-filter-display,
-#Year-filter-display, #Language-filter-display{
+#Genre-filter-display,
+#imdbRating-filter-display,
+#Year-filter-display,
+#Language-filter-display {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
+.exploreComp-container .fa-w-14 {
+    color: white;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    margin-left: 1rem;
+    display: none;
+}
+
+
+
+/*  ---- media ---- */
+
+
+
+@media(max-width: 700px) {
+    .exploreComp-container .fa-w-14 {
+        display: block;
+    }
+
+    .bars-container {
+        background-color: rgba(0, 0, 0, 0.397);
+    }
+
+    .dropdown-menus-container {
+        margin-left: 0rem;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.397);
+        border: none;
+        padding: 1rem;
+        border-bottom-style: solid;
+        border-color: #F4AF01;
+        border-width: 0.2rem;
+        width: fit-content;
+        display: none;
+    }
+
+    .dropdown-menu .fa-w-8,
+    .fa-w-10 {
+        margin-left: 1rem;
+    }
+
+    .dropdown-menu {
+        line-height: 2;
+    }
+
+    #Genre-filter-display {
+        margin-left: 4rem;
+    }
+
+    #imdbRating-filter-display {
+        margin-left: 6rem;
+    }
+
+    #Year-filter-display {
+        margin-left: 3rem;
+    }
+
+    #Language-filter-display {
+        margin-left: 5rem;
+    }
+
+    #Genre-filter-display,
+    #imdbRating-filter-display,
+    #Year-filter-display,
+    #Language-filter-display {
+        margin-top: 0px;
+    }
+
+}

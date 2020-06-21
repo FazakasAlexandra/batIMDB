@@ -17,11 +17,15 @@ class Header extends React.Component {
         this.props.history.push('/hompage');
     }
 
-     storeSeach = (event) => {
-        localStorage.setItem('search', event.target.value)
-        this.exploreFunction()
-        this.props.history.push(`/explore/${event.target.value}`)
-     }
+    storeSeach = (event) => {
+        if (event.target.value === '') {
+            this.props.history.push(`/explore${event.target.value}`)
+        } else {
+            localStorage.setItem('search', event.target.value)
+            this.exploreFunction()
+            this.props.history.push(`/explore/${event.target.value}`)
+        }
+    }
 
     render() {
         console.log('props la header,', this.props.history)
@@ -39,8 +43,8 @@ class Header extends React.Component {
                 >Explore</button>
                 <div className='searchBar'>
                     <span className="search-input-container">
-                    <FontAwesomeIcon icon={faSearch} />
-                    <input type='search' className='searchInput' onChange={(event)=>this.storeSeach(event)}/>
+                        <FontAwesomeIcon icon={faSearch} />
+                        <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} />
                     </span>
                     {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
