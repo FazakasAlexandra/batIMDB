@@ -8,7 +8,6 @@ import "./SingleMovie.css";
 class SingleMovie extends Component {
 
     render() {
-        /* console.log('tema', this.props.theme) */
         return (            
             <div className="DinamicSingleMovie">
                 <img className="DinamicSingleMovieImg" src={this.props.poster} />
@@ -23,4 +22,4 @@ class SingleMovie extends Component {
     }
 }
 
-export default withTheme(withRouter(SingleMovie));
+export default withRouter(SingleMovie);

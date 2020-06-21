@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+/* import { withRouter } from 'react-router-dom'; */
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
 import styled from 'styled-components';
@@ -18,8 +18,11 @@ class DinamicComp extends Component {
         }
     }
 
+
     componentDidMount() {
-        this.getMovies();        
+        this.getMovies();
+
+        console.log('mounted again',)        
     }
 
     getMovies = () => {
@@ -28,7 +31,7 @@ class DinamicComp extends Component {
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
             console.log(response)
-            /* console.log(this.state.movies) */
+            
         })
     }
 
@@ -44,7 +47,7 @@ class DinamicComp extends Component {
     }
 
     render() {
-        console.log('lista refreshhh')
+        console.log('lista refreshhh', this.state.movies.length)
         let movies = this.state.movies.map((movie, idx) => {
             this.state.pics.push(movie.Poster)
             return (
@@ -66,7 +69,7 @@ class DinamicComp extends Component {
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
-                            {movies}
+                            {this.state.movies.length? movies :''}
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
@@ -78,4 +81,4 @@ class DinamicComp extends Component {
     }
 }
 
-export default withRouter(DinamicComp);
+export default DinamicComp;

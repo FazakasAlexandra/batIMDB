@@ -11,12 +11,12 @@ import LoginForm from './Login/Login'
 
 
 class Header extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            auth : false,
-            regForm : false,
-            logForm : false
+            auth: false,
+            regForm: false,
+            logForm: false
         }
     }
     exploreFunction = () => {
@@ -24,32 +24,45 @@ class Header extends React.Component {
     }
 
     hompageFunction = () => {
-        this.props.history.push('/hompage');
+        this.props.history.push(
+            {
+                pathname: '/hompage',
+                state: this.props.location.pathname
+            }
+        );
     }
-    
+
     // logic for register/login/cancelForm Btns 
-    handleRegisterBtnClick=()=> {
-        this.setState({ regForm: true,
-                        logForm : false })
+    handleRegisterBtnClick = () => {
+        this.setState({
+            regForm: true,
+            logForm: false
+        })
     }
-    handleLoginBtnClick =() => {
-        this.setState({ logForm: true,
-                        regForm : false })
+    handleLoginBtnClick = () => {
+        this.setState({
+            logForm: true,
+            regForm: false
+        })
     }
     handleCancelBtn = () => {
         this.setState({ logForm: false, regForm: false })
     }
-    
+
     //logic for submit register/login => sending auth, regForm, logForm from MyImdb to header state
-    handleSubmitRegister = (data) =>{
+    handleSubmitRegister = (data) => {
         this.props.onSubmitRegister(data);
-        this.setState({ regForm : this.props.regForm,
-                        auth : this.props.auth})
+        this.setState({
+            regForm: this.props.regForm,
+            auth: this.props.auth
+        })
     }
-    handleSubmitLogin =(data) => {
+    handleSubmitLogin = (data) => {
         this.props.onSubmitLogin(data);
-        this.setState({ logForm : this.props.logForm,
-                        auth : this.props.auth})
+        this.setState({
+            logForm: this.props.logForm,
+            auth: this.props.auth
+        })
     }
 
     storeSeach = (event) => {
@@ -85,24 +98,24 @@ class Header extends React.Component {
                 </div>
                 <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
                 <button className='addMovieBtn'>Add Movie</button>
-                
+
                 <button className='register-btn'
-                            onClick={() => this.handleRegisterBtnClick()}>Register</button>
+                    onClick={() => this.handleRegisterBtnClick()}>Register</button>
                 <div className='buttonsLogReg'>
                     <button className='login-btn'
-                            onClick={() => this.handleLoginBtnClick()}>Login</button>
-                        { this.state.regForm && < RegisterForm
-                                                auth={this.state.auth}
-                                                onSubmitRegister={this.handleSubmitRegister}
-                                                onCancel={this.handleCancelBtn}
-                                                />
-                        }
-                        { this.state.logForm && < LoginForm
-                                                auth={this.state.auth}
-                                                onSubmitLogin={this.handleSubmitLogin}
-                                                onCancel={this.handleCancelBtn}
-                                                 />
-                        }
+                        onClick={() => this.handleLoginBtnClick()}>Login</button>
+                    {this.state.regForm && < RegisterForm
+                        auth={this.state.auth}
+                        onSubmitRegister={this.handleSubmitRegister}
+                        onCancel={this.handleCancelBtn}
+                    />
+                    }
+                    {this.state.logForm && < LoginForm
+                        auth={this.state.auth}
+                        onSubmitLogin={this.handleSubmitLogin}
+                        onCancel={this.handleCancelBtn}
+                    />
+                    }
                 </div>
             </nav>
 
