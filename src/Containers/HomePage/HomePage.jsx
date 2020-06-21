@@ -8,9 +8,8 @@ class HomePage extends Component {
     render() {
         return (
             <div className="Hompage">
-                <DinamicComp/>  //componenta Marius 
+                <DinamicComp/>  
                 <CategoriesLists />
-            /* CategoriesList component */   //componenta Daniel 
             </div>
         );
     }
