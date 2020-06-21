@@ -6,9 +6,19 @@ import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faMoon } from '@fortawesome/free-solid-svg-icons';
 
+import RegisterForm from './Register/Register'
+import LoginForm from './Login/Login'
+
 
 class Header extends React.Component {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            auth : false,
+            regForm : false,
+            logForm : false
+        }
+    }
     exploreFunction = () => {
         this.props.history.push('/explore');
     }
@@ -16,9 +26,33 @@ class Header extends React.Component {
     hompageFunction = () => {
         this.props.history.push('/hompage');
     }
-
+    
+    // logic for register/login/cancelForm Btns 
+    handleRegisterBtnClick=()=> {
+        this.setState({ regForm: true,
+                        logForm : false })
+    }
+    handleLoginBtnClick =() => {
+        this.setState({ logForm: true,
+                        regForm : false })
+    }
+    handleCancelBtn = () => {
+        this.setState({ logForm: false, regForm: false })
+    }
+    
+    //logic for submit register/login => sending auth, regForm, logForm from MyImdb to header state
+    handleSubmitRegister = (data) =>{
+        this.props.onSubmitRegister(data);
+        this.setState({ regForm : this.props.regForm,
+                        auth : this.props.auth})
+    }
+    handleSubmitLogin =(data) => {
+        this.props.onSubmitLogin(data);
+        this.setState({ logForm : this.props.logForm,
+                        auth : this.props.auth})
+    }
     render() {
-        console.log('props la header,', this.props.history)
+        // console.log('props history la header,', this.props.history, 'props header', this.props)
         return (
             <nav className='navBar'>
                 <img
@@ -38,9 +72,24 @@ class Header extends React.Component {
                 </div>
                 <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
                 <button className='addMovieBtn'>Add Movie</button>
+                
+                <button className='register-btn'
+                            onClick={() => this.handleRegisterBtnClick()}>Register</button>
                 <div className='buttonsLogReg'>
-                    <button className='login-btn'>Login</button>
-                    <button className='register-btn'>Register</button>
+                    <button className='login-btn'
+                            onClick={() => this.handleLoginBtnClick()}>Login</button>
+                        { this.state.regForm && < RegisterForm
+                                                auth={this.state.auth}
+                                                onSubmitRegister={this.handleSubmitRegister}
+                                                onCancel={this.handleCancelBtn}
+                                                />
+                        }
+                        { this.state.logForm && < LoginForm
+                                                auth={this.state.auth}
+                                                onSubmitLogin={this.handleSubmitLogin}
+                                                onCancel={this.handleCancelBtn}
+                                                 />
+                        }
                 </div>
             </nav>
 
