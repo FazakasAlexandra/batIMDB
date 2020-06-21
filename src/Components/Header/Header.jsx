@@ -38,8 +38,10 @@ class Header extends React.Component {
                     onClick={this.exploreFunction}
                 >Explore</button>
                 <div className='searchBar'>
+                    <span className="search-input-container">
                     <FontAwesomeIcon icon={faSearch} />
                     <input type='search' className='searchInput' onChange={(event)=>this.storeSeach(event)}/>
+                    </span>
                     {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
                 <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>

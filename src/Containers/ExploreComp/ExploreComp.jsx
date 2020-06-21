@@ -1,7 +1,7 @@
 import React from 'react'
 import { MoviesFiltersBar } from './MoviesFiltersBar/MoviesFiltersBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
-import './exploreComp.css'
+import './ExploreComp.css'
 import Axios from 'axios'
 
 export class ExploreComp extends React.Component {
