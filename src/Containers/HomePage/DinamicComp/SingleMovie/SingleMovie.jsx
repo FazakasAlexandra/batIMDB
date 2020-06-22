@@ -9,7 +9,9 @@ class SingleMovie extends Component {
     render() {
         return (
             <div className="DinamicSingleMovie">
-                <img className="DinamicSingleMovieImg" src={this.props.poster} />
+                <a>
+                    <img className="DinamicSingleMovieImg" src={this.props.poster} />
+                </a>                
                 <div className="DinamicInfo">
                     <p>{this.props.runtime}</p>
                     <p>{this.props.title}</p>

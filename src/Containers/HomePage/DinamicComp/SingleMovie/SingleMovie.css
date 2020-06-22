@@ -8,9 +8,13 @@
  margin-right: 1px;
 
 }
+.DinamicSingleMovie a{
+  cursor: pointer;
+}
+
 .DinamicSingleMovieImg {
-  width: 100%;
-  max-width: 80px;
+  /* width: 100%; */
+  width: 90px;
   height: auto;
   flex: 1;
 }

@@ -14,7 +14,7 @@ class DinamicComp extends Component {
         super(props)
         this.state = {
             movies: [],
-        }        
+        }
     }
 
 
@@ -33,16 +33,19 @@ class DinamicComp extends Component {
     }
 
     renderPic = () => {
-        this.pics = [];
+        const pics = [];
         this.state.movies.map((movie, idx) => {
-            this.pics.push(movie.Poster)})
+            pics.push(movie.Poster)
+        })
 
-        if (this.pics.length) {
+        if (pics.length) {
             return (
-                <Picture
-                    picturesArray={this.pics}
-                    key={this.state.movies._id}
-                />
+                <a href={'kjk'}>
+                    <Picture
+                        picturesArray={pics}
+                        key={this.state.movies._id}
+                    />
+                </a>
             )
         }
     }
@@ -67,6 +70,7 @@ class DinamicComp extends Component {
         return (
             <Fragment>
                 <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
+                {/* <img src="https://img.pngio.com/film-frame-camera-film-filmframepnghtml-film-frame-png-600_552.png" alt="film frame - /camera/film/film_frame.png.html"/> */}
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
@@ -77,6 +81,7 @@ class DinamicComp extends Component {
                         {this.renderPic()}
                     </div>
                 </div>
+                {/* <img src="https://img.pngio.com/film-frame-camera-film-filmframepnghtml-film-frame-png-600_552.png" alt="film frame - /camera/film/film_frame.png.html"/> */}
             </Fragment>
         )
     }

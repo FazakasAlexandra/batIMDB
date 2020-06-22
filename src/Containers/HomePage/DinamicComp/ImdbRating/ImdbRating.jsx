@@ -7,6 +7,13 @@ class ImdbRating extends Component {
 
     render() {
         const mystyle = {
+            /* container: {
+                display: "flex",
+                border: "1px solid gray",
+                borderRadius: "3px",
+                justifyContent: "center",
+                alignItems: "center",
+            }, */
             rating: {
                 marginTop: "3px",
                 color: "white",
@@ -17,17 +24,17 @@ class ImdbRating extends Component {
             }
         }
         return (
-            <span data-title={this.props.mImdbID}>
+            <span /* style={mystyle.container} */ data-title={this.props.mImdbID}>
                 <a href={`https://www.imdb.com/title/${this.props.mImdbID}/?ref_=plg_rt_1`}>
                     <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" />
-                </a>"
-                <span style={mystyle.rating}>
-                    {this.props.Rating}  / 10 
-                        <FontAwesomeIcon
+                </a>&nbsp;&nbsp;
+                < span style={mystyle.rating} >
+                    {this.props.Rating}&nbsp;/&nbsp;10 &nbsp; 
+            < FontAwesomeIcon
                         icon="star"
                         style={mystyle.star} />
-                </span>
-            </span>
+                </span >
+            </span >
         )
     }
 }
