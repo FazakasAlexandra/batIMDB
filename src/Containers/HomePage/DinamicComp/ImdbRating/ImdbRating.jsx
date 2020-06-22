@@ -1,22 +1,22 @@
 import React, { Component, Fragment } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../../../../Fontawesome/fontawesome';
 import { withRouter } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 
 class ImdbRating extends Component {
 
-   /*  functionApi = () => {
-        (function (d, s, id) {
-            var js,
-                stags = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";
-            stags.parentNode.insertBefore(js, stags);
-        })(document, "script", "imdb-rating-api")
-    } */
-    /* "https://www.imdb.com/title/tt6858702/?ref_=plg_rt_1" */
-    render() {
+    render() {       
+        const mystyle = {
+            rating: {
+                marginTop: "3px",
+                color: "white",
+                textAlign: "center",
+            },
+            star:{
+                color: "yellow",
+            }
+        }
         return (
             <Fragment>
                 <span
@@ -28,9 +28,9 @@ class ImdbRating extends Component {
                         <img
                             src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"
                             alt=" myIMDb(2020) on IMDb" />
-                    </a>
-                </span>
-                {/* {this.functionApi()} */}
+                    </a>"
+                    <span style={mystyle.rating}>{this.props.Rating}  /10 <FontAwesomeIcon icon="star" style={mystyle.star}/></span>
+                </span>    
             </Fragment>
         )
     }

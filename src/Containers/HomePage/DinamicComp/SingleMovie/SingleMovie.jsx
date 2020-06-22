@@ -8,14 +8,17 @@ import "./SingleMovie.css";
 class SingleMovie extends Component {
 
     render() {
-        return (            
+        return (
             <div className="DinamicSingleMovie">
                 <img className="DinamicSingleMovieImg" src={this.props.poster} />
                 <div className="DinamicInfo">
                     <p>{this.props.runtime}</p>
                     <p>{this.props.title}</p>
                     <p>{this.props.year}</p>
-                    <ImdbRating mImdbID={this.props.imdbID}></ImdbRating>
+                    <ImdbRating
+                        mImdbID={this.props.imdbID}
+                        Rating={this.props.imdbRating}>
+                    </ImdbRating>
                 </div>
             </div>
         )

@@ -59,6 +59,7 @@ class DinamicComp extends Component {
                     runtime={movie.Runtime}
                     index={idx}
                     imdbID={movie.imdbID}
+                    imdbRating={movie.imdbRating}
                 />
             )
         });
@@ -69,7 +70,7 @@ class DinamicComp extends Component {
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
-                            {this.state.movies.length? movies :''}
+                            { movies }
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
