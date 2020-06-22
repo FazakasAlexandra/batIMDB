@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 
-class ImdbPlugin extends Component {
+class ImdbRating extends Component {
 
    /*  functionApi = () => {
         (function (d, s, id) {
@@ -15,6 +15,7 @@ class ImdbPlugin extends Component {
             stags.parentNode.insertBefore(js, stags);
         })(document, "script", "imdb-rating-api")
     } */
+    /* "https://www.imdb.com/title/tt6858702/?ref_=plg_rt_1" */
     render() {
         return (
             <Fragment>
@@ -23,7 +24,7 @@ class ImdbPlugin extends Component {
                     data-user="ur120026628"
                     data-title={this.props.mImdbID}
                     data-style="p1">
-                    <a href="https://www.imdb.com/title/tt6858702/?ref_=plg_rt_1">
+                    <a href={`https://www.imdb.com/title/${this.props.mImdbID}/?ref_=plg_rt_1`}>
                         <img
                             src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png"
                             alt=" myIMDb(2020) on IMDb" />
@@ -35,4 +36,4 @@ class ImdbPlugin extends Component {
     }
 }
 
-export default withRouter(ImdbPlugin);
+export default withRouter(ImdbRating);

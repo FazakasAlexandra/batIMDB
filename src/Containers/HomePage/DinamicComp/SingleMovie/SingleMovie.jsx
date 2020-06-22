@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { withTheme } from 'styled-components';
-import ImdbPlugin from '../ImdbPlugin/ImdbPlugin';
+import ImdbRating from '../ImdbRating/ImdbRating';
 import "./SingleMovie.css";
 
 
@@ -15,7 +15,7 @@ class SingleMovie extends Component {
                     <p>{this.props.runtime}</p>
                     <p>{this.props.title}</p>
                     <p>{this.props.year}</p>
-                    <ImdbPlugin mImdbID={this.props.imdbID}></ImdbPlugin>
+                    <ImdbRating mImdbID={this.props.imdbID}></ImdbRating>
                 </div>
             </div>
         )
