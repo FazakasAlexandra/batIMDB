@@ -4,6 +4,7 @@ import axios from 'axios';
 import RotateList from 'react-rotate-list';
 import styled from 'styled-components';
 import Bounce from '../../../Theme/Styledcomponents/Bounce';
+import Flash from '../../../Theme/Styledcomponents/Flash';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import "./DinamicComp.css";
 import { Fragment } from 'react';
@@ -26,7 +27,7 @@ class DinamicComp extends Component {
     }
 
     getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=20&skip=0').then(response => {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=10&skip=0').then(response => {
             this.setState({
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
@@ -66,7 +67,7 @@ class DinamicComp extends Component {
         
         return (
             <Fragment>
-                <Bounce><h1 style={{color: "yellow"}}>Batman forever</h1></Bounce>
+                <Flash><h1 style={{color: "grey"}}>Best 10 Batman movies</h1></Flash>
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
