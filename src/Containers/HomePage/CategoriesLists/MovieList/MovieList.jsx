@@ -34,10 +34,10 @@ export class MovieList extends React.Component {
 
     render() {
         return (
-                <div className='moviesList-container'>
-                    {this.displayMovies()}
-                </div>
-            
+            <div className='moviesList-container'>
+                {this.displayMovies()}
+            </div>
+
         )
     }
 }
