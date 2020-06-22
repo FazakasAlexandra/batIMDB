@@ -1,28 +1,34 @@
 import React from 'react'
+import './MovieDetails.css'
 
 
-export class MovieDetails extends React.Component {
+class MovieDetails extends React.Component {
     constructor(props) {
         super(props)
     }
 
     render() {
+        const { poster, title, genre, year, plot } = this.props
         return (
-            <div className="movieDetails-cantainer">
-                <div className="movieDetails-left" onclick={this.props.closeMoviedetails}>
-                    <i className="fas fa-arrow-left"></i>
-                    <span style={{ marginLeft: 10 }}>Go Back</span>
+            <div className="movieDetails-container">
+                <div className="movieDetailsImg">
+                    <img src={poster} alt="movie poster" className='detailsImg' />
                 </div>
-                <div className="movieDetails-img">{this.props.currentMovie.Poster}</div>
-                <div className="movieDetails-right">
-                    <p>{this.props.currentMovie.Title}</p>
-                    <p>{this.props.currentMovie.Genre}</p>
-                    <p>{this.props.currentMovie.Year}</p>
-                    <p>{this.props.currentMovie.Plot}</p>
+                <div className="movieDetailsInfo">
+                    <p className="infoTitle">Title: {title}</p>
+                    <p className="infoGenre">Genre: {genre}</p>
+                    <p className= "infoYear">Year: {year}</p>
+                    <br/>
+                    <p className="infoPlot">{plot}</p>
+                    <br/><br/>
+                    <button className="closeMovieDetails">Close</button>
                     <button className="editMovie">Edit Movie</button>
                 </div>
+
 
             </div>
         )
     }
 }
+
+export default MovieDetails
