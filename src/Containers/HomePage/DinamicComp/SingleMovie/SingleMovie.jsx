@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 import ImdbRating from '../ImdbRating/ImdbRating';
 import "./SingleMovie.css";
@@ -25,4 +24,4 @@ class SingleMovie extends Component {
     }
 }
 
-export default withRouter(SingleMovie);
+export default SingleMovie;

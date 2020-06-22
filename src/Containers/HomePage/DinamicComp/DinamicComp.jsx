@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-/* import { withRouter } from 'react-router-dom'; */
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
-import styled from 'styled-components';
-import Bounce from '../../../Theme/Styledcomponents/Bounce';
+/* import styled from 'styled-components';
+import Bounce from '../../../Theme/Styledcomponents/Bounce'; */
 import Flash from '../../../Theme/Styledcomponents/Flash';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import "./DinamicComp.css";
@@ -21,9 +20,7 @@ class DinamicComp extends Component {
 
 
     componentDidMount() {
-        this.getMovies();
-
-        console.log('mounted again',)        
+        this.getMovies();       
     }
 
     getMovies = () => {
@@ -31,7 +28,7 @@ class DinamicComp extends Component {
             this.setState({
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
-            console.log(response)
+            /* console.log(response) */
             
         })
     }
@@ -48,7 +45,7 @@ class DinamicComp extends Component {
     }
 
     render() {
-        console.log('lista refreshhh', this.state.movies.length)
+        /* console.log('lista refreshhh', this.state.movies.length) */
         let movies = this.state.movies.map((movie, idx) => {
             this.state.pics.push(movie.Poster)
             return (
