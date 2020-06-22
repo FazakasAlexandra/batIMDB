@@ -22,7 +22,7 @@ class ImdbRating extends Component {
                     <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" />
                 </a>"
                 <span style={mystyle.rating}>
-                    {this.props.Rating}  /10
+                    {this.props.Rating}  / 10 
                         <FontAwesomeIcon
                         icon="star"
                         style={mystyle.star} />

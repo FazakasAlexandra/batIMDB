@@ -14,13 +14,12 @@ class DinamicComp extends Component {
         super(props)
         this.state = {
             movies: [],
-            pics: []
-        }
+        }        
     }
 
 
     componentDidMount() {
-        this.getMovies();       
+        this.getMovies();
     }
 
     getMovies = () => {
@@ -29,16 +28,20 @@ class DinamicComp extends Component {
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
             /* console.log(response) */
-            
+
         })
     }
 
-    renderPic =()=> {
-        if(this.state.pics.length) {
+    renderPic = () => {
+        this.pics = [];
+        this.state.movies.map((movie, idx) => {
+            this.pics.push(movie.Poster)})
+
+        if (this.pics.length) {
             return (
-                <Picture 
-                picturesArray={this.state.pics} 
-                key={this.state.movies._id} 
+                <Picture
+                    picturesArray={this.pics}
+                    key={this.state.movies._id}
                 />
             )
         }
@@ -47,7 +50,6 @@ class DinamicComp extends Component {
     render() {
         /* console.log('lista refreshhh', this.state.movies.length) */
         let movies = this.state.movies.map((movie, idx) => {
-            this.state.pics.push(movie.Poster)
             return (
                 <SingleMovie
                     title={movie.Title}
@@ -61,20 +63,20 @@ class DinamicComp extends Component {
                 />
             )
         });
-        
+
         return (
             <Fragment>
-                <Flash><h1 style={{color: "grey"}}>Best 10 Batman movies</h1></Flash>
+                <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
-                            { movies }
+                            {movies}
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
-                        {this.renderPic()} 
-                    </div>                
-                </div>                
+                        {this.renderPic()}
+                    </div>
+                </div>
             </Fragment>
         )
     }
