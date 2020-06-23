@@ -17,10 +17,8 @@ class DinamicComp extends Component {
         }
     }
 
-
     componentDidMount() {
         this.getMovies();
-        this.getTrailers();
     }
 
     getMovies = () => {
@@ -35,32 +33,21 @@ class DinamicComp extends Component {
 
     /* k_P5lbxL5X */
 
-
-    getTrailers = () => {
-        axios.get('https://imdb-api.com/en/API/Trailer/k_P5lbxL5X/tt1375666').then(response => {
-            /* this.setState({
-                movies: response.data.results,
-            }) */  //am comentat-o sa nu va incurce cand randati
-             console.log('TRAILERS',response)
-
-        })
-    }
-
-
     renderPic = () => {
-        const pics = [];
+        const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
-            pics.push(movie.Poster)
+            picsAndIds.push({
+                pic: movie.Poster,
+                id: movie._id
+            })
         })
 
-        if (pics.length) {
+        if (picsAndIds.length) {
             return (
-                <a href={'kjk'}>
-                    <Picture
-                        picturesArray={pics}
-                        key={this.state.movies._id}
-                    />
-                </a>
+                <Picture
+                    picsAndIdsArray={picsAndIds}
+                    key={this.state.movies._id}
+                />
             )
         }
     }
@@ -83,9 +70,9 @@ class DinamicComp extends Component {
         });
 
         return (
-           
+
             <Fragment>
-                <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>                
+                <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
@@ -95,7 +82,7 @@ class DinamicComp extends Component {
                     <div className="DinamicCompMoviesPicture">
                         {this.renderPic()}
                     </div>
-                </div>                
+                </div>
             </Fragment>
         )
     }
