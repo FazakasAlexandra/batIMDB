@@ -8,13 +8,17 @@ import '../Picture/Picture.css';
 
 class Picture extends Component {
 
-    getTrailers = () => {
-        axios.get('https://imdb-api.com/en/API/Trailer/k_P5lbxL5X/tt1375666').then(response => {
+    state = {
+        movie:'',
+    }
+
+    getTrailers = (id) => {
+        axios.get(`https://imdb-api.com/en/API/Trailer/k_P5lbxL5X/${id}`).then(response => {
             /* this.setState({
                 movies: response.data.results,
             }) */  //am comentat-o sa nu va incurce cand randati
             console.log('TRAILERS', response)
-
+            this.setState({movie: response.data.link})
         })
     }
 
@@ -27,11 +31,12 @@ class Picture extends Component {
         let pics = picsAndIdsArray.map((element, i) => {
             return (
                 <img src={element.pic} key={i} />
-                /* <Player
+               /*  <Player                    
                     playsInline
                     poster={element.pic}
-                    src={()=>{this.getTrailers(element.id)}}
-                /> */              
+                    onClick={()=>{this.getTrailers(element.id)}}
+                    src={this.state.movie}
+                />  */             
 
             )
         });
