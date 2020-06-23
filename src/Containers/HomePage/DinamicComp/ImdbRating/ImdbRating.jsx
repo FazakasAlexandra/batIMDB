@@ -25,7 +25,7 @@ class ImdbRating extends Component {
         }
         return (
             <span data-title={this.props.mImdbID}>
-                <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" />
+                <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png" />
                 &nbsp;&nbsp;
                 < span style={mystyle.rating} >
                     {this.props.Rating}&nbsp;/&nbsp;10 &nbsp;

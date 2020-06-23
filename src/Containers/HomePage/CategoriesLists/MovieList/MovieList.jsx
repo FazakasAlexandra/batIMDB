@@ -72,7 +72,7 @@ class MovieList extends Component {
                 flexDirection: "column",
                 width: "100%",
                 }} >
-                <Carousel itemsToShow={4} >
+                <Carousel itemsToShow={4}  >
                     {movies}
                 </Carousel>
             </div>
