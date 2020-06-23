@@ -25,7 +25,7 @@ export class ExploreComp extends React.Component {
     componentDidMount() {
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=15`)
         .then((response) => {
-            console.log(response.data.results)
+            //console.log(response.data.results)
             let movies = this.addImage(response)
             this.setState({ moviesList: movies })
         }

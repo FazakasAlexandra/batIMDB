@@ -16,6 +16,10 @@
 
 }
 
+.bars-container {
+    margin-top: 12px
+}
+
 .small-dropdown-menus-container{
     margin-left: 0rem;
     flex-direction: column;
