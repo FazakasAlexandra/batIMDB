@@ -20,6 +20,7 @@ class DinamicComp extends Component {
 
     componentDidMount() {
         this.getMovies();
+        this.getTrailers();
     }
 
     getMovies = () => {
@@ -31,6 +32,20 @@ class DinamicComp extends Component {
 
         })
     }
+
+    /* k_P5lbxL5X */
+
+
+    getTrailers = () => {
+        axios.get('https://imdb-api.com/en/API/Trailer/k_P5lbxL5X/tt1375666').then(response => {
+            /* this.setState({
+                movies: response.data.results,
+            }) */  //am comentat-o sa nu va incurce cand randati
+             console.log('TRAILERS',response)
+
+        })
+    }
+
 
     renderPic = () => {
         const pics = [];
