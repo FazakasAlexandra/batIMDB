@@ -23,11 +23,11 @@ class DinamicComp extends Component {
     }
 
     getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=10&skip=0').then(response => {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=15&skip=0').then(response => {
             this.setState({
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
-            /* console.log(response) */
+            console.log(response)
 
         })
     }
@@ -51,7 +51,7 @@ class DinamicComp extends Component {
     }
 
     render() {
-        /* console.log('lista refreshhh', this.state.movies.length) */
+        console.log('la render')
         let movies = this.state.movies.map((movie, idx) => {
             return (
                 <SingleMovie
@@ -68,9 +68,9 @@ class DinamicComp extends Component {
         });
 
         return (
+           
             <Fragment>
-                <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
-                {/* <img src="https://img.pngio.com/film-frame-camera-film-filmframepnghtml-film-frame-png-600_552.png" alt="film frame - /camera/film/film_frame.png.html"/> */}
+                <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>                
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
@@ -80,8 +80,7 @@ class DinamicComp extends Component {
                     <div className="DinamicCompMoviesPicture">
                         {this.renderPic()}
                     </div>
-                </div>
-                {/* <img src="https://img.pngio.com/film-frame-camera-film-filmframepnghtml-film-frame-png-600_552.png" alt="film frame - /camera/film/film_frame.png.html"/> */}
+                </div>                
             </Fragment>
         )
     }
