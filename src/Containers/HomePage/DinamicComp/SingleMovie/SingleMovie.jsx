@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { withTheme } from 'styled-components';
 import ImdbRating from '../ImdbRating/ImdbRating';
 import "./SingleMovie.css";
@@ -10,7 +9,9 @@ class SingleMovie extends Component {
     render() {
         return (
             <div className="DinamicSingleMovie">
-                <img className="DinamicSingleMovieImg" src={this.props.poster} />
+                <a>
+                    <img className="DinamicSingleMovieImg" src={this.props.poster} />
+                </a>                
                 <div className="DinamicInfo">
                     <p>{this.props.runtime}</p>
                     <p>{this.props.title}</p>
@@ -25,4 +26,4 @@ class SingleMovie extends Component {
     }
 }
 
-export default withRouter(SingleMovie);
+export default SingleMovie;

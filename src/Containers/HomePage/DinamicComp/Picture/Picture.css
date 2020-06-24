@@ -15,3 +15,6 @@ border-radius: 22px;
   margin-bottom: 5px;
   
 }
+.Picture a {
+  cursor: pointer;
+}

@@ -1,5 +1,4 @@
-/*
-import React from 'react'
+/* import React from 'react'
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
 import axios from 'axios'
 import './MovieList.css'
