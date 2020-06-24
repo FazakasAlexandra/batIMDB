@@ -22,7 +22,7 @@ class DinamicComp extends Component {
     }
 
     getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=15&skip=0').then(response => {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=15&skip=35').then(response => {
             this.setState({
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
