@@ -24,12 +24,11 @@ class ImdbRating extends Component {
             }
         }
         return (
-            <span /* style={mystyle.container} */ data-title={this.props.mImdbID}>
-                <a href={`https://www.imdb.com/title/${this.props.mImdbID}/?ref_=plg_rt_1`}>
-                    <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" />
-                </a>&nbsp;&nbsp;
+            <span data-title={this.props.mImdbID}>
+                <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png" />
+                &nbsp;&nbsp;
                 < span style={mystyle.rating} >
-                    {this.props.Rating}&nbsp;/&nbsp;10 &nbsp; 
+                    {this.props.Rating}&nbsp;/&nbsp;10 &nbsp;
             < FontAwesomeIcon
                         icon="star"
                         style={mystyle.star} />
@@ -40,3 +39,9 @@ class ImdbRating extends Component {
 }
 
 export default ImdbRating;
+
+
+
+{/* <a href={`https://www.imdb.com/title/${this.props.mImdbID}/?ref_=plg_rt_1`}>
+                    <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" />
+                </a>&nbsp;&nbsp; */}

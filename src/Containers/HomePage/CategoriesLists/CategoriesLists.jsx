@@ -1,16 +1,17 @@
 import React from 'react'
 import MovieCard from '../../../Components/MovieCard/MovieCard'
+import MovieList from '../CategoriesLists/MovieList/MovieList';
 import axios from 'axios'
 import './CategoriesLists.css'
 
- class CategoriesLists extends React.Component {
+class CategoriesLists extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             movieListMovies: [],
             seriesListMovies: [],
             gameListMovies: []
-        }
+        }  
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ import './CategoriesLists.css'
     }
 
     getMovieListMovies = () => {
-        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=6`)
+         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=6`)
             .then((response) => {
                 // console.log(response.data.results)
                 this.setState({ movieListMovies: response.data.results })
@@ -82,18 +83,32 @@ import './CategoriesLists.css'
 
     render() {
         return (
-            <div className="categoriesList-container">
+            /*  <div className="categoriesList-container">
+                 <h1>Movies</h1>
+                 <div className="categoriesList movieListMovies ">
+                     {this.displayMovie()} 
+                 </div>
+                 <h1>Series</h1>
+                 <div className="categoriesList seriesListMovies">
+                     {this.displaySerie()}   
+                 </div>
+                 <h1>Game</h1>
+                 <div className="categoriesList gameListMovies">
+                      {this.displayGame()}   
+                 </div>
+             </div> */
+            <div style={{width: "900px"}}>
                 <h1>Movies</h1>
-                <div className="categoriesList movieListMovies ">
-                    {this.displayMovie()}
+                <div  >
+                    <MovieList movies={this.state.movieListMovies} />
                 </div>
                 <h1>Series</h1>
-                <div className="categoriesList seriesListMovies">
-                    {this.displaySerie()}
+                <div >
+                    <MovieList movies={this.state.movieListMovies} />
                 </div>
                 <h1>Game</h1>
-                <div className="categoriesList gameListMovies">
-                    {this.displayGame()}
+                <div >
+                    <MovieList movies={this.state.movieListMovies} />
                 </div>
             </div>
         )
