@@ -82,7 +82,7 @@ import './CategoriesLists.css'
 
     render() {
         return (
-            <div className="categoriesList-container">
+           /* <div className="categoriesList-container">
                 <h1>Movies</h1>
                 <div className="categoriesList movieListMovies ">
                     {this.displayMovie()}
@@ -94,6 +94,20 @@ import './CategoriesLists.css'
                 <h1>Game</h1>
                 <div className="categoriesList gameListMovies">
                     {this.displayGame()}
+                </div>
+            </div> */
+            <div style={{width: "900px"}}>
+                <h1>Movies</h1>
+                <div  >
+                    <MovieList movies={this.state.movieListMovies} />
+                </div>
+                <h1>Series</h1>
+                <div >
+                    <MovieList movies={this.state.movieListMovies} />
+                </div>
+                <h1>Game</h1>
+                <div >
+                    <MovieList movies={this.state.movieListMovies} />
                 </div>
             </div>
         )
