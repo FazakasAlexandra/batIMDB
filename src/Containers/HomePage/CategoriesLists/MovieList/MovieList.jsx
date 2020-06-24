@@ -1,44 +1,80 @@
-import React from 'react'
-import MovieCard from '../../../../Components/MovieCard/MovieCard'
-import axios from 'axios'
-import './MovieList.css'
+// import React from 'react'
+// import MovieCard from '../../../../Components/MovieCard/MovieCard'
+// import axios from 'axios'
+// import './MovieList.css'
 
-export class MovieList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            moviesList: []
+// export class MovieList extends React.Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             moviesList: []
+//         }
+//     }
+//     componentDidMount() {
+//         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=18`)
+//             .then((response) => {
+//                 console.log(response.data.results)
+//                 this.setState({ moviesList: response.data.results })
+//             }
+//             )
+//     }
+//     displayMovies() {
+//         let { moviesList } = this.state
+//         let movies = moviesList.map(movie => {
+//             return (<MovieCard
+//                 key={movie._id}
+//                 poster={movie.Poster}
+//                 title={movie.Title}
+//                 imdbRating={movie.imdbRating}
+//             />)
+//         })
+
+//         return movies
+//     }
+
+//     render() {
+//         return (
+//             <div className='moviesList-container'>
+//                 {this.displayMovies()}
+//             </div>
+
+//         )
+//     }
+// }
+
+import React, { Component } from 'react';
+import Carousel from 'react-elastic-carousel';
+import MovieItem from '../MovieItem/MovieItem';
+class MovieList extends Component {
+
+    componentDidUpdate(prevProps){
+        if (prevProps.movies !== this.props.movies) {
+            this.setState()
+            console.log('componentDidUpdate',this.props.movies)
         }
-    }
-    componentDidMount() {
-        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=18`)
-            .then((response) => {
-                console.log(response.data.results)
-                this.setState({ moviesList: response.data.results })
-            }
-            )
-    }
-    displayMovies() {
-        let { moviesList } = this.state
-        let movies = moviesList.map(movie => {
-            return (<MovieCard
-                key={movie._id}
-                poster={movie.Poster}
-                title={movie.Title}
-                imdbRating={movie.imdbRating}
-            />)
-        })
-
-        return movies
     }
 
     render() {
-        return (
-            <div className='moviesList-container'>
-                {this.displayMovies()}
-            </div>
+        let movies = this.props.movies.map((movie, idx) => {
+            return (
+                <MovieItem
+                    key={movie._id}
+                    poster={movie.Poster}
+                />
+            )
+        });
 
+        return (
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                }} >
+                <Carousel itemsToShow={4}  >
+                    {movies}
+                </Carousel>
+            </div>
         )
     }
 }
-
+export default MovieList;

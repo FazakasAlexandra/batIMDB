@@ -10,7 +10,7 @@ import './CategoriesLists.css'
             movieListMovies: [],
             seriesListMovies: [],
             gameListMovies: []
-        }
+        }  
     }
 
     componentDidMount() {
@@ -20,7 +20,7 @@ import './CategoriesLists.css'
     }
 
     getMovieListMovies = () => {
-        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=6`)
+         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=6`)
             .then((response) => {
                 // console.log(response.data.results)
                 this.setState({ movieListMovies: response.data.results })
