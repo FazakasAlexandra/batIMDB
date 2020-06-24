@@ -24,7 +24,7 @@ class LoginForm extends React.Component{
             {username: userName,
             password: password}
         ).then(response =>{
-            console.log("success login response:", response)
+            //console.log("success login response:", response)
             if(response.status === 200){
                 this.props.onSubmitLogin(response.data)
             }

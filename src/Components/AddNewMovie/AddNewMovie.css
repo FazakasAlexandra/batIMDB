@@ -1,0 +1,105 @@
+.addFormContainer{
+    width:100%;
+    padding:1em;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: space-between;
+}
+.addForm{
+    width:45%;
+    /* border: 1px solid gray; */
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+/* .addForm h2{
+    color: #505c7c;
+} */
+.addPoster{
+    min-width:30%;
+    display:flex;
+    flex-flow:column wrap;
+}
+
+.fieldWrapper{
+    display: flex;
+    align-items: center;
+    margin-top:1em;
+    margin-left:2em;
+}
+label{
+    color:white;
+}
+
+.addField{
+    width:80%;
+    margin-left: 1em;
+    padding:0.5em;
+    outline:none;
+    border: none;
+    border-radius: 0.7em;
+    background-color: #282e3c;
+    color: white;
+    align-self: flex-end;
+}
+.addField::after{
+    outline:none;
+    border: none;
+    border-radius: 0.7em;
+    background-color: #282e3c;
+    color: white;
+}
+
+.addPoster label{
+    padding: 1em;
+}
+.addPosterField{
+    width: 100%;
+    margin-left:0;
+    margin-bottom: 1em;
+}
+.ceva{
+    width:15em;
+    height:5em;
+    background-color: rgb(110, 110, 119);
+}
+.btnsWrapper{
+    margin-top:2em;
+    margin-left: 43%;
+    align-self: flex-end;
+}
+.addBtn,
+.pvwBtn{
+  
+    margin-left: 1em;
+    background-color: #282e3c;
+    color: #fdff00;
+    padding:1em;
+    border: none;
+    outline:none;
+    border-radius: 0.7em;
+    font-size: 1em;
+    
+}
+
+.pvw{
+   /* border:1px solid yellow; */
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+    color: white;
+ 
+}
+.pvw img{
+    width: 25%;
+    background-image: url('https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg');
+}
+.pvwDetails{
+    width: 100%;
+    margin-left: 1em;
+    margin-right:0;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

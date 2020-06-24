@@ -4,12 +4,12 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import HomePage from '../Containers/HomePage/HomePage';
-import MovieCard from '../Components/MovieCard/MovieCard'
 
 import { ExploreComp } from '../Containers/ExploreComp/ExploreComp'
 import './MyImdb.css';
 
 import Header from '../Components/Header/Header';
+import AddPage from '../Containers/AddPage/AddPage';
 
 class MyImdb extends Component {
     constructor(props) {
@@ -37,6 +37,8 @@ class MyImdb extends Component {
             token: data.accessToken,
             logForm : false
         })
+        sessionStorage.setItem('auth',data.authenticated);
+        sessionStorage.setItem('token',data.accessToken)
         // console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
     }
 
@@ -50,20 +52,13 @@ class MyImdb extends Component {
                     onSubmitRegister={this.handleSubmitRegister}
                     onSubmitLogin={this.handleSubmitLogin}
                 />
-
-
-                {/* <MovieCard 
-                    poster='https://www.arthipo.com/image/cache/catalog/genel-tasarim/all-posters/sinema-cinema-film-postersleri/yabanci-filmler/1/pfilm977-le-fabuleux-destin-damelie-poulain_d1424f8b-film-movie-posters-tablo-canvas-1000x1000.jpg'
-                    title='Pioneer Card'
-                    imdbRating='8.3'
-                /> */}
                 <Switch>
                     <Route path="/explore" exact component={ExploreComp}/>
                     <Route path="/explore/" component={ExploreComp}/>
                     <Route path="/hompage" exact component={HomePage} />
                     <Route path="/" exact component={HomePage} />
+                    <Route path="/addPage" exact component={AddPage}/>
                 </Switch>
-
             </div>
 
         );

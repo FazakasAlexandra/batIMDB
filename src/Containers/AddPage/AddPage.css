@@ -1,0 +1,21 @@
+.addContainer{
+    width: 90%;
+    min-height: 20em;
+    background-color: #282e3c;
+    padding: 2em;
+    display:flex;
+    flex-flow: row;
+}
+.addMoreBtn{
+    margin-top:1em;
+    margin-left: 1em;
+    background-color: #282e3c;
+    color: #fdff00;
+    padding:1em;
+    border: none;
+    outline:none;
+    border-radius: 0.7em;
+    font-size: 1em;
+
+    
+}

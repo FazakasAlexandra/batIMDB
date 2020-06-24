@@ -14,7 +14,7 @@ class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            auth: false,
+            auth: props.auth,
             regForm: false,
             logForm: false
         }
@@ -31,7 +31,16 @@ class Header extends React.Component {
             }
         );
     }
-
+    //logic for header AddBtn
+    addPageFunction = () => {
+        if(this.state.auth){
+            this.props.history.push({
+                pathname: '/addPage',
+            });
+        }else{
+            window.alert('you have to be signed in to add movies')
+        }
+    }
     // logic for register/login/cancelForm Btns 
     handleRegisterBtnClick = () => {
         this.setState({
@@ -97,7 +106,8 @@ class Header extends React.Component {
                     {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
                 <FontAwesomeIcon icon={faMoon} className="moon"/>
-                <button className='addMovieBtn'>Add Movie</button>
+                <button className='addMovieBtn'
+                        onClick={this.addPageFunction}>Add Movie</button>
 
                 <button className='register-btn'
                     onClick={() => this.handleRegisterBtnClick()}>Register</button>
@@ -108,13 +118,13 @@ class Header extends React.Component {
                         auth={this.state.auth}
                         onSubmitRegister={this.handleSubmitRegister}
                         onCancel={this.handleCancelBtn}
-                    />
+                        />
                     }
                     {this.state.logForm && < LoginForm
                         auth={this.state.auth}
                         onSubmitLogin={this.handleSubmitLogin}
                         onCancel={this.handleCancelBtn}
-                    />
+                        />
                     }
                 </div>
             </nav>
