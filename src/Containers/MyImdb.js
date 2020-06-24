@@ -11,6 +11,7 @@ import { ExploreComp } from '../Containers/ExploreComp/ExploreComp'
 import './MyImdb.css';
 
 import Header from '../Components/Header/Header';
+import EditMovieDetails from '../Components/EditMovieDetails/EditMovieDetails'
 
 class MyImdb extends Component {
     constructor(props) {
@@ -51,6 +52,7 @@ class MyImdb extends Component {
         return (
             <div className="MyImdb">
                 <Header />
+                {/* <EditMovieDetails/> */}
                 <button className='log-btn' onClick={() => this.handleRegisterBtnClick()}>REGISTER</button>
                 <div className='btn-container'>
                     <button className='log-btn' onClick={() => this.handleLoginBtnClick()}>LOGIN</button>
