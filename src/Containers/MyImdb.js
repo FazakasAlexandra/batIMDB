@@ -4,14 +4,12 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import HomePage from '../Containers/HomePage/HomePage';
-import MovieCard from '../Components/MovieCard/MovieCard'
-import LoginForm from '../Components/Header/Login/Login';
-import RegisterForm from '../Components/Header/Register/Register';
+
 import { ExploreComp } from '../Containers/ExploreComp/ExploreComp'
 import './MyImdb.css';
 
 import Header from '../Components/Header/Header';
-import EditMovieDetails from '../Components/EditMovieDetails/EditMovieDetails'
+import AddPage from '../Containers/AddPage/AddPage';
 
 class MyImdb extends Component {
     constructor(props) {
@@ -24,65 +22,43 @@ class MyImdb extends Component {
             token: ''
         }
     }
-    handleRegisterBtnClick() {
-        this.setState({ regForm: true })
-    }
-    handleLoginBtnClick() {
-        this.setState({ logForm: true })
-    }
+    //logic for success register/login => auth:true, token pe state (un-comment console.log for token)
     handleSubmitRegister = (data) => {
-        this.setState(({
+        this.setState({
             auth: data.authenticated,
             token: data.accessToken,
-            regForm: false
-        }))
+            regForm : false
+        })
+        //console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
     }
     handleSubmitLogin = (data) => {
         this.setState({
             auth: data.authenticated,
             token: data.accessToken,
-            logForm: false
+            logForm : false
         })
-        console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
+        sessionStorage.setItem('auth',data.authenticated);
+        sessionStorage.setItem('token',data.accessToken)
+        // console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
     }
-    handleCancelBtn = () => {
-        this.setState({ logForm: false, regForm: false })
-    }
+
     render() {
         return (
             <div className="MyImdb">
-                <Header />
-                {/* <EditMovieDetails/> */}
-                <button className='log-btn' onClick={() => this.handleRegisterBtnClick()}>REGISTER</button>
-                <div className='btn-container'>
-                    <button className='log-btn' onClick={() => this.handleLoginBtnClick()}>LOGIN</button>
-                    {this.state.regForm && <RegisterForm
-                        auth={this.state.auth}
-                        onSubmitRegister={this.handleSubmitRegister}
-                        onCancel={this.handleCancelBtn}
-                    />
-                    }
-                    {this.state.logForm && <LoginForm
-                        auth={this.state.auth}
-                        onSubmitLogin={this.handleSubmitLogin}
-                        onCancel={this.handleCancelBtn}
-                    />
-                    }
-                </div>
-
-
-                {/* <MovieCard 
-                    poster='https://www.arthipo.com/image/cache/catalog/genel-tasarim/all-posters/sinema-cinema-film-postersleri/yabanci-filmler/1/pfilm977-le-fabuleux-destin-damelie-poulain_d1424f8b-film-movie-posters-tablo-canvas-1000x1000.jpg'
-                    title='Pioneer Card'
-                    imdbRating='8.3'
-                /> */}
+                <Header 
+                    auth={this.state.auth}
+                    regForm = {this.state.regForm}
+                    logForm={this.state.logForm}
+                    onSubmitRegister={this.handleSubmitRegister}
+                    onSubmitLogin={this.handleSubmitLogin}
+                />
                 <Switch>
                     <Route path="/explore" exact component={ExploreComp}/>
                     <Route path="/explore/" component={ExploreComp}/>
                     <Route path="/hompage" exact component={HomePage} />
                     <Route path="/" exact component={HomePage} />
+                    <Route path="/addPage" exact component={AddPage}/>
                 </Switch>
-
             </div>
 
         );

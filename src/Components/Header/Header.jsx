@@ -6,25 +6,88 @@ import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faMoon } from '@fortawesome/free-solid-svg-icons';
 
+import RegisterForm from './Register/Register'
+import LoginForm from './Login/Login'
+
 
 class Header extends React.Component {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            auth: props.auth,
+            regForm: false,
+            logForm: false
+        }
+    }
+    
     exploreFunction = () => {
         this.props.history.push('/explore');
+        // this.props.history.push({obj: path, cale, state})
     }
 
     hompageFunction = () => {
-        this.props.history.push('/hompage');
+        this.props.history.push(
+            {
+                pathname: '/hompage',
+                state: this.props.location.pathname
+            }
+        );
+    }
+    //logic for header AddBtn
+    addPageFunction = () => {
+        if(this.state.auth){
+            this.props.history.push({
+                pathname: '/addPage',
+            });
+        }else{
+            window.alert('you have to be signed in to add movies')
+        }
+    }
+    // logic for register/login/cancelForm Btns 
+    handleRegisterBtnClick = () => {
+        this.setState({
+            regForm: true,
+            logForm: false
+        })
+    }
+    handleLoginBtnClick = () => {
+        this.setState({
+            logForm: true,
+            regForm: false
+        })
+    }
+    handleCancelBtn = () => {
+        this.setState({ logForm: false, regForm: false })
     }
 
-     storeSeach = (event) => {
-        localStorage.setItem('search', event.target.value)
-        this.exploreFunction()
-        this.props.history.push(`/explore/${event.target.value}`)
-     }
+    //logic for submit register/login => sending auth, regForm, logForm from MyImdb to header state
+    handleSubmitRegister = (data) => {
+        this.props.onSubmitRegister(data);
+        this.setState({
+            regForm: this.props.regForm,
+            auth: this.props.auth
+        })
+    }
+    handleSubmitLogin = (data) => {
+        this.props.onSubmitLogin(data);
+        this.setState({
+            logForm: this.props.logForm,
+            auth: this.props.auth
+        })
+    }
+
+    storeSeach = (event) => {
+        if (event.target.value === '') {
+            this.exploreFunction()
+        } else {
+            localStorage.setItem('search', event.target.value)
+            this.exploreFunction()
+            this.props.history.push(`/explore/${event.target.value}`)
+        }
+    }
 
     render() {
-        console.log('props la header,', this.props.history)
+        // console.log('props history la header,', this.props.history, 'props header', this.props)
         return (
             <nav className='navBar'>
                 <img
@@ -39,16 +102,32 @@ class Header extends React.Component {
                 >Explore</button>
                 <div className='searchBar'>
                     <span className="search-input-container">
-                    <FontAwesomeIcon icon={faSearch} />
-                    <input type='search' className='searchInput' onChange={(event)=>this.storeSeach(event)}/>
+                        <FontAwesomeIcon icon={faSearch} />
+                        <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} />
                     </span>
                     {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
-                <button className='mood' ><FontAwesomeIcon icon={faMoon}></FontAwesomeIcon></button>
-                <button className='addMovieBtn'>Add Movie</button>
+                <FontAwesomeIcon icon={faMoon} className="moon"/>
+                <button className='addMovieBtn'
+                        onClick={this.addPageFunction}>Add Movie</button>
+
+                <button className='register-btn'
+                    onClick={() => this.handleRegisterBtnClick()}>Register</button>
                 <div className='buttonsLogReg'>
-                    <button className='login-btn'>Login</button>
-                    <button className='register-btn'>Register</button>
+                    <button className='login-btn'
+                        onClick={() => this.handleLoginBtnClick()}>Login</button>
+                    {this.state.regForm && < RegisterForm
+                        auth={this.state.auth}
+                        onSubmitRegister={this.handleSubmitRegister}
+                        onCancel={this.handleCancelBtn}
+                        />
+                    }
+                    {this.state.logForm && < LoginForm
+                        auth={this.state.auth}
+                        onSubmitLogin={this.handleSubmitLogin}
+                        onCancel={this.handleCancelBtn}
+                        />
+                    }
                 </div>
             </nav>
 

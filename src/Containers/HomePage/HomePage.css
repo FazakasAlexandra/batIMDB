@@ -5,13 +5,9 @@
   }
 .Hompage {
     width: 100%; 
-    margin-left:auto; 
-    margin-right: auto; 
-    min-height:100%;
-    height:100%;
-    text-align: center;
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: 60px;
 }

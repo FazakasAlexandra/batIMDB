@@ -1,95 +1,107 @@
 .navBar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-    background-color:black;
-    color: cornsilk;
-    padding: 15px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  background-color: rgb(0, 0, 0);
+  color: cornsilk;
+  padding: 15px 0px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .logo {
-    /* display: flex; */
-    width: 70px;
-    height: auto;
+  /* display: flex; */
+  width: 70px;
+  height: auto;
+  cursor: pointer;
 }
 .exploreBtn,
-.addMovieBtn{
-	box-shadow:inset 0px 1px 0px 0px #fff6af;
-	background:linear-gradient(to bottom, #ffb303 5%, #f2a222 100%);
-	background-color:goldenrod;
-	border-radius:6px;
-	border:1px solid #daa520;
-	display:inline-block;
-	cursor:pointer;
-	color:#000000;
-	font-size:15px;
-	font-weight:bold;
-	padding:5px 20px;
-	text-decoration:none;
-	text-shadow:0px 0px 0px #ffee66;
+.addMovieBtn {
+  box-shadow: inset 0px 1px 0px 0px #fff6af;
+  background: linear-gradient(to bottom, #ffb303 5%, #f2a222 100%);
+  background-color: goldenrod;
+  border-radius: 6px;
+  border: 1px solid #daa520;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 20px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #ffee66;
 }
 .exploreBtn:hover,
-.addMovieBtn:hover{
-	background:linear-gradient(to bottom, #f2a222 5%, #ffb303 100%);
-	background-color:#f2a222;
+.addMovieBtn:hover {
+  background: linear-gradient(to bottom, #f2a222 5%, #ffb303 100%);
+  background-color: #f2a222;
 }
 .exploreBtn:active,
 .addMovieBtn:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
-
-.login-btn{
-	box-shadow:inset 0px 1px 0px 0px #fff6af;
-	background:linear-gradient(to bottom, #ffb303 5%, #f2a222 100%);
-	background-color:goldenrod;
-	border-radius:6px;
-	border:1px solid #daa520;
-	display:inline-block;
-	cursor:pointer;
-	color:#000000;
-	font-size:15px;
-	font-weight:bold;
-	padding:5px 20px;
-	text-decoration:none;
-	text-shadow:0px 0px 0px #ffee66;
+.buttonsLogReg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
-.login-btn:hover{
-	background:linear-gradient(to bottom, #f2a222 5%, #ffb303 100%);
-	background-color:#f2a222;
+.login-btn {
+  box-shadow: inset 0px 1px 0px 0px #fff6af;
+  background: linear-gradient(to bottom, #ffb303 5%, #f2a222 100%);
+  background-color: goldenrod;
+  border-radius: 6px;
+  border: 1px solid #daa520;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 20px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #ffee66;
+}
+.login-btn:hover {
+  background: linear-gradient(to bottom, #f2a222 5%, #ffb303 100%);
+  background-color: #f2a222;
 }
 .login-btn:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
-.register-btn{
-	box-shadow:inset 0px 1px 0px 0px #fff6af;
-	background:linear-gradient(to bottom,#59c467 5%,#3caf4b 100%);
-	background-color:#83e991;
-	border-radius:6px;
-	border:1px solid #59c467;
-	display:inline-block;
-	cursor:pointer;
-	color:#000000;
-	font-size:15px;
-	font-weight:bold;
-	padding:5px 20px;
-	text-decoration:none;
-    text-shadow:0px 0px 0px #ffee66;
-    margin-left: 20px;
+.register-btn {
+  box-shadow: inset 0px 1px 0px 0px #fff6af;
+  background: linear-gradient(to bottom, #59c467 5%, #3caf4b 100%);
+  background-color: #83e991;
+  border-radius: 6px;
+  border: 1px solid #59c467;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 20px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #ffee66;
+  margin-left: 20px;
 }
-.register-btn:hover{
-	background:linear-gradient(to bottom, #22f23e 5%, #229945 100%);
-	background-color:#39a535;
+.register-btn:hover {
+  background: linear-gradient(to bottom, #22f23e 5%, #229945 100%);
+  background-color: #39a535;
 }
 .register-btn:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 /* .exploreBtn {
     width: 5rem;
@@ -105,66 +117,69 @@
     
 
 } */
-.searchBar>svg {
-    
-    padding-right: 2px;
-
+.searchBar > svg {
+  padding-right: 2px;
 }
 
-.search-input-container{
-position: relative;
+.moon {
+  cursor: pointer;
 }
 
-.search-input-container .fa-w-16{
-	position: absolute;
-	color: grey;
-	left: 90%;
-	top: 10%;
-	font-size: 1.2rem;
+.search-input-container {
+  position: relative;
+}
+
+.search-input-container .fa-w-16 {
+  position: absolute;
+  color: grey;
+  left: 90%;
+  top: 10%;
+  font-size: 1.2rem;
 }
 
 .searchInput {
-    border-color:#dcdcdc; 
-    border-style:solid; 
-    padding:4px 20px;
-    font-size:16px; 
-    border-width:2px; 
-    border-radius:5px; 
-    background-color:#ededed; 
-    text-shadow:0px 0px 0px rgba(42,42,42,.75); 
-    box-shadow: 2px 1px 7px 0px rgba(42,42,42,.40);
-    margin-left: 3px;       
+  border-color: #dcdcdc;
+  border-style: solid;
+  padding: 4px 20px;
+  font-size: 16px;
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: #ededed;
+  text-shadow: 0px 0px 0px rgba(42, 42, 42, 0.75);
+  box-shadow: 2px 1px 7px 0px rgba(42, 42, 42, 0.4);
+  margin-left: 3px;
 }
 
-.searchInput :focus { outline:none; }
+.searchInput :focus {
+  outline: none;
+}
 
 .searchBtn {
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
-	background-color:#ededed;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#777777;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
-    margin-left: 5px;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+  background-color: #ededed;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #777777;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  margin-left: 5px;
 }
 .searchBtn:hover {
-	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
-	background-color:#dfdfdf;
+  background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+  background-color: #dfdfdf;
 }
 .searchBtn:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 .mood {
-    width: 3rem;
-    height: 2rem;
-
+  width: 3rem;
+  height: 2rem;
 }

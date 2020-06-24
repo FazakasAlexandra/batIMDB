@@ -24,21 +24,17 @@ class LoginForm extends React.Component{
             {username: userName,
             password: password}
         ).then(response =>{
-            console.log("success login response:", response)
+            //console.log("success login response:", response)
             if(response.status === 200){
                 this.props.onSubmitLogin(response.data)
             }
               
         }).catch(error=>{
-            console.log("login error msg:",error)
+            //console.log("login error msg:",error)
             this.setState({ loginError : true })
         })
         event.preventDefault();
     }
-    handleCancel = (event) =>{
-        this.props.onCancel();
-    }
-    
     render(){
         const {userName, password} = this.state;
 
@@ -59,7 +55,7 @@ class LoginForm extends React.Component{
                        onChange={this.handleChange} 
                        required/>
                 <button type='submit'className='submitBtn'>SUBMIT</button>
-                <button className='cancelBtn' onClick={this.handleCancel}>CANCEL</button>
+                <button className='cancelBtn' onClick={this.props.onCancel}>CANCEL</button>
                 {
                     this.state.loginError && 
                         <div className='loginError'>

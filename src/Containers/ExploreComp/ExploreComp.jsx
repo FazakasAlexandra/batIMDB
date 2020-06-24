@@ -12,11 +12,22 @@ export class ExploreComp extends React.Component {
         }
     }
 
+    addImage(response){
+        let movies = response.data.results.map((movie) => {
+            if(movie.Poster === 'N/A'){
+                movie.Poster = 'https://static1.funidelia.com/474157-f6_big2/costum-batman-the-brave-and-the-bold.jpg'
+            }
+            return movie
+        })
+        return movies
+    }
+
     componentDidMount() {
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=12`)
+        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=15`)
         .then((response) => {
-            console.log(response.data.results)
-            this.setState({ moviesList: response.data.results })
+            //console.log(response.data.results)
+            let movies = this.addImage(response)
+            this.setState({ moviesList: movies })
         }
         )
     }
@@ -34,8 +45,8 @@ export class ExploreComp extends React.Component {
         console.log(filterClass, filter)
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${filterClass}=${filter}`)
             .then((response) => {
-                console.log(response.data.results)
-                this.setState({ moviesList: response.data.results })
+                let movies = this.addImage(response)
+                this.setState({ moviesList: movies })
             }
             )
     }

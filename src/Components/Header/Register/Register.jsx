@@ -19,27 +19,31 @@ class RegisterForm extends React.Component{
     }
     handleSubmit=(event)=>{
         const {userName, password} = this.state;
-        
-        axios.post(
-            'https://movies-app-siit.herokuapp.com/auth/register',
-            {username: userName,
-            password: password}
-        ).then(response =>{
-            console.log("success register response:", response)
-            if(response.status === 200){
-                this.props.onSubmitRegister(response.data)
-            }
-              
-        }).catch(error=>{
-            console.log("register error msg:", error)
+
+        if(userName.length > 3 && password.length > 3){
+
+            axios.post(
+                'https://movies-app-siit.herokuapp.com/auth/register',
+                {username: userName,
+                password: password}
+            ).then(response =>{
+                console.log("success register response:", response)
+                if(response.status === 200){
+                    this.props.onSubmitRegister(response.data)
+                }
+                
+            }).catch(error=>{
+                console.log("register error msg:", error)
+                this.setState({ registerError : true })
+            })
+            
+        }else{
             this.setState({ registerError : true })
-        })
-       
+        }
+
         event.preventDefault();
     }
-    handleCancel = (event) =>{
-        this.props.onCancel();
-    }
+    
     render(){
         const {userName, password} = this.state;
         
@@ -59,12 +63,12 @@ class RegisterForm extends React.Component{
                        value={password}
                        onChange={this.handleChange} 
                        required/>
-                <button type='submit'className='submitBtn'onClick={()=>this.handleSubmit}>SUBMIT</button>
-                <button className='cancelBtn' onClick={this.handleCancel}>CANCEL</button>
+                <button type='submit'className='submitBtn'onClick={this.handleSubmit}>SUBMIT</button>
+                <button className='cancelBtn' onClick={this.props.onCancel}>CANCEL</button>
                 {
                     this.state.registerError && 
                         <div className='registerError'>
-                            <p className='loginMsg'>Ceva mesaj de eroare</p>
+                            <p className='loginMsg'>username and password must be at least 4 characters</p>
                         </div>
                 }
             </form>

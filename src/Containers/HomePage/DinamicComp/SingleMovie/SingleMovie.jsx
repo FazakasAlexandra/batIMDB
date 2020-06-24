@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { withTheme } from 'styled-components';
-import ImdbPlugin from '../ImdbPlugin/ImdbPlugin';
+import ImdbRating from '../ImdbRating/ImdbRating';
 import "./SingleMovie.css";
 
 
 class SingleMovie extends Component {
 
     render() {
-        /* console.log('tema', this.props.theme) */
-        return (            
+        return (
             <div className="DinamicSingleMovie">
-                <img className="DinamicSingleMovieImg" src={this.props.poster} />
+                <a>
+                    <img className="DinamicSingleMovieImg" src={this.props.poster} />
+                </a>                
                 <div className="DinamicInfo">
                     <p>{this.props.runtime}</p>
                     <p>{this.props.title}</p>
                     <p>{this.props.year}</p>
-                    <ImdbPlugin mImdbID={this.props.imdbID}></ImdbPlugin>
+                    <ImdbRating
+                        mImdbID={this.props.imdbID}
+                        Rating={this.props.imdbRating}>
+                    </ImdbRating>
                 </div>
             </div>
         )
     }
 }
 
-export default withTheme(withRouter(SingleMovie));
+export default SingleMovie;
