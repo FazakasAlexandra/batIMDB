@@ -19,8 +19,10 @@ class Header extends React.Component {
             logForm: false
         }
     }
+    
     exploreFunction = () => {
         this.props.history.push('/explore');
+        // this.props.history.push({obj: path, cale, state})
     }
 
     hompageFunction = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import './MoviesFiltersBar.css'
-import { LargeMenu } from './LargeMenu'
-import { SmallMenu } from './SmallMenu'
+import { LargeMenu } from './Menus/LargeFilterMenu'
+import { SmallMenu } from './Menus/SmallFilterMenu'
 
 
 export class MoviesFiltersBar extends React.Component {

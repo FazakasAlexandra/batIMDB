@@ -2,15 +2,19 @@
   display: flex;
   align-items: flex-start;
   height: auto;
-  width: 90%;
+  width: 320px;
   flex-direction: row;
   margin-top: 20px;
  margin-right: 1px;
 
 }
+.DinamicSingleMovie a{
+  cursor: pointer;
+}
+
 .DinamicSingleMovieImg {
-  width: 100%;
-  max-width: 80px;
+  /* width: 100%; */
+  width: 90px;
   height: auto;
   flex: 1;
 }
@@ -37,5 +41,8 @@
   color: yellow;
   text-align: start;
   font-size: 18px;
+  background-image: image();
 }
-
+.DinamicInfo p:nth-child(3) {
+  margin-bottom: 4px;
+}
