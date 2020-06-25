@@ -1,62 +1,20 @@
 import React, { Component } from 'react';
-/* import RespPlayer from '../RespPlayer/RespPlayer';
-import { Player } from 'video-react';
-import '../../../../../node_modules/video-react/dist/video-react.css' */
 import RotateList from 'react-rotate-list';
-/* import Popup from "reactjs-popup"; */
 import axios from 'axios';
 import '../Picture/Picture.css';
 
 class Picture extends Component {
-
-    state = {        
-        movie:'',
-        
-    }
-
-    getTrailers = (id) => {
-        axios.get(`https://imdb-api.com/en/API/Trailer/k_P5lbxL5X/${id}`).then(response => {
-            /* this.setState({
-                movies: response.data.results,
-            }) */  
-            console.log('TRAILERS', response)
-            this.setState({movie: response.data.link})
-        })
-    }
-
-    renderTrailer = (id) => {
-        this.getTrailers(id);
-    }
-
-    
-
-    render() {
-        /* const popup = () => {
-            return (
-                <Popup
-                    on={'hover'}
-                    modal
-                    closeOnDocumentClick
-                >
-                    <span> Modal content </span>
-                </Popup>
-            )
-        } */
+ 
+    render() {        
         const { picsAndIdsArray } = this.props;
         let pics = picsAndIdsArray.map((element, i) => {
             return (
-                <a >
-                    <img src={element.pic} key={i} />
+                <a 
+                   onClick={()=> this.props.functionId(element.id) }
+                   key={i}
+                   >
+                    <img src={element.pic}  />
                 </a>
-
-
-                /*  <Player                    
-                     playsInline
-                     poster={element.pic}
-                     onClick={()=>{this.getTrailers(element.id)}}
-                     src={this.state.movie}
-                 />  */
-
             )
         });
         return (

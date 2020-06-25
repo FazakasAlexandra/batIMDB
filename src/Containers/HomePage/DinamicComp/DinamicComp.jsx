@@ -5,15 +5,18 @@ import RotateList from 'react-rotate-list';
 import Bounce from '../../../Theme/Styledcomponents/Bounce'; */
 import Flash from '../../../Theme/Styledcomponents/Flash';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
-import "./DinamicComp.css";
+import './DinamicComp.css';
 import { Fragment } from 'react';
 import Picture from './Picture/Picture';
+import RespPlayer from '../DinamicComp/RespPlayer/RespPlayer';
+/* import Popup from 'reactjs-popup'; */
 
 class DinamicComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
             movies: [],
+            idToRender: ''
         }
     }
 
@@ -22,7 +25,7 @@ class DinamicComp extends Component {
     }
 
     getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=15&skip=35').then(response => {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=10&skip=1').then(response => {  //​/movies/all
             this.setState({
                 movies: response.data.results,
             })  //am comentat-o sa nu va incurce cand randati
@@ -33,12 +36,12 @@ class DinamicComp extends Component {
 
     /* k_P5lbxL5X */
 
-    renderPic = () => {
+    showPoster = () => {
         const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
             picsAndIds.push({
                 pic: movie.Poster,
-                id: movie._id
+                id: movie.imdbID,
             })
         })
 
@@ -47,10 +50,28 @@ class DinamicComp extends Component {
                 <Picture
                     picsAndIdsArray={picsAndIds}
                     key={this.state.movies._id}
+                    functionId={ e => this.showTrailer(e) }
                 />
             )
         }
     }
+
+    showTrailer =(imdbID)=>{
+        console.log('trailer'+ imdbID,' ---- is executing');
+        this.setState({idToRender: imdbID});
+    }
+
+    /* const popup = () => {
+            return (
+                <Popup
+                    on={'hover'}
+                    modal
+                    closeOnDocumentClick
+                >
+                    <span> Modal content </span>
+                </Popup>
+            )
+        } */
 
     render() {
         console.log('la render')
@@ -80,9 +101,10 @@ class DinamicComp extends Component {
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
-                        {this.renderPic()}
+                        {this.showPoster()}
                     </div>
                 </div>
+             {this.state.idToRender? <RespPlayer id={this.state.idToRender}/> :''}
             </Fragment>
         )
     }
