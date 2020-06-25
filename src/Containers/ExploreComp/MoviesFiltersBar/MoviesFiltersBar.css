@@ -51,7 +51,7 @@
     color: rgba(255, 255, 255, 0.705);
 }
 
-.filter p {
+.filter div {
     color: rgba(255, 255, 255, 0.603);
     cursor: pointer;
 }
@@ -167,11 +167,51 @@
     max-width: 10rem;
     grid-column-start: 1;
     grid-column-end: 3;
-
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    padding: 0.6rem;
+    padding-top: 0.8rem;
+    border-radius: 2rem;
 }
 
+.slider {
+    -webkit-appearance: none;
+    height: 15px;
+    border-radius: 5px;
+    background: #f0efef;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #F4AF01;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #F4AF01;
+    cursor: pointer;
+  }
+  
+.range-container {
+    padding: 1rem;
+}
+
+.range-container .range-value {
+    color: #ffffffef;
+}
 
 #filter-imdb-highlight .fa-w-10,
 #filter-RottenTomatoes-highlight .fa-w-10,

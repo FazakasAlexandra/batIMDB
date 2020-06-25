@@ -30,6 +30,8 @@ export class MoviesFiltersBar extends React.Component {
                     showYearMenu={() => this.setState({ yearsOn: !yearsOn })}
                     showImdbRatingMenu={() => this.setState({ ratingsOn: !ratingsOn })}
                     filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
+                    filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
+                    
                 />
 
                 <SmallMenu
@@ -42,6 +44,7 @@ export class MoviesFiltersBar extends React.Component {
                     showYearMenu={() => this.setState({ yearsOn: !yearsOn })}
                     showImdbRatingMenu={() => this.setState({ ratingsOn: !ratingsOn })}
                     filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
+                    filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
                 />
 
             </>

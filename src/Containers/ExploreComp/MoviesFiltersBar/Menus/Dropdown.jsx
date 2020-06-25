@@ -3,16 +3,15 @@ import '../MoviesFiltersBar.css'
 import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {RangeInput} from './RangeInput'
+import {Filter} from './Filter'
+
 
 export function Dropdown(props) {
-
     return (
         <div className="dropdown-menu-container">
-
                 {/* filter class */}
                 <div className="dropdown-menu">
-
-                    <p className={props.filterOn ? 
+                    <p className={props.filterClassOn ? 
                        'filterClass-highlight' : 
                        'filterClass'}>
 
@@ -20,137 +19,67 @@ export function Dropdown(props) {
                         {props.filterClass}
                     </p>
 
-                    <FontAwesomeIcon icon={props.filterOn ? 
+                    <FontAwesomeIcon icon={props.filterClassOn ? 
                                      "angle-down" :
                                      "angle-right"} 
                                      onClick={props.showMenu} />
                 </div>
-
-                <div id={props.filterOn ? 
+                
+                {/* filter 1, 2, 3 container */}
+                <div id={props.filterClassOn ? 
                     `${props.filterClass}-filter-display` :
                     `${props.filterClass}-filter-hide`} 
                      className='filter'>
-                    
-                    
+
                     {/* filter 1 */}
-                    <p onClick={props.filterClass === 'Year' || props.filterClass === 'Ratings' ?
-                                null :
-                                () => props.filterMovies(props.filterClass, props.filterOne)}
-                                
-                                id={props.filterOneOn && props.filterOn ? 
-                                `filter-${props.filterOne}-highlight` : 
-                                `filter-${props.filterOne}`}
-                                >
+                    <Filter
+                    filterClass={props.filterClass}
+                    filterClassOn={props.filterClassOn}
+                    filter={props.filterOne}
+                    filterOn={props.filterOneOn}
+                    turnFilterOn={props.turnFilterOneOn}
+                    filterMovies={()=>props.filterMovies(props.filterClass, props.filterOne)}
+                    filterMoviesByRange={(filter, value)=>props.filterMoviesByRange(filter, value)}
+                    minFilterYear = {'1990'}
+                    maxFilterYear = {'2000'}
+                    minFilterRating = {'3'}
+                    maxFilterRating = {'10'}
+                    step={props.filterClass === 'Year' ? null : '0.1'}
 
-                                {/* filter 1 name : Action */}
-                                <span id={`filter-${props.filterOne}-text`}>{props.filterOne}</span>
-                                
-
-                                 {/* righ/down arrow only on Year and Ratings filters*/}
-                                {
-                                   props.filterClass === 'Year' 
-                                || props.filterClass === 'Ratings' 
-                                ? <FontAwesomeIcon icon={props.filterOneOn && props.filterOn ? 
-                                    "angle-down" : 
-                                    "angle-right"} 
-                                    //onClick={props.showRangeInput} 
-                                    onClick={() => props.turnOneOn()}
-                                  /> 
-                                : null        
-                                }
-                                    
-
-                                {/* show rangeInput only for Year and Ratings filters
-                                    and only when they are on */}
-                                {
-                                   props.filterOneOn && props.filterClass === 'Year'
-                                || props.filterOneOn && props.filterClass === 'Ratings' 
-                                ? <RangeInput/> 
-                                : null
-                                }
-                    </p>
-
-
-                     {/* filter 2 */}
-                    <p onClick={props.filterClass === 'Year' || props.filterClass === 'Ratings' ?
-                                null :
-                                () => props.filterMovies(props.filterClass, props.filterTwo)}
-
-                               id={props.filterTwoOn && props.filterOn ? 
-                                `filter-${props.filterTwo}-highlight` : 
-                                `filter-${props.filterTwo}`}
-                                >
-
-                                 {/* filter 2 name : Drama */}
-                                <span id={`filter-${props.filterTwo}-text`}>{props.filterTwo}</span>
-
-
-                                {/* righ/down arrow only on Year and Ratings filters*/}
-                                {  
-                                   props.filterClass === 'Year' 
-                                || props.filterClass === 'Ratings' 
-                                ? <FontAwesomeIcon icon={props.filterTwoOn && props.filterOn ? 
-                                    "angle-down" : 
-                                    "angle-right"} 
-                                    //onClick={props.showRangeInput}
-                                    onClick={() => props.turnTwoOn()}
-                                 /> 
-                                 : null 
-                                 }
-                                
-
-                                {/* show rangeInput only for Year and Ratings filters
-                                    and only when they are on */}
-                                {
-                                   props.filterTwoOn && props.filterClass === 'Year' 
-                                || props.filterTwoOn && props.filterClass === 'Ratings' 
-                                ? <RangeInput/> 
-                                : null
-                                }
-                     </p>
-
+                    />
+                    
+                    {/* filter 2 */}
+                    <Filter
+                    filterClass={props.filterClass}
+                    filterClassOn={props.filterClassOn}
+                    filter={props.filterTwo}
+                    filterOn={props.filterTwoOn}
+                    turnFilterOn={props.turnFilterTwoOn}
+                    filterMovies={() => props.filterMovies(props.filterClass, props.filterTwo)}
+                    filterMoviesByRange={(filter, value)=>props.filterMoviesByRange(filter, value)}
+                    minFilterYear = {'2000'}
+                    maxFilterYear = {'2010'}
+                    minFilterRating = {'44'}
+                    maxFilterRating = {'100'}
+                    step={null}
+                    />
                     
                     {/* filter 3 */}
-                    <p onClick={props.filterClass === 'Year' || props.filterClass === 'Ratings' ?
-                                null :
-                                () => props.filterMovies(props.filterClass, props.filterThree)}
+                    <Filter
+                    filterClass={props.filterClass}
+                    filterClassOn={props.filterClassOn}
+                    filter={props.filterThree}
+                    filterOn={props.filterThreeOn}
+                    turnFilterOn={props.turnFilterThreeOn}
+                    filterMovies={()=>props.filterMovies(props.filterClass, props.filterThree)}
+                    filterMoviesByRange={(filter, value)=>props.filterMoviesByRange(filter, value)}
+                    minFilterYear = {'2010'}
+                    maxFilterYear = {'2020'}
+                    minFilterRating = {'48'}
+                    maxFilterRating = {'100'}
+                    step={null}
+                    />
 
-                                id={props.filterThreeOn && props.filterOn ? 
-                                `filter-${props.filterThree}-highlight` : 
-                                `filter-${props.filterThree}`}
-                                >
-                                
-                                {/* filter 3 name : Comedy */}
-                                <span id={`filter-${props.filterThree}-text`}>{props.filterThree}</span>
-
-
-                                {/* righ/down arrow only on Year and Ratings filters */}
-                                {  
-                                   props.filterClass === 'Year' 
-                                || props.filterClass === 'Ratings' 
-                                ? <FontAwesomeIcon icon={props.filterThreeOn && props.filterOn? 
-                                    "angle-down" : 
-                                    "angle-right"} 
-                                    //onClick={props.showRangeInput}
-                                    onClick={() => props.turnThreeOn()}
-                                 /> 
-                                 : null 
-                                 }
-
-
-                                {/* show rangeInput only for Year and Ratings filters
-                                    and only when they are on */}
-                                {
-                                   props.filterThreeOn 
-                                && props.filterClass === 'Year' 
-                                || props.filterThreeOn 
-                                && props.filterClass === 'Ratings' 
-                                ? <RangeInput/> 
-                                : null
-                                }
-
-
-                    </p>
                 </div>
         </div>
     )
