@@ -31,7 +31,7 @@ class Picture extends Component {
     
 
     render() {
-        const popup = () => {
+        /* const popup = () => {
             return (
                 <Popup
                     on={'hover'}
@@ -41,7 +41,7 @@ class Picture extends Component {
                     <span> Modal content </span>
                 </Popup>
             )
-        }
+        } */
         const { picsAndIdsArray } = this.props;
         let pics = picsAndIdsArray.map((element, i) => {
             return (
