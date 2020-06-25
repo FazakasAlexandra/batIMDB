@@ -46,6 +46,7 @@ export class MovieList extends React.Component {
 import React, { Component } from 'react';
 import Carousel from 'react-elastic-carousel';
 import MovieItem from '../MovieItem/MovieItem';
+
 class MovieList extends Component {
 
     componentDidUpdate(prevProps){
@@ -64,6 +65,7 @@ class MovieList extends Component {
                 />
             )
         });
+        
 
         return (
             <div style={{
@@ -71,9 +73,10 @@ class MovieList extends Component {
                 flexDirection: "column",
                 width: "100%",
                 }} >
-                <Carousel itemsToShow={4}  >
-                    {movies}
+                <Carousel itemsToShow={5}  >
+                    {movies} 
                 </Carousel>
+                
             </div>
         )
     }
