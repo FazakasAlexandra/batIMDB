@@ -3,20 +3,22 @@ import React, { Component } from 'react';
 import { Player } from 'video-react';
 import '../../../../../node_modules/video-react/dist/video-react.css' */
 import RotateList from 'react-rotate-list';
+/* import Popup from "reactjs-popup"; */
 import axios from 'axios';
 import '../Picture/Picture.css';
 
 class Picture extends Component {
 
-    state = {
+    state = {        
         movie:'',
+        
     }
 
     getTrailers = (id) => {
         axios.get(`https://imdb-api.com/en/API/Trailer/k_P5lbxL5X/${id}`).then(response => {
             /* this.setState({
                 movies: response.data.results,
-            }) */  //am comentat-o sa nu va incurce cand randati
+            }) */  
             console.log('TRAILERS', response)
             this.setState({movie: response.data.link})
         })
@@ -26,17 +28,34 @@ class Picture extends Component {
         this.getTrailers(id);
     }
 
+    
+
     render() {
+        const popup = () => {
+            return (
+                <Popup
+                    on={'hover'}
+                    modal
+                    closeOnDocumentClick
+                >
+                    <span> Modal content </span>
+                </Popup>
+            )
+        }
         const { picsAndIdsArray } = this.props;
         let pics = picsAndIdsArray.map((element, i) => {
             return (
-                <img src={element.pic} key={i} />
-               /*  <Player                    
-                    playsInline
-                    poster={element.pic}
-                    onClick={()=>{this.getTrailers(element.id)}}
-                    src={this.state.movie}
-                />  */             
+                <a >
+                    <img src={element.pic} key={i} />
+                </a>
+
+
+                /*  <Player                    
+                     playsInline
+                     poster={element.pic}
+                     onClick={()=>{this.getTrailers(element.id)}}
+                     src={this.state.movie}
+                 />  */
 
             )
         });
