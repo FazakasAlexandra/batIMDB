@@ -1,5 +1,5 @@
 import React from 'react'
-import { MoviesFiltersBar } from './MoviesFiltersBar/MoviesFiltersBar'
+import { Menus } from './MoviesFiltersBar/Menus'
 import MovieCard from '../../Components/MovieCard/MovieCard'
 import './ExploreComp.css'
 import Axios from 'axios'
@@ -62,7 +62,7 @@ export class ExploreComp extends React.Component {
         return (
             <>
             <div>
-            <img src="https://image.flaticon.com/icons/svg/1178/1178479.svg" style={{width:'10rem', height:'11rem'}}/>
+            <img src="https://image.flaticon.com/icons/svg/1178/1178479.svg" style={{width:'10rem', height:'11rem'}} alt="not found"/>
             </div>
             </>
         )
@@ -93,7 +93,7 @@ export class ExploreComp extends React.Component {
     render() {
         return (
             <div className="exploreComp-container">
-                <MoviesFiltersBar
+                <Menus
                     filter={(filterClass, filter) => this.getMovies(filterClass, filter)}
                     filterMoviesByRange={(filter, value)=>this.checkFilter(filter, value)}
                 />

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../MoviesFiltersBar.css'
+import '../Menus.css'
 import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {FilterMenu} from './FilterMenu'
@@ -26,9 +26,6 @@ export class SmallMenu extends React.Component {
 
                         languagesOn={this.props.languagesOn}
                         showLanguageMenu={this.props.showLanguageMenu}
-
-                        yearsOn={this.props.yearsOn}
-                        showYearMenu={this.props.showYearMenu}
 
                         yearsOn={this.props.yearsOn}
                         showYearMenu={this.props.showYearMenu}

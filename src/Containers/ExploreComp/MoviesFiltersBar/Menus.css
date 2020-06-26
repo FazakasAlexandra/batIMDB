@@ -8,6 +8,7 @@
     justify-content: space-between;
     margin-left: 2.7rem;
     margin-top: 2rem;
+    padding-right: 2rem;
 }
 
 .dropdown-menu-container {
@@ -23,6 +24,22 @@
 .filterClass-highlight {
     color: #ffffffef;
     font-size: 1.2rem;
+}
+
+.icon-range-container{
+    display: flex;
+}
+
+
+.icon-range-container .fa-w-14 {
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.icon-range-container .fa-w-14:hover {
+    margin-left: 1rem;
+    color: #ffffffef;
+    font-size: 1.1rem;
 }
 
 .small-dropdown-menus-container{

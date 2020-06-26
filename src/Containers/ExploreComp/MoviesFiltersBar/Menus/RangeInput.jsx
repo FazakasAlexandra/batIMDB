@@ -1,4 +1,6 @@
 import React from 'react'
+import '../../../../Fontawesome/fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export class RangeInput extends React.Component {
     constructor(props){
@@ -6,6 +8,7 @@ export class RangeInput extends React.Component {
         this.state = {
             value : this.props.min
         }
+        this.myRef = React.createRef();
     }
 
     showValue(e){
@@ -25,23 +28,32 @@ export class RangeInput extends React.Component {
         }
     }
 
+    handleClick = (e) => {
+        this.inputElement.click();
+    }
+
     render(){
         return(
             <div className='range-container'>
                 <p className="range-value">{this.state.value}{this.props.filter==='RottenTomatoes' ? '%' : null}</p>
-
+                
+                <div className='icon-range-container'>
                 <input
+                    id={this.props.filter}
                     type="range"
                     min={this.props.min}
                     max={this.props.max}
                     defaultValue={this.props.min}
                     className="slider"
-                    id="myRange"
                     step={this.props.step}
                     value={this.props.value}
                     onChange={(e) => this.checkFilterClass(e)}
+                    ref={this.myRef}
                 >
                 </input>
+                {this.props.filterClass === 'Ratings' ? <FontAwesomeIcon icon="plus"                                                
+                                                         /> : null}
+                </div>
             </div>
         )
     }

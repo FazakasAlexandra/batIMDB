@@ -6,7 +6,7 @@ import {RangeInput} from './RangeInput'
 export function Filter (props) {
   let { filterClass, filterClassOn, filter, filterOn,  } = props
 
-  function getfilterArrow(){
+  function getFilterArrow(){
     if(filterClass === 'Year' || filterClass === 'Ratings'){
         let filterArrow= <FontAwesomeIcon icon={filterOn && filterClassOn ? 
                        "angle-down" : 
@@ -17,10 +17,10 @@ export function Filter (props) {
     }
   }
 
-  function getfilterInput(){
+  function getFilterInput(){
     let filterInput = null
 
-    if(filterOn && filterClass === 'Year' || filterOn && filterClass === 'Ratings') {
+    if((filterOn && filterClass === 'Year') || (filterOn && filterClass === 'Ratings')) {
       filterInput =  <RangeInput
                         min={filterClass === 'Year' ? props.minFilterYear : props.minFilterRating}
                         max={filterClass === 'Year' ? props.maxFilterYear : props.maxFilterRating}
@@ -45,11 +45,11 @@ export function Filter (props) {
                                 `filter-${filter}`}
                                 >
 
-                                <span id={`filter-${filter}-text`}>{filter}</span>
+                              <span id={`filter-${filter}-text`}>{filter}</span>
 
-                                {getfilterArrow()}
+                                {getFilterArrow()}
 
-                                {getfilterInput()}
+                                {getFilterInput()}
         </div>
     )
 }

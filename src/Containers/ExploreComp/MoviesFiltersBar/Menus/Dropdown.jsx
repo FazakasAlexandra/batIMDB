@@ -1,8 +1,7 @@
 import React from 'react'
-import '../MoviesFiltersBar.css'
+import '../Menus.css'
 import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {RangeInput} from './RangeInput'
 import {Filter} from './Filter'
 
 
@@ -35,11 +34,14 @@ export function Dropdown(props) {
                     <Filter
                     filterClass={props.filterClass}
                     filterClassOn={props.filterClassOn}
+                
                     filter={props.filterOne}
                     filterOn={props.filterOneOn}
                     turnFilterOn={props.turnFilterOneOn}
+
                     filterMovies={()=>props.filterMovies(props.filterClass, props.filterOne)}
                     filterMoviesByRange={(filter, value)=>props.filterMoviesByRange(filter, value)}
+
                     minFilterYear = {'1990'}
                     maxFilterYear = {'2000'}
                     minFilterRating = {'3'}
