@@ -21,7 +21,7 @@ class CategoriesLists extends React.Component {
     }
 
     getMovieListMovies = () => {
-         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=6`)
+         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=32`)
             .then((response) => {
                 // console.log(response.data.results)
                 this.setState({ movieListMovies: response.data.results })
