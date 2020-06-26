@@ -9,7 +9,7 @@ import './DinamicComp.css';
 import { Fragment } from 'react';
 import Picture from './Picture/Picture';
 import RespPlayer from '../DinamicComp/RespPlayer/RespPlayer';
-import Popup from 'reactjs-popup';
+
 
 class DinamicComp extends Component {
     constructor(props) {
@@ -34,8 +34,6 @@ class DinamicComp extends Component {
         })
     }
 
-    /* k_P5lbxL5X */
-
     showPoster = () => {
         const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
@@ -47,7 +45,6 @@ class DinamicComp extends Component {
 
         if (picsAndIds.length) {
             return (
-
                 <Picture
                     picsAndIdsArray={picsAndIds}
                     key={this.state.movies._id}
@@ -60,22 +57,8 @@ class DinamicComp extends Component {
     showTrailer = (imdbID) => {
         console.log('trailer' + imdbID, ' ---- se executa');
         this.setState({ idToRender: imdbID });
-        
-        return (
-            <Popup trigger={} position="right center">
-                <div>Popup content here !!</div>
-            </Popup>
-        )
+
     }
-
-
-    /* const popup = () => {
-        return (
-            <Popup trigger={<button> Trigger</button>} position="right center">
-                <div>Popup content here !!</div>
-            </Popup>
-        )
-    } */
 
     render() {
         console.log('la render')
@@ -104,10 +87,10 @@ class DinamicComp extends Component {
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
-                        {this.showPoster()}
+                        {this.showPoster()}                        
                     </div>
                 </div>
-                {this.state.idToRender ? <RespPlayer id={this.state.idToRender} /> : ''}
+               {/*  {this.state.idToRender ? <RespPlayer id={this.state.idToRender} /> : ''} */}
             </Fragment>
         )
     }
