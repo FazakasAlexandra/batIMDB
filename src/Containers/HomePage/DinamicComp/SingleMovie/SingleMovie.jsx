@@ -5,7 +5,6 @@ import "./SingleMovie.css";
 
 
 class SingleMovie extends Component {
-
     render() {
         return (
             <div className="DinamicSingleMovie">

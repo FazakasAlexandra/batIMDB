@@ -16,12 +16,9 @@ class DinamicComp extends Component {
         super(props)
         this.state = {
             movies: [],
-            idToRender: '',
             showModal: false,
             id: '',
         };
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     componentDidMount() {
@@ -90,7 +87,7 @@ class DinamicComp extends Component {
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="onRequestClose Example"
-                    onRequestClose={this.handleCloseModal}
+                    onRequestClose={()=> this.handleCloseModal()}
                     className="Modal"
                     overlayClassName="Overlay"
                 >

@@ -3,14 +3,7 @@ import RotateList from 'react-rotate-list';
 import '../Picture/Picture.css';
 
 class Picture extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            showModal: false,
-            id: ''
-        };
-    }   
-
+    
     render() { 
         const { picsAndIdsArray } = this.props;
         let pics = picsAndIdsArray.map((element, i) => {
