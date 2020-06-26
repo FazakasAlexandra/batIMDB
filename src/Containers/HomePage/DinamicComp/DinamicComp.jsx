@@ -8,16 +8,42 @@ import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import './DinamicComp.css';
 import { Fragment } from 'react';
 import Picture from './Picture/Picture';
-import RespPlayer from '../DinamicComp/RespPlayer/RespPlayer';
+import Modal from 'react-modal';
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
+Modal.setAppElement(document.getElementById('root'));
 
 class DinamicComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
             movies: [],
-            idToRender: ''
+            idToRender: '',
+            modalIsOpen: false,
+            setIsOpen: false,
         }
+    }
+
+
+    openModal() {
+        this.setState({setIsOpen: true});
+    }
+    /* afterOpenModal() {
+        subtitle.style.color = '#f00';
+    } */
+
+    closeModal() {
+        this.setState({setIsOpen: false});
     }
 
     componentDidMount() {
@@ -87,10 +113,10 @@ class DinamicComp extends Component {
                         </RotateList>
                     </div>
                     <div className="DinamicCompMoviesPicture">
-                        {this.showPoster()}                        
+                        {this.showPoster()}
                     </div>
                 </div>
-               {/*  {this.state.idToRender ? <RespPlayer id={this.state.idToRender} /> : ''} */}
+                {/*  {this.state.idToRender ? <RespPlayer id={this.state.idToRender} /> : ''} */}
             </Fragment>
         )
     }
