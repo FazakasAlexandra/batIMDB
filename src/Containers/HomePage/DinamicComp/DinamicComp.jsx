@@ -8,16 +8,42 @@ import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import './DinamicComp.css';
 import { Fragment } from 'react';
 import Picture from './Picture/Picture';
-import RespPlayer from '../DinamicComp/RespPlayer/RespPlayer';
-/* import Popup from 'reactjs-popup'; */
+import Modal from 'react-modal';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
+Modal.setAppElement(document.getElementById('root'));
 
 class DinamicComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
             movies: [],
-            idToRender: ''
+            idToRender: '',
+            modalIsOpen: false,
+            setIsOpen: false,
         }
+    }
+
+
+    openModal() {
+        this.setState({setIsOpen: true});
+    }
+    /* afterOpenModal() {
+        subtitle.style.color = '#f00';
+    } */
+
+    closeModal() {
+        this.setState({setIsOpen: false});
     }
 
     componentDidMount() {
@@ -34,8 +60,6 @@ class DinamicComp extends Component {
         })
     }
 
-    /* k_P5lbxL5X */
-
     showPoster = () => {
         const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
@@ -50,28 +74,17 @@ class DinamicComp extends Component {
                 <Picture
                     picsAndIdsArray={picsAndIds}
                     key={this.state.movies._id}
-                    functionId={ e => this.showTrailer(e) }
+                    functionId={e => this.showTrailer(e)}
                 />
             )
         }
     }
 
-    showTrailer =(imdbID)=>{
-        console.log('trailer'+ imdbID,' ---- is executing');
-        this.setState({idToRender: imdbID});
-    }
+    showTrailer = (imdbID) => {
+        console.log('trailer' + imdbID, ' ---- se executa');
+        this.setState({ idToRender: imdbID });
 
-    /* const popup = () => {
-            return (
-                <Popup
-                    on={'hover'}
-                    modal
-                    closeOnDocumentClick
-                >
-                    <span> Modal content </span>
-                </Popup>
-            )
-        } */
+    }
 
     render() {
         console.log('la render')
@@ -91,7 +104,6 @@ class DinamicComp extends Component {
         });
 
         return (
-
             <Fragment>
                 <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
                 <div className="DinamicCompMovies">
@@ -104,7 +116,7 @@ class DinamicComp extends Component {
                         {this.showPoster()}
                     </div>
                 </div>
-             {this.state.idToRender? <RespPlayer id={this.state.idToRender}/> :''}
+                {/*  {this.state.idToRender ? <RespPlayer id={this.state.idToRender} /> : ''} */}
             </Fragment>
         )
     }
