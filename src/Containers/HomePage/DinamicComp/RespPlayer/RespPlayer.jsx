@@ -41,9 +41,12 @@ class RespPlayer extends Component {
             <IframeResizer
                 log
                 src={`https://www.imdb.com/videoembed/${this.state.movieLink}`}
-                style={{ minWidth: '90%', height: '720px', maxHeight: '100%' }}
+                style={{ 
+                    minWidth: '100%', 
+                    height: '720px', 
+                    maxHeight: '100%' 
+                }}
             />
-
         )
     }
 }
