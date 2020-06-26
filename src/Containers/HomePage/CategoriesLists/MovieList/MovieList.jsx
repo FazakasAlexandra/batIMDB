@@ -46,6 +46,7 @@ export class MovieList extends React.Component {
 import React, { Component } from 'react';
 import Carousel from 'react-elastic-carousel';
 import MovieItem from '../MovieItem/MovieItem';
+import MovieCard from '../../../../Components/MovieCard/MovieCard'
 
 class MovieList extends Component {
 
@@ -57,11 +58,14 @@ class MovieList extends Component {
     }
 
     render() {
+       
         let movies = this.props.movies.map((movie, idx) => {
             return (
                 <MovieItem
                     key={movie._id}
                     poster={movie.Poster}
+                    // title={movie.Title}
+                    // imdbRating={movie.imdbRating}
                 />
             )
         });
@@ -73,7 +77,12 @@ class MovieList extends Component {
                 flexDirection: "column",
                 width: "100%",
                 }} >
-                <Carousel itemsToShow={5}  >
+                <Carousel 
+                itemsToShow={6}  
+                itemsToScroll={1}
+                initialFirstItem={6}
+                
+                >
                     {movies} 
                 </Carousel>
                 
