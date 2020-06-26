@@ -91,7 +91,7 @@ class DinamicComp extends Component {
                     className="Modal"
                     overlayClassName="Overlay"
                 >
-                   {/* rsply */}
+                   <RespPlayer id={this.state.id} />
                 </ReactModal>
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
@@ -102,7 +102,7 @@ class DinamicComp extends Component {
                     <div className="DinamicCompMoviesPicture">
                         {this.showPoster()}
                     </div>
-                </div> {/* <RespPlayer id={this.state.id} /> */}
+                </div> 
             </Fragment>
         )
     }
