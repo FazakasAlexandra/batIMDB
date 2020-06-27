@@ -28,7 +28,6 @@ class DinamicComp extends Component {
     getMovies =()=> {
         axios.get('https://movies-app-siit.herokuapp.com/movies?take=100').then(response => {  /* imdbRating=[0-9]& */
             this.sortArray(response.data.results);
-            console.log(response)
         })
         .catch(err => {
             console.log(err);
@@ -57,7 +56,6 @@ class DinamicComp extends Component {
 
     sortArray = array => {
         const arraySorted = array.sort(function (a, b) {
-            console.log('sortate:-->   ',b.imdbRating, a.imdbRating )
             return Number(b.imdbRating) - Number(a.imdbRating);
             
         });
