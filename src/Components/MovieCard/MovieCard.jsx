@@ -34,7 +34,7 @@ class MovieCard extends React.Component{
                 <p className='ratingOption'><span>IMDB</span> | Rotten Tomatoes | Metacritic</p>
                 
                 {!this.state.hover && !this.state.auth &&
-                    <div className='nextLevel'
+                    <div className='closedCardInvite'
                          onMouseEnter = {this.handleHover}>
                     </div>
                 }
@@ -47,7 +47,7 @@ class MovieCard extends React.Component{
                 {this.state.auth &&
                     <button className='editBtn'>EDIT</button>
                 }
-                <button className ='movieDetailsBtn'>VIEW </button>
+                <button className ='movieDetailsButn'>VIEW </button>
             </div>
         )
     }
