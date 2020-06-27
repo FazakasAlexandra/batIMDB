@@ -1,8 +1,8 @@
 import React from 'react'
 import '../Menus.css'
 import {Dropdown} from './Dropdown'
-
-export class FilterMenu extends React.Component {
+//ch
+export class Dropdowns extends React.Component {
     constructor(){
         super()
         this.state = {

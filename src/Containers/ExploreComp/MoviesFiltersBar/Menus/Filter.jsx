@@ -48,7 +48,6 @@ export function Filter (props) {
                               <span id={`filter-${filter}-text`}>{filter}</span>
 
                                 {getFilterArrow()}
-
                                 {getFilterInput()}
         </div>
     )
