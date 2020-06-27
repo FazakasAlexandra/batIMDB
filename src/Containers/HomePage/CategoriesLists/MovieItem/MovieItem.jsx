@@ -6,12 +6,12 @@ class MovieItem extends Component {
     render() {
         const { poster, title, imdbRating } = this.props
         return (
-            <div className="MovieItem">
-                <img className="DinamicSingleMovieImg" 
-                src={poster} alt="movie poster" />
-                {/* <p> {title} </p>
-                <p>Rating: {imdbRating}</p> */}
-               
+            <div className='movieItem'>
+                <img src={poster} alt="movie poster" className='movieImg' />
+                <p className='movieTitle'>{title}</p>
+                <p className='movieRating'>RATING: {imdbRating}</p>
+                <div className='nextLevel'></div>
+                <button className='movieDetailsBtn'>VIEW </button>
             </div>
         )
     }

@@ -49,43 +49,54 @@ import MovieItem from '../MovieItem/MovieItem';
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
 
 class MovieList extends Component {
+    constructor(props) {
+        super(props)
+        this.breakPoints = [
+            { width: 1, itemsToShow: 1, itemsToScroll: 1 },
+            { width: 320, itemsToShow: 2, itemsToScroll: 1 },
+            { width: 468, itemsToShow: 3, itemsToScroll: 1 },
+            { width: 648, itemsToShow: 4, itemsToScroll: 1 },
+            { width: 868, itemsToShow: 6, itemsToScroll: 1 },
 
-    componentDidUpdate(prevProps){
+        ]
+    }
+
+    componentDidUpdate(prevProps) {
         if (prevProps.movies !== this.props.movies) {
             this.setState()
-            console.log('componentDidUpdate',this.props.movies)
+            console.log('componentDidUpdate', this.props.movies)
         }
     }
 
     render() {
-       
+
         let movies = this.props.movies.map((movie, idx) => {
             return (
                 <MovieItem
                     key={movie._id}
                     poster={movie.Poster}
-                    // title={movie.Title}
-                    // imdbRating={movie.imdbRating}
+                    title={movie.Title}
+                    imdbRating={movie.imdbRating}
                 />
             )
         });
-        
+
 
         return (
             <div style={{
                 display: "flex",
                 flexDirection: "column",
                 width: "100%",
-                }} >
-                <Carousel 
-                itemsToShow={6}  
-                itemsToScroll={1}
-                initialFirstItem={6}
-                
+            }} >
+                <Carousel
+                    breakPoints={this.breakPoints}
+                    itemsToShow={6}
+                    itemsToScroll={1}
+                    initialFirstItem={6}
                 >
-                    {movies} 
+                    {movies}
                 </Carousel>
-                
+
             </div>
         )
     }

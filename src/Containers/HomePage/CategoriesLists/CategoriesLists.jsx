@@ -11,7 +11,7 @@ class CategoriesLists extends React.Component {
             movieListMovies: [],
             seriesListMovies: [],
             gameListMovies: []
-        }  
+        }
     }
 
     componentDidMount() {
@@ -21,10 +21,10 @@ class CategoriesLists extends React.Component {
     }
 
     getMovieListMovies = (type) => {
-         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=12`)
+        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=12`)
             .then((response) => {
                 // console.log(response.data.results)
-                this.setState({ 
+                this.setState({
                     movieListMovies: response.data.results,
                     // seriesListMovies: response.data.results ,
                     // gameListMovies: response.data.results 
@@ -101,7 +101,7 @@ class CategoriesLists extends React.Component {
                       {this.displayGame()}   
                  </div>
              </div> */
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
                 <h1>Movies</h1>
                 <div  >
                     <MovieList movies={this.state.movieListMovies} />
