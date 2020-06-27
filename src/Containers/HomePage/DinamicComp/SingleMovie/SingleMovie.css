@@ -2,11 +2,11 @@
   display: flex;
   align-items: flex-start;
   height: auto;
-  width: 320px;
+  width: 90%; 
   flex-direction: row;
   margin-top: 20px;
- margin-right: 1px;
-
+  margin-right: 1px;
+  flex: 1;
 }
 .DinamicSingleMovie a{
   cursor: pointer;

@@ -11,7 +11,7 @@ class CategoriesLists extends React.Component {
             movieListMovies: [],
             seriesListMovies: [],
             gameListMovies: []
-        }  
+        }
     }
 
     componentDidMount() {
@@ -20,16 +20,20 @@ class CategoriesLists extends React.Component {
         this.getGameListMovies();
     }
 
-    getMovieListMovies = () => {
-         axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=6`)
+    getMovieListMovies = (type) => {
+        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=12`)
             .then((response) => {
                 // console.log(response.data.results)
-                this.setState({ movieListMovies: response.data.results })
+                this.setState({
+                    movieListMovies: response.data.results,
+                    // seriesListMovies: response.data.results ,
+                    // gameListMovies: response.data.results 
+                })
             }
             )
     }
     getSeriesListMovies = () => {
-        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=series&take=6`)
+        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=series&take=12`)
             .then((response) => {
                 // console.log(response.data.results)
                 this.setState({ seriesListMovies: response.data.results })
@@ -37,49 +41,49 @@ class CategoriesLists extends React.Component {
             )
     }
     getGameListMovies = () => {
-        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=game&take=6`)
+        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=game&take=12`)
             .then((response) => {
                 // console.log(response.data.results)
                 this.setState({ gameListMovies: response.data.results })
             }
             )
     }
-    displayMovie() {
-        let { movieListMovies } = this.state
-        let movies = movieListMovies.map(movie => {
-            return (<MovieCard
-                key={movie._id}
-                poster={movie.Poster}
-                title={movie.Title}
-                imdbRating={movie.imdbRating}
-            />)
-        })
-        return movies;
-    }
-    displaySerie() {
-        let { seriesListMovies } = this.state
-        let series = seriesListMovies.map(movie => {
-            return (<MovieCard
-                key={movie._id}
-                poster={movie.Poster}
-                title={movie.Title}
-                imdbRating={movie.imdbRating}
-            />)
-        })
-        return series;
-    }
-    displayGame() {
-        let { gameListMovies } = this.state
-        let games = gameListMovies.map(movie => {
-            return (<MovieCard
-                key={movie._id}
-                poster={movie.Poster}
-                title={movie.Title}
-                imdbRating={movie.imdbRating}
-            />)
-        })
-        return games;
-    }
+    // displayMovie() {
+    //     let { movieListMovies } = this.state
+    //     let movies = movieListMovies.map(movie => {
+    //         return (<MovieCard
+    //             key={movie._id}
+    //             poster={movie.Poster}
+    //             title={movie.Title}
+    //             imdbRating={movie.imdbRating}
+    //         />)
+    //     })
+    //     return movies;
+    // }
+    // displaySerie() {
+    //     let { seriesListMovies } = this.state
+    //     let series = seriesListMovies.map(movie => {
+    //         return (<MovieCard
+    //             key={movie._id}
+    //             poster={movie.Poster}
+    //             title={movie.Title}
+    //             imdbRating={movie.imdbRating}
+    //         />)
+    //     })
+    //     return series;
+    // }
+    // displayGame() {
+    //     let { gameListMovies } = this.state
+    //     let games = gameListMovies.map(movie => {
+    //         return (<MovieCard
+    //             key={movie._id}
+    //             poster={movie.Poster}
+    //             title={movie.Title}
+    //             imdbRating={movie.imdbRating}
+    //         />)
+    //     })
+    //     return games;
+    // }
 
     render() {
         return (
@@ -97,18 +101,18 @@ class CategoriesLists extends React.Component {
                       {this.displayGame()}   
                  </div>
              </div> */
-            <div style={{width: "900px"}}>
+            <div style={{ width: "90%" }}>
                 <h1>Movies</h1>
                 <div  >
                     <MovieList movies={this.state.movieListMovies} />
                 </div>
                 <h1>Series</h1>
                 <div >
-                    <MovieList movies={this.state.movieListMovies} />
+                    <MovieList movies={this.state.seriesListMovies} />
                 </div>
                 <h1>Game</h1>
                 <div >
-                    <MovieList movies={this.state.movieListMovies} />
+                    <MovieList movies={this.state.gameListMovies} />
                 </div>
             </div>
         )

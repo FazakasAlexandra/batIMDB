@@ -1,10 +1,20 @@
-import React from 'react'
-import './Moviedetails.css'
-
+import React from 'react';
+import './MovieDetails.css';
+import { withRouter } from 'react-router-dom';
 
 class MovieDetails extends React.Component {
     constructor(props) {
         super(props)
+    }
+    editMovie = () => {
+        console.log('edit button',this.props)
+        this.props.history.push('/editMovie');
+        // this.props.history.push(
+        //     {
+        //         pathname: '/editMovie',
+        //         state: this.props.location.pathname
+        //     }
+        // );
     }
 
     render() {
@@ -22,7 +32,7 @@ class MovieDetails extends React.Component {
                     <p className="infoPlot">{plot}</p>
                     <br/><br/>
                     <button className="closeMovieDetails">Close</button>
-                    <button className="editMovie">Edit Movie</button>
+                    <button className="editMovie" onClick={this.editMovie}>Edit Movie</button>
                 </div>
 
 
@@ -31,4 +41,4 @@ class MovieDetails extends React.Component {
     }
 }
 
-export default MovieDetails
+export default withRouter(MovieDetails)

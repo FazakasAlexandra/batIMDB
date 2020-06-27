@@ -1,5 +1,5 @@
 import React from 'react'
-import { MoviesFiltersBar } from './MoviesFiltersBar/MoviesFiltersBar'
+import { Menus } from './MoviesFiltersBar/Menus'
 import MovieCard from '../../Components/MovieCard/MovieCard'
 import './ExploreComp.css'
 import Axios from 'axios'
@@ -9,6 +9,7 @@ export class ExploreComp extends React.Component {
         super(props)
         this.state = {
             moviesList: [],
+            moviesFound: true
         }
     }
 
@@ -46,9 +47,25 @@ export class ExploreComp extends React.Component {
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${filterClass}=${filter}`)
             .then((response) => {
                 let movies = this.addImage(response)
-                this.setState({ moviesList: movies })
+                this.setState({ moviesList: movies },() => {
+                    if(this.state.moviesList.length < 1){
+                        this.setState({moviesFound : false})
+                    } else {
+                        this.setState({moviesFound : true})
+                    }
+                })
             }
             )
+    }
+
+    displayNotFound(){
+        return (
+            <>
+            <div>
+            <img src="https://image.flaticon.com/icons/svg/1178/1178479.svg" style={{width:'10rem', height:'11rem'}} alt="not found"/>
+            </div>
+            </>
+        )
     }
 
     displayMovies() {
@@ -66,15 +83,23 @@ export class ExploreComp extends React.Component {
         return movies
     }
 
-    
+    checkFilter(filter, value){
+        console.log(filter, value)
+        if(filter === 'Year'){
+            this.getMovies(filter, value)
+        } else if (filter === 'imdb') {
+            this.getMovies('imdbRating', value)
+        }
+    }
     render() {
         return (
             <div className="exploreComp-container">
-                <MoviesFiltersBar
+                <Menus
                     filter={(filterClass, filter) => this.getMovies(filterClass, filter)}
+                    filterMoviesByRange={(filter, value)=>this.checkFilter(filter, value)}
                 />
                 <div className="filtered-movies-container">
-                    {this.displayMovies()}
+                    {this.state.moviesFound ? this.displayMovies() : this.displayNotFound()}
                     {this.getSearchedMovies()}
                 </div>
             </div>

@@ -46,34 +46,57 @@ export class MovieList extends React.Component {
 import React, { Component } from 'react';
 import Carousel from 'react-elastic-carousel';
 import MovieItem from '../MovieItem/MovieItem';
-class MovieList extends Component {
+import MovieCard from '../../../../Components/MovieCard/MovieCard'
 
-    componentDidUpdate(prevProps){
+class MovieList extends Component {
+    constructor(props) {
+        super(props)
+        this.breakPoints = [
+            { width: 1, itemsToShow: 1, itemsToScroll: 1 },
+            { width: 320, itemsToShow: 2, itemsToScroll: 1 },
+            { width: 468, itemsToShow: 3, itemsToScroll: 1 },
+            { width: 648, itemsToShow: 4, itemsToScroll: 1 },
+            { width: 868, itemsToShow: 6, itemsToScroll: 1 },
+
+        ]
+    }
+
+    componentDidUpdate(prevProps) {
         if (prevProps.movies !== this.props.movies) {
             this.setState()
-            console.log('componentDidUpdate',this.props.movies)
+            console.log('componentDidUpdate', this.props.movies)
         }
     }
 
     render() {
+
         let movies = this.props.movies.map((movie, idx) => {
             return (
                 <MovieItem
                     key={movie._id}
                     poster={movie.Poster}
+                    title={movie.Title}
+                    imdbRating={movie.imdbRating}
                 />
             )
         });
+
 
         return (
             <div style={{
                 display: "flex",
                 flexDirection: "column",
                 width: "100%",
-                }} >
-                <Carousel itemsToShow={4}  >
+            }} >
+                <Carousel
+                    breakPoints={this.breakPoints}
+                    itemsToShow={6}
+                    itemsToScroll={1}
+                    initialFirstItem={6}
+                >
                     {movies}
                 </Carousel>
+
             </div>
         )
     }

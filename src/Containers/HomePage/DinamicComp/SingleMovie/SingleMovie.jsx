@@ -5,11 +5,10 @@ import "./SingleMovie.css";
 
 
 class SingleMovie extends Component {
-
     render() {
         return (
             <div className="DinamicSingleMovie">
-                <a>
+                <a onClick={()=> this.props.functionModal(this.props.imdbID)} >
                     <img className="DinamicSingleMovieImg" src={this.props.poster} />
                 </a>                
                 <div className="DinamicInfo">
