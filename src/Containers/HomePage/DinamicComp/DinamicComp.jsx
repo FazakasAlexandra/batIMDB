@@ -25,17 +25,17 @@ class DinamicComp extends Component {
         this.getMovies();
     }
 
-    getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=10&skip=1').then(response => {  
-            this.setState({
-                movies: response.data.results,
-            })  
+    getMovies =()=> {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=100').then(response => {  /* imdbRating=[0-9]& */
+            this.sortArray(response.data.results);
             console.log(response)
-
         })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
-    showPoster = () => {
+    showPoster =()=> {
         const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
             picsAndIds.push({
@@ -55,11 +55,24 @@ class DinamicComp extends Component {
         }
     }
 
-    handleOpenModal(id) {
+    sortArray = array => {
+        const arraySorted = array.sort(function (a, b) {
+            console.log('sortate:-->   ',b.imdbRating, a.imdbRating )
+            return Number(b.imdbRating) - Number(a.imdbRating);
+            
+        });
+        this.setState({
+            movies: arraySorted.slice(0, 10)
+            
+        })
+        
+    }
+
+    handleOpenModal = id => {
         this.setState({ showModal: true, id: id });
     }
 
-    handleCloseModal() {
+    handleCloseModal =()=> {
         this.setState({ showModal: false }); 
     }
 
