@@ -1,11 +1,11 @@
 import React from 'react'
-import { Dropdown } from './Dropdown'
+import { Dropdowns } from './Dropdowns'
 
 export function LargeMenu(props) {
     return (
         <div className='dropdown-menus-container'>
-            <Dropdown
-                filter={(filterClass, filter) => props.filter(filterClass, filter)}
+            <Dropdowns
+                filterMovies={(filterClass, filter) => props.filter(filterClass, filter)}
                 filterMoviesByRange={(filter, value)=> props.filterMoviesByRange(filter, value)}
             />
 

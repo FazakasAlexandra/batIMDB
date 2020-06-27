@@ -102,22 +102,22 @@
     font-size: 1.3rem;
 }
 
-#Genre-filter-hide,
-#Ratings-filter-hide,
-#Year-filter-hide,
-#Language-filter-hide {
+#Genre-filters-hide,
+#Ratings-filters-hide,
+#Year-filters-hide,
+#Language-filters-hide {
     display: none;
 }
 
-#Genre-filter-display,
-#Ratings-filter-display,
-#Year-filter-display,
-#Language-filter-display {
+#Genre-filters-display,
+#Ratings-filters-display,
+#Year-filters-display,
+#Language-filters-display {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-#Ratings-filter-display{
+#Ratings-filters-display{
     margin-right: 3rem;
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import '../Menus.css'
 import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {Dropdown} from './Dropdown'
+import {Dropdowns} from './Dropdowns'
 
 export class SmallMenu extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export class SmallMenu extends React.Component {
                 </span>
 
                 <div className='small-dropdown-menus-container' style={{ display: menuOn ? 'flex' : 'none' }}>
-                    <Dropdown
+                    <Dropdowns
                         filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
                         filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
                     />

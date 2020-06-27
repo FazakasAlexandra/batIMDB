@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {RangeInput} from './RangeInput'
 
 export function Filter (props) {
-  let { filterClass, filterClassOn, filter, filterOn,  } = props
+  let { filterClass, filterClassOn, name, filterOn,  } = props
 
   function getFilterArrow(){
     if(filterClass === 'Year' || filterClass === 'Ratings'){
@@ -25,8 +25,8 @@ export function Filter (props) {
                         min={filterClass === 'Year' ? props.minFilterYear : props.minFilterRating}
                         max={filterClass === 'Year' ? props.maxFilterYear : props.maxFilterRating}
                         filterClass={filterClass}
-                        filter={filter}
-                        filterMoviesByRange={(filter, value)=>props.filterMoviesByRange(filter, value)}
+                        filter={name}
+                        filterMoviesByRange={(name, value)=>props.filterMoviesByRange(name, value)}
                         step={props.step}
                         value={props.value}
                      /> 
@@ -41,11 +41,13 @@ export function Filter (props) {
                                 props.filterMovies}
                                 
                                 id={filterOn && filterClassOn ? 
-                                `filter-${filter}-highlight` : 
-                                `filter-${filter}`}
+                                `filter-${name}-highlight` : 
+                                `filter-${name}`}
                                 >
 
-                              <span id={`filter-${filter}-text`}>{filter}</span>
+                              <span id={`filter-${name}-text`}
+                              onClick={() => props.turnFilterOn()}
+                              >{name}</span>
 
                                 {getFilterArrow()}
                                 {getFilterInput()}

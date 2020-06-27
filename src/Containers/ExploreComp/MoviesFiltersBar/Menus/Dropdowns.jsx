@@ -1,131 +1,100 @@
 import React from 'react'
 import '../Menus.css'
-import {Dropdown} from './Dropdown'
-//ch
+import '../../../../Fontawesome/fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Filter} from './Filter'
+import dropdowns from './dropdowns.json'
+
 export class Dropdowns extends React.Component {
-    constructor(){
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            Dropdown1Filter1on : false,
-            Dropdown1Filter2on : false,
-            Dropdow1Filter3on : false,
-
-            Dropdown2Filter1on : false,
-            Dropdown2Filter2on : false,
-            Dropdown2Filter3on : false,
-
-            Dropdown3Filter1on : false,
-            Dropdown3Filter2on : false,
-            Dropdown3Filter3on : false,
-
-            Dropdown4Filter1on : false,
-            Dropdown4Filter2on : false,
-            Dropdown4Filter3on : false,
+            dropdowns 
         }
+        this.getDropdowns = this.getDropdowns.bind(this)
+        this.getDropdownArrow = this.getDropdownArrow.bind(this)
+        this.wrapDropdown = this.wrapDropdown.bind(this)
+        
     }
 
-    filterMoviesByRange(filter, value){
-        console.log(filter, value)
+    componentDidMount() {
+        console.log(this.state.dropdowns)
     }
 
-    render(){
-        let {
-          Dropdown1Filter1on, Dropdown1Filter2on, Dropdow1Filter3on,
-          Dropdown2Filter1on, Dropdown2Filter2on, Dropdown2Filter3on,
-          Dropdown3Filter1on, Dropdown3Filter2on, Dropdown3Filter3on,
-          Dropdown4Filter1on, Dropdown4Filter2on, Dropdown4Filter3on,
-        } = this.state
-    return (
-        <>
-             {/* 1 */}
-            <Dropdown
-                filterClass={'Genre'}
-                filterClassOn={this.props.genresOn}
-                showMenu={this.props.showGenreMenu}
+    getDropdownArrow(dropdownName, dropdownOn){
+        return <div className="dropdown-menu">
+                    <p className={dropdownOn ? 
+                    'filterClass-highlight' : 
+                    'filterClass'}>
 
-                filterOne={'Action'}
-                filterTwo={'Drama'}
-                filterThree={'Comedy'}
+                        {/* Genre */}
+                        { dropdownName }
+                    </p>
 
-                filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
+                    <FontAwesomeIcon icon={dropdownOn ? 
+                                    "angle-down" :
+                                    "angle-right"} 
+                                    onClick={()=>{
+                                        this.setState({dropdownOn : !dropdownOn})
+                                        console.log(this.state)
+                                    }
+                                }
+                                    />
+                </div>
+    }
 
-                filterOneOn={Dropdown1Filter1on}
-                filterTwoOn={Dropdown1Filter2on}
-                filterThreeOn={Dropdow1Filter3on}
+    wrapDropdown(filterComponents, dropdownName, dropdownOn){
+        let wraper = React.createElement(
+            'div', 
+            {id: dropdownOn ?`${dropdownName}-filters-display`: `${dropdownName}-filters-hide`}, 
+            filterComponents
+        )
+        return wraper
+    }
 
-                turnFilterOneOn={()=>this.setState({Dropdown1Filter1on : !Dropdown1Filter1on})}
-                turnFilterTwoOn={()=>this.setState({Dropdown1Filter2on : !Dropdown1Filter2on})}
-                turnFilterThreeOn={()=>this.setState({Dropdow1Filter3on : !Dropdow1Filter3on})}
-                
-            />
-             
-              {/* 2 */}
-            <Dropdown
-                filterClass={'Ratings'}
-                filterClassOn={this.props.ratingsOn}
-                showMenu={this.props.showImdbRatingMenu}
-                filterOne={'imdb'}
-                filterTwo={'RottenTomatoes'}
-                filterThree={"Metacritic"}
+    getDropdowns() {
+        let dropdownComponents=[]
+        let {props} = this
 
-                filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
-
-                filterOneOn={Dropdown2Filter1on}
-                filterTwoOn={Dropdown2Filter2on}
-                filterThreeOn={Dropdown2Filter3on}
-                
-                turnFilterOneOn={()=>this.setState({Dropdown2Filter1on : !Dropdown2Filter1on})}
-                turnFilterTwoOn={()=>this.setState({Dropdown2Filter2on : !Dropdown2Filter2on})}
-                turnFilterThreeOn={()=>this.setState({Dropdown2Filter3on : !Dropdown2Filter3on})}
-            />
-    
-             {/* 3 */}
-            <Dropdown
-                filterClass={'Year'}
-                filterClassOn={this.props.yearsOn}
-                showMenu={this.props.showYearMenu}
-
-                filterOne={'1990-2000'}
-                filterTwo={'2000-2010'}
-                filterThree={'2010-2020'}
-
-                filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
-
-
-                filterOneOn={Dropdown3Filter1on}
-                filterTwoOn={Dropdown3Filter2on}
-                filterThreeOn={Dropdown3Filter3on}
-                
-                turnFilterOneOn={()=>this.setState({Dropdown3Filter1on : !Dropdown3Filter1on})}
-                turnFilterTwoOn={()=>this.setState({Dropdown3Filter2on : !Dropdown3Filter2on})}
-                turnFilterThreeOn={()=>this.setState({Dropdown3Filter3on : !Dropdown3Filter3on})}
-            />
+        for(let i = 0; i < this.state.dropdowns.length; i++){
+            let {dropdownOn, dropdownName, filters} = dropdowns[i]
             
-             {/* 4 */}
-            <Dropdown
-                filterClass={'Language'}
-                filterClassOn={this.props.languagesOn}
-                showMenu={this.props.showLanguageMenu}
-                
-                filterOne={'Romanian'}
-                filterTwo={'English'}
-                filterThree={'French'}
+            let arrow = this.getDropdownArrow(dropdownName, dropdownOn)
 
-                filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
+            let filterComponents = filters.map((filter)=>{
+                let {filterName, filterOn, minYear, maxYear, minRating, maxRating, step} = filter
+                return (
+                        <Filter
+                        filterClass={dropdownName}
+                        filterClassOn={dropdownOn}
+                        name={filterName}
+                        filterOn={filterOn}
+                        turnFilterOn={(filterOn)=>this.setState({filterOn : !filterOn})}
 
-                filterOneOn={Dropdown4Filter1on}
-                filterTwoOn={Dropdown4Filter2on}
-                filterThreeOn={Dropdown4Filter3on}
-                
-                turnFilterOneOn={()=>this.setState({Dropdown4Filter1on : !Dropdown4Filter1on})}
-                turnFilterTwoOn={()=>this.setState({Dropdown4Filter2on : !Dropdown4Filter2on})}
-                turnFilterThreeOn={()=>this.setState({Dropdown4Filter3on : !Dropdown4Filter3on})}
-            />
-        </>
-    )
+                        filterMovies={()=>props.filterMovies(dropdownName, filterName)}
+                        filterMoviesByRange={(filterName, value)=>props.filterMoviesByRange(filterName, value)}
+                        
+                        minFilterYear = {dropdownName === 'Year' ? minYear : null}
+                        maxFilterYear = {dropdownName === 'Year' ? maxYear : null}
+                        minFilterRating = {dropdownName == 'Rating' ? minRating : null}
+                        maxFilterRating = {dropdownName == 'Rating' ? maxRating : null}
+                        step={filterName == 'imdb' ? step : null}
+                      />
+                    )
+            })
+            let wrapedDropdown = this.wrapDropdown(filterComponents, dropdownName, dropdownOn)
+            dropdownComponents.push(arrow, wrapedDropdown)
+        }
+
+        return dropdownComponents
+    }
+
+
+    render() {
+        return (
+            <>
+            {this.getDropdowns()}
+            </>
+        )
     }
 }
