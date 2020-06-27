@@ -60,7 +60,7 @@ class DinamicComp extends Component {
     }
 
     handleCloseModal() {
-        this.setState({ showModal: false });
+        this.setState({ showModal: false }); 
     }
 
     render() {

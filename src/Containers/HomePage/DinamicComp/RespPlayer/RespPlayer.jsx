@@ -27,7 +27,6 @@ class RespPlayer extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 this.setState({ movieLink: response.data.trailer.id })
             })
             .catch(err => {
@@ -36,7 +35,6 @@ class RespPlayer extends Component {
     }
 
     render() {
-        console.log('RespPlayer--> url', this.state.movieLink)
         return (
             <IframeResizer
                 log
