@@ -11,10 +11,6 @@ export class Dropdowns extends React.Component {
         this.state = {
             dropdowns 
         }
-        this.getDropdowns = this.getDropdowns.bind(this)
-        this.getDropdownArrow = this.getDropdownArrow.bind(this)
-        this.wrapDropdown = this.wrapDropdown.bind(this)
-        
     }
 
     componentDidMount() {
