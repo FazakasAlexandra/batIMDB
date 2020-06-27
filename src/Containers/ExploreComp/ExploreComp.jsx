@@ -56,6 +56,7 @@ export class ExploreComp extends React.Component {
         let movies = moviesList.map(movie => {
             return (<MovieCard
                 key={movie._id}
+                auth={this.state.auth}
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}

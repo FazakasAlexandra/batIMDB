@@ -4,7 +4,7 @@
     z-index :1;
     padding:1.5em;
     margin-top:2.5em;
-    background-color: #091e32;
+    background-color: #182333;
     display:flex;
     flex-direction: column ;
 }
@@ -18,7 +18,7 @@
 }
 .submitBtn {
     padding:0.5em;
-    background-color:#fdff00;
+    background-color: #fdff00;
     border:none;
     border-radius: 0.5em;
 }

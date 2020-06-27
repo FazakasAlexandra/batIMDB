@@ -57,7 +57,8 @@ class MyImdb extends Component {
                     <Route path="/explore/" component={ExploreComp}/>
                     <Route path="/hompage" exact component={HomePage} />
                     <Route path="/" exact component={HomePage} />
-                    <Route path="/addPage" exact component={AddPage}/>
+                    <Route path='/addPage' exact render={props => <AddPage {...props} auth={this.state.auth} token={this.state.token}/>}/> 
+                  
                 </Switch>
             </div>
 

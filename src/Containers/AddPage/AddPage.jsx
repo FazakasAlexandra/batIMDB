@@ -9,7 +9,8 @@ class AddPage extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            // token:this.props.token
+            auth:this.props.auth,
+            token:this.props.token,
             addForm:true,
             successMsg: false
         }
@@ -30,7 +31,9 @@ class AddPage extends React.Component{
             <div className='addContainer'>
                 {this.state.addForm && 
                     <AddNewMovie 
-                        onSubmitAdd={this.handleSubmitAdd}
+                        auth = {this.state.auth}
+                        token = {this.state.token}
+                        onSubmitAdd = {this.handleSubmitAdd}
                     />
                 }
                 
