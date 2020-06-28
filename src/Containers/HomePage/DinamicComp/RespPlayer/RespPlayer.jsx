@@ -27,7 +27,6 @@ class RespPlayer extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 this.setState({ movieLink: response.data.trailer.id })
             })
             .catch(err => {
@@ -36,14 +35,16 @@ class RespPlayer extends Component {
     }
 
     render() {
-        console.log('RespPlayer--> url', this.state.movieLink)
         return (
             <IframeResizer
                 log
                 src={`https://www.imdb.com/videoembed/${this.state.movieLink}`}
-                style={{ minWidth: '90%', height: '720px', maxHeight: '100%' }}
+                style={{ 
+                    minWidth: '100%', 
+                    height: '720px', 
+                    maxHeight: '100%' 
+                }}
             />
-
         )
     }
 }

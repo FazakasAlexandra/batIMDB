@@ -3,16 +3,16 @@ import RotateList from 'react-rotate-list';
 import '../Picture/Picture.css';
 
 class Picture extends Component {
- 
-    render() {        
+    
+    render() { 
         const { picsAndIdsArray } = this.props;
         let pics = picsAndIdsArray.map((element, i) => {
             return (
-                <a 
-                   onClick={()=> this.props.functionId(element.id) }
-                   key={i}
-                   >
-                    <img src={element.pic}  />
+                <a
+                    onClick={()=> this.props.functionModal(element.id)}
+                    key={i}
+                >
+                    <img src={element.pic} />
                 </a>
             )
         });
@@ -23,12 +23,10 @@ class Picture extends Component {
                     duration={900}
                     delay={5000} >
                     {pics}
-                </RotateList>
+                </RotateList>                
             </div>
-
         )
     }
 }
 
 export default Picture;
-

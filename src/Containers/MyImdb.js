@@ -12,6 +12,7 @@ import Header from '../Components/Header/Header';
 import AddPage from '../Containers/AddPage/AddPage';
 
 import EditMovieDetails from '../Components/EditMovieDetails/EditMovieDetails';
+import MovieDetails from '../Containers/MovieDetails/MovieDetails';
 
 class MyImdb extends Component {
     constructor(props) {
@@ -59,8 +60,10 @@ class MyImdb extends Component {
                     <Route path="/explore/" component={ExploreComp}/>
                     <Route path="/hompage" exact component={HomePage} />
                     <Route path="/" exact component={HomePage} />
-                    <Route path="/addPage" exact component={AddPage}/>
-                    <Route path="/editMovie" exact component={EditMovieDetails}/>
+                    <Route path='/addPage' exact render={props => <AddPage {...props} auth={this.state.auth} token={this.state.token}/>}/> 
+                    <Route path="/editPage" exact component={EditMovieDetails}/>
+                    <Route path="/movieDetails" exact component={MovieDetails}/>
+
                 </Switch>
             </div>
 

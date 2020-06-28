@@ -1,0 +1,45 @@
+.movieDetails-container{
+    width: 80%;
+    background-color: #2E2B2B;
+    display:flex;
+    flex-direction: row;
+}
+.movieDetailsImg{
+   padding: 1%;
+   display: flex;
+   flex-direction: column;
+   width: 100rem;
+   height: 100%;
+}
+.movieDetailsInfo{
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.detailsImg{
+    width: 100%;
+}
+p{
+    color: lightyellow;
+}
+.editMovie{
+    width: 6rem;
+    padding: 0.2rem;
+    border: none;
+    background-color: yellow;
+}
+
+.deleteMovie{
+    width: 6rem;
+    padding: 0.2rem;
+    color: white;
+    background-color: red;
+    border: none;
+}
+ .movieDetails-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+} 
