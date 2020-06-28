@@ -51,7 +51,6 @@ class MovieDetails extends React.Component {
                     <br />
                     <p className="infoPlot">{plot}</p>
                     <br /><br />
-                    <button className="editMovie" onClick={this.editMovie}>Edit Movie</button>
                     <div className='trailer'>
                         <RespPlayer id={this.props.history.location.state}/>
                     </div>
