@@ -53,11 +53,10 @@ class MovieList extends Component {
         super(props)
         this.breakPoints = [
             { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-            { width: 280, itemsToShow: 2, itemsToScroll: 1 },
-            { width: 464, itemsToShow: 3, itemsToScroll: 1 },
-            { width: 582, itemsToShow: 4, itemsToScroll: 1 },
-            { width: 740, itemsToShow: 5, itemsToScroll: 1 },
-            { width: 908, itemsToShow: 6, itemsToScroll: 1 },
+            { width: 460, itemsToShow: 2, itemsToScroll: 1 },
+            { width: 708, itemsToShow: 3, itemsToScroll: 1 },
+            { width: 908, itemsToShow: 4, itemsToScroll: 1 },
+
 
         ]
     }
@@ -73,7 +72,13 @@ class MovieList extends Component {
 
         let movies = this.props.movies.map((movie, idx) => {
             return (
-                <MovieItem
+                // <MovieItem
+                //     key={movie._id}
+                //     poster={movie.Poster}
+                //     title={movie.Title}
+                //     imdbRating={movie.imdbRating}
+                // />
+                <MovieCard
                     key={movie._id}
                     poster={movie.Poster}
                     title={movie.Title}
@@ -91,9 +96,9 @@ class MovieList extends Component {
             }} >
                 <Carousel
                     breakPoints={this.breakPoints}
-                    itemsToShow={6}
+                    itemsToShow={4}
                     itemsToScroll={1}
-                    initialFirstItem={6}
+                    initialFirstItem={4}
                 >
                     {movies}
                 </Carousel>

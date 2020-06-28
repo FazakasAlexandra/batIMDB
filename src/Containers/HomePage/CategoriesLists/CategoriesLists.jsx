@@ -116,16 +116,16 @@ class CategoriesLists extends React.Component {
                       {this.displayGame()}   
                  </div>
              </div> */
-            <div style={{ width: "90%" }}>
-                <h1>Movies</h1>
+            <div style={{ width: "98%" }}>
+                <h1>Movies</h1><br/>
                 <div  >
                     <MovieList movies={this.state.movieListMovies} />
                 </div>
-                <h1>Series</h1>
+                <h1>Series</h1><br/>
                 <div >
                     <MovieList movies={this.state.seriesListMovies} />
                 </div>
-                <h1>Game</h1>
+                <h1>Game</h1><br/>
                 <div >
                     <MovieList movies={this.state.gameListMovies} />
                 </div>
