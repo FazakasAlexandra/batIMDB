@@ -53,10 +53,11 @@ class MovieList extends Component {
         super(props)
         this.breakPoints = [
             { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-            { width: 320, itemsToShow: 2, itemsToScroll: 1 },
-            { width: 468, itemsToShow: 3, itemsToScroll: 1 },
-            { width: 648, itemsToShow: 4, itemsToScroll: 1 },
-            { width: 868, itemsToShow: 6, itemsToScroll: 1 },
+            { width: 280, itemsToShow: 2, itemsToScroll: 1 },
+            { width: 464, itemsToShow: 3, itemsToScroll: 1 },
+            { width: 582, itemsToShow: 4, itemsToScroll: 1 },
+            { width: 740, itemsToShow: 5, itemsToScroll: 1 },
+            { width: 908, itemsToShow: 6, itemsToScroll: 1 },
 
         ]
     }
@@ -64,7 +65,7 @@ class MovieList extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps.movies !== this.props.movies) {
             this.setState()
-            console.log('componentDidUpdate', this.props.movies)
+            //console.log('componentDidUpdate', this.props.movies)
         }
     }
 

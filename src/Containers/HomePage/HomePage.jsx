@@ -13,6 +13,7 @@ class HomePage extends Component {
                 <DinamicComp/>  
                 <CategoriesLists />
                 <MovieDetails 
+                id= '27187'
                 poster = 'https://www.arthipo.com/image/cache/catalog/genel-tasarim/all-posters/sinema-cinema-film-postersleri/yabanci-filmler/1/pfilm977-le-fabuleux-destin-damelie-poulain_d1424f8b-film-movie-posters-tablo-canvas-1000x1000.jpg'
                 title = 'Batman'
                 genre = 'Action'
