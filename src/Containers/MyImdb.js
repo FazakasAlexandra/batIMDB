@@ -11,7 +11,8 @@ import './MyImdb.css';
 import Header from '../Components/Header/Header';
 import AddPage from '../Containers/AddPage/AddPage';
 
-import EditMovieDetails from '../Components/EditMovieDetails/EditMovieDetails';
+// import EditMovieDetails from '../Components/EditMovieDetails/EditMovieDetails';
+import EditPage from './EditPage/EditPage';
 
 class MyImdb extends Component {
     constructor(props) {
@@ -60,7 +61,7 @@ class MyImdb extends Component {
                     <Route path="/hompage" exact component={HomePage} />
                     <Route path="/" exact component={HomePage} />
                     <Route path="/addPage" exact component={AddPage}/>
-                    <Route path="/editMovie" exact component={EditMovieDetails}/>
+                    <Route path="/editPage" exact component={EditPage}/>
                 </Switch>
             </div>
 

@@ -8,13 +8,7 @@ class MovieDetails extends React.Component {
     }
     editMovie = () => {
         console.log('edit button',this.props)
-        this.props.history.push('/editMovie');
-        // this.props.history.push(
-        //     {
-        //         pathname: '/editMovie',
-        //         state: this.props.location.pathname
-        //     }
-        // );
+        this.props.history.push('/editPage');
     }
 
     render() {
@@ -33,6 +27,7 @@ class MovieDetails extends React.Component {
                     <br/><br/>
                     <button className="closeMovieDetails">Close</button>
                     <button className="editMovie" onClick={this.editMovie}>Edit Movie</button>
+                    <button className="closeMovieDetails">Close</button>
                 </div>
 
 
