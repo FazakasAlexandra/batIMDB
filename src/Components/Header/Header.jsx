@@ -107,7 +107,7 @@ class Header extends React.Component {
                     </span>
                     {/*<button className='searchBtn' value="search">Search</button>*/}
                 </div>
-                <button>
+                <button className='theme' >
                     <FontAwesomeIcon icon={faMoon} className="moon"/>
                 </button>
                 

@@ -1,5 +1,5 @@
 .movieCard{
-    width:9em;
+    width: 14em;
     background-color: #182333;
     display:flex;
     flex-direction: column;
@@ -9,8 +9,8 @@
 .cardImg {
     background-size: cover;
     background-position: center;
-    width:100%;
-    height: 22em;
+    width: 100%;
+    height: 21em;
 }
 .cardTitle,
 .ratingsWrapper {
@@ -26,7 +26,7 @@
     font-size: 1.1em;
     font-weight: 500;
     margin-block-end: 0;
-    /* padding-top: 0.3em; */
+    padding-top: 0.3em;
 }
 .ratingsWrapper{
     display: inline-flex;
