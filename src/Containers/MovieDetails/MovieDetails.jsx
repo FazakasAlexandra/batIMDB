@@ -10,14 +10,19 @@ class MovieDetails extends React.Component {
 
     editMovie = () => {
        // console.log('edit button',this.props)
-        console.log('edit button', this.props)
-        this.props.history.push('/editMovie');
-        // this.props.history.push(
-        //     {
-        //         pathname: '/editMovie',
-        //         state: this.props.location.pathname
-        //     }
-        // );
+        console.log('edit button', this.props.location.pathname)
+        // this.props.history.push('/editMovie');
+        this.props.history.push(
+            {
+                pathname: '/editMovie',
+                state: this.props._id
+            }
+        );
+        // {
+        //     pathname: '/movieDetails',
+        //     state: this.props.imdbID
+        //     state: this.props.location.pathname
+        // }
     }
 
     render() {

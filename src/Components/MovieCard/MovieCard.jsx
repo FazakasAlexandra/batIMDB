@@ -23,13 +23,12 @@ class MovieCard extends React.Component{
     editMovie = () => {
         // console.log('edit button',this.props)
          console.log('edit button', this.props)
-         this.props.history.push('/editMovie');
-         // this.props.history.push(
-         //     {
-         //         pathname: '/editMovie',
-         //         state: this.props.location.pathname
-         //     }
-         // );
+         this.props.history.push(
+            {
+                pathname: '/editPage',
+                state: this.props._id
+            }
+        );
      }
 
     render(){
