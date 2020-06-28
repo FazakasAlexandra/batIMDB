@@ -100,9 +100,22 @@
 .dropdown-menu .fa-w-8,
 .fa-w-10 {
     margin-left: 4rem;
-    color: rgb(255, 255, 255);
     cursor: pointer;
+}
+
+.dropdown-menu .fa-w-8{
     font-size: 1.3rem;
+    color:rgba(255, 255, 255, 0.644);
+}
+
+.dropdown-menu .fa-w-8:hover{
+    color: rgb(255, 255, 255);
+    font-size: 1.6rem;
+}
+
+.dropdown-menu .fa-w-10{
+    color: rgb(255, 255, 255);
+    font-size: 1.6rem;
 }
 
 #Genre-filters-hide,
@@ -209,11 +222,8 @@
     margin-left: 5.4rem;
 }
 
-#Ratings-filters-display .fa-w-8:hover{
-    font-size: 1.3rem;
-}
-#Year-filters-display .fa-w-8:hover{
-    font-size: 1.3rem;
+#Ratings-filters-display .fa-w-8:hover, #Year-filters-display .fa-w-8:hover{
+    font-size:1.2rem;
 }
 
 .slider {
