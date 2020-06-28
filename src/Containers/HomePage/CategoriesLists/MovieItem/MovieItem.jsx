@@ -14,7 +14,7 @@ class MovieItem extends Component {
     }
 
     render() {
-        console.log(' MovieItem - props', this.props.history)
+        
         const { poster, title, imdbRating } = this.props
         return (
             <div className='movieItem'>
