@@ -20,10 +20,8 @@ export class Dropdowns extends React.Component {
     getDropdownArrow(dropdownName, dropdownOn, i){
         return <div className="dropdown-menu">
                     <p className={dropdownOn ? 
-                    'filterClass-highlight' : 
-                    'filterClass'}>
-
-                        {/* Genre */}
+                                  'filterClass-highlight' : 
+                                  'filterClass'}>
                         { dropdownName }
                     </p>
 
@@ -32,21 +30,29 @@ export class Dropdowns extends React.Component {
                                     "angle-right"} 
                                     onClick={()=>{
                                         this.setState([...dropdowns].map((dropdown, idx)=>{
-                                            if(idx === i){
-                                                dropdown.dropdownOn = !dropdown.dropdownOn
-                                            }
+                                            if(idx === i) dropdown.dropdownOn = !dropdown.dropdownOn
                                             return dropdown
-                                        }))}
-                                }
-                                    />
+                                        }))
+                                    }}/>
                 </div>
     }
 
-    wrapDropdown(filterComponents, dropdownName, dropdownOn){
-        let wraper = React.createElement(
+    wrapDropdown(filterComponents, dropdownName, dropdownOn, arrow){
+        let wrapedDropdown = React.createElement(
             'div', 
-            {id: dropdownOn ?`${dropdownName}-filters-display`: `${dropdownName}-filters-hide`}, 
-            filterComponents
+            {id: dropdownOn ? `${dropdownName}-filters-display` : `${dropdownName}-filters-hide`}, 
+             filterComponents
+        )
+        wrapedDropdown = this.wrapDdAndArr(wrapedDropdown, arrow)
+        return wrapedDropdown
+    }
+
+    wrapDdAndArr(wrapedDropdown, arrow){
+        let wraper = React.createElement(
+            'div',
+            {class:'dropdown-menu-container'},          
+             arrow,
+             wrapedDropdown
         )
         return wraper
     }
@@ -55,9 +61,7 @@ export class Dropdowns extends React.Component {
         this.setState([...dropdowns].map((dropdown, i)=>{
             if(i === dropdownNr){
                 dropdown.filters.map((filter, idx)=>{
-                    if(idx === filterNr){
-                        filter.filterOn = !filter.filterOn
-                    }
+                    if(idx === filterNr) filter.filterOn = !filter.filterOn
                     return filter
                 })
             }
@@ -97,8 +101,8 @@ export class Dropdowns extends React.Component {
                       />
                     )
             })
-            let wrapedDropdown = this.wrapDropdown(filterComponents, dropdownName, dropdownOn)
-            dropdownComponents.push(arrow, wrapedDropdown)
+            let wrapedDropdown = this.wrapDropdown(filterComponents, dropdownName, dropdownOn, arrow)
+            dropdownComponents.push(wrapedDropdown)
         }
 
         return dropdownComponents

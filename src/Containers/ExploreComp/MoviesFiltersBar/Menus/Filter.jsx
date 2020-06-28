@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {RangeInput} from './RangeInput'
 
 export function Filter (props) {
-  let { filterClass, filterClassOn, name, filterOn,  } = props
+  let { filterClass, filterClassOn, name, filterOn, filterNumber, turnFilterOn, filterMovies } = props
 
   function getFilterArrow(){
     if(filterClass === 'Year' || filterClass === 'Ratings'){
-        let filterArrow= <FontAwesomeIcon icon={filterOn && filterClassOn ? 
-                       "angle-down" : 
-                       "angle-right"} 
-                      onClick={() => props.turnFilterOn(props.filterNumber)}
+        let filterArrow = <FontAwesomeIcon icon={filterOn && filterClassOn ? 
+                                                  "angle-down" : 
+                                                  "angle-right"} 
+                            onClick={() => turnFilterOn(filterNumber)}
                       />
         return filterArrow
     }
@@ -36,18 +36,15 @@ export function Filter (props) {
   }
 
     return (
-        <div onClick={filterClass === 'Year' || filterClass === 'Ratings' ?
-                                null :
-                                props.filterMovies}
-                                
-                                id={filterOn && filterClassOn ? 
-                                `filter-${name}-highlight` : 
-                                `filter-${name}`}
-                                >
+        <div onClick={filterClass === 'Year' || filterClass === 'Ratings' ? null : filterMovies}
+             id={`filter-${name}`}>
 
-                              <span id={`filter-${name}-text`}
-                              onClick={() => props.turnFilterOn()}
-                              >{name}</span>
+                              <span id={filterOn && filterClassOn? 
+                                        `filter-${name}-text-hightlight` :
+                                        `filter-${name}-text`}
+                               onClick = {()=>turnFilterOn(filterNumber)}>
+                               {name}
+                               </span>
 
                                 {getFilterArrow()}
                                 {getFilterInput()}
