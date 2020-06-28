@@ -1,56 +1,42 @@
 import React from 'react'
 import './Menus.css'
-import { LargeMenu } from './Menus/LargeFilterMenu'
-import { SmallMenu } from './Menus/SmallFilterMenu'
+import '../../../Fontawesome/fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Dropdowns } from './Menus/Dropdowns.jsx'
 
 
 export class Menus extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            genresOn: false,
-            ratingsOn: false,
-            yearsOn: false,
-            languagesOn: false,
             menuOn: false
         }
     }
 
     render() {
-        let { genresOn, ratingsOn, yearsOn, languagesOn} = this.state
+        let { menuOn } = this.state
         return (
             <>
-                <LargeMenu
-                    genresOn={genresOn}
-                    ratingsOn={ratingsOn}
-                    yearsOn={yearsOn}
-                    languagesOn={languagesOn}
+            {/* large menu */}
+                <div className='dropdown-menus-container'>
+                    <Dropdowns
+                        filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
+                        filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
+                    />
+                </div>
 
-                    showGenreMenu={() => this.setState({ genresOn: !genresOn })}
-                    showLanguageMenu={() => this.setState({ languagesOn: !languagesOn })}
-                    showYearMenu={() => this.setState({ yearsOn: !yearsOn })}
-                    showImdbRatingMenu={() => this.setState({ ratingsOn: !ratingsOn })}
-                    
-                    filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                    filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
-                    
-                />
-
-                <SmallMenu
-                    genresOn={genresOn}
-                    ratingsOn={ratingsOn}
-                    yearsOn={yearsOn}
-                    languagesOn={languagesOn}
-
-                    showGenreMenu={() => this.setState({ genresOn: !genresOn })}
-                    showLanguageMenu={() => this.setState({ languagesOn: !languagesOn })}
-                    showYearMenu={() => this.setState({ yearsOn: !yearsOn })}
-                    showImdbRatingMenu={() => this.setState({ ratingsOn: !ratingsOn })}
-
-                    filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                    filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
-                />
-
+            {/* small menu */}
+                <>
+                    <span className="bars-container">
+                        <FontAwesomeIcon icon={'bars'} onClick={() => { this.setState({ menuOn: !menuOn }) }} />
+                    </span>
+                    <div className='small-dropdown-menus-container' style={{ display: menuOn ? 'flex' : 'none' }}>
+                        <Dropdowns
+                            filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
+                            filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
+                        />
+                    </div>
+                </>
             </>
         )
     }
