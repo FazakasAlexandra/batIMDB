@@ -3,7 +3,7 @@
     padding:1em;
     display:flex;
     flex-flow:row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .addForm{
     width:45%;
@@ -24,7 +24,7 @@
 
 .fieldWrapper{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     margin-top:1em;
     margin-left:2em;
 }
@@ -71,7 +71,6 @@ label{
 }
 .addBtn,
 .pvwBtn{
-  
     margin-left: 1em;
     background-color: #282e3c;
     color: #fdff00;
@@ -92,14 +91,20 @@ label{
  
 }
 .pvw img{
-    width: 25%;
+    width: 10em;
     background-image: url('https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg');
 }
 .pvwDetails{
-    width: 100%;
+    width: 60%;
     margin-left: 1em;
-    margin-right:0;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: 1.1em;
+}
+.pvwDetails p{
+    margin-top: 0.5em;
+}
+.pvwLine span{
+    color:#fdff00;
 }

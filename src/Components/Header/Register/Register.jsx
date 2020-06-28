@@ -9,6 +9,7 @@ class RegisterForm extends React.Component{
         this.state = {
             userName:'',
             password:'',
+            passwordCheck:'',
             registerError: false,
         }
     }
@@ -18,9 +19,9 @@ class RegisterForm extends React.Component{
         })
     }
     handleSubmit=(event)=>{
-        const {userName, password} = this.state;
+        const {userName, password, passwordCheck} = this.state;
 
-        if(userName.length > 3 && password.length > 3){
+        if(userName.length > 3 && password.length > 3 && password === passwordCheck){
 
             axios.post(
                 'https://movies-app-siit.herokuapp.com/auth/register',
@@ -45,7 +46,7 @@ class RegisterForm extends React.Component{
     }
     
     render(){
-        const {userName, password} = this.state;
+        const {userName, password, passwordCheck} = this.state;
         
         return(
             <form className='reg-form'>
@@ -63,12 +64,19 @@ class RegisterForm extends React.Component{
                        value={password}
                        onChange={this.handleChange} 
                        required/>
+                <input type='password'
+                       className='log-field'
+                       name='passwordCheck'
+                       placeholder='Check Password'
+                       value={passwordCheck}
+                       onChange={this.handleChange} 
+                       required/>
                 <button type='submit'className='submitBtn'onClick={this.handleSubmit}>SUBMIT</button>
                 <button className='cancelBtn' onClick={this.props.onCancel}>CANCEL</button>
                 {
                     this.state.registerError && 
                         <div className='registerError'>
-                            <p className='loginMsg'>username and password must be at least 4 characters</p>
+                            <p className='loginMsg'>username and password must be at least 4 characters each</p>
                         </div>
                 }
             </form>

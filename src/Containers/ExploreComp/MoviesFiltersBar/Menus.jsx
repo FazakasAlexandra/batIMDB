@@ -1,10 +1,10 @@
 import React from 'react'
-import './MoviesFiltersBar.css'
+import './Menus.css'
 import { LargeMenu } from './Menus/LargeFilterMenu'
 import { SmallMenu } from './Menus/SmallFilterMenu'
 
 
-export class MoviesFiltersBar extends React.Component {
+export class Menus extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -25,11 +25,15 @@ export class MoviesFiltersBar extends React.Component {
                     ratingsOn={ratingsOn}
                     yearsOn={yearsOn}
                     languagesOn={languagesOn}
+
                     showGenreMenu={() => this.setState({ genresOn: !genresOn })}
                     showLanguageMenu={() => this.setState({ languagesOn: !languagesOn })}
                     showYearMenu={() => this.setState({ yearsOn: !yearsOn })}
                     showImdbRatingMenu={() => this.setState({ ratingsOn: !ratingsOn })}
+                    
                     filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
+                    filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
+                    
                 />
 
                 <SmallMenu
@@ -37,11 +41,14 @@ export class MoviesFiltersBar extends React.Component {
                     ratingsOn={ratingsOn}
                     yearsOn={yearsOn}
                     languagesOn={languagesOn}
+
                     showGenreMenu={() => this.setState({ genresOn: !genresOn })}
                     showLanguageMenu={() => this.setState({ languagesOn: !languagesOn })}
                     showYearMenu={() => this.setState({ yearsOn: !yearsOn })}
                     showImdbRatingMenu={() => this.setState({ ratingsOn: !ratingsOn })}
+
                     filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
+                    filterMoviesByRange={(filter, value)=> this.props.filterMoviesByRange(filter, value)}
                 />
 
             </>

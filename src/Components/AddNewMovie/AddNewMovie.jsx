@@ -8,8 +8,8 @@ class AddNewMovie extends React.Component{
         super(props)
         this.state = {
             preview : false,
-            // auth : this.props.auth,
-            // token: this.props.token,
+            auth : props.auth,
+            token: props.token,
             title : '',
             year : '',
             rating : '',
@@ -36,30 +36,34 @@ class AddNewMovie extends React.Component{
     }
     //on success closes preview, sends success msg to be rendered on AddPage | error in console
     handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state.token)
         const {title, year, imdbID, type, imageUrl} = this.state;
         const headerToken = {
-            headers: {'X-Auth-Token': "-Lqxs2wbxzlC1j757t-K9_BmasCf-ocV"}
+        headers: {'X-Auth-Token': this.state.token}
           };
         axios.post(
             'https://movies-app-siit.herokuapp.com/movies',
-            {Title: title,
-             Year: year,
-             imdbID: imdbID,
-             Type: type,
-             Poster: imageUrl
+            {
+                Title: title,
+                Year: year,
+                imdbID: imdbID,
+                Type: type,
+                Poster: imageUrl
             },
             headerToken
         ).then(response =>{
             console.log(response)
-            if(response.status === 200){
-                this.setState({ preview : false,
+            if ( response.status === 200){
+                this.setState({ 
+                    preview : false 
                 })
                 this.props.onSubmitAdd()
             }
         }).catch(error=>{
             console.log(error)
         })
-        event.preventDefault();
+       
     }
     
     render(){
@@ -200,16 +204,26 @@ class AddNewMovie extends React.Component{
                     <div className='pvw'>
                         <img src={this.state.imgUrl} alt='movie poster'/>
                         <div className='pvwDetails'>
-                            <h1 className='pvwLine'>{this.state.title}</h1>
-                            <p className='pvwLine'>{this.state.year}</p>
-                            <p className='pvwLine'>{this.state.type}</p>
-                            <p className='pvwLine'>{this.state.director}</p>
-                            <p className='pvwLine'>{this.state.language}</p>
-                            <p className='pvwLine'>{this.state.country}</p>
-                            <p className='pvwLine'>{this.state.actors}</p>
-                            <p className='pvwLine'>{this.state.awards}</p>
-                            <p className='pvwLine'>{this.state.rating}</p>
-                            <p className='pvwLine'>{this.state.description}</p>
+                            <h2 className='pvwLine'><span>Title: </span>
+                                {this.state.title}</h2>
+                            <p className='pvwLine'><span>Released: </span> 
+                                {this.state.year}</p>
+                            <p className='pvwLine'><span>Type: </span>
+                                {this.state.type}</p>
+                            <p className='pvwLine'><span>Director: </span>
+                                {this.state.director}</p>
+                            <p className='pvwLine'><span>Language: </span>
+                                {this.state.language}</p>
+                            <p className='pvwLine'><span>Country: </span>
+                                {this.state.country}</p>
+                            <p className='pvwLine'><span>Actors: </span>
+                                {this.state.actors}</p>
+                            <p className='pvwLine'><span>Awards: </span>
+                                {this.state.awards}</p>
+                            <p className='pvwLine'><span>Rating: </span>
+                                {this.state.rating}</p>
+                            <p className='pvwLine'><span>Description: </span>
+                                {this.state.description}</p>
                         </div>
                     </div>
                 }

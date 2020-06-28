@@ -7,23 +7,21 @@ export function LargeMenu(props) {
             <FilterMenu
                 genresOn={props.genresOn}
                 showGenreMenu={props.showGenreMenu}
-                filterOneOne={props.filterOneOn}
+                filterOneOn={props.filterOneOn}
 
                 languagesOn={props.languagesOn}
                 showLanguageMenu={props.showLanguageMenu}
-                filterOneOne={props.filterTwoOn}
+                filterTwoOn={props.filterTwoOn}
 
                 yearsOn={props.yearsOn}
                 showYearMenu={props.showYearMenu}
-                filterOneOne={props.filterThreeOn}
-
-                yearsOn={props.yearsOn}
-                showYearMenu={props.showYearMenu}
+                filterThreeOn={props.filterThreeOn}
 
                 ratingsOn={props.ratingsOn}
                 showImdbRatingMenu={props.showImdbRatingMenu}
 
                 filter={(filterClass, filter) => props.filter(filterClass, filter)}
+                filterMoviesByRange={(filter, value)=> props.filterMoviesByRange(filter, value)}
             />
 
         </div>

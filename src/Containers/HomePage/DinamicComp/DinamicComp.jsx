@@ -1,42 +1,40 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
-/* import styled from 'styled-components';
-import Bounce from '../../../Theme/Styledcomponents/Bounce'; */
 import Flash from '../../../Theme/Styledcomponents/Flash';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import './DinamicComp.css';
 import { Fragment } from 'react';
 import Picture from './Picture/Picture';
+import ReactModal from 'react-modal';
 import RespPlayer from '../DinamicComp/RespPlayer/RespPlayer';
-/* import Popup from 'reactjs-popup'; */
 
+
+ReactModal.setAppElement(document.getElementById('root'));
 class DinamicComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
             movies: [],
-            idToRender: ''
-        }
+            showModal: false,
+            id: '',
+        };
     }
 
     componentDidMount() {
         this.getMovies();
     }
 
-    getMovies = () => {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=10&skip=1').then(response => {  //​/movies/all
-            this.setState({
-                movies: response.data.results,
-            })  //am comentat-o sa nu va incurce cand randati
-            console.log(response)
-
+    getMovies =()=> {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?take=100').then(response => {  
+            this.sortArray(response.data.results);
         })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
-    /* k_P5lbxL5X */
-
-    showPoster = () => {
+    showPoster =()=> {
         const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
             picsAndIds.push({
@@ -50,28 +48,30 @@ class DinamicComp extends Component {
                 <Picture
                     picsAndIdsArray={picsAndIds}
                     key={this.state.movies._id}
-                    functionId={ e => this.showTrailer(e) }
+                    functionModal={e => this.handleOpenModal(e)}
                 />
             )
         }
     }
 
-    showTrailer =(imdbID)=>{
-        console.log('trailer'+ imdbID,' ---- is executing');
-        this.setState({idToRender: imdbID});
+    sortArray = array => {
+        const arraySorted = array.sort(function (a, b) {
+            return Number(b.imdbRating) - Number(a.imdbRating);
+            
+        });
+        this.setState({
+            movies: arraySorted.slice(0, 10)            
+        })
+        
     }
 
-    /* const popup = () => {
-            return (
-                <Popup
-                    on={'hover'}
-                    modal
-                    closeOnDocumentClick
-                >
-                    <span> Modal content </span>
-                </Popup>
-            )
-        } */
+    handleOpenModal = id => {
+        this.setState({ showModal: true, id: id });
+    }
+
+    handleCloseModal =()=> {
+        this.setState({ showModal: false }); 
+    }
 
     render() {
         console.log('la render')
@@ -85,15 +85,24 @@ class DinamicComp extends Component {
                     runtime={movie.Runtime}
                     index={idx}
                     imdbID={movie.imdbID}
+                    functionModal={e => this.handleOpenModal(e)}
                     imdbRating={movie.imdbRating}
                 />
             )
         });
 
         return (
-
-            <Fragment>
+            <Fragment >
                 <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
+                <ReactModal
+                    isOpen={this.state.showModal}
+                    contentLabel="onRequestClose Example"
+                    onRequestClose={()=> this.handleCloseModal()}
+                    className="Modal"
+                    overlayClassName="Overlay"
+                >
+                   <RespPlayer id={this.state.id} />
+                </ReactModal>
                 <div className="DinamicCompMovies">
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
@@ -103,8 +112,7 @@ class DinamicComp extends Component {
                     <div className="DinamicCompMoviesPicture">
                         {this.showPoster()}
                     </div>
-                </div>
-             {this.state.idToRender? <RespPlayer id={this.state.idToRender}/> :''}
+                </div> 
             </Fragment>
         )
     }
