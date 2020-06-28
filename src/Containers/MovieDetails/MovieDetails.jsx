@@ -1,13 +1,15 @@
 import React from 'react';
 import './MovieDetails.css';
 import { withRouter } from 'react-router-dom';
+import RespPlayer from '../HomePage/DinamicComp/RespPlayer/RespPlayer';
 
 class MovieDetails extends React.Component {
     constructor(props) {
         super(props)
     }
+
     editMovie = () => {
-        console.log('edit button',this.props)
+       // console.log('edit button',this.props)
         this.props.history.push('/editMovie');
         // this.props.history.push(
         //     {
@@ -18,6 +20,7 @@ class MovieDetails extends React.Component {
     }
 
     render() {
+        console.log('movie details props', this.props.history)
         const { poster, title, genre, year, plot } = this.props
         return (
             <div className="movieDetails-container">
@@ -33,6 +36,9 @@ class MovieDetails extends React.Component {
                     <br/><br/>
                     <button className="closeMovieDetails">Close</button>
                     <button className="editMovie" onClick={this.editMovie}>Edit Movie</button>
+                    <div className='trailer'>
+                        <RespPlayer id={this.props.history.location.state}/>
+                    </div>
                 </div>
 
 

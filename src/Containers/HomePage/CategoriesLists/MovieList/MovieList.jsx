@@ -77,6 +77,7 @@ class MovieList extends Component {
                     poster={movie.Poster}
                     title={movie.Title}
                     imdbRating={movie.imdbRating}
+                    imdbID={movie.imdbID}
                 />
             )
         });
