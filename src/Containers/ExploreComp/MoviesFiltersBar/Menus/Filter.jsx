@@ -11,7 +11,7 @@ export function Filter (props) {
         let filterArrow= <FontAwesomeIcon icon={filterOn && filterClassOn ? 
                        "angle-down" : 
                        "angle-right"} 
-                      onClick={() => props.turnFilterOn()}
+                      onClick={() => props.turnFilterOn(props.filterNumber)}
                       />
         return filterArrow
     }

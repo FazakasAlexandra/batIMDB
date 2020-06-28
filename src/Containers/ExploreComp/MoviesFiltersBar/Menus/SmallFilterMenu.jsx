@@ -2,7 +2,7 @@ import React from 'react'
 import '../Menus.css'
 import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {Dropdowns} from './Dropdowns'
+import {Dropdowns} from './Dropdowns.jsx'
 
 export class SmallMenu extends React.Component {
     constructor(props) {

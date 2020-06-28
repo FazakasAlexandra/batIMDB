@@ -17,7 +17,7 @@ export class Dropdowns extends React.Component {
         console.log(this.state.dropdowns)
     }
 
-    getDropdownArrow(dropdownName, dropdownOn){
+    getDropdownArrow(dropdownName, dropdownOn, i){
         return <div className="dropdown-menu">
                     <p className={dropdownOn ? 
                     'filterClass-highlight' : 
@@ -31,9 +31,12 @@ export class Dropdowns extends React.Component {
                                     "angle-down" :
                                     "angle-right"} 
                                     onClick={()=>{
-                                        this.setState({dropdownOn : !dropdownOn})
-                                        console.log(this.state)
-                                    }
+                                        this.setState([...dropdowns].map((dropdown, idx)=>{
+                                            if(idx === i){
+                                                dropdown.dropdownOn = !dropdown.dropdownOn
+                                            }
+                                            return dropdown
+                                        }))}
                                 }
                                     />
                 </div>
@@ -48,6 +51,20 @@ export class Dropdowns extends React.Component {
         return wraper
     }
 
+    turnFilterOn(filterNr, dropdownNr){
+        this.setState([...dropdowns].map((dropdown, i)=>{
+            if(i === dropdownNr){
+                dropdown.filters.map((filter, idx)=>{
+                    if(idx === filterNr){
+                        filter.filterOn = !filter.filterOn
+                    }
+                    return filter
+                })
+            }
+            return dropdown
+        }))
+    }
+
     getDropdowns() {
         let dropdownComponents=[]
         let {props} = this
@@ -55,9 +72,9 @@ export class Dropdowns extends React.Component {
         for(let i = 0; i < this.state.dropdowns.length; i++){
             let {dropdownOn, dropdownName, filters} = dropdowns[i]
             
-            let arrow = this.getDropdownArrow(dropdownName, dropdownOn)
+            let arrow = this.getDropdownArrow(dropdownName, dropdownOn, i)
 
-            let filterComponents = filters.map((filter)=>{
+            let filterComponents = filters.map((filter, idx)=>{
                 let {filterName, filterOn, minYear, maxYear, minRating, maxRating, step} = filter
                 return (
                         <Filter
@@ -65,15 +82,17 @@ export class Dropdowns extends React.Component {
                         filterClassOn={dropdownOn}
                         name={filterName}
                         filterOn={filterOn}
-                        turnFilterOn={(filterOn)=>this.setState({filterOn : !filterOn})}
+
+                        filterNumber={idx}
+                        turnFilterOn={(idx)=>this.turnFilterOn(idx, i)}
 
                         filterMovies={()=>props.filterMovies(dropdownName, filterName)}
                         filterMoviesByRange={(filterName, value)=>props.filterMoviesByRange(filterName, value)}
                         
-                        minFilterYear = {dropdownName === 'Year' ? minYear : null}
-                        maxFilterYear = {dropdownName === 'Year' ? maxYear : null}
-                        minFilterRating = {dropdownName == 'Rating' ? minRating : null}
-                        maxFilterRating = {dropdownName == 'Rating' ? maxRating : null}
+                        minFilterYear = {minYear}
+                        maxFilterYear = {maxYear}
+                        minFilterRating = {minRating}
+                        maxFilterRating = {maxRating}
                         step={filterName == 'imdb' ? step : null}
                       />
                     )

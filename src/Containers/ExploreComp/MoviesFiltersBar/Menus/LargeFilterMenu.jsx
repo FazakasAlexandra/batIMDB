@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdowns } from './Dropdowns'
+import { Dropdowns } from './Dropdowns.jsx'
 
 export function LargeMenu(props) {
     return (
