@@ -19,11 +19,7 @@ class MovieDetails extends React.Component {
                 state: this.props._id
             }
         );
-        // {
-        //     pathname: '/movieDetails',
-        //     state: this.props.imdbID
-        //     state: this.props.location.pathname
-        // }
+        
     }
 
     render() {
