@@ -1,76 +1,230 @@
 import React from 'react';
 import './EditMovieDetails.css';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 class EditMovieDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // preview: false,
             auth: props.auth,
             token: props.token,
+            id: props.key,
             title: '',
+            runtime: '',
+            imdbRating: '',
             year: '',
-            rating: '',
-            type: '',
-            language: '',
-            country: '',
-            description: '',
-            actors: '',
-            director: '',
+            plot: '',
             awards: '',
-            imgUrl: 'https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg'
+            director: '',
+            actors: '',
+            released: '',
+            genre: '',
+            poster: ''
+            // imgUrl: 'https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg'
         }
     }
+    componentDidMount = () => {
+        const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        console.log('componentdidmount aici',this.props.history.location.state)
+        this.setState({
+            title: { title },
+            auth: { auth },
+            id: { id },
+            title: { title },
+            runtime: { runtime },
+            imdbRating: { imdbRating },
+            year: { year },
+            plot: { plot },
+            awards: { awards },
+            director: { director },
+            actors: { actors },
+            released: { released },
+            genre: { genre },
+            poster: { poster },
+        })
+    }
+    // getEDitMovieDetails(){
+    //     axios.get('https://movies-app-siit.herokuapp.com/movies')
+    // }
+    onSubmit(e) {
+        e.preventDefault();
+        console.log('onSUbmit')
+        // const newEditMovie={
+        //     title:this.refs.title.value
+        // }
+        // this.editMovie(newEditMovie);
+    }
+
+    handleChange(key) {
+        return (event) => this.setState({ [key]: event.target.value })
+    }
+    // handleChange = (event) => {
+    //     console.log('handleChange',this.props)
+    //     this.setState({
+    //         title:event.target.name.value
+    //     })
+
+    //     // console.log('event tarhet  ',event.target.name)
+    //     // const inputName = event.target.name;
+    //     // const inputValue = event.target.value
+    //     // switch (inputName) {
+    //     //     case 'title':{
+    //     //         this.setState({title:inputValue})
+    //     //         break
+    //     //     }
+    //     //     default:
+    //     // }
+    // }
+    saveEditButton = (e) => {
+        e.preventDefault()
+        console.log('aici e save edit buton  ')
+    }
+    // divForUpdate=(type)=> {
+    //     return (
+    //         <div className='fieldWrapper'>
+    //             <label htmlFor='(type)'>`${type}`:</label>
+    //             <input
+    //                 type='text'
+    //                 name='`${type}`'
+    //                 className='addField'
+    //                 defaultValue={type}
+    //                 onChange={this.handleChange(`${type`)}
+    //             />
+    //         </div>
+    //     )
+    // }
     render() {
-        const { title, year, rating, type, imageUrl, language, country, description, actors, director, awards } = this.state;
+        const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        // const { title, year, rating, type, imageUrl, language, country, description, actors, director, awards } = this.state;
         return (
             <div className='addFormContainer'>
-                <form className='addForm' onSubmit={this.handleSubmit}>
+                <form className='addForm' onSubmit={this.onSubmit}>
                     <div className='addPoster'>
-                        <div className='ceva'></div>
+
                         <label htmlFor='addPoster'>Poster URL:</label>
                         <input type='text'
-                            id='addPoster'
+                            id={id}
                             name='imageUrl'
                             className='addField addPosterField'
-                            value={imageUrl}
+                            value={poster}
+                            onChange={this.handleChange('poster')}
                         />
-                        <div className='ceva'></div>
                     </div>
 
                     <div className='addDetails'>
+                    {/* {divForUpdate('title')} */}
                         <div className='fieldWrapper'>
-                            <label htmlFor='title'>Title*:</label>
-                            <input type='text'
+                            <label htmlFor='title'>Title:</label>
+                            <input
+                                type='text'
                                 name='title'
-                                id='addTitle'
                                 className='addField'
-                                value={title}
-                                onChange={this.handleChange}
-                                required
+                                defaultValue={title}
+                                onChange={this.handleChange('title')}
                             />
                         </div>
                         <div className='fieldWrapper'>
-                            <label htmlFor='title'>Year*:</label>
-                            <input type='text'
+                            <label htmlFor='year'>Year:</label>
+                            <input
+                                type='text'
                                 name='year'
-                                id='addYear'
                                 className='addField'
-                                value={year}
-                                onChange={this.handleChange}
-                                required
+                                defaultValue={year}
+                                onChange={this.handleChange('year')}
                             />
                         </div>
                         <div className='fieldWrapper'>
-                            <label htmlFor='title'>Type*:</label>
+                            <label htmlFor='runtime'>Runtime:</label>
+                            <input
+                                type='text'
+                                name='runtime'
+                                className='addField'
+                                defaultValue={runtime}
+                                onChange={this.handleChange('runtime')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='imdbRating'>ImdbRating:</label>
+                            <input
+                                type='text'
+                                name='imdbRating'
+                                className='addField'
+                                defaultValue={imdbRating}
+                                onChange={this.handleChange('imdbRating')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='plot'>Description:</label>
+                            <input
+                                type='text'
+                                name='plot'
+                                className='addField'
+                                defaultValue={plot}
+                                onChange={this.handleChange('plot')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='awards'>Awards:</label>
+                            <input
+                                type='text'
+                                name='awards'
+                                className='addField'
+                                defaultValue={awards}
+                                onChange={this.handleChange('awards')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='director'>Director:</label>
+                            <input
+                                type='text'
+                                name='director'
+                                className='addField'
+                                defaultValue={director}
+                                onChange={this.handleChange('director')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='actors'>Actors:</label>
+                            <input
+                                type='text'
+                                name='actors'
+                                className='addField'
+                                defaultValue={actors}
+                                onChange={this.handleChange('actors')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='released'>Released:</label>
+                            <input
+                                type='text'
+                                name='released'
+                                className='addField'
+                                defaultValue={released}
+                                onChange={this.handleChange('released')}
+                            />
+                        </div>
+                        <div className='fieldWrapper'>
+                            <label htmlFor='genre'>Genre:</label>
+                            <input
+                                type='text'
+                                name='genre'
+                                className='addField'
+                                defaultValue={genre}
+                                onChange={this.handleChange('genre')}
+                            />
+                        </div>
+
+                        {/* 
+                        <div className='fieldWrapper'>
+                            <label htmlFor='title'>Type:</label>
                             <input type='text'
                                 name='type'
                                 id='addType'
                                 className='addField'
                                 value={type}
                                 onChange={this.handleChange}
-                                required
+
                             />
                         </div>
                         <div className='fieldWrapper'>
@@ -124,14 +278,14 @@ class EditMovieDetails extends React.Component {
                             />
                         </div>
                         <div className='fieldWrapper'>
-                            <label htmlFor='title'>Rating*:</label>
+                            <label htmlFor='title'>Rating:</label>
                             <input type='text'
                                 name='rating'
                                 id='addRating'
                                 className='addField'
                                 value={rating}
                                 onChange={this.handleChange}
-                                required
+
                             />
                         </div>
                         <div className='fieldWrapper'>
@@ -144,14 +298,15 @@ class EditMovieDetails extends React.Component {
                                 onChange={this.handleChange}
 
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className='btnsWrapper'>
                         <button className='pvwBtn'
-                            onClick={this.handlePreview}>Preview</button>
+                            onClick={this.handlePreview}>Back</button>
+                        <button onClick={this.saveEditButton}>Save</button>
                         <button type='submit'
-                            className='addBtn'>Add</button>
+                            className='addBtn'>Save</button>
                     </div>
                 </form>
             </div>
@@ -159,7 +314,7 @@ class EditMovieDetails extends React.Component {
     }
 }
 
-export default EditMovieDetails;
+export default withRouter(EditMovieDetails);
 
 // class EditMovieDetails extends React.Component {
 //     constructor(props) {
