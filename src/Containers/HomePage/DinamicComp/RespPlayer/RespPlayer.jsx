@@ -4,12 +4,23 @@ import axios from 'axios';
 const url1 = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/';
 
 class RespPlayer extends Component {
-    state = {
-        movieLink: '',
+    constructor(props) {
+        super(props)
+        this.state = {
+            movieLink: '',
+        }
     }
+
+    CancelToken = axios.CancelToken;
+    source = this.CancelToken.source();
+    abortController = new AbortController();
 
     componentDidMount() {
         this.getTrailers();
+    }
+
+    componentWillUnmount() {
+        this.source.cancel("Operation canceled by the user.");
     }
 
     componentDidUpdate(prevProps) {
@@ -20,6 +31,7 @@ class RespPlayer extends Component {
 
     getTrailers = () => {
         axios.get(`${url1}${this.props.id}`, {
+            cancelToken: this.source.token,
             "headers": {
                 "Access-Control-Allow-Origin": "*",
                 "x-rapidapi-host": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
@@ -37,13 +49,14 @@ class RespPlayer extends Component {
     render() {
         return (
             <IframeResizer
-                log
+                /* log */
                 src={`https://www.imdb.com/videoembed/${this.state.movieLink}`}
-                style={{ 
-                    minWidth: '100%', 
-                    height: '720px', 
-                    maxHeight: '100%' 
+                style={{
+                    minWidth: '100%',
+                    height: '720px',
+                    maxHeight: '100%'
                 }}
+                checkOrigin={false}
             />
         )
     }
