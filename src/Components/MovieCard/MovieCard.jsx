@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './MovieCard.css';
-
+import { withRouter } from 'react-router-dom';
 
 class MovieCard extends React.Component{
     constructor(props){
@@ -20,6 +20,18 @@ class MovieCard extends React.Component{
         this.setState({hover : false})
     }
     
+    editMovie = () => {
+        // console.log('edit button',this.props)
+         console.log('edit button', this.props)
+         this.props.history.push('/editMovie');
+         // this.props.history.push(
+         //     {
+         //         pathname: '/editMovie',
+         //         state: this.props.location.pathname
+         //     }
+         // );
+     }
+
     render(){
         const { poster, title, imdbRating } = this.props
         return (
@@ -45,11 +57,12 @@ class MovieCard extends React.Component{
                     </div>
                 }
                 {this.state.auth &&
-                    <button className='editBtn'>EDIT</button>
+                    <button className='editBtn'onClick={this.editMovie}>EDIT</button>
                 }
                 <button className ='movieDetailsButn'>VIEW </button>
             </div>
         )
     }
 }
-export default MovieCard
+// export default MovieCard
+export default withRouter(MovieCard)

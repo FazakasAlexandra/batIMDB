@@ -63,7 +63,7 @@ class EditMovieDetails extends React.Component {
                     <button onClick={this.changeEditMode}>X</button>
                     <button onClick={this.updateComponentValue}>Save</button>
                 </div>
-                <div className="movieDetails-container">
+                {/* <div className="movieDetails-container">
                     <div className="movieDetailsImg">
                         <img src={poster} alt="movie poster" className='detailsImg' />
                     </div>
@@ -76,7 +76,7 @@ class EditMovieDetails extends React.Component {
                         <br /><br />
                         <button className="closeMovieDetails">Close</button>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }

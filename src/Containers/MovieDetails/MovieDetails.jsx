@@ -9,10 +9,6 @@ class MovieDetails extends React.Component {
     }
 
     editMovie = () => {
-<<<<<<< HEAD:src/Components/MovieDetails/MovieDetails.jsx
-        console.log('edit button',this.props)
-        this.props.history.push('/editPage');
-=======
        // console.log('edit button',this.props)
         console.log('edit button', this.props)
         this.props.history.push('/editMovie');
@@ -22,7 +18,6 @@ class MovieDetails extends React.Component {
         //         state: this.props.location.pathname
         //     }
         // );
->>>>>>> 0601073cba46af6bd0f054d73667791a9265c712:src/Containers/MovieDetails/MovieDetails.jsx
     }
 
     render() {
@@ -42,13 +37,9 @@ class MovieDetails extends React.Component {
                     <p className="infoPlot">{plot}</p>
                     <br /><br />
                     <button className="editMovie" onClick={this.editMovie}>Edit Movie</button>
-<<<<<<< HEAD:src/Components/MovieDetails/MovieDetails.jsx
-                    <button className="closeMovieDetails">Close</button>
-=======
                     <div className='trailer'>
                         <RespPlayer id={this.props.history.location.state}/>
                     </div>
->>>>>>> 0601073cba46af6bd0f054d73667791a9265c712:src/Containers/MovieDetails/MovieDetails.jsx
                 </div>
                 <button className="closeMovieDetails">Close</button>
                 
