@@ -8,6 +8,7 @@ export class ExploreComp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            moviesDetailsList: [],
             moviesList: [],
             moviesFound: true
         }
@@ -29,16 +30,10 @@ export class ExploreComp extends React.Component {
             //console.log(response.data.results)
             let movies = this.addImage(response)
             this.setState({ moviesList: movies })
-        }
-        )
-    }
-
-    getSearchedMovies(){
-        if(localStorage.getItem('search')){
-            let search = localStorage.getItem('search')
-            localStorage.removeItem('search')
-            this.getMovies('Title', search)
-        }
+            let moviesIds = movies.map((movie) =>{
+                return movie._id
+            })
+        })
     }
 
     getMovies(filterClass, filter) {
@@ -58,6 +53,14 @@ export class ExploreComp extends React.Component {
             )
     }
 
+    getSearchedMovies(){
+        if(localStorage.getItem('search')){
+            let search = localStorage.getItem('search')
+            localStorage.removeItem('search')
+            this.getMovies('Title', search)
+        }
+    }
+
     displayNotFound(){
         return (
             <>
@@ -69,16 +72,20 @@ export class ExploreComp extends React.Component {
     }
 
     displayMovies() {
-        let { moviesList } = this.state
+        let { moviesList, movieDetailsList } = this.state
+        console.log(moviesList, movieDetailsList)
+        //console.log(movieDetailsList)
         let movies = moviesList.map(movie => {
+            console.log(movie._id)
             return (<MovieCard
                 key={movie._id}
+                id={movie._id}
                 auth={this.state.auth}
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
                 actors={movie.Actors}
-
+                
                 year={movie.Year}
                 released={movie.Released}
                 runtime={movie.Runtime}

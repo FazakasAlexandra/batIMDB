@@ -89,51 +89,54 @@ class Header extends React.Component {
     render() {
         // console.log('props history la header,', this.props.history, 'props header', this.props)
         return (
-            <nav className='navBar'>
-                <img
-                    className='logo'
-                    alt='logo'
-                    src={require('../Images/imdbLogo.png')}
-                    onClick={this.hompageFunction}
-                />
-                <button
-                    className='exploreBtn'
-                    onClick={this.exploreFunction}
-                >Explore</button>
-                <div className='searchBar'>
-                    <span className="search-input-container">
-                        <FontAwesomeIcon icon={faSearch} />
-                        <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} />
-                    </span>
-                    {/*<button className='searchBtn' value="search">Search</button>*/}
-                </div>
-                <button className='theme' >
-                    <FontAwesomeIcon icon={faMoon} className="moon"/>
-                </button>
-                
-                <button className='addMovieBtn'
-                        onClick={this.addPageFunction}>Add Movie</button>
-
-                <button className='register-btn'
-                    onClick={() => this.handleRegisterBtnClick()}>Register</button>
-                <div className='buttonsLogReg'>
-                    <button className='login-btn'
-                        onClick={() => this.handleLoginBtnClick()}>Login</button>
-                    {this.state.regForm && < RegisterForm
-                        auth={this.state.auth}
-                        onSubmitRegister={this.handleSubmitRegister}
-                        onCancel={this.handleCancelBtn}
-                        />
-                    }
-                    {this.state.logForm && < LoginForm
-                        auth={this.state.auth}
-                        onSubmitLogin={this.handleSubmitLogin}
-                        onCancel={this.handleCancelBtn}
-                        />
-                    }
-                </div>
-            </nav>
-
+            <div className='header'>
+                <div className='top'></div>
+                <nav className='navBar'>
+                    <img
+                        className='logo'
+                        alt='logo'
+                        src={require('../Images/logo.png')}
+                        onClick={this.hompageFunction}
+                    />
+                    <button
+                        className='exploreBtn'
+                        onClick={this.exploreFunction}
+                    >Explore</button>
+                    <button className='addMovieBtn'
+                            onClick={this.addPageFunction}>Add Movie</button>
+                    <div className='searchBar'>
+                        <span className="search-input-container">
+                            <FontAwesomeIcon icon={faSearch} />
+                            <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} />
+                        </span>
+                        {/*<button className='searchBtn' value="search">Search</button>*/}
+                    </div>
+                    <img
+                        className='mood'
+                        alt='mood'
+                        src={require('../Images/moon-yellow.png')}
+                    
+                    />
+                    <button className='registerBtn'
+                        onClick={() => this.handleRegisterBtnClick()}>Register</button>
+                    <div className='buttonsLogReg'>
+                        <button className='loginBtn'
+                            onClick={() => this.handleLoginBtnClick()}>Login</button>
+                        {this.state.regForm && < RegisterForm
+                            auth={this.state.auth}
+                            onSubmitRegister={this.handleSubmitRegister}
+                            onCancel={this.handleCancelBtn}
+                            />
+                        }
+                        {this.state.logForm && < LoginForm
+                            auth={this.state.auth}
+                            onSubmitLogin={this.handleSubmitLogin}
+                            onCancel={this.handleCancelBtn}
+                            />
+                        }
+                    </div>
+                </nav>
+            </div>
         )
     }
 }

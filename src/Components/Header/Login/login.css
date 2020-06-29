@@ -4,7 +4,8 @@
     z-index :1;
     padding:1.5em;
     margin-top:2.5em;
-    background-color: #182333;
+    background-color:#091e32;
+    align-self: flex-end;
     display:flex;
     flex-direction: column ;
 }
