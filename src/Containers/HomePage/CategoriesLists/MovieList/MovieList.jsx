@@ -2,7 +2,6 @@
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
 import axios from 'axios'
 import './MovieList.css'
-
 export class MovieList extends React.Component {
     constructor(props) {
         super(props)
@@ -28,16 +27,13 @@ export class MovieList extends React.Component {
                 imdbRating={movie.imdbRating}
             />)
         })
-
         return movies
     }
-
     render() {
         return (
             <div className='moviesList-container'>
                 {this.displayMovies()}
             </div>
-
         )
     }
 }

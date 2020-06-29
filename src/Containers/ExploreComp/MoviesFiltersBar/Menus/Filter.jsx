@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {RangeInput} from './RangeInput'
 
 export function Filter (props) {
-  let { filterClass, filterClassOn, filter, filterOn,  } = props
+  let { filterClass, filterClassOn, name, filterOn, filterNumber, turnFilterOn, filterMovies } = props
 
   function getFilterArrow(){
     if(filterClass === 'Year' || filterClass === 'Ratings'){
-        let filterArrow= <FontAwesomeIcon icon={filterOn && filterClassOn ? 
-                       "angle-down" : 
-                       "angle-right"} 
-                      onClick={() => props.turnFilterOn()}
-                      />
+        let filterArrow = <FontAwesomeIcon icon={filterOn && filterClassOn ? 
+                                                  "angle-down" : 
+                                                  "angle-right"} 
+                                           onClick={() => turnFilterOn(filterNumber)}
+                          />
         return filterArrow
     }
   }
@@ -25,8 +25,8 @@ export function Filter (props) {
                         min={filterClass === 'Year' ? props.minFilterYear : props.minFilterRating}
                         max={filterClass === 'Year' ? props.maxFilterYear : props.maxFilterRating}
                         filterClass={filterClass}
-                        filter={filter}
-                        filterMoviesByRange={(filter, value)=>props.filterMoviesByRange(filter, value)}
+                        filter={name}
+                        filterMoviesByRange={(name, value)=>props.filterMoviesByRange(name, value)}
                         step={props.step}
                         value={props.value}
                      /> 
@@ -36,19 +36,17 @@ export function Filter (props) {
   }
 
     return (
-        <div onClick={filterClass === 'Year' || filterClass === 'Ratings' ?
-                                null :
-                                props.filterMovies}
-                                
-                                id={filterOn && filterClassOn ? 
-                                `filter-${filter}-highlight` : 
-                                `filter-${filter}`}
-                                >
+        <div onClick={filterClass === 'Year' || filterClass === 'Ratings' ? null : filterMovies}
+             id={`filter-${name}`}>
 
-                              <span id={`filter-${filter}-text`}>{filter}</span>
+                              <span id={filterOn && filterClassOn? 
+                                        `filter-${name}-text-hightlight` :
+                                        `filter-${name}-text`}
+                               onClick = {()=>turnFilterOn(filterNumber)}>
+                               {name}
+                               </span>
 
                                 {getFilterArrow()}
-
                                 {getFilterInput()}
         </div>
     )

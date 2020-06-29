@@ -38,6 +38,7 @@ export class RangeInput extends React.Component {
                 <p className="range-value">{this.state.value}{this.props.filter==='RottenTomatoes' ? '%' : null}</p>
                 
                 <div className='icon-range-container'>
+                {this.props.filterClass === 'Ratings' ? <FontAwesomeIcon icon="minus"/> : null}
                 <input
                     id={this.props.filter}
                     type="range"
@@ -51,8 +52,8 @@ export class RangeInput extends React.Component {
                     ref={this.myRef}
                 >
                 </input>
-                {this.props.filterClass === 'Ratings' ? <FontAwesomeIcon icon="plus"                                                
-                                                         /> : null}
+                {this.props.filterClass === 'Ratings' ? <FontAwesomeIcon icon="plus"/> : null}
+
                 </div>
             </div>
         )
