@@ -15,7 +15,7 @@ class MovieDetails extends React.Component {
         // this.props.history.push('/editMovie');
         this.props.history.push(
             {
-                pathname: '/editMovie',
+                pathname: '/editPage',
                 state: this.props._id
             }
         );
@@ -23,7 +23,7 @@ class MovieDetails extends React.Component {
     }
 
     render() {
-        const { poster, title, genre, year, release, runtime, director, actors, language, country, awards, plot } = this.props
+        const { poster, title, genre, year, runtime, language, country, director, actors, released, awards, plot } = this.props
         return (
             <div className="movieDetails-container">
                 <div className="movieDetailsImg">
@@ -37,12 +37,12 @@ class MovieDetails extends React.Component {
                     <p className="infoTitle">Title: {title}</p>
                     <p className="infoGenre">Genre: {genre}</p>
                     <p className="infoYear">Year: {year}</p>
-                    <p className="infoRelease">Release: {release}</p>
                     <p className="infoRuntime">Runtime: {runtime}</p>
-                    <p className="infoDirector">Director: {director}</p>
-                    <p className="infoActors">Actors: {actors}</p>
                     <p className="infoLanguage">Language: {language}</p>
                     <p className="infoCountry">Country: {country}</p>
+                    <p className="infoDirector">Director: {director}</p>
+                    <p className="infoActors">Actors: {actors}</p>
+                    <p className="infoRelease">Released: {released}</p>
                     <p className="infoAwards">Awards: {awards}</p>
                     <br />
                     <p className="infoPlot">{plot}</p>
