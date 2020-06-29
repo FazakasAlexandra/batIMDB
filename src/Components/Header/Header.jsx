@@ -16,10 +16,13 @@ class Header extends React.Component {
         this.state = {
             auth: props.auth,
             regForm: false,
-            logForm: false
+            logForm: false,
+            theme: 'dark',
         }
     }
-    
+
+    /* componentDidUpdate () */
+
     exploreFunction = () => {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
@@ -35,11 +38,11 @@ class Header extends React.Component {
     }
     //logic for header AddBtn
     addPageFunction = () => {
-        if(this.state.auth){
+        if (this.state.auth) {
             this.props.history.push({
                 pathname: '/addPage',
             });
-        }else{
+        } else {
             window.alert('you have to be signed in to add movies')
         }
     }
@@ -87,7 +90,7 @@ class Header extends React.Component {
     }
 
     render() {
-        // console.log('props history la header,', this.props.history, 'props header', this.props)
+         console.log('props history la header,', this.props)
         return (
             <div className='header'>
                 <div className='top'></div>
@@ -103,7 +106,7 @@ class Header extends React.Component {
                         onClick={this.exploreFunction}
                     >Explore</button>
                     <button className='addMovieBtn'
-                            onClick={this.addPageFunction}>Add Movie</button>
+                        onClick={this.addPageFunction}>Add Movie</button>
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
@@ -111,12 +114,26 @@ class Header extends React.Component {
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
-                    <img
-                        className='mood'
-                        alt='mood'
-                        src={require('../Images/moon-yellow.png')}
-                    
-                    />
+                    <a
+                       /*  style={{ cursor: "pointer" }}
+                        onClick={()=>this.props.themeFunction(this.state.theme)&&(()=> {
+                            if(this.state.theme == 'dark') {
+                                this.setState({theme: 'light'})
+                                console.log('onClick={()=>this.props.themeFunction(()=',this.state.theme )
+                                return 'light'
+                            } else {
+                                this.setState({theme: 'dark'})
+                                console.log('onClick={()=>this.props.themeFunction(()=',this.state.theme )
+                                return 'dark'
+                            }
+                        })} */  //in lucru - am comentat-o sa nu va incurce ******Marius
+                    >
+                        <img
+                            className='mood'
+                            alt='mood'
+                            src={require('../Images/moon-yellow.png')}
+                        />
+                    </a>
                     <button className='registerBtn'
                         onClick={() => this.handleRegisterBtnClick()}>Register</button>
                     <div className='buttonsLogReg'>
@@ -126,13 +143,13 @@ class Header extends React.Component {
                             auth={this.state.auth}
                             onSubmitRegister={this.handleSubmitRegister}
                             onCancel={this.handleCancelBtn}
-                            />
+                        />
                         }
                         {this.state.logForm && < LoginForm
                             auth={this.state.auth}
                             onSubmitLogin={this.handleSubmitLogin}
                             onCancel={this.handleCancelBtn}
-                            />
+                        />
                         }
                     </div>
                 </nav>
