@@ -73,11 +73,9 @@ export class ExploreComp extends React.Component {
     }
 
     displayMovies() {
-        let { moviesList, movieDetailsList } = this.state
-        console.log(moviesList, movieDetailsList)
+        let { moviesList } = this.state
         //console.log(movieDetailsList)
         let movies = moviesList.map(movie => {
-            console.log(movie._id)
             return (<MovieCard
                 key={movie._id}
                 id={movie._id}

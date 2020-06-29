@@ -76,6 +76,7 @@ class MovieList extends Component {
                 // />
                 <MovieCard
                     key={movie._id}
+                    id={movie._id}
                     poster={movie.Poster}
                     title={movie.Title}
                     imdbRating={movie.imdbRating}

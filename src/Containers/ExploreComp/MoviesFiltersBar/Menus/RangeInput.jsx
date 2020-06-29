@@ -28,10 +28,6 @@ export class RangeInput extends React.Component {
         }
     }
 
-    handleClick = (e) => {
-        this.inputElement.click();
-    }
-
     render(){
         return(
             <div className='range-container'>
