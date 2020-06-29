@@ -100,6 +100,11 @@ class MovieList extends Component {
                     itemsToShow={4}
                     itemsToScroll={1}
                     initialFirstItem={4}
+                    renderPagination={() => {
+                        return (
+                          <> </>
+                        )
+                      }}
                 >
                     {movies}
                 </Carousel>
