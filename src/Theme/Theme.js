@@ -2,16 +2,13 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
-    colors: {
-        white: "white",
-        black: "black",
-        yelow: "yellow",
-    },
-    fonts: ["sans-serif", "Roboto"],    
-    fontSizes: {
-        small: "1em",
-        medium: "2em",
-        large: "3em"
+    colorBackground: {
+        primary: "#282e3c",
+        secondary: "white",
+    },   
+    fontColor: {
+        primary: "white",
+        secondary: "black",
     },
     shadows: {
         forWhite: "1px 0px 67px 6px rgba(0,0,0,0.75)",

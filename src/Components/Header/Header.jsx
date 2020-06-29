@@ -16,10 +16,11 @@ class Header extends React.Component {
         this.state = {
             auth: props.auth,
             regForm: false,
-            logForm: false
+            logForm: false,
+            theme: 'dark',
         }
     }
-    
+
     exploreFunction = () => {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
@@ -35,11 +36,11 @@ class Header extends React.Component {
     }
     //logic for header AddBtn
     addPageFunction = () => {
-        if(this.state.auth){
+        if (this.state.auth) {
             this.props.history.push({
                 pathname: '/addPage',
             });
-        }else{
+        } else {
             window.alert('you have to be signed in to add movies')
         }
     }
@@ -86,6 +87,17 @@ class Header extends React.Component {
         }
     }
 
+    toggleThemeFunction =()=> {
+        if (this.state.theme === 'light') {
+           this.setState({theme: 'dark'})
+           sessionStorage.setItem('theme', 'dark');
+          } else {
+            this.setState({theme: 'light'})
+            sessionStorage.setItem('theme', 'light');
+          }
+        
+    }
+
     render() {
         // console.log('props history la header,', this.props.history, 'props header', this.props)
         return (
@@ -103,7 +115,7 @@ class Header extends React.Component {
                         onClick={this.exploreFunction}
                     >Explore</button>
                     <button className='addMovieBtn'
-                            onClick={this.addPageFunction}>Add Movie</button>
+                        onClick={this.addPageFunction}>Add Movie</button>
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
@@ -111,12 +123,16 @@ class Header extends React.Component {
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
-                    <img
-                        className='mood'
-                        alt='mood'
-                        src={require('../Images/moon-yellow.png')}
-                    
-                    />
+                    <a 
+                        style={{cursor: "pointer"}}
+                        onClick={this.toggleThemeFunction}
+                        >
+                        <img
+                            className='mood'
+                            alt='mood'
+                            src={require('../Images/moon-yellow.png')}
+                        />
+                    </a>
                     <button className='registerBtn'
                         onClick={() => this.handleRegisterBtnClick()}>Register</button>
                     <div className='buttonsLogReg'>
@@ -126,13 +142,13 @@ class Header extends React.Component {
                             auth={this.state.auth}
                             onSubmitRegister={this.handleSubmitRegister}
                             onCancel={this.handleCancelBtn}
-                            />
+                        />
                         }
                         {this.state.logForm && < LoginForm
                             auth={this.state.auth}
                             onSubmitLogin={this.handleSubmitLogin}
                             onCancel={this.handleCancelBtn}
-                            />
+                        />
                         }
                     </div>
                 </nav>

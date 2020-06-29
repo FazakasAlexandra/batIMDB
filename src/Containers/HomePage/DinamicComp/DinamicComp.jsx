@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTheme } from 'styled-components';
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
 import Flash from '../../../Theme/Styledcomponents/Flash';
@@ -74,7 +75,7 @@ class DinamicComp extends Component {
     }
 
     render() {
-        console.log('la render')
+        console.log('la DinamicComp render', this.props)
         let movies = this.state.movies.map((movie, idx) => {
             return (
                 <SingleMovie
@@ -118,4 +119,4 @@ class DinamicComp extends Component {
     }
 }
 
-export default DinamicComp;
+export default withTheme(DinamicComp);
