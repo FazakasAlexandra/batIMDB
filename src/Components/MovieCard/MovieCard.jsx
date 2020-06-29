@@ -30,6 +30,15 @@ class MovieCard extends React.Component{
             }
         );
      }
+     
+     movieDetailsFunction = () => {
+        this.props.history.push(
+            {
+                pathname: '/movieDetails',
+                state: this.props.imdbID
+            }
+        );
+    }
 
     render(){
         const { poster, title, imdbRating } = this.props
@@ -58,7 +67,7 @@ class MovieCard extends React.Component{
                 {this.state.auth &&
                     <button className='editBtn'onClick={this.editMovie}>EDIT</button>
                 }
-                <button className ='movieDetailsButn'>VIEW </button>
+                <button className ='movieDetailsButn' onClick={this.movieDetailsFunction}>VIEW </button>
             </div>
         )
     }
