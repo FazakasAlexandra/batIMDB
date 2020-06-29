@@ -43,6 +43,7 @@ class MovieCard extends React.Component {
                 },
             }
         )
+        console.log('id din MovieCard',this.props.history.location)
     }
 
 

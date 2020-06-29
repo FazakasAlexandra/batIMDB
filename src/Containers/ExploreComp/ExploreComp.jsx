@@ -71,6 +71,7 @@ export class ExploreComp extends React.Component {
     displayMovies() {
         let { moviesList } = this.state
         let movies = moviesList.map(movie => {
+            console.log('key din displayMovies',movie._id)
             return (<MovieCard
                 key={movie._id}
                 auth={this.state.auth}

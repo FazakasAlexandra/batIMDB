@@ -26,7 +26,7 @@ class EditMovieDetails extends React.Component {
     }
     componentDidMount = () => {
         const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
-        console.log('componentdidmount aici',this.props.history.location.state)
+        console.log('componentdidmount aici', this.props.history.location.state)
         this.setState({
             title: { title },
             auth: { auth },
@@ -45,40 +45,24 @@ class EditMovieDetails extends React.Component {
         })
     }
     // getEDitMovieDetails(){
-    //     axios.get('https://movies-app-siit.herokuapp.com/movies')
+    //     axios.put('https://movies-app-siit.herokuapp.com/movies')
     // }
-    onSubmit(e) {
-        e.preventDefault();
-        console.log('onSUbmit')
-        // const newEditMovie={
-        //     title:this.refs.title.value
-        // }
-        // this.editMovie(newEditMovie);
-    }
+    
 
     handleChange(key) {
         return (event) => this.setState({ [key]: event.target.value })
     }
-    // handleChange = (event) => {
-    //     console.log('handleChange',this.props)
-    //     this.setState({
-    //         title:event.target.name.value
-    //     })
-
-    //     // console.log('event tarhet  ',event.target.name)
-    //     // const inputName = event.target.name;
-    //     // const inputValue = event.target.value
-    //     // switch (inputName) {
-    //     //     case 'title':{
-    //     //         this.setState({title:inputValue})
-    //     //         break
-    //     //     }
-    //     //     default:
-    //     // }
-    // }
+    
     saveEditButton = (e) => {
         e.preventDefault()
-        console.log('aici e save edit buton  ')
+        console.log('this.state ',this.state)
+        this.props.history.goBack();
+    }
+    handleBack= ()=> {
+        this.props.history.goBack();
+    }
+    deleteEditButton= ()=> {
+        this.props.history.goBack();
     }
     // divForUpdate=(type)=> {
     //     return (
@@ -95,13 +79,13 @@ class EditMovieDetails extends React.Component {
     //     )
     // }
     render() {
-        const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        console.log('this.props.history.location.state   :   ',this.props.history.location.state)
+        const {id,title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
         // const { title, year, rating, type, imageUrl, language, country, description, actors, director, awards } = this.state;
         return (
             <div className='addFormContainer'>
                 <form className='addForm' onSubmit={this.onSubmit}>
                     <div className='addPoster'>
-
                         <label htmlFor='addPoster'>Poster URL:</label>
                         <input type='text'
                             id={id}
@@ -111,9 +95,8 @@ class EditMovieDetails extends React.Component {
                             onChange={this.handleChange('poster')}
                         />
                     </div>
-
                     <div className='addDetails'>
-                    {/* {divForUpdate('title')} */}
+                        {/* {divForUpdate('title')} */}
                         <div className='fieldWrapper'>
                             <label htmlFor='title'>Title:</label>
                             <input
@@ -214,99 +197,24 @@ class EditMovieDetails extends React.Component {
                                 onChange={this.handleChange('genre')}
                             />
                         </div>
-
-                        {/* 
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Type:</label>
-                            <input type='text'
-                                name='type'
-                                id='addType'
-                                className='addField'
-                                value={type}
-                                onChange={this.handleChange}
-
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Director:</label>
-                            <input type='text'
-                                name='director'
-                                id='addDirector'
-                                className='addField'
-                                value={director}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Language:</label>
-                            <input type='text'
-                                name='language'
-                                id='addLanguage'
-                                className='addField'
-                                value={language}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Country:</label>
-                            <input type='text'
-                                name='country'
-                                id='addCountry'
-                                className='addField'
-                                value={country}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Actors:</label>
-                            <input type='text'
-                                name='actors'
-                                id='addActors'
-                                className='addField'
-                                value={actors}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Awards:</label>
-                            <input type='text'
-                                name='awards'
-                                id='addAwards'
-                                className='addField'
-                                value={awards}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Rating:</label>
-                            <input type='text'
-                                name='rating'
-                                id='addRating'
-                                className='addField'
-                                value={rating}
-                                onChange={this.handleChange}
-
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Description:</label>
-                            <textarea
-                                name='description'
-                                id='addDescription'
-                                className='addField'
-                                value={description}
-                                onChange={this.handleChange}
-
-                            />
-                        </div> */}
                     </div>
 
                     <div className='btnsWrapper'>
                         <button className='pvwBtn'
-                            onClick={this.handlePreview}>Back</button>
-                        <button onClick={this.saveEditButton}>Save</button>
-                        <button type='submit'
-                            className='addBtn'>Save</button>
+                            onClick={this.handleBack}>Back
+                            </button>
+                        <button
+                            type='submit'
+                            className='addBtn'
+                            onClick={this.saveEditButton}
+                        >Save
+                        </button>
+                        <button
+                            type='submit'
+                            className='addBtn'
+                            onClick={this.deleteEditButton}
+                        >Delete Movie
+                        </button>
                     </div>
                 </form>
             </div>
