@@ -21,6 +21,8 @@ class Header extends React.Component {
         }
     }
 
+    /* componentDidUpdate () */
+
     exploreFunction = () => {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
@@ -87,19 +89,8 @@ class Header extends React.Component {
         }
     }
 
-    toggleThemeFunction =()=> {
-        if (this.state.theme === 'light') {
-           this.setState({theme: 'dark'})
-           sessionStorage.setItem('theme', 'dark');
-          } else {
-            this.setState({theme: 'light'})
-            sessionStorage.setItem('theme', 'light');
-          }
-        
-    }
-
     render() {
-        // console.log('props history la header,', this.props.history, 'props header', this.props)
+         console.log('props history la header,', this.props)
         return (
             <div className='header'>
                 <div className='top'></div>
@@ -123,10 +114,20 @@ class Header extends React.Component {
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
-                    <a 
-                        style={{cursor: "pointer"}}
-                        onClick={this.toggleThemeFunction}
-                        >
+                    <a
+                       /*  style={{ cursor: "pointer" }}
+                        onClick={()=>this.props.themeFunction(this.state.theme)&&(()=> {
+                            if(this.state.theme == 'dark') {
+                                this.setState({theme: 'light'})
+                                console.log('onClick={()=>this.props.themeFunction(()=',this.state.theme )
+                                return 'light'
+                            } else {
+                                this.setState({theme: 'dark'})
+                                console.log('onClick={()=>this.props.themeFunction(()=',this.state.theme )
+                                return 'dark'
+                            }
+                        })} */  //in lucru - am comentat-o sa nu va incurce ******Marius
+                    >
                         <img
                             className='mood'
                             alt='mood'
