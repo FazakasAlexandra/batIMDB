@@ -15,7 +15,7 @@ class MovieDetails extends React.Component {
         // this.props.history.push('/editMovie');
         this.props.history.push(
             {
-                pathname: '/editPage',
+                pathname: '/editMovie',
                 state: this.props._id
             }
         );
