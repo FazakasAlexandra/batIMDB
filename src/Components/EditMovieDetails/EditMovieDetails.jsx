@@ -7,9 +7,11 @@ class EditMovieDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            auth: props.auth,
-            token: props.token,
-            id: props.key,
+            // auth: props.auth,
+            // token:props.token,
+            auth: sessionStorage.getItem('auth'),
+            token: sessionStorage.getItem('token'),
+            id: '',
             title: '',
             runtime: '',
             imdbRating: '',
@@ -25,11 +27,10 @@ class EditMovieDetails extends React.Component {
         }
     }
     componentDidMount = () => {
-        const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        const { id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
         console.log('componentdidmount aici', this.props.history.location.state)
         this.setState({
-            token: { token },
-            auth: { auth },
+
             id: { id },
             title: { title },
             runtime: { runtime },
@@ -43,25 +44,67 @@ class EditMovieDetails extends React.Component {
             genre: { genre },
             poster: { poster },
         })
+        this.updateMovie = () => {
+            // console.log('token-ul este aici', this.state.token)
+            // console.log('auth-ul este aici', this.state.auth)
+            // console.log('id-ul este aici', this.state.id)
+            // console.log('title-ul este aici', this.state.title)
+            const tokenX = {
+                headers: { 'X-Auth-Token': this.state.token }
+            };
+            axios.put(
+                `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+                {
+                    Title: this.state.title,
+                    // runtime: { runtime },
+                    // imdbRating: { imdbRating },
+                    // year: { year },
+                    // plot: { plot },
+                    // awards: { awards },
+                    // director: { director },
+                    // actors: { actors },
+                    // released: { released },
+                    // genre: { genre },
+                    // poster: { poster },
+                },
+                tokenX
+            ).then(response => {
+                console.log('aici e response dupa then:  ',response)
+                // this.setState({
+                    
+                // })
+                // if (response.status === 200) {
+                //     this.setState({ 
+                //     })  
+                // }
+            }).catch(error => {
+                console.log('aici e eroarea de la catch',error)
+            })
+        }
     }
-    // getEDitMovieDetails(){
-    //     axios.put('https://movies-app-siit.herokuapp.com/movies')
-    // }
-    
+
+
 
     handleChange(key) {
-        return (event) => this.setState({ [key]: event.target.value })
+        return (event) => {
+            console.log('modificare: ',event.target.value)
+            this.setState({ [key]: event.target.value })
+        }
     }
-    
+
+
     saveEditButton = (e) => {
+        e.preventDefault();
+        this.updateMovie();
+        console.log('this.state ', this.state);
+        // this.props.history.goBack();
+    }
+    handleBack = (e) => {
         e.preventDefault()
-        console.log('this.state ',this.state)
         this.props.history.goBack();
     }
-    handleBack= ()=> {
-        this.props.history.goBack();
-    }
-    deleteEditButton= ()=> {
+    deleteEditButton = (e) => {
+        e.preventDefault()
         this.props.history.goBack();
     }
     // divForUpdate=(type)=> {
@@ -79,8 +122,8 @@ class EditMovieDetails extends React.Component {
     //     )
     // }
     render() {
-        console.log('this.props.history.location.state   :   ',this.props.history.location.state)
-        const {id,title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        // console.log('this.props.history.location.state   :   ', this.props.history.location.state)
+        const { id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
         // const { title, year, rating, type, imageUrl, language, country, description, actors, director, awards } = this.state;
         return (
             <div className='addFormContainer'>
