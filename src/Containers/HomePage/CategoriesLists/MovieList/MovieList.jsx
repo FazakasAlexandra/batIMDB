@@ -2,7 +2,6 @@
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
 import axios from 'axios'
 import './MovieList.css'
-
 export class MovieList extends React.Component {
     constructor(props) {
         super(props)
@@ -28,77 +27,86 @@ export class MovieList extends React.Component {
                 imdbRating={movie.imdbRating}
             />)
         })
-
         return movies
     }
-
     render() {
         return (
             <div className='moviesList-container'>
                 {this.displayMovies()}
             </div>
-
         )
     }
 }
   */
 
-import React, { Component } from 'react';
-import Carousel from 'react-elastic-carousel';
-import MovieItem from '../MovieItem/MovieItem';
-import MovieCard from '../../../../Components/MovieCard/MovieCard'
-
-class MovieList extends Component {
-    constructor(props) {
-        super(props)
-        this.breakPoints = [
-            { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-            { width: 320, itemsToShow: 2, itemsToScroll: 1 },
-            { width: 468, itemsToShow: 3, itemsToScroll: 1 },
-            { width: 648, itemsToShow: 4, itemsToScroll: 1 },
-            { width: 868, itemsToShow: 6, itemsToScroll: 1 },
-
-        ]
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.movies !== this.props.movies) {
-            this.setState()
-            console.log('componentDidUpdate', this.props.movies)
-        }
-    }
-
-    render() {
-
-        let movies = this.props.movies.map((movie, idx) => {
-            return (
-                <MovieItem
-                    key={movie._id}
-                    poster={movie.Poster}
-                    title={movie.Title}
-                    imdbRating={movie.imdbRating}
-                />
-            )
-        });
-
-
-        return (
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-            }} >
-                <Carousel
-                    breakPoints={this.breakPoints}
-                    itemsToShow={6}
-                    itemsToScroll={1}
-                    initialFirstItem={6}
-                >
-                    {movies}
-                </Carousel>
-
-            </div>
-        )
-    }
-}
-export default MovieList;
+ import React, { Component } from 'react';
+ import Carousel from 'react-elastic-carousel';
+ import MovieItem from '../MovieItem/MovieItem';
+ import MovieCard from '../../../../Components/MovieCard/MovieCard'
+ 
+ class MovieList extends Component {
+     constructor(props) {
+         super(props)
+         this.breakPoints = [
+             { width: 1, itemsToShow: 1, itemsToScroll: 1 },
+             { width: 460, itemsToShow: 2, itemsToScroll: 1 },
+             { width: 708, itemsToShow: 3, itemsToScroll: 1 },
+             { width: 908, itemsToShow: 4, itemsToScroll: 1 },
+ 
+ 
+         ]
+     }
+ 
+     componentDidUpdate(prevProps) {
+         if (prevProps.movies !== this.props.movies) {
+             this.setState()
+             //console.log('componentDidUpdate', this.props.movies)
+         }
+     }
+ 
+     render() {
+ 
+         let movies = this.props.movies.map((movie, idx) => {
+             return (
+                 // <MovieItem
+                 //     key={movie._id}
+                 //     poster={movie.Poster}
+                 //     title={movie.Title}
+                 //     imdbRating={movie.imdbRating}
+                 // />
+                 <MovieCard
+                     key={movie._id}
+                     poster={movie.Poster}
+                     title={movie.Title}
+                     imdbRating={movie.imdbRating}
+                     imdbID={movie.imdbID}
+                 />
+             )
+         });
+ 
+ 
+         return (
+             <div style={{
+                 display: "flex",
+                 flexDirection: "column",
+                 width: "100%",
+             }} >
+                 <Carousel
+                     breakPoints={this.breakPoints}
+                     itemsToShow={4}
+                     itemsToScroll={1}
+                     initialFirstItem={4}
+                     renderPagination={() => {
+                         return (
+                           <> </>
+                         )
+                       }}
+                 >
+                     {movies}
+                 </Carousel>
+ 
+             </div>
+         )
+     }
+ }
+ export default MovieList;
