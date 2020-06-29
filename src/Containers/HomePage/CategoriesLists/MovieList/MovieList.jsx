@@ -2,7 +2,6 @@
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
 import axios from 'axios'
 import './MovieList.css'
-
 export class MovieList extends React.Component {
     constructor(props) {
         super(props)
@@ -28,16 +27,13 @@ export class MovieList extends React.Component {
                 imdbRating={movie.imdbRating}
             />)
         })
-
         return movies
     }
-
     render() {
         return (
             <div className='moviesList-container'>
                 {this.displayMovies()}
             </div>
-
         )
     }
 }
@@ -80,6 +76,7 @@ class MovieList extends Component {
                 // />
                 <MovieCard
                     key={movie._id}
+                    id={movie._id}
                     poster={movie.Poster}
                     title={movie.Title}
                     imdbRating={movie.imdbRating}
@@ -100,6 +97,11 @@ class MovieList extends Component {
                     itemsToShow={4}
                     itemsToScroll={1}
                     initialFirstItem={4}
+                    renderPagination={() => {
+                        return (
+                          <> </>
+                        )
+                      }}
                 >
                     {movies}
                 </Carousel>

@@ -28,7 +28,7 @@ class EditMovieDetails extends React.Component {
         const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
         console.log('componentdidmount aici', this.props.history.location.state)
         this.setState({
-            title: { title },
+            token: { token },
             auth: { auth },
             id: { id },
             title: { title },
