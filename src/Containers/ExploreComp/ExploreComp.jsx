@@ -10,7 +10,8 @@ export class ExploreComp extends React.Component {
         this.state = {
             moviesDetailsList: [],
             moviesList: [],
-            moviesFound: true
+            moviesFound: true,
+            auth: sessionStorage.getItem('auth')
         }
     }
 
@@ -80,20 +81,12 @@ export class ExploreComp extends React.Component {
             return (<MovieCard
                 key={movie._id}
                 id={movie._id}
+
                 auth={this.state.auth}
+
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
-                actors={movie.Actors}
-                
-                year={movie.Year}
-                released={movie.Released}
-                runtime={movie.Runtime}
-                genre={movie.Genre}
-                director={movie.Director}
-                actors={movie.Actors}
-                plot={movie.Plot}
-                awards={movie.Awards}
             />)
         })
 
