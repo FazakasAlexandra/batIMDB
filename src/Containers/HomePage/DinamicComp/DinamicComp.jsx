@@ -26,7 +26,7 @@ class DinamicComp extends Component {
     }
 
     getMovies =()=> {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?take=100').then(response => {  /* imdbRating=[0-9]& */
+        axios.get('https://movies-app-siit.herokuapp.com/movies?Type=movie&take=100').then(response => {  
             this.sortArray(response.data.results);
         })
         .catch(err => {
@@ -56,14 +56,13 @@ class DinamicComp extends Component {
 
     sortArray = array => {
         const arraySorted = array.sort(function (a, b) {
-            return Number(b.imdbRating) - Number(a.imdbRating);
+            return Number(b.imdbVotes) - Number(a.imdbVotes);
             
         });
         this.setState({
-            movies: arraySorted.slice(0, 10)
-            
+            movies: arraySorted.slice(0, 10)            
         })
-        
+        console.log('array sorted', this.state.movies)
     }
 
     handleOpenModal = id => {
@@ -94,7 +93,7 @@ class DinamicComp extends Component {
 
         return (
             <Fragment >
-                <Flash><h1 style={{ color: "grey" }}>Best 10 Batman movies</h1></Flash>
+                <Flash><h1 style={{ color: "grey" }}>10 most voted Batman movies</h1></Flash>
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="onRequestClose Example"

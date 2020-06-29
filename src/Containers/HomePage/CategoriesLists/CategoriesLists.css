@@ -27,7 +27,7 @@ h1 {
     }
 } */
 
-@media(max-width: 968px){
+/* @media(max-width: 968px){
     .categoriesList{
         grid-template-columns: repeat(3, 1fr);
     }
@@ -43,4 +43,4 @@ h1 {
     .categoriesList{
         grid-template-columns: repeat(1, 1fr);
     }
-}
+} */

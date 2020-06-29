@@ -1,11 +1,11 @@
-.moviesList-container{
+.moviesList-container {
     margin: 2.5rem;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 2.5rem;
 }
 
-.moviesList-container .movieCard{
+.moviesList-container .movieCard {
     width: 100%;
 }
 .movieCard{

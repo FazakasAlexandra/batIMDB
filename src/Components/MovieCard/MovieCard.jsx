@@ -3,23 +3,71 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './MovieCard.css';
+import { withRouter } from 'react-router-dom';
+import Axios from 'axios';
 
-
-class MovieCard extends React.Component{
-    constructor(props){
+class MovieCard extends React.Component {
+    constructor(props) {
         super(props)
         this.state = {
-            auth : sessionStorage.getItem('auth'),
-            hover: false
+            auth: sessionStorage.getItem('auth'),
+            hover: false,
+            movieDetail : {}
         }
     }
-    handleHover =() =>{
-        this.setState({hover : true })
+    handleHover = () => {
+        this.setState({ hover: true })
     }
-    handleMouseLeave =() =>{
-        this.setState({hover : false})
+    handleMouseLeave = () => {
+        this.setState({ hover: false })
     }
-    
+
+    getMovieDetails = () => {
+        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies/${this.props.id}`)
+        .then((response) => {
+            this.setState({movieDetail : response.data},() => {
+                this.editMovie()
+            })
+        })
+    }
+
+    editMovie = () => {
+        // console.log('edit button',this.props)
+        console.log('edit button', this.props)
+        console.log(this.state.movieDetail)
+        let {movieDetail} = this.state
+        this.props.history.push(
+            {
+                pathname: '/editPage',
+                state: {
+                    auth: movieDetail.Auth,
+                    key: movieDetail._id,
+                    id: movieDetail._id,
+                    title: movieDetail.Title,
+                    runtime: movieDetail.Runtime,
+                    imdbRating: movieDetail.imdbRating,
+                    year: movieDetail.Year,
+                    plot: movieDetail.Plot,
+                    awards: movieDetail.Awards,
+                    director: movieDetail.Director,
+                    actors: movieDetail.Actors,
+                    released: movieDetail.Released,
+                    genre: movieDetail.Genre,
+                    poster: movieDetail.Poster,
+                },
+            }
+        );
+     }
+     
+     movieDetailsFunction = () => {
+        this.props.history.push(
+            {
+                pathname: '/movieDetails',
+                state: this.props.imdbID
+            }
+        );
+    }
+
     render(){
         const { poster, title, imdbRating } = this.props
         return (
@@ -45,11 +93,14 @@ class MovieCard extends React.Component{
                     </div>
                 }
                 {this.state.auth &&
-                    <button className='editBtn'>EDIT</button>
+                    //<button className='editBtn'onClick={this.editMovie}>EDIT</button>
+                    <button className='editBtn'onClick={this.getMovieDetails}>EDIT</button>
                 }
-                <button className ='movieDetailsButn'>VIEW </button>
+                <button className ='movieDetailsButn' onClick={this.movieDetailsFunction}>VIEW </button>
             </div>
         )
     }
+
 }
-export default MovieCard
+// export default MovieCard
+export default withRouter(MovieCard)
