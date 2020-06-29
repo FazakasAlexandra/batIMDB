@@ -77,6 +77,16 @@ export class ExploreComp extends React.Component {
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
+                actors={movie.Actors}
+
+                year={movie.Year}
+                released={movie.Released}
+                runtime={movie.Runtime}
+                genre={movie.Genre}
+                director={movie.Director}
+                actors={movie.Actors}
+                plot={movie.Plot}
+                awards={movie.Awards}
             />)
         })
 
