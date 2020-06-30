@@ -117,12 +117,10 @@ class Header extends React.Component {
     handlleToglleTheme =()=> {
         if(this.state.theme == 'dark') {
             this.setState({theme: 'light'})
-            console.log('this.props.themeFunction(()= Header-------',this.state.theme )
             this.props.themeFunction('light')
           
         } else {
             this.setState({theme: 'dark'})
-            console.log('this.props.themeFunction(()= Header-------',this.state.theme )
             this.props.themeFunction('dark')            
         }
     }

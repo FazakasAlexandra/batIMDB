@@ -6,7 +6,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import HomePage from '../Containers/HomePage/HomePage';
 import {themeDark, themeLight }from '../Theme/Theme';
 
-import { ExploreComp } from '../Containers/ExploreComp/ExploreComp'
+import  ExploreComp  from '../Containers/ExploreComp/ExploreComp'
 import './MyImdb.css';
 
 import Header from '../Components/Header/Header';

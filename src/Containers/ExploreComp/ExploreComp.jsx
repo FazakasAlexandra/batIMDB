@@ -1,10 +1,11 @@
 import React from 'react'
 import { Menus } from './MoviesFiltersBar/Menus'
 import MovieCard from '../../Components/MovieCard/MovieCard'
+import { withTheme } from 'styled-components';
 import './ExploreComp.css'
 import Axios from 'axios'
 
-export class ExploreComp extends React.Component {
+class ExploreComp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -102,7 +103,9 @@ export class ExploreComp extends React.Component {
     }
     render() {
         return (
-            <div className="exploreComp-container">
+            <div className="exploreComp-container"
+                 style={{backgroundColor: this.props.theme.colorBackground.primary }}
+                 >
                 <Menus
                     filter={(filterClass, filter) => this.getMovies(filterClass, filter)}
                     filterMoviesByRange={(filter, value)=>this.checkFilter(filter, value)}
@@ -115,3 +118,5 @@ export class ExploreComp extends React.Component {
         )
     }
 }
+
+export default withTheme(ExploreComp)

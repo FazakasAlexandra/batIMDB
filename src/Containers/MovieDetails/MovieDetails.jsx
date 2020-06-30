@@ -1,6 +1,7 @@
 import React from 'react';
 import './MovieDetails.css';
 import { withRouter } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 import RespPlayer from '../HomePage/DinamicComp/RespPlayer/RespPlayer';
 import Axios from 'axios';
 
@@ -38,7 +39,10 @@ class MovieDetails extends React.Component {
     render() {
         const { Poster, Title, Genre, Year, Runtime, Language, Country, Director, Actors, Released, Awards, Plot } = this.state.movieDetails
         return (
-            <div className="movieDetails-container">
+            <div 
+                className="movieDetails-container"
+                style={{backgroundColor: this.props.theme.colorBackground.primary }}
+                >
                 <div className="movieDetailsImg">
                     <img src={Poster} alt="movie poster" className='detailsImg' /><br />
                     <div className="movieDetails-buttons">
@@ -69,4 +73,4 @@ class MovieDetails extends React.Component {
     }
 }
 
-export default withRouter(MovieDetails)
+export default withTheme(withRouter(MovieDetails))
