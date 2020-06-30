@@ -20,35 +20,62 @@ class MyImdb extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            logForm: false,
-            regForm: false,
             auth: false,
-            user: {},
+            user: '',
             token: '',
             setTheme: themeDark
         }
     }
-    //logic for success register/login => auth:true, token pe state (un-comment console.log for token)
-    handleSubmitRegister = (data) => {
+    //logic to take auth, token, user from localStorage and put it back on state on refresh
+    componentDidMount= () => {
+        const isAuth = localStorage.getItem('auth');
+        const userToken = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        //console.log("Auth pe storage:", isAuth, "token:", userToken, 'user:', user)
         this.setState({
-            auth: data.authenticated,
-            token: data.accessToken,
-            regForm: false
-        })
-        //console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
+                auth: isAuth,
+                token: userToken,
+                user: user
+            })
     }
-    handleSubmitLogin = (data) => {
+    //logic for success register/login => auth:true, token pe state (un-comment console.log for token)
+    handleSubmitRegister = (data,user) => {
         this.setState({
             auth: data.authenticated,
             token: data.accessToken,
-            logForm: false
+            user: user
         })
-        sessionStorage.setItem('auth', data.authenticated);
-        sessionStorage.setItem('token', data.accessToken)
-        // console.log("Auth pe state:", this.state.auth, "token:", this.state.token)
+        //keep data in storage 
+        localStorage.setItem('auth', data.authenticated);
+        localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('user', user)
+        //console.log("Auth pe state:", this.state.auth, "token:", this.state.token, this.state.user)
+    }
+    handleSubmitLogin = (data, user) => {
+        this.setState({
+            auth: data.authenticated,
+            token: data.accessToken,
+            user: user
+        })
+        //keep data in storage 
+        localStorage.setItem('auth', data.authenticated);
+        localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('user', user)
+        //console.log("Auth pe state la logat:", this.state.auth, "token:", this.state.token, this.state.user)
+    }
+    //logic for success logout, removing all data from storage, re-setting state
+    handleLogOut =() => {
+        this.setState({
+                auth:false,
+                token:'',
+                user:''
+        })
+        localStorage.removeItem('auth');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
     }
 
-     themeFunction =(theme)=> {
+    themeFunction =(theme)=> {
         if (theme !== 'dark') {           
             this.setState({ setTheme: themeDark })             
         } else {
@@ -56,16 +83,18 @@ class MyImdb extends Component {
         }
      }
 
-    render() {      
+    render() {  
+        //console.log("Auth/token/user pe state dupa refresh:", this.state.auth, "token:", this.state.token)    
         return (
             <ThemeProvider theme={this.state.setTheme} >                
                 <div className="MyImdb">
                     <Header
                         auth={this.state.auth}
-                        regForm={this.state.regForm}
-                        logForm={this.state.logForm}
+                        user={this.state.user}
+                        token={this.state.token}
                         onSubmitRegister={this.handleSubmitRegister}
                         onSubmitLogin={this.handleSubmitLogin}
+                        onLogout={this.handleLogOut}
                         themeFunction={e=> this.themeFunction(e)}
                     />
                     <Switch>
