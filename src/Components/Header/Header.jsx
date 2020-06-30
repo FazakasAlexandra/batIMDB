@@ -105,7 +105,10 @@ class Header extends React.Component {
          /* console.log('props history la header,', this.props) */
         return (
             <div className='header'
-                 style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                 style={{
+                     backgroundColor: this.props.theme.colorBackground.nav,
+                     boxShadow: this.props.theme.shadows.boxShadow1
+                    }}
                  >
                 <div className='top'></div>
                 <nav className='navBar'

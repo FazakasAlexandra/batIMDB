@@ -1,31 +1,39 @@
-export  const themeLight = {
+export const themeLight = {
     colorBackground: {
         primary: "white",
-        nav: "gray"
-    },   
+        nav: "rgb(40,46,60)"
+    },
     fontColor: {
         primary: "black",
         secondary: "black"
     },
     shadows: {
-        shadow1: "1px 0px 67px 6px rgba(0,0,0,0.75)",
+        boxShadow1: "0px 5px 15px 8px rgba(40,46,60,0.63)",
+    },
+    backgroundMenu: {
+        backgroundColor: "#282e3c",
+        boxShadow: "0px 8px 15px 8px rgba(40,46,60,0.63)"
     }
-   
+
 };
 
 export const themeDark = {
     colorBackground: {
-        primary: "#282e3c",
+        primary: "#282e3c",  //rgb(40,46,60)
         nav: "rgb(9,30,50)"
-    },   
+    },
     fontColor: {
         primary: "white",
         secondary: "yellow"
     },
     shadows: {
-        shadow1: "1px 0px 67px 6px rgba(255,255,255,1)"
+        boxShadow1: "0px 5px 15px 8px rgba(255,255,255,1)"
+    },
+    backgroundMenu: {
+        backgroundColor: "#282e3c",
+        boxShadow: "0px 8px 15px 8px rgba(255,255,255,1)"
     }
-   
+
 };
 
 
@@ -35,3 +43,4 @@ export const themeDark = {
 // style={{color: this.props.theme.fontColor.primary }}   -black
 // style={{color: this.props.theme.fontColor.secondary }}  -yelow
 // style={{backgroundColor: this.props.theme.colorBackground.primary }}
+// style={{color: this.props.theme.shadows.shadow1 }} 

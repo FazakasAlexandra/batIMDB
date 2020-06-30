@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withTheme } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './MovieCard.css';
@@ -74,7 +74,10 @@ class MovieCard extends React.Component {
     render(){
         const { poster, title, imdbRating } = this.props;
         return (
-            <div className='movieCard'>
+            <div 
+                className='movieCard'
+                style={{backgroundColor: this.props.theme.colorBackground.nav}}
+                >
                 {/* <img src={ poster } alt="movie poster" className='cardImg' /> */}
                 <div style={{backgroundImage: "url(" + poster + ")"}} className='cardImg' />
                 <p className='cardTitle'>{ title }</p>
@@ -105,4 +108,4 @@ class MovieCard extends React.Component {
 
 }
 // export default MovieCard
-export default withRouter(MovieCard)
+export default withTheme(withRouter(MovieCard));

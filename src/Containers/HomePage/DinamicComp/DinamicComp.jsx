@@ -91,7 +91,14 @@ class DinamicComp extends Component {
         });
         return (
             <Fragment >
-                <Flash><h1 style={{ color: "grey" }}>10 most voted Batman movies</h1></Flash>
+                <Flash>
+                    <h1 style={{ 
+                            color: this.props.theme.fontColor.secondary,
+                            marginTop: "25px" 
+                            }}>
+                        10 most voted Batman movies
+                    </h1>
+                </Flash>
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="onRequestClose Example"

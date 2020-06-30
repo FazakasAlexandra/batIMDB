@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menus } from './MoviesFiltersBar/Menus'
+import Menus from './MoviesFiltersBar/Menus'
 import MovieCard from '../../Components/MovieCard/MovieCard'
 import { withTheme } from 'styled-components';
 import './ExploreComp.css'
