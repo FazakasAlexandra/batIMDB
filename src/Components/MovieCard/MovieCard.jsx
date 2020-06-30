@@ -24,9 +24,9 @@ class MovieCard extends React.Component {
     }
     
     getMovieDetails = () => {
-        Axios.get(`https://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
+        Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
         .then((response) => {
-            this.setState({movieDetail : response})
+            console.log('response.data :---- ',response.data)
             this.setState({movieDetail : response.data},() => {
                 this.editMovie()
             })

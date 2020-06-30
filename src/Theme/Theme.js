@@ -1,27 +1,37 @@
-import React from "react";
-import { ThemeProvider } from "styled-components";
-
-const theme = {
-    colors: {
-        white: "white",
-        black: "black",
-        yelow: "yellow",
-    },
-    fonts: ["sans-serif", "Roboto"],    
-    fontSizes: {
-        small: "1em",
-        medium: "2em",
-        large: "3em"
+export  const themeLight = {
+    colorBackground: {
+        primary: "white",
+        nav: "gray"
+    },   
+    fontColor: {
+        primary: "black",
+        secondary: "black"
     },
     shadows: {
-        forWhite: "1px 0px 67px 6px rgba(0,0,0,0.75)",
-        forBlack: "box-shadow: 1px 0px 67px 6px rgba(255,255,255,1);"
+        shadow1: "1px 0px 67px 6px rgba(0,0,0,0.75)",
     }
    
 };
 
-const Theme = ({ children }) => (
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+export const themeDark = {
+    colorBackground: {
+        primary: "#282e3c",
+        nav: "rgb(9,30,50)"
+    },   
+    fontColor: {
+        primary: "white",
+        secondary: "yellow"
+    },
+    shadows: {
+        shadow1: "1px 0px 67px 6px rgba(255,255,255,1)"
+    }
+   
+};
 
-export default Theme;
+
+
+
+// import { withTheme } from 'styled-components';
+// style={{color: this.props.theme.fontColor.primary }}   -black
+// style={{color: this.props.theme.fontColor.secondary }}  -yelow
+// style={{backgroundColor: this.props.theme.colorBackground.primary }}

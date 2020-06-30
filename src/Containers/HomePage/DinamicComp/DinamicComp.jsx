@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTheme } from 'styled-components';
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
 import Flash from '../../../Theme/Styledcomponents/Flash';
@@ -25,16 +26,16 @@ class DinamicComp extends Component {
         this.getMovies();
     }
 
-    getMovies =()=> {
-        axios.get('https://movies-app-siit.herokuapp.com/movies?Type=movie&take=100').then(response => {  
+    getMovies = () => {
+        axios.get('https://movies-app-siit.herokuapp.com/movies?Type=movie&take=100').then(response => {
             this.sortArray(response.data.results);
         })
-        .catch(err => {
-            console.log(err);
-        });
+            .catch(err => {
+                console.log(err);
+            });
     }
 
-    showPoster =()=> {
+    showPoster = () => {
         const picsAndIds = [];
         this.state.movies.map((movie, idx) => {
             picsAndIds.push({
@@ -57,24 +58,22 @@ class DinamicComp extends Component {
     sortArray = array => {
         const arraySorted = array.sort(function (a, b) {
             return Number(b.imdbVotes) - Number(a.imdbVotes);
-            
+
         });
         this.setState({
-            movies: arraySorted.slice(0, 10)            
+            movies: arraySorted.slice(0, 10)
         })
-        console.log('array sorted', this.state.movies)
     }
 
     handleOpenModal = id => {
         this.setState({ showModal: true, id: id });
     }
 
-    handleCloseModal =()=> {
-        this.setState({ showModal: false }); 
+    handleCloseModal = () => {
+        this.setState({ showModal: false });
     }
 
     render() {
-        console.log('la render')
         let movies = this.state.movies.map((movie, idx) => {
             return (
                 <SingleMovie
@@ -90,20 +89,21 @@ class DinamicComp extends Component {
                 />
             )
         });
-
         return (
             <Fragment >
                 <Flash><h1 style={{ color: "grey" }}>10 most voted Batman movies</h1></Flash>
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="onRequestClose Example"
-                    onRequestClose={()=> this.handleCloseModal()}
+                    onRequestClose={() => this.handleCloseModal()}
                     className="Modal"
                     overlayClassName="Overlay"
                 >
-                   <RespPlayer id={this.state.id} />
+                    <RespPlayer id={this.state.id} />
                 </ReactModal>
-                <div className="DinamicCompMovies">
+                <div className="DinamicCompMovies"
+                     style={{backgroundColor: this.props.theme.colorBackground.primary }}
+                >
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
                             {movies}
@@ -112,10 +112,10 @@ class DinamicComp extends Component {
                     <div className="DinamicCompMoviesPicture">
                         {this.showPoster()}
                     </div>
-                </div> 
+                </div>
             </Fragment>
         )
     }
 }
 
-export default DinamicComp;
+export default withTheme(DinamicComp);

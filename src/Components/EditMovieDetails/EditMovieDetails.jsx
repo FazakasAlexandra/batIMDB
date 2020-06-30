@@ -7,9 +7,11 @@ class EditMovieDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            auth: props.auth,
-            token: props.token,
-            id: props.key,
+            // auth: props.auth,
+            // token:props.token,
+            auth: sessionStorage.getItem('auth'),
+            token: sessionStorage.getItem('token'),
+            id: '',
             title: '',
             runtime: '',
             imdbRating: '',
@@ -25,11 +27,10 @@ class EditMovieDetails extends React.Component {
         }
     }
     componentDidMount = () => {
-        const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
-        console.log('componentdidmount aici',this.props.history.location.state)
+        const { id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        console.log('componentdidmount aici', this.props.history.location.state)
         this.setState({
-            title: { title },
-            auth: { auth },
+
             id: { id },
             title: { title },
             runtime: { runtime },
@@ -43,42 +44,68 @@ class EditMovieDetails extends React.Component {
             genre: { genre },
             poster: { poster },
         })
+        this.updateMovie = () => {
+            // console.log('token-ul este aici', this.state.token)
+            // console.log('auth-ul este aici', this.state.auth)
+            // console.log('id-ul este aici', this.state.id)
+            // console.log('title-ul este aici', this.state.title)
+            const tokenX = {
+                headers: { 'X-Auth-Token': this.state.token }
+            };
+            axios.put(
+                `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+                {
+                    Title: this.state.title,
+                    // runtime: { runtime },
+                    // imdbRating: { imdbRating },
+                    // year: { year },
+                    // plot: { plot },
+                    // awards: { awards },
+                    // director: { director },
+                    // actors: { actors },
+                    // released: { released },
+                    // genre: { genre },
+                    // poster: { poster },
+                },
+                tokenX
+            ).then(response => {
+                console.log('aici e response dupa then:  ',response)
+                // this.setState({
+                    
+                // })
+                // if (response.status === 200) {
+                //     this.setState({ 
+                //     })  
+                // }
+            }).catch(error => {
+                console.log('aici e eroarea de la catch',error)
+            })
+        }
     }
-    // getEDitMovieDetails(){
-    //     axios.get('https://movies-app-siit.herokuapp.com/movies')
-    // }
-    onSubmit(e) {
-        e.preventDefault();
-        console.log('onSUbmit')
-        // const newEditMovie={
-        //     title:this.refs.title.value
-        // }
-        // this.editMovie(newEditMovie);
-    }
+
+
 
     handleChange(key) {
-        return (event) => this.setState({ [key]: event.target.value })
+        return (event) => {
+            console.log('modificare: ',event.target.value)
+            this.setState({ [key]: event.target.value })
+        }
     }
-    // handleChange = (event) => {
-    //     console.log('handleChange',this.props)
-    //     this.setState({
-    //         title:event.target.name.value
-    //     })
 
-    //     // console.log('event tarhet  ',event.target.name)
-    //     // const inputName = event.target.name;
-    //     // const inputValue = event.target.value
-    //     // switch (inputName) {
-    //     //     case 'title':{
-    //     //         this.setState({title:inputValue})
-    //     //         break
-    //     //     }
-    //     //     default:
-    //     // }
-    // }
+
     saveEditButton = (e) => {
+        e.preventDefault();
+        this.updateMovie();
+        console.log('this.state ', this.state);
+        // this.props.history.goBack();
+    }
+    handleBack = (e) => {
         e.preventDefault()
-        console.log('aici e save edit buton  ')
+        this.props.history.goBack();
+    }
+    deleteEditButton = (e) => {
+        e.preventDefault()
+        this.props.history.goBack();
     }
     // divForUpdate=(type)=> {
     //     return (
@@ -95,13 +122,13 @@ class EditMovieDetails extends React.Component {
     //     )
     // }
     render() {
-        const { auth, token, id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
+        // console.log('this.props.history.location.state   :   ', this.props.history.location.state)
+        const { id, title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.history.location.state
         // const { title, year, rating, type, imageUrl, language, country, description, actors, director, awards } = this.state;
         return (
             <div className='addFormContainer'>
                 <form className='addForm' onSubmit={this.onSubmit}>
                     <div className='addPoster'>
-
                         <label htmlFor='addPoster'>Poster URL:</label>
                         <input type='text'
                             id={id}
@@ -111,9 +138,8 @@ class EditMovieDetails extends React.Component {
                             onChange={this.handleChange('poster')}
                         />
                     </div>
-
                     <div className='addDetails'>
-                    {/* {divForUpdate('title')} */}
+                        {/* {divForUpdate('title')} */}
                         <div className='fieldWrapper'>
                             <label htmlFor='title'>Title:</label>
                             <input
@@ -214,99 +240,24 @@ class EditMovieDetails extends React.Component {
                                 onChange={this.handleChange('genre')}
                             />
                         </div>
-
-                        {/* 
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Type:</label>
-                            <input type='text'
-                                name='type'
-                                id='addType'
-                                className='addField'
-                                value={type}
-                                onChange={this.handleChange}
-
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Director:</label>
-                            <input type='text'
-                                name='director'
-                                id='addDirector'
-                                className='addField'
-                                value={director}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Language:</label>
-                            <input type='text'
-                                name='language'
-                                id='addLanguage'
-                                className='addField'
-                                value={language}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Country:</label>
-                            <input type='text'
-                                name='country'
-                                id='addCountry'
-                                className='addField'
-                                value={country}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Actors:</label>
-                            <input type='text'
-                                name='actors'
-                                id='addActors'
-                                className='addField'
-                                value={actors}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Awards:</label>
-                            <input type='text'
-                                name='awards'
-                                id='addAwards'
-                                className='addField'
-                                value={awards}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Rating:</label>
-                            <input type='text'
-                                name='rating'
-                                id='addRating'
-                                className='addField'
-                                value={rating}
-                                onChange={this.handleChange}
-
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='title'>Description:</label>
-                            <textarea
-                                name='description'
-                                id='addDescription'
-                                className='addField'
-                                value={description}
-                                onChange={this.handleChange}
-
-                            />
-                        </div> */}
                     </div>
 
                     <div className='btnsWrapper'>
                         <button className='pvwBtn'
-                            onClick={this.handlePreview}>Back</button>
-                        <button onClick={this.saveEditButton}>Save</button>
-                        <button type='submit'
-                            className='addBtn'>Save</button>
+                            onClick={this.handleBack}>Back
+                            </button>
+                        <button
+                            type='submit'
+                            className='addBtn'
+                            onClick={this.saveEditButton}
+                        >Save
+                        </button>
+                        <button
+                            type='submit'
+                            className='addBtn'
+                            onClick={this.deleteEditButton}
+                        >Delete Movie
+                        </button>
                     </div>
                 </form>
             </div>

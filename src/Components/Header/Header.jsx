@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 import 'fontsource-roboto';
 import './Header.css';
 
@@ -16,10 +17,13 @@ class Header extends React.Component {
         this.state = {
             auth: props.auth,
             regForm: false,
-            logForm: false
+            logForm: false,
+            theme: 'light',
         }
     }
-    
+
+    /* componentDidUpdate () */
+
     exploreFunction = () => {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
@@ -35,11 +39,11 @@ class Header extends React.Component {
     }
     //logic for header AddBtn
     addPageFunction = () => {
-        if(this.state.auth){
+        if (this.state.auth) {
             this.props.history.push({
                 pathname: '/addPage',
             });
-        }else{
+        } else {
             window.alert('you have to be signed in to add movies')
         }
     }
@@ -86,12 +90,29 @@ class Header extends React.Component {
         }
     }
 
+    handlleToglleTheme =()=> {
+        if(this.state.theme == 'dark') {
+            this.setState({theme: 'light'})
+            console.log('this.props.themeFunction(()= Header-------',this.state.theme )
+            this.props.themeFunction('light')
+          
+        } else {
+            this.setState({theme: 'dark'})
+            console.log('this.props.themeFunction(()= Header-------',this.state.theme )
+            this.props.themeFunction('dark')            
+        }
+    }
+
     render() {
-        // console.log('props history la header,', this.props.history, 'props header', this.props)
+         /* console.log('props history la header,', this.props) */
         return (
-            <div className='header'>
+            <div className='header'
+                 style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                 >
                 <div className='top'></div>
-                <nav className='navBar'>
+                <nav className='navBar'
+                     style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                >
                     <img
                         className='logo'
                         alt='logo'
@@ -103,7 +124,7 @@ class Header extends React.Component {
                         onClick={this.exploreFunction}
                     >Explore</button>
                     <button className='addMovieBtn'
-                            onClick={this.addPageFunction}>Add Movie</button>
+                        onClick={this.addPageFunction}>Add Movie</button>
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
@@ -111,12 +132,16 @@ class Header extends React.Component {
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
-                    <img
-                        className='mood'
-                        alt='mood'
-                        src={require('../Images/moon-yellow.png')}
-                    
-                    />
+                    <a
+                        style={{ cursor: "pointer" }}
+                        onClick={this.handlleToglleTheme}  //in lucru - am comentat-o sa nu va incurce ****** Marius
+                    >
+                        <img
+                            className='mood'
+                            alt='mood'
+                            src={require('../Images/moon-yellow.png')}
+                        />
+                    </a>
                     <button className='registerBtn'
                         onClick={() => this.handleRegisterBtnClick()}>Register</button>
                     <div className='buttonsLogReg'>
@@ -126,13 +151,13 @@ class Header extends React.Component {
                             auth={this.state.auth}
                             onSubmitRegister={this.handleSubmitRegister}
                             onCancel={this.handleCancelBtn}
-                            />
+                        />
                         }
                         {this.state.logForm && < LoginForm
                             auth={this.state.auth}
                             onSubmitLogin={this.handleSubmitLogin}
                             onCancel={this.handleCancelBtn}
-                            />
+                        />
                         }
                     </div>
                 </nav>
@@ -140,7 +165,7 @@ class Header extends React.Component {
         )
     }
 }
-export default withRouter(Header);
+export default withTheme(withRouter(Header));
 
 // import AppBar from '@material-ui/core/AppBar';
 // import Toolbar from '@material-ui/core/Toolbar';
