@@ -49,15 +49,14 @@ class MyImdb extends Component {
     }
 
      themeFunction =(theme)=> {
-        if (theme === 'light') {
-            this.setState({ theme: themeDark })
+        if (theme !== 'dark') {           
+            this.setState({ setTheme: themeDark })             
         } else {
-            this.setState({ theme: themeLight })
+            this.setState({ setTheme: themeLight })            
         }
      }
 
-    render() {
-        /* console.log('theme la Myimdb', this.state.setTheme) */
+    render() {      
         return (
             <ThemeProvider theme={this.state.setTheme} >                
                 <div className="MyImdb">
@@ -77,7 +76,6 @@ class MyImdb extends Component {
                         <Route path='/addPage' exact render={props => <AddPage {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/editPage" exact component={EditMovieDetails} />
                         <Route path="/movieDetails" exact component={MovieDetails} />
-
                     </Switch>
                 </div>
             </ThemeProvider>

@@ -7,20 +7,14 @@ class ImdbRating extends Component {
 
     render() {
         const mystyle = {
-            /* container: {
-                display: "flex",
-                border: "1px solid gray",
-                borderRadius: "3px",
-                justifyContent: "center",
-                alignItems: "center",
-            }, */
+            
             rating: {
                 marginTop: "3px",
-                color: "white",
+                color: this.props.theme.fontColor.primary,
                 textAlign: "center",
             },
             star: {
-                color: "yellow",
+                color: this.props.theme.fontColor.secondary,
             }
         }
         return (
@@ -38,7 +32,7 @@ class ImdbRating extends Component {
     }
 }
 
-export default ImdbRating;
+export default  withTheme(ImdbRating);
 
 
 

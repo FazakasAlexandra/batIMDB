@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 import 'fontsource-roboto';
 import './Header.css';
 
@@ -17,7 +18,7 @@ class Header extends React.Component {
             auth: props.auth,
             regForm: false,
             logForm: false,
-            theme: 'dark',
+            theme: 'light',
         }
     }
 
@@ -89,12 +90,29 @@ class Header extends React.Component {
         }
     }
 
+    handlleToglleTheme =()=> {
+        if(this.state.theme == 'dark') {
+            this.setState({theme: 'light'})
+            console.log('this.props.themeFunction(()= Header-------',this.state.theme )
+            this.props.themeFunction('light')
+          
+        } else {
+            this.setState({theme: 'dark'})
+            console.log('this.props.themeFunction(()= Header-------',this.state.theme )
+            this.props.themeFunction('dark')            
+        }
+    }
+
     render() {
-         console.log('props history la header,', this.props)
+         /* console.log('props history la header,', this.props) */
         return (
-            <div className='header'>
+            <div className='header'
+                 style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                 >
                 <div className='top'></div>
-                <nav className='navBar'>
+                <nav className='navBar'
+                     style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                >
                     <img
                         className='logo'
                         alt='logo'
@@ -115,18 +133,8 @@ class Header extends React.Component {
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
                     <a
-                       /*  style={{ cursor: "pointer" }}
-                        onClick={()=>this.props.themeFunction(this.state.theme)&&(()=> {
-                            if(this.state.theme == 'dark') {
-                                this.setState({theme: 'light'})
-                                console.log('onClick={()=>this.props.themeFunction(()=',this.state.theme )
-                                return 'light'
-                            } else {
-                                this.setState({theme: 'dark'})
-                                console.log('onClick={()=>this.props.themeFunction(()=',this.state.theme )
-                                return 'dark'
-                            }
-                        })} */  //in lucru - am comentat-o sa nu va incurce ******Marius
+                        style={{ cursor: "pointer" }}
+                        onClick={this.handlleToglleTheme}  //in lucru - am comentat-o sa nu va incurce ****** Marius
                     >
                         <img
                             className='mood'
@@ -157,7 +165,7 @@ class Header extends React.Component {
         )
     }
 }
-export default withRouter(Header);
+export default withTheme(withRouter(Header));
 
 // import AppBar from '@material-ui/core/AppBar';
 // import Toolbar from '@material-ui/core/Toolbar';

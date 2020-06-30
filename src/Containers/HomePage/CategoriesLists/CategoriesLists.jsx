@@ -1,6 +1,7 @@
 import React from 'react'
 import MovieCard from '../../../Components/MovieCard/MovieCard'
 import MovieList from '../CategoriesLists/MovieList/MovieList';
+import { withTheme } from 'styled-components';
 import axios from 'axios'
 import './CategoriesLists.css'
 
@@ -117,15 +118,15 @@ class CategoriesLists extends React.Component {
                  </div>
              </div> */
             <div style={{ width: "98%" }}>
-                <h1>Movies</h1><br/>
+                <h1 style={{color: this.props.theme.fontColor.secondary }}>Movies</h1><br/>
                 <div  >
                     <MovieList movies={this.state.movieListMovies} />
                 </div>
-                <h1>Series</h1><br/>
+                <h1 style={{color: this.props.theme.fontColor.secondary }}>Series</h1><br/>
                 <div >
                     <MovieList movies={this.state.seriesListMovies} />
                 </div>
-                <h1>Game</h1><br/>
+                <h1 style={{color: this.props.theme.fontColor.secondary }}>Game</h1><br/>
                 <div >
                     <MovieList movies={this.state.gameListMovies} />
                 </div>
@@ -134,4 +135,4 @@ class CategoriesLists extends React.Component {
     }
 }
 
-export default CategoriesLists
+export default withTheme(CategoriesLists);

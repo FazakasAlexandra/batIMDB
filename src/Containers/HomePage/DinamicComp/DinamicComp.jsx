@@ -19,19 +19,11 @@ class DinamicComp extends Component {
             movies: [],
             showModal: false,
             id: '',
-            theme: 'dark',
         };
-    }
-
-    componentDidUpdate() {
-        if (this.state.theme !== sessionStorage.getItem('theme')) {
-            this.setState({ theme: sessionStorage.getItem('theme') });
-        }
     }
 
     componentDidMount() {
         this.getMovies();
-        this.setState({ theme: sessionStorage.getItem('theme') });
     }
 
     getMovies = () => {
@@ -82,7 +74,6 @@ class DinamicComp extends Component {
     }
 
     render() {
-        /* console.log('la DinamicComp render', this.props) */
         let movies = this.state.movies.map((movie, idx) => {
             return (
                 <SingleMovie
@@ -111,7 +102,7 @@ class DinamicComp extends Component {
                     <RespPlayer id={this.state.id} />
                 </ReactModal>
                 <div className="DinamicCompMovies"
-                    style={this.props}
+                     style={{backgroundColor: this.props.theme.colorBackground.primary }}
                 >
                     <div className="DinamicCompMoviesList">
                         <RotateList height={550} autoplay={true} duration={900} delay={5000}>
