@@ -39,8 +39,3 @@ export const themeDark = {
 
 
 
-// import { withTheme } from 'styled-components';
-// style={{color: this.props.theme.fontColor.primary }}   -black
-// style={{color: this.props.theme.fontColor.secondary }}  -yelow
-// style={{backgroundColor: this.props.theme.colorBackground.primary }}
-// style={{color: this.props.theme.shadows.shadow1 }} 
