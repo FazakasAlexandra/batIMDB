@@ -105,7 +105,7 @@ class DinamicComp extends Component {
                      style={{backgroundColor: this.props.theme.colorBackground.primary }}
                 >
                     <div className="DinamicCompMoviesList">
-                        <RotateList height={550} autoplay={true} duration={900} delay={5000}>
+                        <RotateList height={700} autoplay={true} duration={900} delay={5000}>
                             {movies}
                         </RotateList>
                     </div>
