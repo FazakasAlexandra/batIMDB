@@ -10,7 +10,6 @@ class MovieCard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            auth: sessionStorage.getItem('auth'),
             hover: false,
             movieDetail : {}
         }
@@ -83,18 +82,18 @@ class MovieCard extends React.Component {
                     <span className='cardRating'> { imdbRating }</span>
                 </div>
 
-                {!this.state.hover && !this.state.auth &&
+                {!this.state.hover && !this.props.auth &&
                     <div className='closedCardInvite'
                          onMouseEnter = {this.handleHover}>
                     </div>
                 }
-                {this.state.hover && !this.state.auth &&
+                {this.state.hover && !this.props.auth &&
                     <div className='openCardInvite'
                          onMouseLeave = {this.handleMouseLeave}>
                         <p className='inCardInvite'>login / register to edit</p>
                     </div>
                 }
-                {this.state.auth &&
+                {this.props.auth &&
                     //<button className='editBtn'onClick={this.editMovie}>EDIT</button>
                     <button className='editBtn'onClick={this.getMovieDetails}>EDIT</button>
                 }
