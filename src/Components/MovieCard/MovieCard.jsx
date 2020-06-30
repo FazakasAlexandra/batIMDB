@@ -15,26 +15,29 @@ class MovieCard extends React.Component {
             movieDetail : {}
         }
     }
+    //logic for log/reg invitation
     handleHover = () => {
         this.setState({ hover: true })
     }
     handleMouseLeave = () => {
         this.setState({ hover: false })
     }
-
+    
     getMovieDetails = () => {
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies/${this.props.id}`)
+        Axios.get(`https://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
         .then((response) => {
+            this.setState({movieDetail : response})
             this.setState({movieDetail : response.data},() => {
                 this.editMovie()
             })
+           
         })
     }
 
     editMovie = () => {
         // console.log('edit button',this.props)
-        console.log('edit button', this.props)
-        console.log(this.state.movieDetail)
+        //console.log('edit button', this.props)
+        //console.log(this.state.movieDetail)
         let {movieDetail} = this.state
         this.props.history.push(
             {
@@ -69,7 +72,7 @@ class MovieCard extends React.Component {
     }
 
     render(){
-        const { poster, title, imdbRating } = this.props
+        const { poster, title, imdbRating } = this.props;
         return (
             <div className='movieCard'>
                 {/* <img src={ poster } alt="movie poster" className='cardImg' /> */}
@@ -79,8 +82,7 @@ class MovieCard extends React.Component {
                     <FontAwesomeIcon icon={faStar} className="star"/>
                     <span className='cardRating'> { imdbRating }</span>
                 </div>
-                <p className='ratingOption'><span>IMDB</span> | Rotten Tomatoes | Metacritic</p>
-                
+
                 {!this.state.hover && !this.state.auth &&
                     <div className='closedCardInvite'
                          onMouseEnter = {this.handleHover}>
