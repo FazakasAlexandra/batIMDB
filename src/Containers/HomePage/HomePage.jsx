@@ -8,13 +8,19 @@ import CategoriesLists from '../HomePage/CategoriesLists/CategoriesLists'
 
 class HomePage extends Component {
     render() {
+        const auth = this.props.auth;
+        const token = this.props.token;
+
         return (
             <div 
                 className="Hompage" 
                 style={{backgroundColor: this.props.theme.colorBackground.primary }} 
                 >
                 <DinamicComp/>  
-                <CategoriesLists />
+                <CategoriesLists 
+                    auth={auth}
+                    token={token}
+                />
                 <br/>
                
             </div>

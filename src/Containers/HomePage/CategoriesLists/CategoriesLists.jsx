@@ -102,6 +102,9 @@ class CategoriesLists extends React.Component {
     // }
 
     render() {
+        const auth = this.props.auth;
+        const token = this.props.token;
+        
         return (
             /*  <div className="categoriesList-container">
                  <h1>Movies</h1>
@@ -120,7 +123,11 @@ class CategoriesLists extends React.Component {
             <div style={{ width: "98%" }}>
                 <h1 style={{color: this.props.theme.fontColor.secondary }}>Movies</h1><br/>
                 <div  >
-                    <MovieList movies={this.state.movieListMovies} />
+                    <MovieList 
+                        movies={this.state.movieListMovies}
+                        auth={auth}
+                        token={token}
+                    />
                 </div>
                 <h1 style={{color: this.props.theme.fontColor.secondary }}>Series</h1><br/>
                 <div >

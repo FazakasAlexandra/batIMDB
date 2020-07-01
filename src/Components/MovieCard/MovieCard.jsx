@@ -22,41 +22,22 @@ class MovieCard extends React.Component {
         this.setState({ hover: false })
     }
     
-    getMovieDetails = () => {
-        Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
-        .then((response) => {
-            console.log('response.data :---- ',response.data)
-            this.setState({movieDetail : response.data},() => {
-                this.editMovie()
-            })
+    // getMovieDetails = () => {
+    //     this.editMovie()
+    //     // Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
+    //     // .then((response) => {
+    //     //     console.log('response.data :---- ',response.data)
+    //     //     this.setState({movieDetail : response.data},() => {
+    //     //         this.editMovie()
+    //     //     })
            
-        })
-    }
+    //     // })
+    // }
 
     editMovie = () => {
-        // console.log('edit button',this.props)
-        //console.log('edit button', this.props)
-        //console.log(this.state.movieDetail)
-        let {movieDetail} = this.state
         this.props.history.push(
             {
-                pathname: '/editPage',
-                state: {
-                    auth: movieDetail.Auth,
-                    key: movieDetail._id,
-                    id: movieDetail._id,
-                    title: movieDetail.Title,
-                    runtime: movieDetail.Runtime,
-                    imdbRating: movieDetail.imdbRating,
-                    year: movieDetail.Year,
-                    plot: movieDetail.Plot,
-                    awards: movieDetail.Awards,
-                    director: movieDetail.Director,
-                    actors: movieDetail.Actors,
-                    released: movieDetail.Released,
-                    genre: movieDetail.Genre,
-                    poster: movieDetail.Poster,
-                },
+                pathname: `/editPage/${this.props.id}`,
             }
         );
      }
@@ -97,8 +78,7 @@ class MovieCard extends React.Component {
                     </div>
                 }
                 {this.props.auth &&
-                    //<button className='editBtn'onClick={this.editMovie}>EDIT</button>
-                    <button className='editBtn'onClick={this.getMovieDetails}>EDIT</button>
+                    <button className='editBtn'onClick={this.editMovie}>EDIT</button>
                 }
                 <button className ='movieDetailsButn' onClick={this.movieDetailsFunction}>VIEW </button>
             </div>
