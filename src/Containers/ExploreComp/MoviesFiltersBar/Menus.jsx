@@ -16,7 +16,6 @@ class Menus extends React.Component {
 
     render() {
         let { menuOn } = this.state
-   
         return (
             <>
                 {/* large menu */}
