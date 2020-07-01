@@ -25,7 +25,9 @@ class EditMovieDetails extends React.Component {
         }
     }
     componentDidMount = () => {
-        const { _id, Title, runtime, imdbRating, year, plot, awards, director, actors, released, genre, poster } = this.props.movieDetail;
+        const { _id, Title,
+            // Runtime, imdbRating, Year, Plot, Awards, Director, Actors, Released, Genre, poster 
+        } = this.props.movieDetail;
 
         this.setState({
             ...this.props.movieDetail,
@@ -33,8 +35,6 @@ class EditMovieDetails extends React.Component {
             title: Title,
         });
     }
-
-
 
     handleChange(key) {
         return (event) => {
@@ -44,10 +44,6 @@ class EditMovieDetails extends React.Component {
     }
 
     updateMovie = () => {
-        // console.log('token-ul este aici', this.state.token)
-        // console.log('auth-ul este aici', this.state.auth)
-        // console.log('id-ul este aici', this.state.id)
-        // console.log('title-ul este aici', this.state.title)
         const tokenX = {
             headers: { 'X-Auth-Token': this.props.token }
         };
@@ -55,20 +51,21 @@ class EditMovieDetails extends React.Component {
             `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
             {
                 Title: this.state.Title,
-                // runtime: { runtime },
-                // imdbRating: { imdbRating },
-                // year: { year },
-                // plot: { plot },
-                // awards: { awards },
-                // director: { director },
-                // actors: { actors },
-                // released: { released },
-                // genre: { genre },
-                // poster: { poster },
+                runtime: this.state.runtime,
+                imdbRating: this.state.imdbRating,
+                Year: this.state.Year,
+                plot: this.state.plot,
+                awards: this.state.awards,
+                director: this.state.director,
+                actors: this.state.actors,
+                released: this.state.released,
+                Genre: this.state.Genre,
+                Poster: this.state.Poster,
             },
             tokenX
         ).then(response => {
-            console.log('aici e response dupa then:  ', response)
+            console.log('aici e response dupa then:  ', response);
+            this.props.history.goBack();
 
         }).catch(error => {
             console.log('aici e eroarea de la catch', error)
@@ -86,6 +83,7 @@ class EditMovieDetails extends React.Component {
         this.props.history.goBack();
     }
     deleteEditButton = (e) => {
+        console.log(this.state.id)
         this.props.history.goBack();
         e.preventDefault();
         // const tokenX = {
@@ -115,22 +113,14 @@ class EditMovieDetails extends React.Component {
     //     )
     // }
     render() {
-        const {
-            poster,
-            imdbRating,
-            title,
-            plot,
-            runtime,
-            released,
-            genre,
-            year, rating, type, imageUrl, language, country, description, actors, director, awards } = this.state;
+        const { Poster } = this.state;
 
         console.log(this.state);
 
         const renderInput = (fieldName, labelName) => {
             return (
                 <div className='fieldWrapper'>
-                    <label>{labelName}</label>
+                    <label style={{ color: 'black' }}>{labelName}</label>
                     <input
                         type='text'
                         name={fieldName}
@@ -145,22 +135,24 @@ class EditMovieDetails extends React.Component {
             <div className='addFormContainer'>
                 <form className='addForm'>
                     <div className='addPoster'>
-                        <label htmlFor='addPoster'>Poster URL:</label>
+                        <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
                         <input type='text'
                             name='imageUrl'
                             className='addField addPosterField'
-                            value={poster}
+                            value={Poster}
                             onChange={this.handleChange('poster')}
                         />
                     </div>
                     <div className='addDetails'>
-                        {renderInput('Title', 'Title :')}
-                        {renderInput('Year', 'Year :')}
-                        {renderInput('Runtime', 'Runtime :')}
-                        {renderInput('imdbRating', 'ImdbRating :')}
-                        {renderInput('Plot', 'plot :')}
-                        {renderInput('Awards', 'Awards :')}
-                        {renderInput('Director', 'Director :')}
+                        {renderInput('Title', 'Edit Title')}
+                        {renderInput('Year', 'Edit Year')}
+                        {renderInput('Runtime', 'Edit Runtime')}
+                        {renderInput('imdbRating', 'Edit ImdbRating')}
+                        {renderInput('Plot', 'Edit plot')}
+                        {renderInput('Awards', 'Edit Awards')}
+                        {renderInput('Actors', 'Edit Actors')}
+                        {renderInput('Released', 'Edit released')}
+                        {renderInput('Genre', 'Edit genre')}
 
                         {/* <div className='fieldWrapper'>
                             <label htmlFor='year'>Year:</label>
@@ -171,87 +163,8 @@ class EditMovieDetails extends React.Component {
                                 defaultValue={year}
                                 onChange={this.handleChange('year')}
                             />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='runtime'>Runtime:</label>
-                            <input
-                                type='text'
-                                name='runtime'
-                                className='addField'
-                                defaultValue={runtime}
-                                onChange={this.handleChange('runtime')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='imdbRating'>ImdbRating:</label>
-                            <input
-                                type='text'
-                                name='imdbRating'
-                                className='addField'
-                                defaultValue={imdbRating}
-                                onChange={this.handleChange('imdbRating')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='plot'>Description:</label>
-                            <input
-                                type='text'
-                                name='plot'
-                                className='addField'
-                                defaultValue={plot}
-                                onChange={this.handleChange('plot')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='awards'>Awards:</label>
-                            <input
-                                type='text'
-                                name='awards'
-                                className='addField'
-                                defaultValue={awards}
-                                onChange={this.handleChange('awards')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='director'>Director:</label>
-                            <input
-                                type='text'
-                                name='director'
-                                className='addField'
-                                defaultValue={director}
-                                onChange={this.handleChange('director')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='actors'>Actors:</label>
-                            <input
-                                type='text'
-                                name='actors'
-                                className='addField'
-                                defaultValue={actors}
-                                onChange={this.handleChange('actors')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='released'>Released:</label>
-                            <input
-                                type='text'
-                                name='released'
-                                className='addField'
-                                defaultValue={released}
-                                onChange={this.handleChange('released')}
-                            />
-                        </div>
-                        <div className='fieldWrapper'>
-                            <label htmlFor='genre'>Genre:</label>
-                            <input
-                                type='text'
-                                name='genre'
-                                className='addField'
-                                defaultValue={genre}
-                                onChange={this.handleChange('genre')}
-                            />
                         </div> */}
+
                     </div>
 
                     <div className='btnsWrapper'>

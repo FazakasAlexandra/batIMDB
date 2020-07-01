@@ -60,17 +60,24 @@ class MovieDetails extends React.Component {
     //         }
     //     );
     // }
-
     editMovie = () => {
-       console.log('edit Movie',this.props)
         this.props.history.push(
             {
-                pathname: '/editMovie',
-                state: this.props
+                pathname: `/editPage/${this.props.id}`,
             }
         );
+     }
+
+    // editMovie = () => {
+    //    console.log('edit Movie',this.props)
+    //     this.props.history.push(
+    //         {
+    //             pathname: '/editMovie',
+    //             state: this.props
+    //         }
+    //     );
         
-    }
+    // }
 
     componentDidMount(){
             let id = this.props.history.location.state
