@@ -68,14 +68,9 @@ class MovieList extends Component {
 
         let movies = this.props.movies.map((movie, idx) => {
             return (
-                // <MovieItem
-                //     key={movie._id}
-                //     poster={movie.Poster}
-                //     title={movie.Title}
-                //     imdbRating={movie.imdbRating}
-                // />
                 <MovieCard
                     key={movie._id}
+                    id={movie._id}
                     poster={movie.Poster}
                     title={movie.Title}
                     imdbRating={movie.imdbRating}
