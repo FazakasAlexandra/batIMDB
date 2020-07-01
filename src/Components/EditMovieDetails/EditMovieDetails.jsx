@@ -84,19 +84,19 @@ class EditMovieDetails extends React.Component {
     }
     deleteEditButton = (e) => {
         console.log(this.state.id)
-        this.props.history.goBack();
+        // this.props.history.goBack();
         e.preventDefault();
-        // const tokenX = {
-        //     headers: { 'X-Auth-Token': this.props.token }
-        // };
-        // axios.delete(
-        //     `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
-        //     tokenX
-        // ).then(() => {
-        //     this.props.history.goBack();
-        // }).catch(error => {
-        //     console.log('DELETE: aici e eroarea de la catch', error)
-        // })
+        const tokenX = {
+            headers: { 'X-Auth-Token': this.props.token }
+        };
+        axios.delete(
+            `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+            tokenX
+        ).then(() => {
+            this.props.history.goBack();
+        }).catch(error => {
+            console.log('DELETE: aici e eroarea de la catch', error)
+        })
     }
     // divForUpdate=(type)=> {
     //     return (
