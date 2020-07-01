@@ -22,23 +22,13 @@ class MovieCard extends React.Component {
         this.setState({ hover: false })
     }
     
-    // getMovieDetails = () => {
-    //     this.editMovie()
-    //     // Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
-    //     // .then((response) => {
-    //     //     console.log('response.data :---- ',response.data)
-    //     //     this.setState({movieDetail : response.data},() => {
-    //     //         this.editMovie()
-    //     //     })
-           
-    //     // })
-    // }
+    
 
     getMoviesDetails = () => {
         Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
         .then((response) => {
             this.setState({movieDetail : response.data},() => {
-                this.movieDetailsFunction()
+                this.movieDetails()
             })
         })
     }
@@ -51,12 +41,13 @@ class MovieCard extends React.Component {
         );
      }
      
-     movieDetailsFunction = () => {
+     movieDetails = () => {
         let {movieDetail} = this.state
         this.props.history.push(
             {
                 pathname: '/movieDetails',
                 state: {
+                    imdbID: movieDetail.imdbID,
                     id: movieDetail._id,
                     title: movieDetail.Title,
                     runtime: movieDetail.Runtime,

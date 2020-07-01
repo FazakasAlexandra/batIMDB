@@ -27,39 +27,6 @@ class MovieDetails extends React.Component {
         }
     }
 
-    // getMoviesDetails = () => {
-    //     Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
-    //     .then((response) => {
-    //         this.setState({movieDetail : response.data},() => {
-    //             // this.editMovie()
-    //             this.movieDetailsFunction()
-    //         })
-    //     })
-    // }
-    // movieDetailsFunction = () => {
-    //     let {movieDetail} = this.state
-    //     this.props.history.push(
-    //         {
-    //             pathname: '/movieDetails',
-    //             state: {
-    //                 id: movieDetail._id,
-    //                 title: movieDetail.Title,
-    //                 runtime: movieDetail.Runtime,
-    //                 imdbRating: movieDetail.imdbRating,
-    //                 year: movieDetail.Year,
-    //                 plot: movieDetail.Plot,
-    //                 awards: movieDetail.Awards,
-    //                 director: movieDetail.Director,
-    //                 actors: movieDetail.Actors,
-    //                 released: movieDetail.Released,
-    //                 genre: movieDetail.Genre,
-    //                 poster: movieDetail.Poster,
-    //                 language: movieDetail.Language,
-    //                 country: movieDetail.Country
-    //             }
-    //         }
-    //     );
-    // }
     editMovie = () => {
         this.props.history.push(
             {
@@ -68,20 +35,9 @@ class MovieDetails extends React.Component {
         );
      }
 
-    // editMovie = () => {
-    //    console.log('edit Movie',this.props)
-    //     this.props.history.push(
-    //         {
-    //             pathname: '/editMovie',
-    //             state: this.props
-    //         }
-    //     );
-        
-    // }
-
     componentDidMount(){
             let id = this.props.history.location.state
-            Axios.get(`https://ancient-caverns-16784.herokuapp.com/movies/${id}`)
+            Axios.get(`https://movies-app-siit.herokuapp.com/movies/${id}`)
             .then((response)=>{
                 console.log(response.data)
                 this.setState({movieDetails : response.data}, ()=>{
@@ -95,12 +51,12 @@ class MovieDetails extends React.Component {
         return (
             <div 
                 className="movieDetails-container"
-                style={{backgroundColor: this.props.theme.colorBackground.primary }}
+                // style={{backgroundColor: this.props.theme.colorBackground.primary }}
                 >
                 <div className="movieDetailsImg">
                     <img src={poster} alt="movie poster" className='detailsImg' /><br />
                     <div className='trailer'>
-                        <RespPlayer id={this.props.history.location.state}/>
+                        <RespPlayer id={this.props.history.location.state.imdbID}/>
                     </div>
                     
                 </div>
@@ -122,6 +78,7 @@ class MovieDetails extends React.Component {
                     <div className="movieDetails-buttons">
                         <button className="editMovie" onClick={this.editMovie}>Edit Movie</button><br />
                         <button className="deleteMovie">Delete Movie</button>
+                        <button className="closeDetails" onClick={this.closeDetails}>X</button>
                     </div>
                    
                 </div>
