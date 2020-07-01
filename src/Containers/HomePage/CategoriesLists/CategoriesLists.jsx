@@ -48,29 +48,34 @@ class CategoriesLists extends React.Component {
             }
             )
     }
-   
+
 
     render() {
-        const auth = this.props.auth;
-        const token = this.props.token;
-        
+        const {auth, token} = this.props;
+
         return (
             <div style={{ width: "98%" }}>
-                <h1 style={{color: this.props.theme.fontColor.secondary }}>Movies</h1><br/>
+                <h1 style={{ color: this.props.theme.fontColor.secondary }}>Movies</h1><br />
                 <div  >
-                    <MovieList 
+                    <MovieList
                         movies={this.state.movieListMovies}
                         auth={auth}
                         token={token}
                     />
                 </div>
-                <h1 style={{color: this.props.theme.fontColor.secondary }}>Series</h1><br/>
+                <h1 style={{ color: this.props.theme.fontColor.secondary }}>Series</h1><br />
                 <div >
-                    <MovieList movies={this.state.seriesListMovies} />
+                    <MovieList movies={this.state.seriesListMovies}
+                        auth={auth}
+                        token={token}
+                    />
                 </div>
-                <h1 style={{color: this.props.theme.fontColor.secondary }}>Game</h1><br/>
+                <h1 style={{ color: this.props.theme.fontColor.secondary }}>Game</h1><br />
                 <div >
-                    <MovieList movies={this.state.gameListMovies} />
+                    <MovieList movies={this.state.gameListMovies}
+                        auth={auth}
+                        token={token}
+                    />
                 </div>
             </div>
         )

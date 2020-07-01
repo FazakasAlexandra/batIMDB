@@ -16,17 +16,20 @@ class Menus extends React.Component {
 
     render() {
         let { menuOn } = this.state
+        const { auth, token } = this.props;
         return (
             <>
-            {/* large menu */}
+                {/* large menu */}
                 <div className='dropdown-menus-container' style={this.props.theme.backgroundMenu}>
                     <Dropdowns
                         filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
                         filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
+                        auth={auth}
+                        token={token}
                     />
                 </div>
 
-            {/* small menu */}
+                {/* small menu */}
                 <>
                     <span className="bars-container">
                         <FontAwesomeIcon icon={'bars'} onClick={() => { this.setState({ menuOn: !menuOn }) }} />
@@ -35,6 +38,8 @@ class Menus extends React.Component {
                         <Dropdowns
                             filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
                             filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
+                            auth={auth}
+                            token={token}
                         />
                     </div>
                 </>

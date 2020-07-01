@@ -98,7 +98,7 @@ class MyImdb extends Component {
                         themeFunction={e=> this.themeFunction(e)}
                     />
                     <Switch>
-                        <Route path="/explore" exact component={ExploreComp} />
+                        <Route path="/explore" exact render={props => <ExploreComp {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/explore/" component={ExploreComp} />
                         {/* <Route path="/hompage" exact component={HomePage} /> */}
                         <Route path='/hompage' exact render={props => <HomePage {...props} auth={this.state.auth} token={this.state.token} />} />
