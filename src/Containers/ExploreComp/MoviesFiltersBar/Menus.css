@@ -130,6 +130,7 @@
 #Year-filters-display,
 #Language-filters-display {
     padding: 2rem;
+    padding-bottom: 0rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -140,50 +141,42 @@
     cursor: pointer;
 }
 
-#Ratings-filters-display{
-    margin-right: 3rem;
-}
-
-#filter-Action-text, #filter-Drama-text, #filter-Comedy-text,
+#filter-Action-text, #filter-Drama-text, #filter-Comedy-text, #filter-Horror-text, #filter-Fantasy-text,
 #filter-Romanian-text, #filter-English-text, #filter-French-text,
 #filter-1990-2000-text, #filter-2000-2010-text, #filter-2010-2020-text,
-#filter-imdb-text, #filter-RottenTomatoes-text, #filter-Metacritic-text {
+#filter-imdb-text{
     width: 10rem;
     color: rgba(255, 255, 255, 0.644);
     font-size: 0.9rem;
 }
 
 #filter-Action-text-highlight, #filter-Drama-text-highlight, #filter-Comedy-text-highlight,
+#filter-Horror-text-highlight, #filter-Fantasy-text-highlight,
 #filter-Romanian-text-highlight, #filter-English-text-highlight, #filter-French-text-highlight,
 #filter-1990-2000-text-highlight, #filter-2000-2010-text-highlight, #filter-2010-2020-text-highlight,
-#filter-imdb-text-highlight, #filter-RottenTomatoes-text-highlight, #filter-Metacritic-text-highlight {
+#filter-imdb-text-highlight{
     width: 10rem;
     color: white;
     font-size: 1.5rem;
+}
+
+#filter-Action, #filter-Drama, #filter-Comedy, #filter-Horror, #filter-Fantasy,
+#filter-Romanian, #filter-English, #filter-French,
+#filter-1990-2000, #filter-2000-2010, #filter-2010-2020,
+#filter-imdb{
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+
 }
 
 #filter-imdb-highlight span {
     margin-right: 3rem;
 }
 
-#filter-RottenTomatoes-text {
-    margin-right: 2rem;
-}
-
 #filter-1990-highlight, #filter-2000-highlight, #filter-2010-highlight,
-#filter-imdb-highlight, #filter-RottenTomatoes-highlight, #filter-Metacritic-highlight {
+#filter-imdb-highlight {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
-}
-
-
-#filter-Action, #filter-Drama, #filter-Comedy,
-#filter-Romanian, #filter-English, #filter-French,
-#filter-1990-2000, #filter-2000-2010, #filter-2010-2020,
-#filter-imdb, #filter-RottenTomatoes, #filter-Metacritic {
-    margin-top: 0.7rem;
-    margin-bottom: 0.7rem;
 
 }
 
@@ -194,10 +187,8 @@
     font-size: 0.9rem;
 }
 
-#filter-Action .fa-w-8, #filter-Drama .fa-w-8, #filter-Comedy .fa-w-8,
-#filter-Romanian .fa-w-8, #filter-English .fa-w-8, #filter-French .fa-w-8,
 #filter-1990-2000 .fa-w-8, #filter-2000-2010 .fa-w-8, #filter-2010-2020 .fa-w-8, 
-#filter-imdb .fa-w-8, #filter-RottenTomatoes .fa-w-8, #filter-Metacritic .fa-w-8 {
+#filter-imdb .fa-w-8{
     margin-left:4rem;
 
 }
@@ -210,16 +201,8 @@
     width: 10rem;
 }
 
-#filter-RottenTomatoes .fa-w-8 {
-    margin-left: 1rem;
-}
-
 #filter-imdb .fa-w-8 {
     margin-left: 7.4rem;
-}
-
-#filter-Metacritic .fa-w-8 {
-    margin-left: 5.4rem;
 }
 
 #Ratings-filters-display .fa-w-8:hover, #Year-filters-display .fa-w-8:hover{
@@ -276,29 +259,17 @@
     color: #ffffffef;
 }
 
-#filter-imdb p,
-#filter-RottenTomatoes p,
-#filter-Metacritic p{
+#filter-imdb p{
     margin-left: 3rem;
     margin-bottom: 0.5rem;
 }
 
-#filter-imdb .range-container,
-#filter-RottenTomatoes .range-container,
-#filter-Metacritic .range-container{
+#filter-imdb .range-container{
     padding-left: 0rem;
-}
-
-#filter-Metacritic .fa-w-10{
-    margin-left: 9.5rem;
 }
 
 #filter-imdb .fa-w-10{
     margin-left: 11.6rem;
-}
-
-#filter-RottenTomatoes .fa-w-10{
-    margin-left: 6.8rem;
 }
 
 .fa-minus{

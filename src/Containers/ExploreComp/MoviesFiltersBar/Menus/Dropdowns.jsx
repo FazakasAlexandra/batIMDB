@@ -13,10 +13,6 @@ export class Dropdowns extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log(this.state.dropdowns)
-    }
-
     getDropdownArrow(dropdownName, dropdownOn, i){
         return <div className="dropdown-menu">
                     <p className={dropdownOn ? 
@@ -45,6 +41,9 @@ export class Dropdowns extends React.Component {
         )
         wrapedDropdown = this.wrapDdAndArr(wrapedDropdown, arrow)
         return wrapedDropdown
+        return (<div>
+            {filterComponents}
+        </div>)
     }
 
     wrapDdAndArr(wrapedDropdown, arrow){
@@ -57,13 +56,63 @@ export class Dropdowns extends React.Component {
         return wraper
     }
 
-    turnFilterOn(filterNr, dropdownNr){
+    turnFilterOn(dropdownNr, filterNr){
         this.setState([...dropdowns].map((dropdown, i)=>{
             if(i === dropdownNr){
                 dropdown.filters.map((filter, idx)=>{
-                    if(idx === filterNr) filter.filterOn = !filter.filterOn
+                    if(idx === filterNr) {
+                        filter.filterOn = !filter.filterOn
+                    } else if (idx !== filterNr && filter.filterOn){
+                        filter.filterOn = !filter.filterOn
+                    }
                     return filter
                 })
+            }
+            return dropdown
+        }))
+    }
+
+    checkActiveFilters() {
+        let {dropdowns} = this.state
+        let queryElements = []
+
+        dropdowns.forEach((dropdown, i)=> {
+            let {dropdownName, dropdownOn, filters} = dropdown
+            let filterWithInput = dropdownName === 'Year' || dropdownName ==='Ratings'
+
+            if (dropdownOn) {
+                filters.forEach((filter, idx) => {
+                    let {filterName, filterOn} = filter
+
+                    if (filterOn) {
+                        queryElements.push(dropdownName === 'Ratings' ? 'imdbRating' : dropdownName, '=')
+                        console.log('filter is on')
+                        if(filterWithInput) {
+                            queryElements.push(dropdowns[i].filters[idx].value, '&')
+                        } else {
+                            queryElements.push(filterName, '&')
+                        }
+                    }
+                })
+            }
+        })
+        this.sendQuery(queryElements)
+    }
+
+    sendQuery(queryElements){
+        queryElements.pop()
+        let query = queryElements.join("")
+        console.log(query)
+
+        this.props.filterMovies(query)
+    }
+
+    addValueToJson(value, dropdownNr, filterNr ) {
+        let filter = {...this.state.dropdowns[dropdownNr].filters[filterNr]}
+        filter.value = value
+        this.setState([...dropdowns].map((dropdown, i) =>{
+            if(i === dropdownNr){
+                dropdown.filters[filterNr] = filter
             }
             return dropdown
         }))
@@ -88,10 +137,11 @@ export class Dropdowns extends React.Component {
                         filterOn={filterOn}
 
                         filterNumber={idx}
-                        turnFilterOn={(idx)=>this.turnFilterOn(idx, i)}
+                        turnFilterOn={(idx)=>this.turnFilterOn(i, idx)}
 
-                        filterMovies={()=>props.filterMovies(dropdownName, filterName)}
-                        filterMoviesByRange={(filterName, value)=>props.filterMoviesByRange(filterName, value)}
+                        addValueToJson={(value)=>{this.addValueToJson(value, i, idx)}}
+                        filterMovies={()=>{this.checkActiveFilters()}}
+                        filterMoviesByRange={(filterName)=>{this.checkActiveFilters(filterName)}}
                         
                         minFilterYear = {minYear}
                         maxFilterYear = {maxYear}

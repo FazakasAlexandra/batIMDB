@@ -26,7 +26,8 @@ export function Filter (props) {
                         max={filterClass === 'Year' ? props.maxFilterYear : props.maxFilterRating}
                         filterClass={filterClass}
                         filter={name}
-                        filterMoviesByRange={(name, value)=>props.filterMoviesByRange(name, value)}
+                        addValueToJson = {(value)=>{props.addValueToJson(value)}}
+                        filterMoviesByRange={(dropdownName, value)=>props.filterMoviesByRange(dropdownName, value)}
                         step={props.step}
                         value={props.value}
                      /> 
