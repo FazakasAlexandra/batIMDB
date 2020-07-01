@@ -34,6 +34,15 @@ class MovieCard extends React.Component {
     //     // })
     // }
 
+    getMoviesDetails = () => {
+        Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
+        .then((response) => {
+            this.setState({movieDetail : response.data},() => {
+                this.movieDetailsFunction()
+            })
+        })
+    }
+
     editMovie = () => {
         this.props.history.push(
             {
@@ -43,14 +52,30 @@ class MovieCard extends React.Component {
      }
      
      movieDetailsFunction = () => {
+        let {movieDetail} = this.state
         this.props.history.push(
             {
                 pathname: '/movieDetails',
-                state: this.props.imdbID
+                state: {
+                    id: movieDetail._id,
+                    title: movieDetail.Title,
+                    runtime: movieDetail.Runtime,
+                    imdbRating: movieDetail.imdbRating,
+                    year: movieDetail.Year,
+                    plot: movieDetail.Plot,
+                    awards: movieDetail.Awards,
+                    director: movieDetail.Director,
+                    actors: movieDetail.Actors,
+                    released: movieDetail.Released,
+                    genre: movieDetail.Genre,
+                    poster: movieDetail.Poster,
+                    language: movieDetail.Language,
+                    country: movieDetail.Country
+                }
             }
         );
     }
-
+    
     render(){
         const { poster, title, imdbRating } = this.props;
         return (
@@ -80,7 +105,7 @@ class MovieCard extends React.Component {
                 {this.props.auth &&
                     <button className='editBtn'onClick={this.editMovie}>EDIT</button>
                 }
-                <button className ='movieDetailsButn' onClick={this.movieDetailsFunction}>VIEW </button>
+                <button className ='movieDetailsButn' onClick={this.getMoviesDetails}>VIEW </button>
             </div>
         )
     }
