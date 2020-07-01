@@ -18,10 +18,10 @@ class HomePage extends Component {
                 style={{ backgroundColor: this.props.theme.colorBackground.primary }}
             >
                 <Flash>
-                    <h1 style={{ 
-                            color: this.props.theme.fontColor.secondary,
-                            marginTop: "25px" 
-                            }}>
+                    <h1 style={{
+                        color: this.props.theme.fontColor.secondary,
+                        marginTop: "25px"
+                    }}>
                         10 most voted Batman movies
                     </h1>
                 </Flash>
@@ -35,14 +35,17 @@ class HomePage extends Component {
                         marginBottom: "15px"
                     }}
                 >
-                <DinamicComp/>  
-                <CategoriesLists 
+                    <img className="frame" src={require('../../Images/frameBlack1.png')} />
+                    <DinamicComp />
+                    <img className="frame" src={require('../../Images/frameBlack1.png')} />
+
+                </div>
+                <CategoriesLists
                     auth={auth}
                     token={token}
                 />
-                </div>
-                <br/>
-               
+                <br />
+
             </div>
         );
     }
