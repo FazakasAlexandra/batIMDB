@@ -36,7 +36,6 @@
     cursor: pointer;
     margin-top: 0.2rem;
     font-size: 0.6rem;
-    color: rgba(255, 255, 255, 0.603)
 }
 
 .icon-range-container .fa-w-14:hover {
@@ -142,6 +141,7 @@
 }
 
 #filter-Action-text, #filter-Drama-text, #filter-Comedy-text, #filter-Horror-text, #filter-Fantasy-text,
+#filter-Crime-text,
 #filter-Romanian-text, #filter-English-text, #filter-French-text,
 #filter-1990-2000-text, #filter-2000-2010-text, #filter-2010-2020-text,
 #filter-imdb-text{
@@ -151,16 +151,16 @@
 }
 
 #filter-Action-text-highlight, #filter-Drama-text-highlight, #filter-Comedy-text-highlight,
-#filter-Horror-text-highlight, #filter-Fantasy-text-highlight,
+#filter-Horror-text-highlight, #filter-Fantasy-text-highlight, #filter-Crime-text-highlight
 #filter-Romanian-text-highlight, #filter-English-text-highlight, #filter-French-text-highlight,
 #filter-1990-2000-text-highlight, #filter-2000-2010-text-highlight, #filter-2010-2020-text-highlight,
 #filter-imdb-text-highlight{
     width: 10rem;
-    color: white;
+    color:#FDFF00;
     font-size: 1.5rem;
 }
 
-#filter-Action, #filter-Drama, #filter-Comedy, #filter-Horror, #filter-Fantasy,
+#filter-Action, #filter-Drama, #filter-Comedy, #filter-Horror, #filter-Fantasy, #filter-Crime,
 #filter-Romanian, #filter-English, #filter-French,
 #filter-1990-2000, #filter-2000-2010, #filter-2010-2020,
 #filter-imdb{
@@ -202,8 +202,14 @@
 }
 
 #filter-imdb .fa-w-8 {
-    margin-left: 7.4rem;
+    margin-left: 4rem;
+    color: rgba(255, 255, 255, 0.603)
 }
+
+#filter-imdb .fa-w-10{
+    margin-left: 10.5rem;
+}
+
 
 #Ratings-filters-display .fa-w-8:hover, #Year-filters-display .fa-w-8:hover{
     font-size:1.2rem;
@@ -239,7 +245,7 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #F4AF01;
+    background: #282E3C;
     cursor: pointer;
   }
   
@@ -247,7 +253,7 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #F4AF01;
+    background: #282E3C;
     cursor: pointer;
   }
   
@@ -266,10 +272,6 @@
 
 #filter-imdb .range-container{
     padding-left: 0rem;
-}
-
-#filter-imdb .fa-w-10{
-    margin-left: 11.6rem;
 }
 
 .fa-minus{

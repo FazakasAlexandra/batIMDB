@@ -4,6 +4,7 @@ import MovieCard from '../../Components/MovieCard/MovieCard'
 import { withTheme } from 'styled-components';
 import './ExploreComp.css'
 import Axios from 'axios'
+import { getByTitle } from '@testing-library/react';
 
 class ExploreComp extends React.Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class ExploreComp extends React.Component {
     }
 
     getMovies(query) {
+        let finalQuery = this.isSearchByTitle(query) 
         // for seach bar : filterClass = title, filter = input.value of seach input field
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${query}`)
             .then((response) => {
@@ -53,14 +55,29 @@ class ExploreComp extends React.Component {
             )
     }
 
-    getSearchedMovies() {
-        if (localStorage.getItem('search')) {
-            let search = localStorage.getItem('search')
-            localStorage.removeItem('search')
-            let query = ['Title=',search]
-            query.join("")
-            this.getMovies(query)
+    isSearchByTitle(otherQueries) {
+        if (sessionStorage.getItem('search') && otherQueries) {
+            let titleQuery = this.getMovieTitle()
+            let finalQuery = titleQuery.concat(otherQueries)
+            console.log(finalQuery)
+            return finalQuery
+        } else if(localStorage.getItem('search')){
+                let titleQuery = this.getMovieTitle()
+                this.getMovies(titleQuery)
+        } else {
+            return otherQueries
         }
+    }
+
+    getMovieTitle(){
+        let search = localStorage.getItem('search')
+        sessionStorage.setItem('search', search)
+        localStorage.removeItem('search')
+        let queryElements = ['Title=', search]
+        let query = queryElements.join("")
+        console.log(query)
+
+        return query
     }
 
     displayNotFound() {
@@ -106,7 +123,7 @@ class ExploreComp extends React.Component {
                 />
                 <div className="filtered-movies-container">
                     {this.state.moviesFound ? this.displayMovies() : this.displayNotFound()}
-                    {this.getSearchedMovies()}
+                    {this.isSearchByTitle()}
                 </div>
             </div>
         )

@@ -82,15 +82,18 @@ export class Dropdowns extends React.Component {
 
             if (dropdownOn) {
                 filters.forEach((filter, idx) => {
-                    let {filterName, filterOn} = filter
-
+                    let {filterName, filterOn, value} = filter
                     if (filterOn) {
-                        queryElements.push(dropdownName === 'Ratings' ? 'imdbRating' : dropdownName, '=')
                         console.log('filter is on')
                         if(filterWithInput) {
-                            queryElements.push(dropdowns[i].filters[idx].value, '&')
+                            if(value){
+                                queryElements.push(
+                                    dropdownName === 'Ratings' ? 'imdbRating' : dropdownName, '=',
+                                    dropdowns[i].filters[idx].value, '&'
+                                    )
+                            }
                         } else {
-                            queryElements.push(filterName, '&')
+                            queryElements.push(dropdownName, '=', filterName, '&')
                         }
                     }
                 })
@@ -120,7 +123,6 @@ export class Dropdowns extends React.Component {
 
     getDropdowns() {
         let dropdownComponents=[]
-        let {props} = this
 
         for(let i = 0; i < this.state.dropdowns.length; i++){
             let {dropdownOn, dropdownName, filters} = dropdowns[i]
