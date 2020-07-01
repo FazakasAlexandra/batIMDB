@@ -58,3 +58,12 @@ b{
 i{
     color: lemonchiffon;
 }
+.closeDetails{
+    position: absolute;
+    Z-index: 1;
+    right: 13rem;
+    top: 6rem;
+    padding: 0.3rem;
+    background-color: orangered;
+    
+}
