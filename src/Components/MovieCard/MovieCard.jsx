@@ -57,6 +57,7 @@ class MovieCard extends React.Component {
             {
                 pathname: '/movieDetails',
                 state: {
+                    imdbID: movieDetail.imdbID,
                     id: movieDetail._id,
                     title: movieDetail.Title,
                     runtime: movieDetail.Runtime,

@@ -100,7 +100,7 @@ class MovieDetails extends React.Component {
                 <div className="movieDetailsImg">
                     <img src={poster} alt="movie poster" className='detailsImg' /><br />
                     <div className='trailer'>
-                        <RespPlayer id={this.props.history.location.state}/>
+                        <RespPlayer id={this.props.history.location.state.imdbID}/>
                     </div>
                     
                 </div>
