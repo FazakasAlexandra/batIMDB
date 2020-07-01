@@ -65,15 +65,15 @@ class MovieList extends Component {
     }
 
     render() {
+        const {auth, token} = this.props;
+
+        // const authProps = {
+        //     auth,
+        //     token,
+        // };
 
         let movies = this.props.movies.map((movie, idx) => {
             return (
-                // <MovieItem
-                //     key={movie._id}
-                //     poster={movie.Poster}
-                //     title={movie.Title}
-                //     imdbRating={movie.imdbRating}
-                // />
                 <MovieCard
                     key={movie._id}
                     id={movie._id}
@@ -81,6 +81,9 @@ class MovieList extends Component {
                     title={movie.Title}
                     imdbRating={movie.imdbRating}
                     imdbID={movie.imdbID}
+                    auth={auth}
+                    token={token}
+                    // {...authProps}
                 />
             )
         });

@@ -12,7 +12,7 @@ import './MyImdb.css';
 import Header from '../Components/Header/Header';
 import AddPage from '../Containers/AddPage/AddPage';
 
-import EditMovieDetails from '../Components/EditMovieDetails/EditMovieDetails';
+import EditPage from '../Containers/EditPage/EditPage';
 import MovieDetails from '../Containers/MovieDetails/MovieDetails';
 import { ThemeProvider } from 'styled-components';
 
@@ -98,12 +98,13 @@ class MyImdb extends Component {
                         themeFunction={e=> this.themeFunction(e)}
                     />
                     <Switch>
-                        <Route path="/explore" exact component={ExploreComp} />
+                        <Route path="/explore" exact render={props => <ExploreComp {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/explore/" component={ExploreComp} />
-                        <Route path="/hompage" exact component={HomePage} />
+                        {/* <Route path="/hompage" exact component={HomePage} /> */}
+                        <Route path='/hompage' exact render={props => <HomePage {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/" exact component={HomePage} />
                         <Route path='/addPage' exact render={props => <AddPage {...props} auth={this.state.auth} token={this.state.token} />} />
-                        <Route path="/editPage" exact component={EditMovieDetails} />
+                        <Route path="/editPage/:movieId"  render={props => <EditPage {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/movieDetails" exact component={MovieDetails} />
                     </Switch>
                 </div>

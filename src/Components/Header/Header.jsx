@@ -131,7 +131,10 @@ class Header extends React.Component {
         // console.log(isAuth);
         return (
             <div className='header'
-                 style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                 style={{
+                     backgroundColor: this.props.theme.colorBackground.nav,
+                     boxShadow: this.props.theme.shadows.boxShadow1
+                    }}
                  >
                 {/* <div className='top'></div> */}
                 <nav className='navBar'
@@ -151,7 +154,7 @@ class Header extends React.Component {
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
-                            <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} />
+                            <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} placeholder="search by title..."/>
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>

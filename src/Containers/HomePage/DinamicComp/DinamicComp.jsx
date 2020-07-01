@@ -89,9 +89,8 @@ class DinamicComp extends Component {
                 />
             )
         });
-        return (
-            <Fragment >
-                <Flash><h1 style={{ color: "grey" }}>10 most voted Batman movies</h1></Flash>
+        return (          
+            <Fragment >                
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="onRequestClose Example"
@@ -99,6 +98,18 @@ class DinamicComp extends Component {
                     className="Modal"
                     overlayClassName="Overlay"
                 >
+                    <a 
+                        style={{
+                            cursor: "pointer",
+                            position: "relative",
+                            zIndex: "1",
+                            color: "white",
+                            fontWeight: "bolder",
+                            left: "25px",
+                            top: "35px"
+                        }} 
+                        onClick={this.handleCloseModal}
+                    >close</a>
                     <RespPlayer id={this.state.id} />
                 </ReactModal>
                 <div className="DinamicCompMovies"
@@ -113,9 +124,18 @@ class DinamicComp extends Component {
                         {this.showPoster()}
                     </div>
                 </div>
-            </Fragment>
+            </Fragment>           
         )
     }
 }
 
 export default withTheme(DinamicComp);
+
+
+
+
+// import { withTheme } from 'styled-components';
+// style={{color: this.props.theme.fontColor.primary }}   -black
+// style={{color: this.props.theme.fontColor.secondary }}  -yelow
+// style={{backgroundColor: this.props.theme.colorBackground.primary }}
+// style={{color: this.props.theme.shadows.shadow1 }} 
