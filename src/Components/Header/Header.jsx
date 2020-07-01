@@ -128,12 +128,12 @@ class Header extends React.Component {
     render() {
          /* console.log('props history la header,', this.props) */
         const isAuth = 'add'+this.props.auth;
-        console.log(isAuth);
+        // console.log(isAuth);
         return (
             <div className='header'
                  style={{backgroundColor: this.props.theme.colorBackground.nav }}
                  >
-                <div className='top'></div>
+                {/* <div className='top'></div> */}
                 <nav className='navBar'
                      style={{backgroundColor: this.props.theme.colorBackground.nav }}
                 >

@@ -61,7 +61,6 @@ class AddNewMovie extends React.Component{
         }).catch(error=>{
             console.log(error)
         })
-       
     }
     
     render(){
@@ -84,7 +83,7 @@ class AddNewMovie extends React.Component{
 
                         <div className='addDetails'>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Title*:</label>
+                                <label htmlFor='addTitle'>Title*:</label>
                                 <input type='text' 
                                     name='title'
                                     id='addTitle'
@@ -95,7 +94,7 @@ class AddNewMovie extends React.Component{
                                 />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Year*:</label>
+                                <label htmlFor='addYear'>Year*:</label>
                                 <input type='text' 
                                     name='year'
                                     id='addYear'
@@ -106,7 +105,7 @@ class AddNewMovie extends React.Component{
                                 />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Type*:</label>
+                                <label htmlFor='addType'>Type*:</label>
                                 <input  type='text' 
                                         name='type'
                                         id='addType'
@@ -117,7 +116,7 @@ class AddNewMovie extends React.Component{
                                 />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Director:</label>
+                                <label htmlFor='addDirector'>Director:</label>
                                 <input type='text'
                                     name='director' 
                                     id='addDirector'
@@ -127,7 +126,7 @@ class AddNewMovie extends React.Component{
                                 />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Language:</label>
+                                <label htmlFor='addLanguage'>Language:</label>
                                 <input  type='text' 
                                     name='language'
                                     id='addLanguage'
@@ -138,7 +137,7 @@ class AddNewMovie extends React.Component{
                             </div>
                             <div className='fieldWrapper'>
                                 <label htmlFor='title'>Country:</label>
-                                    <input  type='text' 
+                                    <input  type='addCountry' 
                                             name='country'
                                             id='addCountry'
                                             className='addField'
@@ -148,7 +147,7 @@ class AddNewMovie extends React.Component{
                             </div>
                             <div className='fieldWrapper'>
                                 <label htmlFor='title'>Actors:</label>
-                                    <input  type='text' 
+                                    <input  type='addActors' 
                                             name='actors'
                                             id='addActors'
                                             className='addField'
@@ -157,7 +156,7 @@ class AddNewMovie extends React.Component{
                                     />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Awards:</label>
+                                <label htmlFor='addAwards'>Awards:</label>
                                 <input  type='text' 
                                         name='awards'
                                         id='addAwards'
@@ -167,7 +166,7 @@ class AddNewMovie extends React.Component{
                                 />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Rating*:</label>
+                                <label htmlFor='addRating'>Rating*:</label>
                                 <input  type='text' 
                                         name='rating'
                                         id='addRating'
@@ -178,7 +177,7 @@ class AddNewMovie extends React.Component{
                                 />
                             </div>
                             <div className='fieldWrapper'>
-                                <label htmlFor='title'>Description:</label>
+                                <label htmlFor='addDescription'>Description:</label>
                                 <textarea 
                                         name='description'
                                         id='addDescription'
@@ -192,9 +191,11 @@ class AddNewMovie extends React.Component{
 
                         <div className='btnsWrapper'>
                             <button className='pvwBtn'
-                                    onClick={this.handlePreview}>Preview</button>
+                                    onClick={this.handlePreview}> PREVIEW </button>
                             <button type='submit'
-                                    className='addBtn'>Add</button>
+                                    className='addBtn'> ADD </button>
+                            <button className='addBtn'
+                                    onClick={this.props.onCancel}> CANCEL </button>
                         </div>
                     </form>
                     
@@ -202,8 +203,8 @@ class AddNewMovie extends React.Component{
                     <div className='pvw'>
                         <img src={this.state.imgUrl} alt='movie poster'/>
                         <div className='pvwDetails'>
-                            <h2 className='pvwLine'><span>Title: </span>
-                                {this.state.title}</h2>
+                            <h3 className='pvwLine'><span>Title: </span>
+                                {this.state.title}</h3>
                             <p className='pvwLine'><span>Released: </span> 
                                 {this.state.year}</p>
                             <p className='pvwLine'><span>Type: </span>

@@ -9,8 +9,6 @@ class AddPage extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            auth:this.props.auth,
-            token:this.props.token,
             addForm:true,
             successMsg: false
         }
@@ -26,22 +24,26 @@ class AddPage extends React.Component{
         this.setState({addForm : true,
                       successMsg : false})
     }
+    onCancel= ()=> {
+        this.props.history.goBack();
+    }
     render(){
         return(
             <div className='addContainer'>
                 {this.state.addForm && 
                     <AddNewMovie 
-                        auth = {this.state.auth}
-                        token = {this.state.token}
+                        auth = {this.props.auth}
+                        token = {this.props.token}
                         onSubmitAdd = {this.handleSubmitAdd}
+                        onCancel={this.onCancel}
                     />
                 }
                 
                 {this.state.successMsg && 
                     <div className='successMsg'>
-                        <h2>Movie added to database</h2>
+                        <h2>Movie added to the database</h2>
                         <button className='addMoreBtn'
-                                onClick={this.handleMoreAdd}>Add more</button>
+                                onClick={this.handleMoreAdd}>ADD MORE</button>
                     </div>
                 }
             </div>
