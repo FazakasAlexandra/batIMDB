@@ -1,16 +1,18 @@
 import React from 'react'
-import { Menus } from './MoviesFiltersBar/Menus'
+import Menus from './MoviesFiltersBar/Menus'
 import MovieCard from '../../Components/MovieCard/MovieCard'
+import { withTheme } from 'styled-components';
 import './ExploreComp.css'
 import Axios from 'axios'
 
-export class ExploreComp extends React.Component {
+class ExploreComp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             moviesDetailsList: [],
             moviesList: [],
-            moviesFound: true
+            moviesFound: true,
+            auth: sessionStorage.getItem('auth')
         }
     }
 
@@ -72,28 +74,19 @@ export class ExploreComp extends React.Component {
     }
 
     displayMovies() {
-        let { moviesList, movieDetailsList } = this.state
-        console.log(moviesList, movieDetailsList)
+        let { moviesList } = this.state
         //console.log(movieDetailsList)
         let movies = moviesList.map(movie => {
-            console.log(movie._id)
+            // console.log('key din displayMovies',movie._id)
             return (<MovieCard
                 key={movie._id}
                 id={movie._id}
+
                 auth={this.state.auth}
+
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
-                actors={movie.Actors}
-                
-                year={movie.Year}
-                released={movie.Released}
-                runtime={movie.Runtime}
-                genre={movie.Genre}
-                director={movie.Director}
-                actors={movie.Actors}
-                plot={movie.Plot}
-                awards={movie.Awards}
             />)
         })
 
@@ -110,7 +103,9 @@ export class ExploreComp extends React.Component {
     }
     render() {
         return (
-            <div className="exploreComp-container">
+            <div className="exploreComp-container"
+                 style={{backgroundColor: this.props.theme.colorBackground.primary }}
+                 >
                 <Menus
                     filter={(filterClass, filter) => this.getMovies(filterClass, filter)}
                     filterMoviesByRange={(filter, value)=>this.checkFilter(filter, value)}
@@ -123,3 +118,5 @@ export class ExploreComp extends React.Component {
         )
     }
 }
+
+export default withTheme(ExploreComp)

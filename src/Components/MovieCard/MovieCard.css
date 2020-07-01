@@ -22,11 +22,10 @@
     
 }
 .cardTitle{
-    height: 3.3em;
-    font-size: 1.1em;
+    height: 3em;
+    font-size: 1em;
     font-weight: 500;
     margin-block-end: 0;
-    margin-bottom: 0.3em;
     padding-top: 0.3em;
 }
 .ratingsWrapper{
@@ -35,21 +34,12 @@
 }
 .star{
     color: #fdff00;
-    font-size: large;
+    font-size: 1em;
 }
 .cardRating{
-    font-size:1.1em;
+    font-size:1em;
     color:#e7e2e2;
     margin-left: 1em;
-}
-.ratingOption{
-    font-size: 0.8em;
-    color:gray;
-    margin-left:3%;
-    padding: 0.5em;
-}
-.ratingOption span{
-    color: #fdff00;
 }
 .closedCardInvite{
     margin-top: 0.3em;
@@ -68,7 +58,7 @@
     font-size: 0.8em;
     margin-top:0.3em;
     text-align: center;
-    color: rgb(83, 81, 81);
+    color: rgb(29, 28, 34);
 }
 .editBtn{
     border:none;

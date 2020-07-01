@@ -3,9 +3,10 @@ import './Menus.css'
 import '../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Dropdowns } from './Menus/Dropdowns.jsx'
+import { withTheme } from 'styled-components';
 
 
-export class Menus extends React.Component {
+class Menus extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,7 +19,7 @@ export class Menus extends React.Component {
         return (
             <>
             {/* large menu */}
-                <div className='dropdown-menus-container'>
+                <div className='dropdown-menus-container' style={this.props.theme.backgroundMenu}>
                     <Dropdowns
                         filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
                         filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
@@ -30,7 +31,7 @@ export class Menus extends React.Component {
                     <span className="bars-container">
                         <FontAwesomeIcon icon={'bars'} onClick={() => { this.setState({ menuOn: !menuOn }) }} />
                     </span>
-                    <div className='small-dropdown-menus-container' style={{ display: menuOn ? 'flex' : 'none' }}>
+                    <div className='small-dropdown-menus-container' style={{ display: menuOn ? 'flex' : 'none' }} >
                         <Dropdowns
                             filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
                             filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
@@ -41,4 +42,6 @@ export class Menus extends React.Component {
         )
     }
 }
+
+export default withTheme(Menus);
 
