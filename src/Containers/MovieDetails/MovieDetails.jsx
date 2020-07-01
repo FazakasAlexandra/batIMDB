@@ -9,7 +9,6 @@ import Axios from 'axios';
 class MovieDetails extends React.Component {
     constructor(props) {
         super(props)
-<<<<<<< HEAD
             this.state = {
                 id: props.key,
                 title: '',
@@ -25,10 +24,6 @@ class MovieDetails extends React.Component {
                 poster: '',
                 language: '',
                 country:''
-=======
-        this.state = {
-            movieDetails:{}
->>>>>>> c9741aa5540e14cc60fa5fdd2f40ae030ffef9db
         }
     }
 
@@ -89,32 +84,20 @@ class MovieDetails extends React.Component {
     }
 
     render() {
-<<<<<<< HEAD
         const { poster, title, genre, year, runtime, imdbRating, language, country, director, actors, released, awards, plot } = this.props.history.location.state
-=======
-        const { Poster, Title, Genre, Year, Runtime, Language, Country, Director, Actors, Released, Awards, Plot } = this.state.movieDetails
->>>>>>> c9741aa5540e14cc60fa5fdd2f40ae030ffef9db
         return (
             <div 
                 className="movieDetails-container"
                 style={{backgroundColor: this.props.theme.colorBackground.primary }}
                 >
                 <div className="movieDetailsImg">
-<<<<<<< HEAD
                     <img src={poster} alt="movie poster" className='detailsImg' /><br />
                     <div className='trailer'>
                         <RespPlayer id={this.props.history.location.state}/>
-=======
-                    <img src={Poster} alt="movie poster" className='detailsImg' /><br />
-                    <div className="movieDetails-buttons">
-                        <button className="editMovie" onClick={this.editMovie}>Edit Movie</button><br />
-                        <button className="deleteMovie">Delete Movie</button>
->>>>>>> c9741aa5540e14cc60fa5fdd2f40ae030ffef9db
                     </div>
                     
                 </div>
                 <div className="movieDetailsInfo" >
-<<<<<<< HEAD
                     <p className="infoTitle"><b>Title:</b> {title}</p><br/>
                     <p className="infoGenre"><b>Genre:</b> {genre}</p><br/>
                     <p className="infoYear"><b>Year:</b>  {year}</p><br/>
@@ -132,23 +115,6 @@ class MovieDetails extends React.Component {
                     <div className="movieDetails-buttons">
                         <button className="editMovie" onClick={this.editMovie}>Edit Movie</button><br />
                         <button className="deleteMovie">Delete Movie</button>
-=======
-                    <p className="infoTitle">Title: {Title}</p>
-                    <p className="infoGenre">Genre: {Genre}</p>
-                    <p className="infoYear">Year: {Year}</p>
-                    <p className="infoRuntime">Runtime: {Runtime}</p>
-                    <p className="infoLanguage">Language: {Language}</p>
-                    <p className="infoCountry">Country: {Country}</p>
-                    <p className="infoDirector">Director: {Director}</p>
-                    <p className="infoActors">Actors: {Actors}</p>
-                    <p className="infoRelease">Released: {Released}</p>
-                    <p className="infoAwards">Awards: {Awards}</p>
-                    <br />
-                    <p className="infoPlot">{Plot}</p>
-                    <br /><br />
-                    <div className='trailer'>
-                        <RespPlayer id={this.props.history.location.state}/>
->>>>>>> c9741aa5540e14cc60fa5fdd2f40ae030ffef9db
                     </div>
                    
                 </div>
