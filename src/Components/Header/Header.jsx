@@ -1,10 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 import 'fontsource-roboto';
+import axios from 'axios';
 import './Header.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import RegisterForm from './Register/Register'
 import LoginForm from './Login/Login'
@@ -14,15 +16,18 @@ class Header extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            auth: props.auth,
             regForm: false,
-            logForm: false
+            logForm: false,
+            logOut:false,
+            theme: 'light',
         }
     }
-    
+    /* componentDidUpdate () */
+
     exploreFunction = () => {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
+        console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
     }
 
     hompageFunction = () => {
@@ -35,11 +40,11 @@ class Header extends React.Component {
     }
     //logic for header AddBtn
     addPageFunction = () => {
-        if(this.state.auth){
+        if (this.props.auth) {
             this.props.history.push({
                 pathname: '/addPage',
             });
-        }else{
+        } else {
             window.alert('you have to be signed in to add movies')
         }
     }
@@ -60,19 +65,42 @@ class Header extends React.Component {
         this.setState({ logForm: false, regForm: false })
     }
 
-    //logic for submit register/login => sending auth, regForm, logForm from MyImdb to header state
-    handleSubmitRegister = (data) => {
-        this.props.onSubmitRegister(data);
-        this.setState({
-            regForm: this.props.regForm,
-            auth: this.props.auth
-        })
+    //logic for submit register/login => auth, token, user on MyImdb.state + enable/disable forms in header
+    handleSubmitRegister = (data, user) => {
+        this.props.onSubmitRegister(data, user);
+        if(this.props.auth){
+            this.setState({
+                regForm: false
+            })
+        }
     }
-    handleSubmitLogin = (data) => {
-        this.props.onSubmitLogin(data);
-        this.setState({
-            logForm: this.props.logForm,
-            auth: this.props.auth
+    handleSubmitLogin = (data,user) => {
+        this.props.onSubmitLogin(data,user);
+        if(this.props.auth){
+            this.setState({
+                logForm: false
+            })
+        }
+    }
+    //logic for logout section
+    handleHelloBtnClick = () => {
+        this.state.logOut ? this.setState({logOut : false}) : this.setState({logOut : true});
+    }
+    
+    handleLogOutBtnClk = () => {
+        //console.log(this.props.token)
+        const headerToken = { headers: {'X-Auth-Token': this.props.token} };
+        
+        axios.get (
+            'https://movies-app-siit.herokuapp.com/auth/logout',
+             headerToken
+        ).then(response =>{
+            console.log("success logout response:", response)
+            if(response.status === 200){
+                this.props.onLogout();
+            }
+        }).catch(error=>{
+            console.log("logout error msg:",error)
         })
     }
 
@@ -86,12 +114,32 @@ class Header extends React.Component {
         }
     }
 
+    handlleToglleTheme =()=> {
+        if(this.state.theme == 'dark') {
+            this.setState({theme: 'light'})
+            this.props.themeFunction('light')
+          
+        } else {
+            this.setState({theme: 'dark'})
+            this.props.themeFunction('dark')            
+        }
+    }
+
     render() {
-        // console.log('props history la header,', this.props.history, 'props header', this.props)
+         /* console.log('props history la header,', this.props) */
+        const isAuth = 'add'+this.props.auth;
+        console.log(isAuth);
         return (
-            <div className='header'>
+            <div className='header'
+                 style={{
+                     backgroundColor: this.props.theme.colorBackground.nav,
+                     boxShadow: this.props.theme.shadows.boxShadow1
+                    }}
+                 >
                 <div className='top'></div>
-                <nav className='navBar'>
+                <nav className='navBar'
+                     style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                >
                     <img
                         className='logo'
                         alt='logo'
@@ -100,10 +148,9 @@ class Header extends React.Component {
                     />
                     <button
                         className='exploreBtn'
-                        onClick={this.exploreFunction}
-                    >Explore</button>
-                    <button className='addMovieBtn'
-                            onClick={this.addPageFunction}>Add Movie</button>
+                        onClick={this.exploreFunction}> Explore </button>
+                    <button className={isAuth}
+                            onClick={this.addPageFunction}> Add Movie </button>
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
@@ -111,36 +158,56 @@ class Header extends React.Component {
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
-                    <img
-                        className='mood'
-                        alt='mood'
-                        src={require('../Images/moon-yellow.png')}
+                    <a
+                        style={{ cursor: "pointer" }}
+                        onClick={this.handlleToglleTheme}  //in lucru - am comentat-o sa nu va incurce ****** Marius
+                    >
+                        <img
+                            className='mood'
+                            alt='mood'
+                            src={require('../Images/moon-yellow.png')}
+                        />
+                    </a>
+
+                    {!this.props.auth &&
+                        <div className='buttonsLogReg'>
+                            <button className='registerBtn'
+                                    onClick={() => this.handleRegisterBtnClick()}> Register </button>
+                            <button className='loginBtn'
+                                    onClick={() => this.handleLoginBtnClick()}> Login </button>
+                                
+                                {this.state.regForm && < RegisterForm
+                                    auth={this.props.auth}
+                                    onSubmitRegister={this.handleSubmitRegister}
+                                    onCancel={this.handleCancelBtn}
+                                />
+                                }
+                                {this.state.logForm && < LoginForm
+                                    auth={this.props.auth}
+                                    onSubmitLogin={this.handleSubmitLogin}
+                                    onCancel={this.handleCancelBtn}
+                                />
+                                }
+                        </div>
+                    }
                     
-                    />
-                    <button className='registerBtn'
-                        onClick={() => this.handleRegisterBtnClick()}>Register</button>
-                    <div className='buttonsLogReg'>
-                        <button className='loginBtn'
-                            onClick={() => this.handleLoginBtnClick()}>Login</button>
-                        {this.state.regForm && < RegisterForm
-                            auth={this.state.auth}
-                            onSubmitRegister={this.handleSubmitRegister}
-                            onCancel={this.handleCancelBtn}
-                            />
-                        }
-                        {this.state.logForm && < LoginForm
-                            auth={this.state.auth}
-                            onSubmitLogin={this.handleSubmitLogin}
-                            onCancel={this.handleCancelBtn}
-                            />
-                        }
-                    </div>
+                    {this.props.auth && 
+                        <div className='logOut'>
+                            <button className='helloBtn'
+                                    onClick={() => this.handleHelloBtnClick()}> Welcome, {this.props.user} ^ </button>
+                                {this.state.logOut &&
+                                    <button className='logOutBtn'
+                                    onClick={() => this.handleLogOutBtnClk()}> Logout </button>
+                                }
+                        </div>
+                        
+                    }
                 </nav>
             </div>
         )
     }
 }
-export default withRouter(Header);
+export default withTheme(withRouter(Header));
 
 // import AppBar from '@material-ui/core/AppBar';
 // import Toolbar from '@material-ui/core/Toolbar';

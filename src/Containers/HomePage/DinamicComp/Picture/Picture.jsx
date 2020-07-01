@@ -10,16 +10,16 @@ class Picture extends Component {
             return (
                 <a
                     onClick={()=> this.props.functionModal(element.id)}
-                    key={i}
+                    key={i}                     
                 >
-                    <img src={element.pic} />
+                    <img src={element.pic}/>
                 </a>
             )
         });
         return (
-            <div className="Picture">
+            <div className="Picture" >
                 <RotateList
-                    height={580}
+                    height={600}
                     duration={900}
                     delay={5000} >
                     {pics}

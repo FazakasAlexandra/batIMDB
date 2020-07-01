@@ -8,8 +8,6 @@ class AddNewMovie extends React.Component{
         super(props)
         this.state = {
             preview : false,
-            auth : props.auth,
-            token: props.token,
             title : '',
             year : '',
             rating : '',
@@ -37,10 +35,10 @@ class AddNewMovie extends React.Component{
     //on success closes preview, sends success msg to be rendered on AddPage | error in console
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.token)
+        console.log(this.props.token)
         const {title, year, imdbID, type, imageUrl} = this.state;
         const headerToken = {
-        headers: {'X-Auth-Token': this.state.token}
+        headers: {'X-Auth-Token': this.props.token}
           };
         axios.post(
             'https://movies-app-siit.herokuapp.com/movies',

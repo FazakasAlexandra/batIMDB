@@ -18,6 +18,7 @@ class LoginForm extends React.Component{
         })
     }
     handleSubmit = (event) => {
+        event.preventDefault();
         const {userName, password} = this.state;
         axios.post(
             'https://movies-app-siit.herokuapp.com/auth/login',
@@ -26,14 +27,13 @@ class LoginForm extends React.Component{
         ).then(response =>{
             //console.log("success login response:", response)
             if(response.status === 200){
-                this.props.onSubmitLogin(response.data)
+                this.props.onSubmitLogin(response.data, userName)
             }
               
         }).catch(error=>{
             //console.log("login error msg:",error)
             this.setState({ loginError : true })
         })
-        event.preventDefault();
     }
     render(){
         const {userName, password} = this.state;

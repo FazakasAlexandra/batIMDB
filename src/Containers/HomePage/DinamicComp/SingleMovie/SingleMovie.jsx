@@ -11,10 +11,11 @@ class SingleMovie extends Component {
                 <a onClick={()=> this.props.functionModal(this.props.imdbID)} >
                     <img className="DinamicSingleMovieImg" src={this.props.poster} />
                 </a>                
-                <div className="DinamicInfo">
-                    <p>{this.props.runtime}</p>
-                    <p>{this.props.title}</p>
-                    <p>{this.props.year}</p>
+                <div 
+                    className="DinamicInfo">
+                    <p style={{color: this.props.theme.fontColor.primary }}>{this.props.runtime}</p>
+                    <p style={{color: this.props.theme.fontColor.secondary }}>{this.props.title}</p>
+                    <p style={{color: this.props.theme.fontColor.primary }}>{this.props.year}</p>
                     <ImdbRating
                         mImdbID={this.props.imdbID}
                         Rating={this.props.imdbRating}>
@@ -25,4 +26,4 @@ class SingleMovie extends Component {
     }
 }
 
-export default SingleMovie;
+export default withTheme(SingleMovie);
