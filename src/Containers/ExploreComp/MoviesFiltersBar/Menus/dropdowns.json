@@ -12,6 +12,14 @@
             {
                 "filterName": "Comedy",
                 "filterOn": false
+            },
+            {
+                "filterName": "Horror",
+                "filterOn": false
+            },
+            {
+                "filterName": "Fantasy",
+                "filterOn": false
             }
         ]
     },
@@ -20,25 +28,12 @@
         "dropdownName": "Ratings",
         "dropdownOn": false,
         "filters": [{
-                "filterName": "imdb",
-                "filterOn": false,
-                "minRating": "3",
-                "maxRating": "10",
-                "step": "0.1"
-            },
-            {
-                "filterName": "RottenTomatoes",
-                "filterOn": false,
-                "minRating": "0",
-                "maxRating": "100"
-            },
-            {
-                "filterName": "Metacritic",
-                "filterOn": false,
-                "minRating": "0",
-                "maxRating": "100"
-            }
-        ]
+            "filterName": "imdb",
+            "filterOn": false,
+            "minRating": "3",
+            "maxRating": "10",
+            "step": "0.1"
+        }]
     },
 
     {

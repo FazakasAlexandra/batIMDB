@@ -20,8 +20,7 @@ export class Menus extends React.Component {
             {/* large menu */}
                 <div className='dropdown-menus-container'>
                     <Dropdowns
-                        filterMovies={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                        filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
+                        filterMovies={(query) => this.props.filter(query)}
                     />
                 </div>
 
@@ -32,8 +31,7 @@ export class Menus extends React.Component {
                     </span>
                     <div className='small-dropdown-menus-container' style={{ display: menuOn ? 'flex' : 'none' }}>
                         <Dropdowns
-                            filter={(filterClass, filter) => this.props.filter(filterClass, filter)}
-                            filterMoviesByRange={(filter, value) => this.props.filterMoviesByRange(filter, value)}
+                            filterMovies={(query) => this.props.filter(query)}
                         />
                     </div>
                 </>

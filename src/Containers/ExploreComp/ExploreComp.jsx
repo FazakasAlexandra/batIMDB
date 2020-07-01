@@ -37,10 +37,9 @@ export class ExploreComp extends React.Component {
         })
     }
 
-    getMovies(filterClass, filter) {
+    getMovies(query) {
         // for seach bar : filterClass = title, filter = input.value of seach input field
-        console.log(filterClass, filter)
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${filterClass}=${filter}`)
+        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${query}`)
             .then((response) => {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies },() => {
@@ -58,7 +57,9 @@ export class ExploreComp extends React.Component {
         if(localStorage.getItem('search')){
             let search = localStorage.getItem('search')
             localStorage.removeItem('search')
-            this.getMovies('Title', search)
+            let query = ['Title=',search]
+            query.join("")
+            this.getMovies(query)
         }
     }
 
@@ -91,20 +92,11 @@ export class ExploreComp extends React.Component {
         return movies
     }
 
-    checkFilter(filter, value){
-        console.log(filter, value)
-        if(filter === 'Year'){
-            this.getMovies(filter, value)
-        } else if (filter === 'imdb') {
-            this.getMovies('imdbRating', value)
-        }
-    }
     render() {
         return (
             <div className="exploreComp-container">
                 <Menus
-                    filter={(filterClass, filter) => this.getMovies(filterClass, filter)}
-                    filterMoviesByRange={(filter, value)=>this.checkFilter(filter, value)}
+                    filter={(query) => this.getMovies(query)}
                 />
                 <div className="filtered-movies-container">
                     {this.state.moviesFound ? this.displayMovies() : this.displayNotFound()}
