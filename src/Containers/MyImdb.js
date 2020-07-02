@@ -69,10 +69,12 @@ class MyImdb extends Component {
                 auth:false,
                 token:'',
                 user:''
+        },()=>{
+            localStorage.removeItem('auth');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
         })
-        localStorage.removeItem('auth');
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        
     }
 
     themeFunction =(theme)=> {

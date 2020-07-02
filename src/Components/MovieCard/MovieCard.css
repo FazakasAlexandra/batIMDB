@@ -55,10 +55,11 @@
     height:2em;
 }
 .inCardInvite{
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin-top:0.3em;
     text-align: center;
-    color: rgb(29, 28, 34);
+    color: rgb(40, 39, 43);
+    font-weight: 600;
 }
 .editBtn{
     border:none;
