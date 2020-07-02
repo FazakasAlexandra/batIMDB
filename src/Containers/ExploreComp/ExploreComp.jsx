@@ -10,7 +10,6 @@ class ExploreComp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            moviesDetailsList: [],
             moviesList: [],
             moviesFound: true,
         }
@@ -19,7 +18,7 @@ class ExploreComp extends React.Component {
     addImage(response) {
         let movies = response.data.results.map((movie) => {
             if (movie.Poster === 'N/A') {
-                movie.Poster = 'https://static1.funidelia.com/474157-f6_big2/costum-batman-the-brave-and-the-bold.jpg'
+                movie.Poster = 'https://static.posters.cz/image/750/postere/justice-league-batman-solo-i50997.jpg'
             }
             return movie
         })

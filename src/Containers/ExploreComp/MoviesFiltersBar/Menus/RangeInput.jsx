@@ -8,11 +8,9 @@ export class RangeInput extends React.Component {
         this.state = {
             value: this.props.min
         }
-        this.myRef = React.createRef();
     }
 
     showValue(e) {
-        //console.log(this.props.filterClass, this.props.filter, e.target.value)
         console.log(this.props.filterClass, e.target.value)
         localStorage.setItem(`${this.props.filterClass}`, `${e.target.value}`)
         this.setState({ value: e.target.value })
@@ -65,7 +63,6 @@ export class RangeInput extends React.Component {
                         step={this.props.step}
                         value={Math.round(parseFloat(this.state.value) * 10) / 10}
                         onChange={(e) => this.rangeChange(e)}
-                        ref={this.myRef}
                     >
                     </input>
                     {this.props.filterClass === 'Ratings' ? <FontAwesomeIcon icon="plus"
