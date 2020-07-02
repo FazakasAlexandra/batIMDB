@@ -24,7 +24,7 @@ class MovieCard extends React.Component {
     
     
 
-    getMoviesDetails = () => {
+    getMovieDetails = () => {
         Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.id}`)
         .then((response) => {
             this.setState({movieDetail : response.data},() => {
@@ -40,6 +40,14 @@ class MovieCard extends React.Component {
             }
         );
      }
+
+    //  movieDetails = () => {
+    //     this.props.history.push(
+    //         {
+    //             pathname: `/MovieDetails/${this.props.id}`,
+    //         }
+    //     );
+    //  }
      
      movieDetails = () => {
         let {movieDetail} = this.state
@@ -96,7 +104,7 @@ class MovieCard extends React.Component {
                 {this.props.auth &&
                     <button className='editBtn'onClick={this.editMovie}>EDIT</button>
                 }
-                <button className ='movieDetailsButn' onClick={this.getMoviesDetails}>VIEW </button>
+                <button className ='movieDetailsButn' onClick={this.getMovieDetails}>VIEW </button>
             </div>
         )
     }

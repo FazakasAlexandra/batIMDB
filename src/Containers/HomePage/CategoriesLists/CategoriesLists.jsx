@@ -58,6 +58,7 @@ class CategoriesLists extends React.Component {
                 <h1 style={{ color: this.props.theme.fontColor.secondary }}>Movies</h1><br />
                 <div  >
                     <MovieList
+                        // types='movies'
                         movies={this.state.movieListMovies}
                         auth={auth}
                         token={token}
