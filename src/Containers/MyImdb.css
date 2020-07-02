@@ -5,10 +5,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color:#282e3c; */
-
+  background-color:#282e3c;
+  
   /* background-image: url(../Images/batman.jpg); */
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
 }
+

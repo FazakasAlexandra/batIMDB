@@ -10,6 +10,7 @@ class LoginForm extends React.Component{
             userName:'',
             password:'',
             loginError:false,
+            forgotPass:false
         }
     }
     handleChange =(event) =>{
@@ -34,6 +35,9 @@ class LoginForm extends React.Component{
             //console.log("login error msg:",error)
             this.setState({ loginError : true })
         })
+    }
+    handleForgotPass = () => {
+        this.setState({ forgotPass : true })
     }
     render(){
         const {userName, password} = this.state;
@@ -60,8 +64,18 @@ class LoginForm extends React.Component{
                     this.state.loginError && 
                         <div className='loginError'>
                             <p className='loginMsg'>Invalid username or password</p>
-                            <p classname='tryAgain'>Try again or REGISTER</p>
+                            <p classname='tryAgain'> Try again </p>
+                            <button className='forgotPass'
+                                    onClick={this.handleForgotPass}>Forgot password?</button>
                         </div>
+                }
+                {
+                    this.state.forgotPass &&
+                        <p className='forgotErr'>
+                            The only way back is through a new<br/>
+                            <button className='reReg'
+                                    onClick={this.props.reReg}>Register</button>
+                        </p>
                 }
             </form>
         )

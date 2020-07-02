@@ -34,3 +34,20 @@
     margin-top: 0.5em;
     color: #d6d4d0
 }
+p {
+    margin-top: 0.5em;
+}
+.forgotPass,
+.reReg {
+    align-items: flex-end;
+    padding-top: 0.5em;
+    background-color: #091e32;
+    border:none;
+    outline:none;
+    font-size: 1em;
+    text-decoration: underline;
+    color:#6b7ba7;
+}
+.reReg {
+    color:#fdff00;
+}

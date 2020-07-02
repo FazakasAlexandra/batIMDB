@@ -39,7 +39,7 @@
   margin-left:20px;
   
 }
-@media (max-width: 850px) {
+@media (max-width: 960px) {
   .DinamicCompMovies {
     flex-direction: column-reverse;
     width: 420px;

@@ -91,7 +91,6 @@ class Header extends React.Component {
     handleHelloBtnClick = () => {
         this.state.logOut ? this.setState({logOut : false}) : this.setState({logOut : true});
     }
-    
     handleLogOutBtnClk = () => {
         //console.log(this.props.token)
         const headerToken = { headers: {'X-Auth-Token': this.props.token} };
@@ -121,16 +120,16 @@ class Header extends React.Component {
     }
 
     render() {
-        const isAuth = 'add'+this.props.auth;
-        console.log(isAuth);
+         /* console.log('props history la header,', this.props) */
+        const addClass = this.props.auth ? 'enabledAdd' : 'disabledAdd';
         return (
             <div className='header'
-                 //style={{
-                     //backgroundColor: this.props.theme.colorBackground.nav,
-                     //boxShadow: this.props.theme.shadows.boxShadow1
-                    //}}
+                //  style={{
+                //      backgroundColor: this.props.theme.colorBackground.nav,
+                //      boxShadow: this.props.theme.shadows.boxShadow1
+                //     }}
                  >
-                <div className='top'></div>
+                {/* <div className='top'></div> */}
                 <nav className='navBar'
                     //style={{backgroundColor: this.props.theme.colorBackground.nav }}
                 >
@@ -143,7 +142,7 @@ class Header extends React.Component {
                     <button
                         className='exploreBtn'
                         onClick={this.exploreFunction}> Explore </button>
-                    <button className={isAuth}
+                    <button className={addClass}
                             onClick={this.addPageFunction}> Add Movie </button>
                     <div className='searchBar'>
                         <span className="search-input-container">
@@ -180,6 +179,7 @@ class Header extends React.Component {
                                     auth={this.props.auth}
                                     onSubmitLogin={this.handleSubmitLogin}
                                     onCancel={this.handleCancelBtn}
+                                    reReg={this.handleRegisterBtnClick}
                                 />
                                 }
                         </div>

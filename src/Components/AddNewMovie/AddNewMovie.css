@@ -1,13 +1,14 @@
 .addFormContainer{
     width:100%;
-    padding:1em;
+    /* padding:1em; */
     display:flex;
     flex-flow:row wrap;
     justify-content: flex-start;
 }
 .addForm{
-    width:45%;
+    /* width:45%; */
     /* border: 1px solid gray; */
+    margin-left: 3em;
     display:flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -20,58 +21,66 @@
     min-width:30%;
     display:flex;
     flex-flow:column wrap;
+    align-items: center;
 }
 
 .fieldWrapper{
+    width: 18em;
     display: flex;
-    /* align-items: center; */
-    margin-top:1em;
-    margin-left:2em;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:1em;
+    margin-left: 1em;
 }
 label{
     color:white;
+    cursor: pointer;
 }
 
 .addField{
-    width:80%;
-    margin-left: 1em;
+  
     padding:0.5em;
     outline:none;
     border: none;
     border-radius: 0.7em;
     background-color: #282e3c;
+    /* background-color: #505c7c; */
     color: white;
     align-self: flex-end;
+    font-size: 0.9em;
 }
-.addField::after{
+.addField:active{
     outline:none;
     border: none;
     border-radius: 0.7em;
     background-color: #282e3c;
-    color: white;
 }
 
+
 .addPoster label{
-    padding: 1em;
-}
-.addPosterField{
-    width: 100%;
-    margin-left:0;
+    
+    padding-top: 3em;
     margin-bottom: 1em;
 }
+.addPosterField{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3em;
+}
 .ceva{
-    width:15em;
-    height:5em;
-    background-color: rgb(110, 110, 119);
+    width:12em;
+    height:4em;
+    background-image: url('../Images/fakePoster.png');
+    background-position: center;
 }
 .btnsWrapper{
     margin-top:2em;
-    margin-left: 43%;
+    margin-left: 31%;
     align-self: flex-end;
 }
 .addBtn,
 .pvwBtn{
-    margin-left: 1em;
+    margin-right: 1em;
     background-color: #282e3c;
     color: #fdff00;
     padding:1em;
@@ -83,7 +92,9 @@ label{
 }
 
 .pvw{
-   /* border:1px solid yellow; */
+    width: 45%;
+    padding-left: 1em;
+    border-left: 0.01px solid yellow;
     display:flex;
     flex-direction: row;
     align-items: flex-start;
@@ -91,20 +102,21 @@ label{
  
 }
 .pvw img{
-    width: 10em;
-    background-image: url('https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg');
+    width: 12em;
+    /* background-image: url('https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg'); */
 }
 .pvwDetails{
-    width: 60%;
-    margin-left: 1em;
+    
+    margin-left: 1.3em;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 .pvwDetails p{
-    margin-top: 0.5em;
+    margin-bottom: 0.6em;
 }
 .pvwLine span{
     color:#fdff00;
+    padding-right: 0.1em;
 }
