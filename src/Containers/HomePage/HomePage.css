@@ -27,10 +27,10 @@
   }
 }
 @media (max-width: 1041px) {
-  .frame {   
+  /* .frame {   
     width: 90px;
     height: auto;    
-  }
+  } */
   .flash {
     margin-top: 25px;
   }
