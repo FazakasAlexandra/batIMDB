@@ -20,6 +20,10 @@
             {
                 "filterName": "Fantasy",
                 "filterOn": false
+            },
+            {
+                "filterName": "Crime",
+                "filterOn": false
             }
         ]
     },

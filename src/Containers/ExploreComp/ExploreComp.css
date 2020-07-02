@@ -1,7 +1,8 @@
 .exploreComp-container{
     display: flex;
     flex-direction: column;
-    margin-top: 80px
+    margin-top: 80px;
+    width: 100%
 }
 
 .filtered-movies-container{

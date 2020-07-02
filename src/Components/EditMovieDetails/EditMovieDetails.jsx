@@ -86,12 +86,12 @@ class EditMovieDetails extends React.Component {
         console.log(this.state.id)
         // this.props.history.goBack();
         e.preventDefault();
-        const tokenX = {
+        const options = {
             headers: { 'X-Auth-Token': this.props.token }
         };
         axios.delete(
             `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
-            tokenX
+            options
         ).then(() => {
             this.props.history.goBack();
         }).catch(error => {
@@ -112,47 +112,50 @@ class EditMovieDetails extends React.Component {
     //         </div>
     //     )
     // }
+    renderInput = (fieldName, labelName) => {
+        return (
+            <div className='fieldWrapper'>
+                <label style={{ color: 'black' }}>{labelName}</label>
+                <input
+                    type='text'
+                    name={fieldName}
+                    className='addField'
+                    value={this.state[fieldName]}
+                    onChange={this.handleChange(fieldName)}
+                />
+            </div>
+        );
+    }
+
     render() {
-        const { Poster } = this.state;
+        // const { Poster } = this.state;
 
         console.log(this.state);
 
-        const renderInput = (fieldName, labelName) => {
-            return (
-                <div className='fieldWrapper'>
-                    <label style={{ color: 'black' }}>{labelName}</label>
-                    <input
-                        type='text'
-                        name={fieldName}
-                        className='addField'
-                        value={this.state[fieldName]}
-                        onChange={this.handleChange(fieldName)}
-                    />
-                </div>
-            );
-        }
+
         return (
             <div className='addFormContainer'>
                 <form className='addForm'>
                     <div className='addPoster'>
-                        <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
+                        {this.renderInput('Poster','Edit Poster')}
+                        {/* <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
                         <input type='text'
                             name='imageUrl'
                             className='addField addPosterField'
                             value={Poster}
                             onChange={this.handleChange('poster')}
-                        />
+                        /> */}
                     </div>
                     <div className='addDetails'>
-                        {renderInput('Title', 'Edit Title')}
-                        {renderInput('Year', 'Edit Year')}
-                        {renderInput('Runtime', 'Edit Runtime')}
-                        {renderInput('imdbRating', 'Edit ImdbRating')}
-                        {renderInput('Plot', 'Edit plot')}
-                        {renderInput('Awards', 'Edit Awards')}
-                        {renderInput('Actors', 'Edit Actors')}
-                        {renderInput('Released', 'Edit released')}
-                        {renderInput('Genre', 'Edit genre')}
+                        {this.renderInput('Year', 'Edit Year')}
+                        {this.renderInput('Runtime', 'Edit Runtime')}
+                        {this.renderInput('Title', 'Edit Title')}
+                        {this.renderInput('imdbRating', 'Edit ImdbRating')}
+                        {this.renderInput('Plot', 'Edit plot')}
+                        {this.renderInput('Awards', 'Edit Awards')}
+                        {this.renderInput('Actors', 'Edit Actors')}
+                        {this.renderInput('Released', 'Edit released')}
+                        {this.renderInput('Genre', 'Edit genre')}
 
                         {/* <div className='fieldWrapper'>
                             <label htmlFor='year'>Year:</label>

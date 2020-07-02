@@ -113,30 +113,19 @@ class Header extends React.Component {
         }
     }
 
-    handlleToglleTheme =()=> {
-        if(this.state.theme == 'dark') {
-            this.setState({theme: 'light'})
-            this.props.themeFunction('light')
-          
-        } else {
-            this.setState({theme: 'dark'})
-            this.props.themeFunction('dark')            
-        }
-    }
-
     render() {
          /* console.log('props history la header,', this.props) */
         const addClass = this.props.auth ? 'enabledAdd' : 'disabledAdd';
         return (
             <div className='header'
-                 style={{
-                     backgroundColor: this.props.theme.colorBackground.nav,
-                    //  boxShadow: this.props.theme.shadows.boxShadow1
-                    }}
+                //  style={{
+                //      backgroundColor: this.props.theme.colorBackground.nav,
+                //      boxShadow: this.props.theme.shadows.boxShadow1
+                //     }}
                  >
                 {/* <div className='top'></div> */}
                 <nav className='navBar'
-                     style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                    //style={{backgroundColor: this.props.theme.colorBackground.nav }}
                 >
                     <img
                         className='logo'
@@ -158,7 +147,7 @@ class Header extends React.Component {
                     </div>
                     <a
                         style={{ cursor: "pointer" }}
-                        onClick={this.handlleToglleTheme}  //in lucru - am comentat-o sa nu va incurce ****** Marius
+                        onClick={()=>this.props.themeFunction()}  //in lucru - am comentat-o sa nu va incurce ****** Marius
                     >
                         <img
                             className='mood'

@@ -35,9 +35,9 @@ class HomePage extends Component {
                         marginBottom: "15px"
                     }}
                 >
-                    <img className="frame" src={require('../../Images/frameBlack1.png')} />
+                    <img className="frame" src={this.props.theme.frame} />
                     <DinamicComp />
-                    <img className="frame" src={require('../../Images/frameBlack1.png')} />
+                    <img className="frame" src={this.props.theme.frame} />
 
                 </div>
                 <CategoriesLists

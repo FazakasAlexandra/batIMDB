@@ -57,12 +57,12 @@ class MovieList extends Component {
         ]
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.movies !== this.props.movies) {
-            this.setState()
-            //console.log('componentDidUpdate', this.props.movies)
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.movies !== this.props.movies) {
+    //         this.setState()
+    //         //console.log('componentDidUpdate', this.props.movies)
+    //     }
+    // }
 
     render() {
         const {auth, token} = this.props;

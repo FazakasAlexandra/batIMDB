@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {RangeInput} from './RangeInput'
 
 export function Filter (props) {
-  let { filterClass, filterClassOn, name, filterOn, filterNumber, turnFilterOn, filterMovies } = props
+  let { filterClass, filterClassOn, name, filterOn, filterNumber } = props
 
   function getFilterArrow(){
     if(filterClass === 'Year' || filterClass === 'Ratings'){
         let filterArrow = <FontAwesomeIcon icon={filterOn && filterClassOn ? 
                                                   "angle-down" : 
                                                   "angle-right"} 
-                                           onClick={() => turnFilterOn(filterNumber)}
+                                           onClick={() => props.turnFilterOn(filterNumber)}
                           />
         return filterArrow
     }
@@ -27,7 +27,6 @@ export function Filter (props) {
                         filterClass={filterClass}
                         filter={name}
                         addValueToJson = {(value)=>{props.addValueToJson(value)}}
-                        filterMoviesByRange={(dropdownName, value)=>props.filterMoviesByRange(dropdownName, value)}
                         step={props.step}
                         value={props.value}
                      /> 
@@ -37,13 +36,13 @@ export function Filter (props) {
   }
 
     return (
-        <div onClick={filterClass === 'Year' || filterClass === 'Ratings' ? null : filterMovies}
+        <div onClick={filterClass === 'Year' || filterClass === 'Ratings' ? null : props.filterMovies}
              id={`filter-${name}`}>
 
                               <span id={filterOn && filterClassOn? 
                                         `filter-${name}-text-hightlight` :
                                         `filter-${name}-text`}
-                               onClick = {()=>turnFilterOn(filterNumber)}>
+                               onClick = {()=>props.turnFilterOn(filterNumber)}>
                                {name}
                                </span>
 
