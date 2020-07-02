@@ -43,6 +43,9 @@
   color:#fdff00;
   font-size: large;
 }
+.disabledAdd {
+  color: #505c7c;
+}
 .loginBtn {
   margin-left:5em;
 }
@@ -55,9 +58,6 @@
   background-color:#091e32;
   color: #505c7c;
   align-self: flex-end;
-}
-.disabledAdd {
-  color: #505c7c;
 }
 .logOut{
   display: flex;

@@ -10,7 +10,7 @@ class RegisterForm extends React.Component{
             userName:'',
             password:'',
             passwordCheck:'',
-            registerError: false,
+            registerError: '',
         }
     }
     handleChange=(event)=>{
@@ -34,17 +34,19 @@ class RegisterForm extends React.Component{
                 }
                 
             }).catch(error=>{
-                console.log("register error msg:", error)
-                this.setState({ registerError : true })
+                //console.log("register error msg:", error)
+                this.setState({ registerError : 'Server Error. Try again!' })
             })
-            
-        }else{
-            this.setState({ registerError : true })
+        }else if (userName.length < 3 && password.length < 3) {
+            this.setState({ registerError : 'Username and password must be at least 4 characters each' })    
+        
+        }else if (password !== passwordCheck) {
+            this.setState({registerError : 'Passwords don\'t match. Try again!'})
         }
 
         event.preventDefault();
-    }
     
+    }
     render(){
         const {userName, password, passwordCheck} = this.state;
         
@@ -74,9 +76,9 @@ class RegisterForm extends React.Component{
                 <button type='submit'className='submitBtn'onClick={this.handleSubmit}>SUBMIT</button>
                 <button className='cancelBtn' onClick={this.props.onCancel}>CANCEL</button>
                 {
-                    this.state.registerError && 
+                    this.state.registerError !== '' && 
                         <div className='registerError'>
-                            <p className='loginMsg'>username and password must be at least 4 characters each</p>
+                            <p className='loginMsg'>{this.state.registerError}</p>
                         </div>
                 }
             </form>

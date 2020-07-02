@@ -93,8 +93,8 @@ label{
 
 .pvw{
     width: 45%;
-    padding: 1em;
-    border: 0.01px solid yellow;
+    padding-left: 1em;
+    border-left: 0.01px solid yellow;
     display:flex;
     flex-direction: row;
     align-items: flex-start;
@@ -107,15 +107,16 @@ label{
 }
 .pvwDetails{
     
-    margin-left: 1em;
+    margin-left: 1.3em;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 .pvwDetails p{
-    margin-bottom: 0.5em;
+    margin-bottom: 0.6em;
 }
 .pvwLine span{
     color:#fdff00;
+    padding-right: 0.1em;
 }

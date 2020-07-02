@@ -173,6 +173,7 @@ class Header extends React.Component {
                                     auth={this.props.auth}
                                     onSubmitLogin={this.handleSubmitLogin}
                                     onCancel={this.handleCancelBtn}
+                                    reReg={this.handleRegisterBtnClick}
                                 />
                                 }
                         </div>
