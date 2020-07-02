@@ -75,7 +75,7 @@ export class Dropdowns extends React.Component {
     checkActiveFilters() {
         let {dropdowns} = this.state
         let queryElements = []
-
+        console.log('here')
         dropdowns.forEach((dropdown, i)=> {
             let {dropdownName, dropdownOn, filters} = dropdown
             let filterWithInput = dropdownName === 'Year' || dropdownName ==='Ratings'
@@ -118,7 +118,9 @@ export class Dropdowns extends React.Component {
                 dropdown.filters[filterNr] = filter
             }
             return dropdown
-        }))
+        }), ()=>{
+            this.checkActiveFilters()
+        })
     }
 
     getDropdowns() {
@@ -143,7 +145,7 @@ export class Dropdowns extends React.Component {
 
                         addValueToJson={(value)=>{this.addValueToJson(value, i, idx)}}
                         filterMovies={()=>{this.checkActiveFilters()}}
-                        filterMoviesByRange={(filterName)=>{this.checkActiveFilters(filterName)}}
+                        //filterMoviesByRange={(filterName)=>{this.checkActiveFilters(filterName)}}
                         
                         minFilterYear = {minYear}
                         maxFilterYear = {maxYear}

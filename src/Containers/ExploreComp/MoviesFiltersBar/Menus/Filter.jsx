@@ -27,7 +27,7 @@ export function Filter (props) {
                         filterClass={filterClass}
                         filter={name}
                         addValueToJson = {(value)=>{props.addValueToJson(value)}}
-                        filterMoviesByRange={(dropdownName, value)=>props.filterMoviesByRange(dropdownName, value)}
+                        //filterMoviesByRange={(dropdownName, value)=>props.filterMoviesByRange(dropdownName, value)}
                         step={props.step}
                         value={props.value}
                      /> 
