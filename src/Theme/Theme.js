@@ -13,7 +13,8 @@ export const themeLight = {
     backgroundMenu: {
         backgroundColor: "#282e3c",
     },
-    frame: require('../Images/frameBlack1.png')
+    frameShort: require('../Images/frameBlack1.png'),
+    frameLong: require('../Images/frameBlackLong.png')
 };
 
 export const themeDark = {
@@ -31,7 +32,8 @@ export const themeDark = {
     backgroundMenu: {
         backgroundColor: "#282e3c",
     },
-    frame: require('../Images/frameYellow.png')
+    frameShort: require('../Images/frameYellow.png'),
+    frameLong: require('../Images/frameYellowLong.png')
 };
 
 
