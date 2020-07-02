@@ -75,13 +75,13 @@ class MyImdb extends Component {
         localStorage.removeItem('user');
     }
 
-    themeFunction =(theme)=> {
-        if (theme !== 'dark') {           
-            this.setState({ setTheme: themeDark })             
+     handlleToglleTheme =()=> {         
+        if(this.state.setTheme == themeDark) {
+            this.setState({ setTheme: themeLight })
         } else {
-            this.setState({ setTheme: themeLight })            
+            this.setState({ setTheme: themeDark })         
         }
-     }
+    }
 
     render() {  
         //console.log("Auth/token/user pe state dupa refresh:", this.state.auth, "token:", this.state.token)    
@@ -95,7 +95,7 @@ class MyImdb extends Component {
                         onSubmitRegister={this.handleSubmitRegister}
                         onSubmitLogin={this.handleSubmitLogin}
                         onLogout={this.handleLogOut}
-                        themeFunction={e=> this.themeFunction(e)}
+                        themeFunction={this.handlleToglleTheme}
                     />
                     <Switch>
                         <Route path="/explore" exact render={props => <ExploreComp {...props} auth={this.state.auth} token={this.state.token} />} />
