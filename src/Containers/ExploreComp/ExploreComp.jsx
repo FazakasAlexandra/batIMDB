@@ -4,15 +4,33 @@ import MovieCard from '../../Components/MovieCard/MovieCard'
 import { withTheme } from 'styled-components';
 import './ExploreComp.css'
 import Axios from 'axios'
-import { getByTitle } from '@testing-library/react';
 
 class ExploreComp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             moviesList: [],
-            moviesFound: true,
+            moviesFound: true
         }
+    }
+
+    componentDidMount() {
+        this.getDefaultMovies()
+    }
+
+    componentDidUpdate(){
+        if(this.props.emptySearch) {
+            this.getDefaultMovies()
+        }
+    }
+    
+    getDefaultMovies(){
+        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=15`)
+        .then((response) => {
+            //console.log(response.data.results)
+            let movies = this.addImage(response)
+            this.setState({ moviesList: movies })
+        })
     }
 
     addImage(response) {
@@ -25,21 +43,7 @@ class ExploreComp extends React.Component {
         return movies
     }
 
-    componentDidMount() {
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=15`)
-            .then((response) => {
-                //console.log(response.data.results)
-                let movies = this.addImage(response)
-                this.setState({ moviesList: movies })
-                let moviesIds = movies.map((movie) => {
-                    return movie._id
-                })
-            })
-    }
-
-    getMovies(query) {
-        let finalQuery = this.isSearchByTitle(query) 
-        // for seach bar : filterClass = title, filter = input.value of seach input field
+    getSearchedMovies(query) {
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${query}`)
             .then((response) => {
                 let movies = this.addImage(response)
@@ -54,32 +58,22 @@ class ExploreComp extends React.Component {
             )
     }
 
-    isSearchByTitle(otherQueries) {
-        if (sessionStorage.getItem('search') && otherQueries) {
-            let titleQuery = this.getMovieTitle()
-            let finalQuery = titleQuery.concat(otherQueries)
-            console.log(finalQuery)
-            return finalQuery
-        } else if(localStorage.getItem('search')){
-                let titleQuery = this.getMovieTitle()
-                this.getMovies(titleQuery)
-        } else {
-            return otherQueries
-        }
+    isSearchByTitle() {
+         if(localStorage.getItem('search'))
+                this.getMoviesByTitle()
     }
 
-    getMovieTitle(){
-        let search = localStorage.getItem('search')
-        sessionStorage.setItem('search', search)
+    getMoviesByTitle(){
+        let title = localStorage.getItem('search')
+        let queryElements = ['Title=', title]
+        let titleQuery = queryElements.join("")
+        console.log(titleQuery)
+        sessionStorage.setItem('titleQuery', titleQuery)
         localStorage.removeItem('search')
-        let queryElements = ['Title=', search]
-        let query = queryElements.join("")
-        console.log(query)
-
-        return query
+        this.getSearchedMovies(titleQuery, true)
     }
 
-    displayNotFound() {
+    renderNotFound() {
         return (
             <>
                 <div>
@@ -89,18 +83,13 @@ class ExploreComp extends React.Component {
         )
     }
 
-    displayMovies() {
+    renderMovies() {
         const { auth, token } = this.props;
-        let { moviesList } = this.state
-        //console.log(movieDetailsList)
-        let movies = moviesList.map(movie => {
+        let movies =  this.state.moviesList.map(movie => {
             // console.log('key din displayMovies',movie._id)
             return (<MovieCard
                 key={movie._id}
                 id={movie._id}
-
-                // auth={this.state.auth}
-
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
@@ -118,10 +107,11 @@ class ExploreComp extends React.Component {
                 style={{ backgroundColor: this.props.theme.colorBackground.primary }}
             >
                 <Menus
-                    filter={(query) => this.getMovies(query)}
+                    filter={(query) => this.getSearchedMovies(query)}
+                    getDefaultMovies={() => this.getDefaultMovies()}
                 />
                 <div className="filtered-movies-container">
-                    {this.state.moviesFound ? this.displayMovies() : this.displayNotFound()}
+                    {this.state.moviesFound ? this.renderMovies() : this.renderNotFound()}
                     {this.isSearchByTitle()}
                 </div>
             </div>

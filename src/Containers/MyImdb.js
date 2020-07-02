@@ -20,6 +20,7 @@ class MyImdb extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            emptySearch: false,
             auth: false,
             user: '',
             token: '',
@@ -37,6 +38,10 @@ class MyImdb extends Component {
                 token: userToken,
                 user: user
             })
+
+            if(sessionStorage.getItem('titleQuery')) {
+                sessionStorage.removeItem('titleQuery')
+            }
     }
     //logic for success register/login => auth:true, token pe state (un-comment console.log for token)
     handleSubmitRegister = (data,user) => {
@@ -83,12 +88,19 @@ class MyImdb extends Component {
         }
     }
 
+    handleEmptySearch = () => {
+        this.setState({emptySearch: true}, ()=> {
+            this.setState({emptySearch: false})
+        })
+    }
+
     render() {  
         //console.log("Auth/token/user pe state dupa refresh:", this.state.auth, "token:", this.state.token)    
         return (
             <ThemeProvider theme={this.state.setTheme} >                
                 <div className="MyImdb">
                     <Header
+                        handleEmptySearch={this.handleEmptySearch}
                         auth={this.state.auth}
                         user={this.state.user}
                         token={this.state.token}
@@ -98,8 +110,8 @@ class MyImdb extends Component {
                         themeFunction={this.handlleToglleTheme}
                     />
                     <Switch>
-                        <Route path="/explore" exact render={props => <ExploreComp {...props} auth={this.state.auth} token={this.state.token} />} />
-                        <Route path="/explore/" component={ExploreComp} />
+                        <Route path="/explore" exact render={props => <ExploreComp {...props} auth={this.state.auth} token={this.state.token} emptySearch={this.state.emptySearch}/>} />
+                        <Route path="/explore/" component={ExploreComp} emptySearch={this.state.emptySearch}/>
                         {/* <Route path="/hompage" exact component={HomePage} /> */}
                         <Route path='/hompage' exact render={props => <HomePage {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/" exact component={HomePage} />

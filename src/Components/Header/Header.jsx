@@ -24,10 +24,15 @@ class Header extends React.Component {
     }
     /* componentDidUpdate () */
 
-    exploreFunction = () => {
+    exploreFunction = (searchIsEmpty) => {
+        if(searchIsEmpty){
+            this.props.handleEmptySearch()
+            this.props.history.push('/explore');
+        } else {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
         console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
+        }
     }
 
     hompageFunction = () => {
@@ -106,7 +111,8 @@ class Header extends React.Component {
 
     storeSeach = (event) => {
         if (event.target.value === '') {
-            this.exploreFunction()
+            this.exploreFunction(true)
+            sessionStorage.removeItem('titleQuery')
         } else {
             localStorage.setItem('search', event.target.value)
             this.exploreFunction()
