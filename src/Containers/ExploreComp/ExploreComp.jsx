@@ -24,10 +24,14 @@ class ExploreComp extends React.Component {
         }
     }
     
-    getDefaultMovies(){
+    getDefaultMovies(areFiltersOff){
+        console.log(areFiltersOff)
+        // renderNotFound() should not get executed
+        if(areFiltersOff){
+            this.setState({moviesFound : true})
+        }
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=15`)
         .then((response) => {
-            //console.log(response.data.results)
             let movies = this.addImage(response)
             this.setState({ moviesList: movies })
         })
@@ -43,7 +47,7 @@ class ExploreComp extends React.Component {
         return movies
     }
 
-    getSearchedMovies(query) {
+    filterMovies(query) {
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${query}`)
             .then((response) => {
                 let movies = this.addImage(response)
@@ -70,7 +74,7 @@ class ExploreComp extends React.Component {
         console.log(titleQuery)
         sessionStorage.setItem('titleQuery', titleQuery)
         localStorage.removeItem('search')
-        this.getSearchedMovies(titleQuery, true)
+        this.filterMovies(titleQuery, true)
     }
 
     renderNotFound() {
@@ -107,8 +111,8 @@ class ExploreComp extends React.Component {
                 style={{ backgroundColor: this.props.theme.colorBackground.primary }}
             >
                 <Menus
-                    filter={(query) => this.getSearchedMovies(query)}
-                    getDefaultMovies={() => this.getDefaultMovies()}
+                    filterMovies={(query) => this.filterMovies(query)}
+                    getDefaultMovies={(areFiltersOff) => this.getDefaultMovies(areFiltersOff)}
                 />
                 <div className="filtered-movies-container">
                     {this.state.moviesFound ? this.renderMovies() : this.renderNotFound()}

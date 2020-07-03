@@ -21,8 +21,8 @@ class Menus extends React.Component {
                 {/* large menu */}
                 <div className='dropdown-menus-container' style={this.props.theme.backgroundMenu}>
                     <Dropdowns
-                        filterMovies={(query) => this.props.filter(query)}
-                        getDefaultMovies={()=>this.props.getDefaultMovies()}
+                        filterMovies={(query) => this.props.filterMovies(query)}
+                        getDefaultMovies={(areFiltersOff)=>this.props.getDefaultMovies(areFiltersOff)}
                     />
                 </div>
 
@@ -33,8 +33,8 @@ class Menus extends React.Component {
                     </span>
                     <div className='small-dropdown-menus-container' style={{ display: menuOn ? 'flex' : 'none' }} >
                         <Dropdowns
-                            filterMovies={(query) => this.props.filter(query)}
-                            getDefaultMovies={()=>this.props.getDefaultMovies()}
+                            filterMovies={(query) => this.props.filterMovies(query)}
+                            getDefaultMovies={(areFiltersOff)=>this.props.getDefaultMovies(areFiltersOff)}
                         />
                     </div>
                 </>
