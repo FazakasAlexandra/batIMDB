@@ -55,7 +55,7 @@ class CategoriesLists extends React.Component {
 
         return (
             <div style={{ width: "98%" }}>
-                <h1 style={{ color: this.props.theme.fontColor.secondary }}>Movies</h1><br />
+                <h1 style={{ color: this.props.theme.fontColor.secondary }}>MOVIES</h1><br />
                 <div  >
                     <MovieList
                         // types='movies'
@@ -64,14 +64,14 @@ class CategoriesLists extends React.Component {
                         token={token}
                     />
                 </div>
-                <h1 style={{ color: this.props.theme.fontColor.secondary }}>Series</h1><br />
+                <h1 style={{ color: this.props.theme.fontColor.secondary }}>SERIES</h1><br />
                 <div >
                     <MovieList movies={this.state.seriesListMovies}
                         auth={auth}
                         token={token}
                     />
                 </div>
-                <h1 style={{ color: this.props.theme.fontColor.secondary }}>Game</h1><br />
+                <h1 style={{ color: this.props.theme.fontColor.secondary }}>GAMES</h1><br />
                 <div >
                     <MovieList movies={this.state.gameListMovies}
                         auth={auth}

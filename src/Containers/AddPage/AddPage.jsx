@@ -28,12 +28,14 @@ class AddPage extends React.Component{
         this.props.history.goBack();
     }
     render(){
+        const containerClass = this.props.theme ==='dark' ? 'addContainer dark' : 'addContainer light';
         return(
-            <div className='addContainer'>
+            <div className={containerClass}>
                 {this.state.addForm && 
                     <AddNewMovie 
                         auth = {this.props.auth}
                         token = {this.props.token}
+                        theme={this.props.theme}
                         onSubmitAdd = {this.handleSubmitAdd}
                         onCancel={this.onCancel}
                     />

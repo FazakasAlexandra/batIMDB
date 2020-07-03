@@ -24,7 +24,8 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
-            setTheme: themeDark
+            setTheme: themeDark,
+            theme:'dark'
         }
     }
     //logic to take auth, token, user from localStorage and put it back on state on refresh
@@ -32,11 +33,13 @@ class MyImdb extends Component {
         const isAuth = localStorage.getItem('auth');
         const userToken = localStorage.getItem('token');
         const user = localStorage.getItem('user');
+        const theme = localStorage.getItem('theme');
         //console.log("Auth pe storage:", isAuth, "token:", userToken, 'user:', user)
         this.setState({
                 auth: isAuth,
                 token: userToken,
-                user: user
+                user: user,
+                theme : theme
             })
 
             if(sessionStorage.getItem('titleQuery')) {
@@ -84,9 +87,20 @@ class MyImdb extends Component {
 
      handlleToglleTheme =()=> {         
         if(this.state.setTheme == themeDark) {
-            this.setState({ setTheme: themeLight })
+            this.setState({ 
+                    setTheme: themeLight, 
+                    theme: 'light' 
+            },() => {
+                localStorage.setItem('theme', this.state.theme);
+            });
         } else {
-            this.setState({ setTheme: themeDark })         
+            this.setState({ 
+                    setTheme: themeDark,
+                    theme: 'dark' 
+            },() => {
+                localStorage.setItem('theme', this.state.theme);
+            });
+                    
         }
     }
 
@@ -117,7 +131,7 @@ class MyImdb extends Component {
                         {/* <Route path="/hompage" exact component={HomePage} /> */}
                         <Route path='/hompage' exact render={props => <HomePage {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/" exact component={HomePage} />
-                        <Route path='/addPage' exact render={props => <AddPage {...props} auth={this.state.auth} token={this.state.token} />} />
+                        <Route path='/addPage' exact render={props => <AddPage {...props} auth={this.state.auth} token={this.state.token} theme={this.state.theme}/>} />
                         <Route path="/editPage/:movieId"  render={props => <EditPage {...props} auth={this.state.auth} token={this.state.token} />} />
                         <Route path="/movieDetails" exact component={MovieDetails} />
                     </Switch>

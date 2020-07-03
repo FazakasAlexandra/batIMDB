@@ -4,10 +4,13 @@
     width: 100%;
     min-height: 20em;
     background-color: #282e3c;
-   
     padding-bottom: 10em;
     display:flex;
     flex-flow: row;
+}
+.light{
+    /* background-color: rgb(247, 250, 234); */
+    background-color: rgb(239, 246, 250);
 }
 .successMsg{
     width: 100%;
@@ -26,6 +29,7 @@
 h2{
     margin-top: 2em;
     color: #fdff00;
+    font-weight: 400;
 }
 .addMoreBtn{
     margin-top:7em;
@@ -38,4 +42,5 @@ h2{
     outline:none;
     border-radius: 0.7em;
     font-size: 1em;
+    font-family: 'Ubuntu', sans-serif;
 }
