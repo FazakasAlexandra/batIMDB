@@ -112,7 +112,7 @@ export class Dropdowns extends React.Component {
     }
 
     sendQuery(queryElements) {
-        if (queryElements.length === 0) {
+        if (queryElements.length === 0 && !sessionStorage.getItem('titleQuery')) {
             this.props.getDefaultMovies(true)
         } else {
             console.log(queryElements)
