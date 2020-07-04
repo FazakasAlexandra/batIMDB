@@ -94,7 +94,11 @@ class EditMovieDetails extends React.Component {
                 optionsToken
             );
             console.log('response data de la deleteEditButton', response.data);
-            this.props.history.goBack();
+            this.props.history.push(`/editPage/${this.props.id}`)
+                ?
+                this.props.history.goBack()
+                :
+                this.props.history.push('/hompage')
             return response.data;
         }
         catch (error) {
