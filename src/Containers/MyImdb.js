@@ -140,7 +140,12 @@ class MyImdb extends Component {
                                 <Redirect to="/hompage" />
                             }
                         />
-                        <Route path="/editPage/:movieId" render={props => <EditPage {...props} auth={this.state.auth} token={this.state.token} />} />
+                        <Route path="/editPage/:movieId"
+                            render={props => this.state.auth ?
+                                <EditPage {...props}
+                                    auth={this.state.auth}
+                                    token={this.state.token} /> :
+                                <Redirect to="/hompage" />} />
                         <Route path="/movieDetails" exact component={MovieDetails} />
                     </Switch>
                 </div>
