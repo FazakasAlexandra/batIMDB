@@ -114,3 +114,17 @@
 .light label {
     font-weight: 600;
 }
+.error{
+    color:red;
+    padding:1em;
+    margin-bottom: 3em;
+}
+h3{
+    padding:0.3em 1em;
+}
+.light h3{
+    color:red;
+}
+.dark h3{
+    color:#fdff00;
+}

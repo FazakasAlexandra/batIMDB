@@ -27,9 +27,11 @@
     justify-content: flex-end;
 }
 h2{
-    margin-top: 2em;
+    margin-top: 2.2em;
     color: #fdff00;
     font-weight: 400;
+    text-align: center;
+    padding: 0 2em;
 }
 .addMoreBtn{
     margin-top:7em;

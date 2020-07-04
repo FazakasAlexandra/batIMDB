@@ -43,7 +43,7 @@ class AddPage extends React.Component{
                 
                 {this.state.successMsg && 
                     <div className='successMsg'>
-                        <h2>Movie added to the database</h2>
+                        <h2>Movie added to the review queue. If everything is Batman True, it will be added to the database. </h2>
                         <button className='addMoreBtn'
                                 onClick={this.handleMoreAdd}>ADD MORE</button>
                     </div>
