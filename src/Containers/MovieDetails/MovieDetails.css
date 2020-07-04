@@ -67,3 +67,24 @@ i{
     background-color: orangered;
     
 }
+/* pentru butonul de Edit Movie */
+.enabledEdit,
+.disabledEdit{
+    background-color:inherit;
+    border:none;
+    outline:none;
+    color:#fdff00;
+    font-family:'Ubuntu', sans-serif;
+    font-size: large;
+    cursor: pointer;
+    margin: auto 0;
+    padding: 0.5em 1em;
+}
+.disabledEdit {
+    color: #505c7c;
+}
+  
+.enabledEdit:hover,
+.enabledEdit:active {
+    background-color:rgb(106, 144, 165);
+}

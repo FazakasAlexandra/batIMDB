@@ -144,7 +144,8 @@ class MyImdb extends Component {
                             render={props => this.state.auth ?
                                 <EditPage {...props}
                                     auth={this.state.auth}
-                                    token={this.state.token} /> :
+                                    token={this.state.token}
+                                    theme={this.state.theme} /> :
                                 <Redirect to="/hompage" />} />
                         <Route path="/movieDetails/:movieId" exact render={props => <MovieDetails {...props} auth={this.state.auth} token={this.state.token} />} />
 

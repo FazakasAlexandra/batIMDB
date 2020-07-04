@@ -76,15 +76,13 @@ class EditMovieDetails extends React.Component {
         e.preventDefault();
         this.updateMovie();
         console.log('this.state ', this.state);
-        // this.props.history.goBack();
     }
     handleBack = (e) => {
         e.preventDefault()
         this.props.history.goBack();
     }
     deleteEditButton = (e) => {
-        console.log(this.state.id)
-        // this.props.history.goBack();
+        console.log(this.state.id);
         e.preventDefault();
         const options = {
             headers: { 'X-Auth-Token': this.props.token }
@@ -114,12 +112,12 @@ class EditMovieDetails extends React.Component {
     // }
     renderInput = (fieldName, labelName) => {
         return (
-            <div className='fieldWrapper'>
-                <label style={{ color: 'black' }}>{labelName}</label>
+            <div className='editField'>
+                <label className='editLabel' >{labelName}</label>
                 <input
                     type='text'
                     name={fieldName}
-                    className='addField'
+                    className='editInput'
                     defaultValue={this.state[fieldName]}
                     onChange={this.handleChange(fieldName)}
                 />
@@ -134,60 +132,56 @@ class EditMovieDetails extends React.Component {
 
 
         return (
-            <div className='addFormContainer'>
-                <form className='addForm'>
-
-                    <div className='addDetails'>
-                        {this.renderInput('Title', 'Edit Title')}
-                        {this.renderInput('Genre', 'Edit genre')}
-                        {this.renderInput('Poster', 'Edit Poster')}
-                        {this.renderInput('Year', 'Edit Year')}
-                        {this.renderInput('Runtime', 'Edit Runtime')}
-                        {this.renderInput('imdbRating', 'Edit ImdbRating')}
-                        {this.renderInput('Language', 'Edit Language')}
-                        {this.renderInput('Country', 'Edit Country')}
-                        {this.renderInput('Awards', 'Edit Awards')}
-                        {this.renderInput('Actors', 'Edit Actors')}
-                        {this.renderInput('Director', 'Edit Director')}
-                        {this.renderInput('Released', 'Edit released')}
-                        {/* {this.renderInput('Plot', 'Edit plot')} */}
-                        <div className='fieldWrapper'>
-                            <label htmlFor='plot'>Edit Plot:</label>
-                            <textarea
-                                className='addField'
-                                type='textarea'
-                                name='Plot'
-                                className='addField'
-                                defaultValue={this.state.Plot}
-                                onChange={this.handleChange('Plot')}
-                                rows="4"
-                                cols="50"
-                            >{this.state.Plot}
-                            </textarea>
-                        </div>
-
+            <form className='editForm'>
+                <div className='editDetailsInputsDiv'>
+                    {this.renderInput('Title', 'Edit Title')}
+                    {this.renderInput('Genre', 'Edit genre')}
+                    {this.renderInput('Poster', 'Edit Poster')}
+                    {this.renderInput('Year', 'Edit Year')}
+                    {this.renderInput('Runtime', 'Edit Runtime')}
+                    {this.renderInput('imdbRating', 'Edit ImdbRating')}
+                    {this.renderInput('Language', 'Edit Language')}
+                    {this.renderInput('Country', 'Edit Country')}
+                    {this.renderInput('Awards', 'Edit Awards')}
+                    {this.renderInput('Actors', 'Edit Actors')}
+                    {this.renderInput('Director', 'Edit Director')}
+                    {this.renderInput('Released', 'Edit released')}
+                    {/* {this.renderInput('Plot', 'Edit plot')} */}
+                    <div className='editField'>
+                        <label className='editLabel' htmlFor='plot'>Edit Plot:</label>
+                        <textarea
+                            className='editInput'
+                            type='text'
+                            name='Plot'
+                            defaultValue={this.state.Plot}
+                            onChange={this.handleChange('Plot')}
+                            rows="4"
+                            cols="50"
+                        >{this.state.Plot}
+                        </textarea>
                     </div>
 
-                    <div className='btnsWrapper'>
-                        <button className='pvwBtn'
-                            onClick={this.handleBack}
-                        >Back
+                </div>
+
+                <div className='btnsDiv'>
+                    <button className='btn'
+                        onClick={this.handleBack}
+                    >Back
                         </button>
-                        <button
-                            type='submit'
-                            className='addBtn'
-                            onClick={this.saveEditButton}
-                        >Save
+                    <button
+                        type='submit'
+                        className='btn'
+                        onClick={this.saveEditButton}
+                    >Save
                         </button>
-                        <button
-                            type='submit'
-                            className='addBtn'
-                            onClick={this.deleteEditButton}
-                        >Delete Movie
+                    <button
+                        type='submit'
+                        className='btn'
+                        onClick={this.deleteEditButton}
+                    >Delete Movie
                         </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         )
     }
 }

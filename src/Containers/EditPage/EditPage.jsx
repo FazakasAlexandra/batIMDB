@@ -34,6 +34,7 @@ class EditPage extends React.Component {
     render() {
         const { movieDetail, error } = this.state;
         const { auth, token, } = this.props;
+        const containerClass = this.props.theme ==='dark' ? 'addContainer dark' : 'addContainer light';
         // if (error) {
         //     return (
         //         <div>
@@ -43,7 +44,8 @@ class EditPage extends React.Component {
         // }
 
         return (
-            <div style={{ marginTop: 180 }}>
+            
+            <div className={containerClass}>
                 {
                     movieDetail ?
                         (
@@ -51,6 +53,7 @@ class EditPage extends React.Component {
                                 movieDetail={movieDetail}
                                 auth={auth}
                                 token={token}
+                                theme={this.props.theme}
                             />
                         )
                         :
