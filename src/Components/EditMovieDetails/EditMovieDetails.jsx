@@ -51,14 +51,14 @@ class EditMovieDetails extends React.Component {
             `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
             {
                 Title: this.state.Title,
-                runtime: this.state.runtime,
+                Runtime: this.state.Runtime,
                 imdbRating: this.state.imdbRating,
                 Year: this.state.Year,
-                plot: this.state.plot,
-                awards: this.state.awards,
-                director: this.state.director,
-                actors: this.state.actors,
-                released: this.state.released,
+                Plot: this.state.Plot,
+                Awards: this.state.Awards,
+                Director: this.state.Director,
+                Actors: this.state.Actors,
+                Released: this.state.Released,
                 Genre: this.state.Genre,
                 Poster: this.state.Poster,
             },
@@ -120,7 +120,7 @@ class EditMovieDetails extends React.Component {
                     type='text'
                     name={fieldName}
                     className='addField'
-                    value={this.state[fieldName]}
+                    defaultValue={this.state[fieldName]}
                     onChange={this.handleChange(fieldName)}
                 />
             </div>
@@ -136,44 +136,43 @@ class EditMovieDetails extends React.Component {
         return (
             <div className='addFormContainer'>
                 <form className='addForm'>
-                    <div className='addPoster'>
-                        {this.renderInput('Poster','Edit Poster')}
-                        {/* <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
-                        <input type='text'
-                            name='imageUrl'
-                            className='addField addPosterField'
-                            value={Poster}
-                            onChange={this.handleChange('poster')}
-                        /> */}
-                    </div>
+
                     <div className='addDetails'>
+                        {this.renderInput('Title', 'Edit Title')}
+                        {this.renderInput('Genre', 'Edit genre')}
+                        {this.renderInput('Poster', 'Edit Poster')}
                         {this.renderInput('Year', 'Edit Year')}
                         {this.renderInput('Runtime', 'Edit Runtime')}
-                        {this.renderInput('Title', 'Edit Title')}
                         {this.renderInput('imdbRating', 'Edit ImdbRating')}
-                        {this.renderInput('Plot', 'Edit plot')}
+                        {this.renderInput('Language', 'Edit Language')}
+                        {this.renderInput('Country', 'Edit Country')}
                         {this.renderInput('Awards', 'Edit Awards')}
                         {this.renderInput('Actors', 'Edit Actors')}
+                        {this.renderInput('Director', 'Edit Director')}
                         {this.renderInput('Released', 'Edit released')}
-                        {this.renderInput('Genre', 'Edit genre')}
-
-                        {/* <div className='fieldWrapper'>
-                            <label htmlFor='year'>Year:</label>
-                            <input
-                                type='text'
-                                name='year'
+                        {/* {this.renderInput('Plot', 'Edit plot')} */}
+                        <div className='fieldWrapper'>
+                            <label htmlFor='plot'>Edit Plot:</label>
+                            <textarea
                                 className='addField'
-                                defaultValue={year}
-                                onChange={this.handleChange('year')}
-                            />
-                        </div> */}
+                                type='textarea'
+                                name='Plot'
+                                className='addField'
+                                defaultValue={this.state.Plot}
+                                onChange={this.handleChange('Plot')}
+                                rows="4"
+                                cols="50"
+                            >{this.state.Plot}
+                            </textarea>
+                        </div>
 
                     </div>
 
                     <div className='btnsWrapper'>
                         <button className='pvwBtn'
-                            onClick={this.handleBack}>Back
-                            </button>
+                            onClick={this.handleBack}
+                        >Back
+                        </button>
                         <button
                             type='submit'
                             className='addBtn'
@@ -194,3 +193,14 @@ class EditMovieDetails extends React.Component {
 }
 
 export default withRouter(EditMovieDetails);
+
+
+// eslint-disable-next-line no-lone-blocks
+{/* <div className='addPoster'>
+                        {/* <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
+                        <input type='text'
+                            name='imageUrl'
+                            className='addField addPosterField'
+                            value={Poster}
+                            onChange={this.handleChange('poster')}
+/> */}
