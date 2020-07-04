@@ -111,11 +111,22 @@ class Header extends React.Component {
     storeSeach = (event) => {
         if (event.target.value === '') {
             this.exploreFunction(true)
+            this.updateActiveQuery()
             sessionStorage.removeItem('titleQuery')
         } else {
             localStorage.setItem('search', event.target.value)
             this.exploreFunction()
             this.props.history.push(`/explore/${event.target.value}`)
+        }
+    }
+    
+    updateActiveQuery(){
+        if(sessionStorage.getItem('activeQuery')){
+            let activeQuery = sessionStorage.getItem('activeQuery')
+            let indexOfTitle = activeQuery.indexOf('Title')-1 // -1 to include the & 
+            let titleToReplace = activeQuery.slice(indexOfTitle, activeQuery.length)
+            let updatedActiveQuery = activeQuery.replace(titleToReplace, "")
+            sessionStorage.setItem('activeQuery', updatedActiveQuery)
         }
     }
 

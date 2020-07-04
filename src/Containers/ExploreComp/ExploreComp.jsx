@@ -100,6 +100,7 @@ class ExploreComp extends React.Component {
     addTitle(activeQuery){
         // add title to activeQuery
         let processedQuery = activeQuery.concat(`&${this.getTitleQuery()}`)
+        this.updateActiveQuery(processedQuery)
         return processedQuery
     }
 
@@ -113,15 +114,22 @@ class ExploreComp extends React.Component {
         if (indexAnd !== -1) {
             let oldTitle = activeQuery.slice(indexTitle, indexAnd+1)
             let processedQuery = activeQuery.replace(oldTitle,`${this.getTitleQuery()}&`)
+            this.updateActiveQuery(processedQuery)
+
             return processedQuery
-        // case 1 : 'Genre=Comedy&Title=Joker' 
+        // case 3 : 'Genre=Comedy&Title=Joker' 
         } else {
             let oldTitle = activeQuery.slice(indexTitle, activeQuery.length)
             let processedQuery = activeQuery.replace(oldTitle, this.getTitleQuery())
+            this.updateActiveQuery(processedQuery)
+
             return processedQuery
         }
     }
 
+    updateActiveQuery(processedQuery){
+        sessionStorage.setItem('activeQuery', processedQuery)
+    }
     getMoviesByTitle() {
         let titleQuery = this.getTitleQuery()
         this.filterMovies(titleQuery)
@@ -133,6 +141,7 @@ class ExploreComp extends React.Component {
         let titleQuery = queryElements.join("")
         sessionStorage.setItem('titleQuery', titleQuery)
         localStorage.removeItem('search')
+
         return titleQuery
     }
 
