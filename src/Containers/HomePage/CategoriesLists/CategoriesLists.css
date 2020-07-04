@@ -15,9 +15,13 @@
 }
 
 h1 {
-    margin-left: 2.5rem;
+    /* margin-left: 2.5rem; */
+    margin: 2em 0 0.5em 5em;
     text-align: left;
     color: #fdff00;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.8em;
+    font-weight: 400;
 }
 
 /* 

@@ -37,7 +37,7 @@ class RegisterForm extends React.Component{
                 //console.log("register error msg:", error)
                 this.setState({ registerError : 'Server Error. Try again!' })
             })
-        }else if (userName.length < 3 && password.length < 3) {
+        }else if (userName.length < 3 || password.length < 3) {
             this.setState({ registerError : 'Username and password must be at least 4 characters each' })    
         
         }else if (password !== passwordCheck) {

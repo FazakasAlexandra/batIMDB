@@ -28,11 +28,16 @@ class MovieDetails extends React.Component {
     }
 
     editMovie = () => {
-        this.props.history.push(
-            {
-                pathname: `/editPage/${this.props.id}`,
-            }
-        );
+        // console.log('this.props aici',this.props.location.state.id)
+        if (this.props.auth) {
+            this.props.history.push({
+                pathname: `/editPage/${this.props.location.state.id}`,
+            });
+        } else {
+            window.alert('You have to be signed in to Edit Movies')
+        }
+        
+       
     }
 
     componentDidMount() {
@@ -51,6 +56,8 @@ class MovieDetails extends React.Component {
     }
 
     render() {
+        const editClass = this.props.auth ? 'enabledEdit' : 'disabledEdit';
+        // const { auth, token, } = this.props;
         const { poster, title, genre, year, runtime, imdbRating, language, country, director, actors, released, awards, plot } = this.props.history.location.state
         return (
             <div
@@ -80,8 +87,8 @@ class MovieDetails extends React.Component {
                     <p className="infoPlot"><i>{plot}</i> </p><br />
                     <br /><br />
                     <div className="movieDetails-buttons">
-                        <button className="editMovie" onClick={this.editMovie}>Edit Movie</button><br />
-                        <button className="deleteMovie">Delete Movie</button>
+                        <button className={editClass} onClick={this.editMovie}>Edit Movie</button><br />
+                        {/* <button className="deleteMovie">Delete Movie</button> */}
                         <button className="closeDetails" onClick={this.closeDetails}>X</button>
                     </div>
 

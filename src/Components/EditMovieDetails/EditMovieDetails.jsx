@@ -7,8 +7,6 @@ class EditMovieDetails extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // auth: props.auth,
-            // token:props.token,
             id: '',
             title: '',
             runtime: '',
@@ -20,8 +18,7 @@ class EditMovieDetails extends React.Component {
             actors: '',
             released: '',
             genre: '',
-            poster: ''
-            // imgUrl: 'https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg'
+            poster: '',
         }
     }
     componentDidMount = () => {
@@ -30,75 +27,172 @@ class EditMovieDetails extends React.Component {
         } = this.props.movieDetail;
 
         this.setState({
-            ...this.props.movieDetail,
             id: _id,
             title: Title,
+            ...this.props.movieDetail,
         });
     }
 
     handleChange(key) {
         return (event) => {
-            console.log('modificare: ', event.target.value)
+            console.log('event.target.value: ', event.target.value)
             this.setState({ [key]: event.target.value })
         }
     }
 
-    updateMovie = () => {
-        const tokenX = {
-            headers: { 'X-Auth-Token': this.props.token }
-        };
-        axios.put(
-            `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
-            {
-                Title: this.state.Title,
-                runtime: this.state.runtime,
-                imdbRating: this.state.imdbRating,
-                Year: this.state.Year,
-                plot: this.state.plot,
-                awards: this.state.awards,
-                director: this.state.director,
-                actors: this.state.actors,
-                released: this.state.released,
-                Genre: this.state.Genre,
-                Poster: this.state.Poster,
-            },
-            tokenX
-        ).then(response => {
-            console.log('aici e response dupa then:  ', response);
+    updateMovie = async () => {
+        try {
+            const accessToken = {
+                headers: { 'X-Auth-Token': this.props.token }
+            };
+            const response = await axios.put(
+                `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+                {
+                    Title: this.state.Title,
+                    Runtime: this.state.Runtime,
+                    imdbRating: this.state.imdbRating,
+                    Year: this.state.Year,
+                    Plot: this.state.Plot,
+                    Awards: this.state.Awards,
+                    Director: this.state.Director,
+                    Actors: this.state.Actors,
+                    Released: this.state.Released,
+                    Genre: this.state.Genre,
+                    Poster: this.state.Poster,
+                },
+                accessToken
+            )
             this.props.history.goBack();
-
-        }).catch(error => {
+            console.log('response data de la updateMovie', response.data)
+            return response.data;
+        }
+        catch (error) {
             console.log('aici e eroarea de la catch', error)
-        })
+            this.setState({ error: error });
+        }
+
     }
 
     saveEditButton = (e) => {
         e.preventDefault();
         this.updateMovie();
         console.log('this.state ', this.state);
-        // this.props.history.goBack();
     }
     handleBack = (e) => {
         e.preventDefault()
         this.props.history.goBack();
     }
-    deleteEditButton = (e) => {
-        console.log(this.state.id)
-        // this.props.history.goBack();
-        e.preventDefault();
-        const options = {
-            headers: { 'X-Auth-Token': this.props.token }
-        };
-        axios.delete(
-            `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
-            options
-        ).then(() => {
+    deleteEditButton = async (e) => {
+        try {
+            console.log('id is:', this.state.id);
+            e.preventDefault();
+            const optionsToken = {
+                headers: { 'X-Auth-Token': this.props.token }
+            };
+            const response = await axios.delete(
+                `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+                optionsToken
+            );
+            console.log('response data de la deleteEditButton', response.data);
             this.props.history.goBack();
-        }).catch(error => {
+            return response.data;
+        }
+        catch (error) {
+            this.setState({ error: error });
             console.log('DELETE: aici e eroarea de la catch', error)
-        })
+        }
     }
-    // divForUpdate=(type)=> {
+
+    renderInput = (fieldName, labelName) => {
+        return (
+            <div className='editField'>
+                <label className='editLabel' >{labelName}</label>
+                <input
+                    type='text'
+                    name={fieldName}
+                    className='editInput'
+                    defaultValue={this.state[fieldName]}
+                    onChange={this.handleChange(fieldName)}
+                />
+            </div>
+        );
+    }
+
+    render() {
+        // console.log('this.state here: ',this.state);
+        return (
+            <form className='editForm'>
+                <div className='editDetailsInputsDiv'>
+                    {this.renderInput('Title', 'Edit Title')}
+                    {this.renderInput('Genre', 'Edit genre')}
+                    {this.renderInput('Poster', 'Edit Poster')}
+                    {this.renderInput('Year', 'Edit Year')}
+                    {this.renderInput('Runtime', 'Edit Runtime')}
+                    {this.renderInput('imdbRating', 'Edit ImdbRating')}
+                    {this.renderInput('Language', 'Edit Language')}
+                    {this.renderInput('Country', 'Edit Country')}
+                    {this.renderInput('Awards', 'Edit Awards')}
+                    {this.renderInput('Actors', 'Edit Actors')}
+                    {this.renderInput('Director', 'Edit Director')}
+                    {this.renderInput('Released', 'Edit released')}
+
+                    <div className='editField'>
+                        <label className='editLabel' htmlFor='plot'>Edit Plot:</label>
+                        <textarea
+                            className='editInput'
+                            type='text'
+                            name='Plot'
+                            defaultValue={this.state.Plot}
+                            onChange={this.handleChange('Plot')}
+                            rows="4"
+                            cols="50"
+                        >
+                            {this.state.Plot}
+                        </textarea>
+                    </div>
+
+                </div>
+
+                <div className='btnsDiv'>
+                    <button className='btn'
+                        onClick={this.handleBack}
+                    >
+                        Back
+                    </button>
+                    <button
+                        type='submit'
+                        className='btn'
+                        onClick={this.saveEditButton}
+                    >
+                        Save
+                    </button>
+                    <button
+                        type='submit'
+                        className='btn'
+                        onClick={this.deleteEditButton}
+                    >
+                        Delete
+                    </button>
+                </div>
+            </form>
+        )
+    }
+}
+
+export default withRouter(EditMovieDetails);
+
+
+// eslint-disable-next-line no-lone-blocks
+{/* <div className='addPoster'>
+                        {/* <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
+                        <input type='text'
+                            name='imageUrl'
+                            className='addField addPosterField'
+                            value={Poster}
+                            onChange={this.handleChange('poster')}
+/> */}
+//varianta initiala
+ // divForUpdate=(type)=> {
     //     return (
     //         <div className='fieldWrapper'>
     //             <label htmlFor='(type)'>`${type}`:</label>
@@ -112,85 +206,49 @@ class EditMovieDetails extends React.Component {
     //         </div>
     //     )
     // }
-    renderInput = (fieldName, labelName) => {
-        return (
-            <div className='fieldWrapper'>
-                <label style={{ color: 'black' }}>{labelName}</label>
-                <input
-                    type='text'
-                    name={fieldName}
-                    className='addField'
-                    value={this.state[fieldName]}
-                    onChange={this.handleChange(fieldName)}
-                />
-            </div>
-        );
-    }
 
-    render() {
-        // const { Poster } = this.state;
+    //=======varianta cu then=======
+        //updateMovie = () => {
+        // const tokenX = {
+        //     headers: { 'X-Auth-Token': this.props.token }
+        // };
+        // axios.put(
+        //     `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+        //     {
+        //         Title: this.state.Title,
+        //         Runtime: this.state.Runtime,
+        //         imdbRating: this.state.imdbRating,
+        //         Year: this.state.Year,
+        //         Plot: this.state.Plot,
+        //         Awards: this.state.Awards,
+        //         Director: this.state.Director,
+        //         Actors: this.state.Actors,
+        //         Released: this.state.Released,
+        //         Genre: this.state.Genre,
+        //         Poster: this.state.Poster,
+        //     },
+        //     tokenX
+        // ).then(response => {
+        //     console.log('aici e response dupa then:  ', response);
+        //     this.props.history.goBack();
 
-        console.log(this.state);
+        // }).catch(error => {
+        //     console.log('aici e eroarea de la catch', error)
+        // })
+        //}
 
-
-        return (
-            <div className='addFormContainer'>
-                <form className='addForm'>
-                    <div className='addPoster'>
-                        {this.renderInput('Poster','Edit Poster')}
-                        {/* <label style={{ color: 'black' }} htmlFor='addPoster'>Poster URL:</label>
-                        <input type='text'
-                            name='imageUrl'
-                            className='addField addPosterField'
-                            value={Poster}
-                            onChange={this.handleChange('poster')}
-                        /> */}
-                    </div>
-                    <div className='addDetails'>
-                        {this.renderInput('Year', 'Edit Year')}
-                        {this.renderInput('Runtime', 'Edit Runtime')}
-                        {this.renderInput('Title', 'Edit Title')}
-                        {this.renderInput('imdbRating', 'Edit ImdbRating')}
-                        {this.renderInput('Plot', 'Edit plot')}
-                        {this.renderInput('Awards', 'Edit Awards')}
-                        {this.renderInput('Actors', 'Edit Actors')}
-                        {this.renderInput('Released', 'Edit released')}
-                        {this.renderInput('Genre', 'Edit genre')}
-
-                        {/* <div className='fieldWrapper'>
-                            <label htmlFor='year'>Year:</label>
-                            <input
-                                type='text'
-                                name='year'
-                                className='addField'
-                                defaultValue={year}
-                                onChange={this.handleChange('year')}
-                            />
-                        </div> */}
-
-                    </div>
-
-                    <div className='btnsWrapper'>
-                        <button className='pvwBtn'
-                            onClick={this.handleBack}>Back
-                            </button>
-                        <button
-                            type='submit'
-                            className='addBtn'
-                            onClick={this.saveEditButton}
-                        >Save
-                        </button>
-                        <button
-                            type='submit'
-                            className='addBtn'
-                            onClick={this.deleteEditButton}
-                        >Delete Movie
-                        </button>
-                    </div>
-                </form>
-            </div>
-        )
-    }
-}
-
-export default withRouter(EditMovieDetails);
+        // deleteEditButton = (e) => {
+        //     console.log(this.state.id);
+        //     e.preventDefault();
+        //     const options = {
+        //         headers: { 'X-Auth-Token': this.props.token }
+        //     };
+        //     axios.delete(
+        //         `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
+        //         options
+        //     ).then(() => {
+        //         this.props.history.goBack();
+        //     }).catch(error => {
+        //         console.log('DELETE: aici e eroarea de la catch', error)
+        //     })
+        // }

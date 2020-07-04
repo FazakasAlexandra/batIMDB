@@ -1,29 +1,38 @@
 .addFormContainer{
     width:100%;
-    /* padding:1em; */
     display:flex;
     flex-flow:row wrap;
     justify-content: flex-start;
 }
 .addForm{
-    /* width:45%; */
-    /* border: 1px solid gray; */
     margin-left: 3em;
     display:flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: flex-start;
 }
-/* .addForm h2{
-    color: #505c7c;
-} */
 .addPoster{
     min-width:30%;
     display:flex;
     flex-flow:column wrap;
     align-items: center;
 }
-
+.addPoster label{
+    padding-top: 3em;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+.addPoster input{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3em;
+}
+.imgFrames{
+    width:12em;
+    height:4em;
+    background-image: url('../Images/fakePoster.png');
+    background-position: center;
+}
 .fieldWrapper{
     width: 18em;
     display: flex;
@@ -32,54 +41,24 @@
     margin-bottom:1em;
     margin-left: 1em;
 }
-label{
+.inputLabel{
     color:white;
     cursor: pointer;
 }
-
 .addField{
-  
     padding:0.5em;
     outline:none;
     border: none;
     border-radius: 0.7em;
-    background-color: #282e3c;
-    /* background-color: #505c7c; */
-    color: white;
     align-self: flex-end;
     font-size: 0.9em;
 }
-.addField:active{
-    outline:none;
-    border: none;
-    border-radius: 0.7em;
-    background-color: #282e3c;
-}
-
-
-.addPoster label{
-    
-    padding-top: 3em;
-    margin-bottom: 1em;
-}
-.addPosterField{
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 3em;
-}
-.ceva{
-    width:12em;
-    height:4em;
-    background-image: url('../Images/fakePoster.png');
-    background-position: center;
-}
 .btnsWrapper{
     margin-top:2em;
-    margin-left: 31%;
+    margin-left: 30%;
     align-self: flex-end;
 }
-.addBtn,
-.pvwBtn{
+.Btn{
     margin-right: 1em;
     background-color: #282e3c;
     color: #fdff00;
@@ -87,26 +66,31 @@ label{
     border: none;
     outline:none;
     border-radius: 0.7em;
-    font-size: 1em;
-    
+    font-size: 1.1em;
+    font-family: 'Ubuntu',sans-serif;
 }
-
+.dark{
+    background-color: #282e3c;
+    /* background-color: #505c7c; */
+    color: white;
+}
+.light {
+    background-color: rgb(234, 244, 250);
+    color: #282e3c;
+}
 .pvw{
     width: 45%;
     padding-left: 1em;
-    border-left: 0.01px solid yellow;
+    border-left: 0.01px solid #505c7c;
     display:flex;
     flex-direction: row;
     align-items: flex-start;
-    color: white;
- 
 }
 .pvw img{
     width: 12em;
     /* background-image: url('https://i.pinimg.com/originals/31/d6/fb/31d6fb7595b44e4b649aec2ce079e68a.jpg'); */
 }
 .pvwDetails{
-    
     margin-left: 1.3em;
     display:flex;
     flex-direction: column;
@@ -119,4 +103,28 @@ label{
 .pvwLine span{
     color:#fdff00;
     padding-right: 0.1em;
+}
+.light span{
+    color: #091e32;
+    font-weight:555;
+}
+.dark button {
+    color:#fdff00;
+}
+.light label {
+    font-weight: 600;
+}
+.error{
+    color:red;
+    padding:1em;
+    margin-bottom: 3em;
+}
+h3{
+    padding:0.3em 1em;
+}
+.light h3{
+    color:red;
+}
+.dark h3{
+    color:#fdff00;
 }
