@@ -22,7 +22,7 @@ class HomePage extends Component {
                 </MediaQuery>
             </Fragment>
         )
-
+    
         return (
             <div
                 className="Hompage"

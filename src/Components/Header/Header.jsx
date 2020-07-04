@@ -31,7 +31,7 @@ class Header extends React.Component {
         } else {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
-        console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
+        //console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
         }
     }
 
