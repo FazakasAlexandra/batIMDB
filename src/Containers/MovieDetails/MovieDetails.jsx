@@ -28,9 +28,10 @@ class MovieDetails extends React.Component {
     }
 
     editMovie = () => {
+        // console.log('this.props aici',this.props.location.state.id)
         this.props.history.push(
             {
-                pathname: `/editPage/${this.props.id}`,
+                pathname: `/editPage/${this.props.location.state.id}`,
             }
         );
     }
@@ -51,6 +52,7 @@ class MovieDetails extends React.Component {
     }
 
     render() {
+        // const { auth, token, } = this.props;
         const { poster, title, genre, year, runtime, imdbRating, language, country, director, actors, released, awards, plot } = this.props.history.location.state
         return (
             <div
@@ -81,7 +83,7 @@ class MovieDetails extends React.Component {
                     <br /><br />
                     <div className="movieDetails-buttons">
                         <button className="editMovie" onClick={this.editMovie}>Edit Movie</button><br />
-                        <button className="deleteMovie">Delete Movie</button>
+                        {/* <button className="deleteMovie">Delete Movie</button> */}
                         <button className="closeDetails" onClick={this.closeDetails}>X</button>
                     </div>
 

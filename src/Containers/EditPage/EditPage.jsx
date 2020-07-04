@@ -23,7 +23,7 @@ class EditPage extends React.Component {
     getMovieById = async (movieId) => {
         console.log('aici e getMovieById');
         try {
-            const response = await axios.get(`http://ancient-caverns-16784.herokuapp.com/movies/${movieId}`);
+            const response = await axios.get(`https://movies-app-siit.herokuapp.com/movies/${movieId}`);
             this.setState({ movieDetail: response.data });
         }
         catch (error) {

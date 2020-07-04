@@ -146,7 +146,8 @@ class MyImdb extends Component {
                                     auth={this.state.auth}
                                     token={this.state.token} /> :
                                 <Redirect to="/hompage" />} />
-                        <Route path="/movieDetails" exact component={MovieDetails} />
+                        <Route path="/movieDetails/:movieId" exact render={props => <MovieDetails {...props} auth={this.state.auth} token={this.state.token} />} />
+
                     </Switch>
                 </div>
             </ThemeProvider>
@@ -157,3 +158,10 @@ class MyImdb extends Component {
 export default withRouter(MyImdb);
 
 
+{/* <Route path="/movieDetails/:movieId"
+    render={props => this.state.auth ?
+        <MovieDetails {...props}
+            auth={this.state.auth}
+            token={this.state.token}
+        /> :
+        <Redirect to="/hompage" />} /> */}
