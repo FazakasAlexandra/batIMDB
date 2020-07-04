@@ -132,7 +132,7 @@ class EditMovieDetails extends React.Component {
                     {this.renderInput('Poster', 'Edit Poster')}
                     {this.renderInput('Year', 'Edit Year')}
                     {this.renderInput('Runtime', 'Edit Runtime')}
-                    {this.renderInput('imdbRating', 'Edit ImdbRating')}
+                    {this.renderInput('imdbRating', 'Edit Rating')}
                     {this.renderInput('Language', 'Edit Language')}
                     {this.renderInput('Country', 'Edit Country')}
                     {this.renderInput('Awards', 'Edit Awards')}
@@ -141,7 +141,7 @@ class EditMovieDetails extends React.Component {
                     {this.renderInput('Released', 'Edit released')}
 
                     <div className='editField'>
-                        <label className='editLabel' htmlFor='plot'>Edit Plot:</label>
+                        <label className='editLabel' htmlFor='plot'>Edit Plot</label>
                         <textarea
                             className='editInput'
                             type='text'
