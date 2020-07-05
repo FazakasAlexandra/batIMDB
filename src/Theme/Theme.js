@@ -14,7 +14,8 @@ export const themeLight = {
         backgroundColor: "#282e3c",
     },
     frameShort: require('../Images/frameBlack1.png'),
-    frameLong: require('../Images/frameBlackLong.png')
+    frameLong: require('../Images/frameBlackLong.png'),
+    type:'light'
 };
 
 export const themeDark = {
@@ -33,7 +34,8 @@ export const themeDark = {
         backgroundColor: "#282e3c",
     },
     frameShort: require('../Images/frameYellow.png'),
-    frameLong: require('../Images/frameYellowLong.png')
+    frameLong: require('../Images/frameYellowLong.png'),
+    type: 'dark'
 };
 
 
