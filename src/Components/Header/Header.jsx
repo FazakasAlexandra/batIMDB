@@ -19,7 +19,6 @@ class Header extends React.Component {
             regForm: false,
             logForm: false,
             logOut: false,
-            theme: 'light',
         }
     }
     /* componentDidUpdate () */

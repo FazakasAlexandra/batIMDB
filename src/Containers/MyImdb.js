@@ -24,7 +24,7 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
-            setTheme: themeDark
+            setTheme: themeDark,
         }
     }
     //logic to take auth, token, user from localStorage and put it back on state on refresh
@@ -32,17 +32,16 @@ class MyImdb extends Component {
         const isAuth = localStorage.getItem('auth');
         const userToken = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-        const theme = localStorage.getItem('theme') ?
-                JSON.parse(localStorage.getItem('theme')) :
-                themeLight
-        console.log('const theme = localStorage.getItem', theme )     
+        const themeA = localStorage.getItem('themeA') ?
+                JSON.parse(localStorage.getItem('themeA')) :
+                themeLight 
         //console.log("Auth pe storage:", isAuth, "token:", userToken, 'user:', user)
 
         this.setState({
             auth: isAuth,
             token: userToken,
             user: user,
-            setTheme: theme
+            setTheme: themeA,
         })
 
         if (sessionStorage.getItem('titleQuery')) {
@@ -54,7 +53,7 @@ class MyImdb extends Component {
         this.setState({
             auth: data.authenticated,
             token: data.accessToken,
-            user: user
+            user: user            
         })
         //keep data in storage 
         localStorage.setItem('auth', data.authenticated);
@@ -92,12 +91,12 @@ class MyImdb extends Component {
             this.setState({
                 setTheme: themeLight,
             })
-            localStorage.setItem('theme', JSON.stringify(themeLight))
+            localStorage.setItem('themeA', JSON.stringify(themeLight))
         } else {
             this.setState({
                 setTheme: themeDark,
             })
-            localStorage.setItem('theme', JSON.stringify(themeDark))
+            localStorage.setItem('themeA', JSON.stringify(themeDark))
         }
     }
 

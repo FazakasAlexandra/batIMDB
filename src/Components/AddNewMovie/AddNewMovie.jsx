@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTheme } from 'styled-components';
 import axios from 'axios';
 import Bounce from '../../Theme/Styledcomponents/Bounce';
 import './AddNewMovie.css';
@@ -96,12 +97,12 @@ class AddNewMovie extends React.Component {
         return (
             <div className='fieldWrapper'>
                 <label htmlFor={fieldName}
-                    className={this.createClassName(this.props.theme, 'inputLabel')}>{labelName}</label>
+                    className={this.createClassName(this.props.theme.type, 'inputLabel')}>{labelName}</label>
                 <input
                     type='text'
                     name={fieldName}
                     id={fieldName}
-                    className={this.createClassName(this.props.theme, 'addField')}
+                    className={this.createClassName(this.props.theme.type, 'addField')}
                     value={this.state[fieldName]}
                     onChange={this.handleChange}
                     required={required}
@@ -110,8 +111,8 @@ class AddNewMovie extends React.Component {
         );
     }
     render() {
-        const { theme, onCancel } = this.props;
-
+        const { onCancel } = this.props;
+        const theme = this.props.theme.type;
         return (
             <div className={this.createClassName('addFormContainer', theme)}>
                 <form className={this.createClassName('addForm', theme)}
@@ -182,6 +183,6 @@ class AddNewMovie extends React.Component {
         )
     }
 }
-export default AddNewMovie;
+export default withTheme(AddNewMovie);
 
 
