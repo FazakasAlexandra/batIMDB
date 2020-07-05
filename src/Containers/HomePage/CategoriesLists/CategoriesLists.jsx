@@ -66,14 +66,16 @@ class CategoriesLists extends React.Component {
                 </div>
                 <h1 style={{ color: this.props.theme.fontColor.secondary }}>SERIES</h1><br />
                 <div >
-                    <MovieList movies={this.state.seriesListMovies}
+                    <MovieList 
+                        movies={this.state.seriesListMovies}
                         auth={auth}
                         token={token}
                     />
                 </div>
                 <h1 style={{ color: this.props.theme.fontColor.secondary }}>GAMES</h1><br />
                 <div >
-                    <MovieList movies={this.state.gameListMovies}
+                    <MovieList 
+                        movies={this.state.gameListMovies}
                         auth={auth}
                         token={token}
                     />

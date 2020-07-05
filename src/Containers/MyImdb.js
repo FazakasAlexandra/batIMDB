@@ -25,14 +25,14 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
-            setTheme: themeDark,
-            theme: 'dark'
+            theme:'dark',
+            setTheme: themeDark
         }
     }
     //logic to take auth, token, user,theme from localStorage and put it back on state on refresh
     componentDidMount = () => {
         this.setState(getGlobalState());
-
+        
         if (sessionStorage.getItem('titleQuery')) {
             sessionStorage.removeItem('titleQuery')
         }
@@ -63,17 +63,17 @@ class MyImdb extends Component {
             this.setState({
                 setTheme: themeLight,
                 theme: 'light'
-            }, () => {
-                localStorage.setItem('theme', this.state.theme);
-            });
+            })
+            localStorage.setItem('themeA', JSON.stringify(themeLight))
+            localStorage.setItem('theme', 'light')
+            
         } else {
             this.setState({
+                theme: 'dark',
                 setTheme: themeDark,
-                theme: 'dark'
-            }, () => {
-                localStorage.setItem('theme', this.state.theme);
-            });
-
+            })
+            localStorage.setItem('themeA', JSON.stringify(themeDark))
+            localStorage.setItem('theme', 'dark')
         }
     }
 
@@ -83,7 +83,7 @@ class MyImdb extends Component {
         })
     }
 
-    render() {
+    render() {        
         //console.log("Auth/token/user pe state dupa refresh:", this.state.auth, "token:", this.state.token)
         return (
             <ThemeProvider theme={this.state.setTheme} >
@@ -107,9 +107,9 @@ class MyImdb extends Component {
                             exact
                             render={props => this.state.auth ?
                                 <AddPage {...props}
-                                    auth={this.state.auth}
                                     token={this.state.token}
-                                    theme={this.state.theme} /> :
+                                    theme={this.state.theme}
+                                    auth={this.state.auth} /> :
                                 <Redirect to="/hompage" />
                             }
                         />

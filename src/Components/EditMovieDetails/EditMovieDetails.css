@@ -81,6 +81,7 @@ p{
     font-family:'Ubuntu', sans-serif;
     font-size: large;
     margin-right: 2em;
+    text-align: end;
 }
 .btnsDiv{   
     display:flex;
@@ -105,3 +106,24 @@ p{
 .btn:active {
     background-color:rgb(106, 144, 165);
 }
+@media only screen 
+  and (min-device-width: 360px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+    .editForm{
+        font-size:0.8em;
+    }
+    .editLabel{
+        display: flex;
+        justify-content: flex-end;
+        align-content: flex-end;
+        flex-direction: row;
+        margin: auto 0;
+        width: 10em;
+        font-family:'Ubuntu', sans-serif;
+        font-size: large;
+        margin-right: 1em;
+        text-align: justify;
+    }
+  }

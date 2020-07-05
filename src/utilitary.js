@@ -1,5 +1,6 @@
 import React from 'react';
 import Bounce from './Theme/Styledcomponents/Bounce';
+import { themeDark, themeLight } from './Theme/Theme';
 
 
 //fcts for sync-ing global state and locaStorage at /reg/rogin/logout
@@ -13,12 +14,16 @@ export function getGlobalState(){
     const userToken = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     const theme = localStorage.getItem('theme');
+    const themeA = localStorage.getItem('themeA') ?
+            JSON.parse(localStorage.getItem('themeA')) :
+            themeLight
 
     return {
         auth: isAuth,
         token: userToken,
         user: user,
-        theme: theme
+        theme: theme,
+        setTheme: themeA
     }
 }
 export function clearLocalstorage(){

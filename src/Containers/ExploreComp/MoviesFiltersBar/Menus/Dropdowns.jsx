@@ -13,6 +13,14 @@ export class Dropdowns extends React.Component {
         }
     }
 
+    componentWillUnmount(){
+        this.setState(dropdowns.map((dropdown => {
+            if(dropdown.dropdownOn){
+                return dropdown.dropdownOn = false
+            }
+        })))
+    }
+
     wrapDropdown(filterComponents, dropdownName, dropdownOn, arrow, i) {
         let wrapedDropdown = <div id={dropdownOn ? `${dropdownName}-filters-display` : `${dropdownName}-filters-hide`} key={i}>
             {filterComponents}
@@ -57,7 +65,6 @@ export class Dropdowns extends React.Component {
                 }))
             }
             this.setState({ dropdowns: newDropdowns }, ()=>{
-                console.log(this.state)
                 this.checkActiveFilters()
             })
         })
@@ -72,7 +79,7 @@ export class Dropdowns extends React.Component {
                     if (idx === filterNr) {
                         // toggle acction
                         filter.filterOn = !filter.filterOn
-                        // turns off other the filter that is on inside that dropdown
+                        // turns off other filter that is on inside that dropdown
                     } else if (idx !== filterNr && filter.filterOn) {
                         filter.filterOn = !filter.filterOn
                     }
@@ -112,11 +119,12 @@ export class Dropdowns extends React.Component {
     }
 
     sendQuery(queryElements) {
-        if (queryElements.length === 0) {
+        if (queryElements.length === 0 && !sessionStorage.getItem('titleQuery')) {
             this.props.getDefaultMovies(true)
         } else {
-            console.log(queryElements)
+            //console.log(queryElements)
             let queryString = this.stringifyQuery(queryElements)
+            sessionStorage.setItem('activeQuery', queryString)
             this.props.filterMovies(queryString)
         }
     }
@@ -129,7 +137,6 @@ export class Dropdowns extends React.Component {
             queryElements.push(titleQuery)
         }
         let queryString = queryElements.join("")
-        console.log('query string: ', queryString)
         return queryString
     }
 

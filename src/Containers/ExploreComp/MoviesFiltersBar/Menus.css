@@ -4,11 +4,14 @@
 }
 
 .dropdown-menus-container {
+    padding: 1rem;
+    padding-right: 0rem;
+
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-left: 2.7rem;
+    padding-left: 2.7rem;
     margin-top: 2rem;
-    padding-right: 2rem;
 }
 
 .dropdown-menu-container {
@@ -51,7 +54,7 @@
     border: none;
     padding: 1rem;
     border-bottom-style: solid;
-    border-color: #F4AF01;
+    border-color: #FDFF00;
     border-width: 0.2rem;
     width: fit-content;
     justify-content: space-between;
@@ -148,16 +151,6 @@
     width: 10rem;
     color: rgba(255, 255, 255, 0.644);
     font-size: 0.9rem;
-}
-
-#filter-Action-text-highlight, #filter-Drama-text-highlight, #filter-Comedy-text-highlight,
-#filter-Horror-text-highlight, #filter-Fantasy-text-highlight, #filter-Crime-text-highlight
-#filter-Romanian-text-highlight, #filter-English-text-highlight, #filter-French-text-highlight,
-#filter-1990-2000-text-highlight, #filter-2000-2010-text-highlight, #filter-2010-2020-text-highlight,
-#filter-imdb-text-highlight{
-    width: 10rem;
-    color:#FDFF00;
-    font-size: 1.5rem;
 }
 
 #filter-Action, #filter-Drama, #filter-Comedy, #filter-Horror, #filter-Fantasy, #filter-Crime,
@@ -301,6 +294,7 @@
 @media(max-width: 700px) {
     .bars-container .fa-w-14 {
         display: block;
+        margin-top: 0.6em;
     }
 
     .bars-container {
@@ -343,4 +337,16 @@
         margin-top: 0px;
     }
 
+}
+@media 
+  (max-width: 620px) {
+    .bars-container .fa-w-14{
+        margin-top:1.1em;
+    }
+}
+@media 
+  (max-width: 565px) {
+    .bars-container .fa-w-14{
+        margin-top:1.5em;
+    }
 }
