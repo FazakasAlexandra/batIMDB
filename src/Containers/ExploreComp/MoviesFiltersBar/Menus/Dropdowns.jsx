@@ -13,9 +13,9 @@ export class Dropdowns extends React.Component {
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.setState(dropdowns.map((dropdown => {
-            if(dropdown.dropdownOn){
+            if (dropdown.dropdownOn) {
                 return dropdown.dropdownOn = false
             }
         })))
@@ -48,11 +48,11 @@ export class Dropdowns extends React.Component {
             <FontAwesomeIcon icon={dropdownOn ?
                 "angle-down" :
                 "angle-right"}
-                onClick={() => {this.toggleDropdown(i)}} />
+                onClick={() => { this.toggleDropdown(i) }} />
         </div>
     }
 
-    toggleDropdown(i){
+    toggleDropdown(i) {
         this.setState([...dropdowns].map((dropdown, idx) => {
             //stop at the target dropdown and toggle it
             if (idx === i) dropdown.dropdownOn = !dropdown.dropdownOn
@@ -61,13 +61,24 @@ export class Dropdowns extends React.Component {
             let newDropdowns = [...this.state.dropdowns]
             if (!newDropdowns[i].dropdownOn) {
                 newDropdowns[i].filters.forEach((filter => {
-                        filter.filterOn = false
+                    filter.filterOn = false
                 }))
+                console.log(newDropdowns[i].dropdownName)
+                this.updateActiveQuery(newDropdowns[i].dropdownName)
             }
-            this.setState({ dropdowns: newDropdowns }, ()=>{
+            this.setState({ dropdowns: newDropdowns }, () => {
                 this.checkActiveFilters()
             })
         })
+    }
+
+    updateActiveQuery(name) {
+        if (sessionStorage.getItem('activeQuery') !== null) {
+            let activeQuery = sessionStorage.getItem('activeQuery')
+            if (activeQuery.includes(name) || activeQuery.includes('imdbRating') && !activeQuery.includes('&')) {
+                sessionStorage.removeItem('activeQuery')
+            }
+        }
     }
 
     toggleFilter(dropdownNr, filterNr) {
