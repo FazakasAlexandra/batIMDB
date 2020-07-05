@@ -24,8 +24,7 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
-            setTheme: themeDark,
-            theme: 'dark'
+            setTheme: themeDark
         }
     }
     //logic to take auth, token, user from localStorage and put it back on state on refresh
@@ -33,13 +32,17 @@ class MyImdb extends Component {
         const isAuth = localStorage.getItem('auth');
         const userToken = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-        const theme = localStorage.getItem('theme');
+        const theme = localStorage.getItem('theme') ?
+                JSON.parse(localStorage.getItem('theme')) :
+                themeLight
+        console.log('const theme = localStorage.getItem', theme )     
         //console.log("Auth pe storage:", isAuth, "token:", userToken, 'user:', user)
+
         this.setState({
             auth: isAuth,
             token: userToken,
             user: user,
-            theme: theme
+            setTheme: theme
         })
 
         if (sessionStorage.getItem('titleQuery')) {
@@ -88,18 +91,13 @@ class MyImdb extends Component {
         if (this.state.setTheme == themeDark) {
             this.setState({
                 setTheme: themeLight,
-                theme: 'light'
-            }, () => {
-                localStorage.setItem('theme', this.state.theme);
-            });
+            })
+            localStorage.setItem('theme', JSON.stringify(themeLight))
         } else {
             this.setState({
                 setTheme: themeDark,
-                theme: 'dark'
-            }, () => {
-                localStorage.setItem('theme', this.state.theme);
-            });
-
+            })
+            localStorage.setItem('theme', JSON.stringify(themeDark))
         }
     }
 
@@ -109,7 +107,7 @@ class MyImdb extends Component {
         })
     }
 
-    render() {
+    render() {        
         //console.log("Auth/token/user pe state dupa refresh:", this.state.auth, "token:", this.state.token)
         return (
             <ThemeProvider theme={this.state.setTheme} >
