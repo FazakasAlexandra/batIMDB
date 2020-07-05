@@ -90,15 +90,16 @@ class AddNewMovie extends React.Component {
         if (required) {
             labelName += ' *';
         }
+        const { theme } = this.props;
         return (
             <div className='fieldWrapper'>
                 <label htmlFor={fieldName}
-                    className={createClassName(this.props.theme, 'inputLabel')}>{labelName}</label>
+                    className={createClassName(theme, 'inputLabel')}>{labelName}</label>
                 <input
                     type='text'
                     name={fieldName}
                     id={fieldName}
-                    className={createClassName(this.props.theme, 'addField')}
+                    className={createClassName(theme, 'addField')}
                     value={this.state[fieldName]}
                     onChange={this.handleChange}
                     required={required}
@@ -107,8 +108,8 @@ class AddNewMovie extends React.Component {
         );
     }
     render() {
-        const { onCancel } = this.props;
-        const theme = this.props.theme.type;
+        const { onCancel, theme } = this.props;
+       
         return (
             <div className={createClassName('addFormContainer', theme)}>
                 <form className={createClassName('addForm', theme)}
