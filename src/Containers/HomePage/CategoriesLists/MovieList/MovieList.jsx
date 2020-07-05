@@ -48,9 +48,9 @@ import axios from 'axios'
 class MovieList extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            moviesList: []
-        }
+        // this.state = {
+        //     moviesList: []
+        // }
         this.breakPoints = [
             { width: 1, itemsToShow: 1, itemsToScroll: 1 },
             { width: 460, itemsToShow: 2, itemsToScroll: 1 },
@@ -69,24 +69,24 @@ class MovieList extends Component {
     //         })
     // }
 
-    componentDidMount() {
-        this.getMoviesList(type);
-    }
+    // componentDidMount() {
+    //     this.getMoviesList(type);
+    // }
 
-    getMoviesList = (type) => {
-        axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${type}&take=12`)
-            .then((response) => {
-                // console.log(response.data.results)
-                this.setState({
-                    moviesList: response.data.results
-                })
-            })
-    }
+    // getMoviesList = (type) => {
+    //     axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${type}&take=12`)
+    //         .then((response) => {
+    //             // console.log(response.data.results)
+    //             this.setState({
+    //                 moviesList: response.data.results
+    //             })
+    //         })
+    // }
 
     render() {
         const { auth, token } = this.props;
-        let { moviesList } = this.state
-        let movies = moviesList.map(movie => {
+        // let { moviesList } = this.state
+        let movies = this.props.movies.map(movie => {
             return (
                 <MovieCard
                     key={movie._id}

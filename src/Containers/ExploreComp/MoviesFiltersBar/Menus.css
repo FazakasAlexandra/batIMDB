@@ -301,6 +301,7 @@
 @media(max-width: 700px) {
     .bars-container .fa-w-14 {
         display: block;
+        margin-top: 0.6em;
     }
 
     .bars-container {

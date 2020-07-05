@@ -63,8 +63,7 @@ class LoginForm extends React.Component{
                 {
                     this.state.loginError && 
                         <div className='loginError'>
-                            <p className='loginMsg'>Invalid username or password</p>
-                            <p classname='tryAgain'> Try again </p>
+                            <p className='loginMsg'>Invalid username or password. Try again!</p>
                             <button className='forgotPass'
                                     onClick={this.handleForgotPass}>Forgot password?</button>
                         </div>
@@ -72,9 +71,10 @@ class LoginForm extends React.Component{
                 {
                     this.state.forgotPass &&
                         <p className='forgotErr'>
-                            The only way back is through a new<br/>
+                            The only way back is to <br/>
                             <button className='reReg'
                                     onClick={this.props.reReg}>Register</button>
+                            again.
                         </p>
                 }
             </form>

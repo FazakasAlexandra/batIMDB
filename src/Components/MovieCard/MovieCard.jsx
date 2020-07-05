@@ -40,7 +40,13 @@ class MovieCard extends React.Component {
             }
         );
      }
-
+     movieViewDetails = () =>{
+        this.props.history.push(
+            {
+                pathname: `/movieDetails/${this.props.id}`,
+            }
+        );
+     }
     //  movieDetails = () => {
     //     this.props.history.push(
     //         {
@@ -53,7 +59,7 @@ class MovieCard extends React.Component {
         let {movieDetail} = this.state
         this.props.history.push(
             {
-                pathname: '/movieDetails',
+                pathname: `/movieDetails/${this.props.id}`,
                 state: {
                     imdbID: movieDetail.imdbID,
                     id: movieDetail._id,

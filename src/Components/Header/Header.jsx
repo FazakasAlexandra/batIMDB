@@ -31,7 +31,7 @@ class Header extends React.Component {
         } else {
         this.props.history.push('/explore');
         // this.props.history.push({obj: path, cale, state})
-        console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
+        //console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
         }
     }
 
@@ -111,11 +111,22 @@ class Header extends React.Component {
     storeSeach = (event) => {
         if (event.target.value === '') {
             this.exploreFunction(true)
+            this.updateActiveQuery()
             sessionStorage.removeItem('titleQuery')
         } else {
             localStorage.setItem('search', event.target.value)
             this.exploreFunction()
             this.props.history.push(`/explore/${event.target.value}`)
+        }
+    }
+    
+    updateActiveQuery(){
+        if(sessionStorage.getItem('activeQuery')){
+            let activeQuery = sessionStorage.getItem('activeQuery')
+            let indexOfTitle = activeQuery.indexOf('Title')-1 // -1 to include the & 
+            let titleToReplace = activeQuery.slice(indexOfTitle, activeQuery.length)
+            let updatedActiveQuery = activeQuery.replace(titleToReplace, "")
+            sessionStorage.setItem('activeQuery', updatedActiveQuery)
         }
     }
 
@@ -141,9 +152,9 @@ class Header extends React.Component {
                     />
                     <button
                         className='exploreBtn'
-                        onClick={this.exploreFunction}> Explore </button>
+                        onClick={this.exploreFunction}> EXPLORE </button>
                     <button className={addClass}
-                            onClick={this.addPageFunction}> Add Movie </button>
+                            onClick={this.addPageFunction}> ADD MOVIE </button>
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
@@ -165,9 +176,9 @@ class Header extends React.Component {
                     {!this.props.auth &&
                         <div className='buttonsLogReg'>
                             <button className='registerBtn'
-                                    onClick={() => this.handleRegisterBtnClick()}> Register </button>
+                                    onClick={() => this.handleRegisterBtnClick()}> REGISTER </button>
                             <button className='loginBtn'
-                                    onClick={() => this.handleLoginBtnClick()}> Login </button>
+                                    onClick={() => this.handleLoginBtnClick()}> LOGIN </button>
                                 
                                 {this.state.regForm && < RegisterForm
                                     auth={this.props.auth}

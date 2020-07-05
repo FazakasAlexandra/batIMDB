@@ -23,7 +23,7 @@ class EditPage extends React.Component {
     getMovieById = async (movieId) => {
         console.log('aici e getMovieById');
         try {
-            const response = await axios.get(`http://ancient-caverns-16784.herokuapp.com/movies/${movieId}`);
+            const response = await axios.get(`https://movies-app-siit.herokuapp.com/movies/${movieId}`);
             this.setState({ movieDetail: response.data });
         }
         catch (error) {
@@ -34,6 +34,7 @@ class EditPage extends React.Component {
     render() {
         const { movieDetail, error } = this.state;
         const { auth, token, } = this.props;
+        const containerClass = this.props.theme ==='dark' ? 'addContainer dark' : 'addContainer light';
         // if (error) {
         //     return (
         //         <div>
@@ -43,7 +44,8 @@ class EditPage extends React.Component {
         // }
 
         return (
-            <div style={{ marginTop: 180 }}>
+            
+            <div className={containerClass}>
                 {
                     movieDetail ?
                         (
@@ -51,6 +53,7 @@ class EditPage extends React.Component {
                                 movieDetail={movieDetail}
                                 auth={auth}
                                 token={token}
+                                theme={this.props.theme}
                             />
                         )
                         :
