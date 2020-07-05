@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTheme } from 'styled-components';
 import axios from 'axios';
 import Bounce from '../../Theme/Styledcomponents/Bounce';
 import  { createClassName } from '../../utilitary';
@@ -106,8 +107,8 @@ class AddNewMovie extends React.Component {
         );
     }
     render() {
-        const { theme, onCancel } = this.props;
-
+        const { onCancel } = this.props;
+        const theme = this.props.theme.type;
         return (
             <div className={createClassName('addFormContainer', theme)}>
                 <form className={createClassName('addForm', theme)}
@@ -179,6 +180,6 @@ class AddNewMovie extends React.Component {
         )
     }
 }
-export default AddNewMovie;
+export default withTheme(AddNewMovie);
 
 
