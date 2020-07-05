@@ -1,6 +1,6 @@
 .movieDetails-container{
     width: 60rem;
-    margin-top: 5.5rem;
+    margin-top: 4rem;
     min-height: 12rem;
     background-color: #2E2B2B;
     display:flex;
@@ -21,7 +21,7 @@
 }
 .detailsImg{
     width: 100%;
-    max-height: 25rem;
+    /* max-height: 25rem; */
 }
 p{
     color: lightyellow;
@@ -33,14 +33,14 @@ p{
     border: none;
     background-color: yellow;
 }
-
+/* 
 .deleteMovie{
     width: 6rem;
     padding: 0.2rem;
     color: white;
     background-color: red;
     border: none;
-}
+} */
  .movieDetails-buttons{
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ i{
     position: absolute;
     Z-index: 1;
     right: 15%;
-    top: 6rem;
+    top: 5rem;
     padding: 0.3rem;
     background-color: orangered;
 }

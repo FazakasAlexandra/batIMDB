@@ -52,7 +52,7 @@ class MovieDetails extends React.Component {
     }
 
     closeDetails = () => {
-        this.props.history.goBack();
+        this.props.history.push('/hompage');
     }
 
     render() {
