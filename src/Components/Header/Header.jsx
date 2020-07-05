@@ -18,20 +18,20 @@ class Header extends React.Component {
         this.state = {
             regForm: false,
             logForm: false,
-            logOut:false,
+            logOut: false,
             theme: 'light',
         }
     }
     /* componentDidUpdate () */
 
     exploreFunction = (searchIsEmpty) => {
-        if(searchIsEmpty){
+        if (searchIsEmpty) {
             this.props.handleEmptySearch()
             this.props.history.push('/explore');
         } else {
-        this.props.history.push('/explore');
-        // this.props.history.push({obj: path, cale, state})
-        //console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
+            this.props.history.push('/explore');
+            // this.props.history.push({obj: path, cale, state})
+            //console.log('auth pe state header dupa log-refresh-click:', this.state.auth)
         }
     }
 
@@ -73,15 +73,15 @@ class Header extends React.Component {
     //logic for submit register/login => auth, token, user on MyImdb.state + enable/disable forms in header
     handleSubmitRegister = (data, user) => {
         this.props.onSubmitRegister(data, user);
-        if(this.props.auth){
+        if (this.props.auth) {
             this.setState({
                 regForm: false
             })
         }
     }
-    handleSubmitLogin = (data,user) => {
-        this.props.onSubmitLogin(data,user);
-        if(this.props.auth){
+    handleSubmitLogin = (data, user) => {
+        this.props.onSubmitLogin(data, user);
+        if (this.props.auth) {
             this.setState({
                 logForm: false
             })
@@ -89,22 +89,22 @@ class Header extends React.Component {
     }
     //logic for logout section
     handleHelloBtnClick = () => {
-        this.state.logOut ? this.setState({logOut : false}) : this.setState({logOut : true});
+        this.state.logOut ? this.setState({ logOut: false }) : this.setState({ logOut: true });
     }
     handleLogOutBtnClk = () => {
         //console.log(this.props.token)
-        const headerToken = { headers: {'X-Auth-Token': this.props.token} };
-        
-        axios.get (
+        const headerToken = { headers: { 'X-Auth-Token': this.props.token } };
+
+        axios.get(
             'https://movies-app-siit.herokuapp.com/auth/logout',
-             headerToken
-        ).then(response =>{
+            headerToken
+        ).then(response => {
             console.log("success logout response:", response)
-            if(response.status === 200){
+            if (response.status === 200) {
                 this.props.onLogout();
             }
-        }).catch(error=>{
-            console.log("logout error msg:",error)
+        }).catch(error => {
+            console.log("logout error msg:", error)
         })
     }
 
@@ -119,30 +119,38 @@ class Header extends React.Component {
             this.props.history.push(`/explore/${event.target.value}`)
         }
     }
-    
-    updateActiveQuery(){
-        if(sessionStorage.getItem('activeQuery')){
+
+    updateActiveQuery() {
+        if (sessionStorage.getItem('activeQuery')) {
             let activeQuery = sessionStorage.getItem('activeQuery')
-            let indexOfTitle = activeQuery.indexOf('Title')-1 // -1 to include the & 
-            let titleToReplace = activeQuery.slice(indexOfTitle, activeQuery.length)
-            let updatedActiveQuery = activeQuery.replace(titleToReplace, "")
-            sessionStorage.setItem('activeQuery', updatedActiveQuery)
+            // case at least one filters remains on after search bar became empty :
+            // Genre=Comedy&Title=Joker : icludes &
+            if (activeQuery.includes('&')) {
+                let indexOfTitle = activeQuery.indexOf('Title') - 1 // -1 to include the & 
+                let titleToReplace = activeQuery.slice(indexOfTitle, activeQuery.length)
+                let updatedActiveQuery = activeQuery.replace(titleToReplace, "")
+                sessionStorage.setItem('activeQuery', updatedActiveQuery)
+            // case no other fitler remains on after seachbar became empty :
+            // Title=Joker : does not include &
+            } else {
+                sessionStorage.removeItem('activeQuery')
+            }
         }
     }
 
     render() {
-         /* console.log('props history la header,', this.props) */
+        /* console.log('props history la header,', this.props) */
         const addClass = this.props.auth ? 'enabledAdd' : 'disabledAdd';
         return (
             <div className='header'
-                //  style={{
-                //      backgroundColor: this.props.theme.colorBackground.nav,
-                //      boxShadow: this.props.theme.shadows.boxShadow1
-                //     }}
-                 >
+            //  style={{
+            //      backgroundColor: this.props.theme.colorBackground.nav,
+            //      boxShadow: this.props.theme.shadows.boxShadow1
+            //     }}
+            >
                 {/* <div className='top'></div> */}
                 <nav className='navBar'
-                    //style={{backgroundColor: this.props.theme.colorBackground.nav }}
+                //style={{backgroundColor: this.props.theme.colorBackground.nav }}
                 >
                     <img
                         className='logo'
@@ -154,17 +162,17 @@ class Header extends React.Component {
                         className='exploreBtn'
                         onClick={this.exploreFunction}> EXPLORE </button>
                     <button className={addClass}
-                            onClick={this.addPageFunction}> ADD MOVIE </button>
+                        onClick={this.addPageFunction}> ADD MOVIE </button>
                     <div className='searchBar'>
                         <span className="search-input-container">
                             <FontAwesomeIcon icon={faSearch} />
-                            <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} placeholder="search by title..."/>
+                            <input type='search' className='searchInput' onChange={(event) => this.storeSeach(event)} placeholder="search by title..." />
                         </span>
                         {/*<button className='searchBtn' value="search">Search</button>*/}
                     </div>
                     <a
                         style={{ cursor: "pointer" }}
-                        onClick={()=>this.props.themeFunction()}  //in lucru - am comentat-o sa nu va incurce ****** Marius
+                        onClick={() => this.props.themeFunction()}  //in lucru - am comentat-o sa nu va incurce ****** Marius
                     >
                         <img
                             className='mood'
@@ -176,36 +184,36 @@ class Header extends React.Component {
                     {!this.props.auth &&
                         <div className='buttonsLogReg'>
                             <button className='registerBtn'
-                                    onClick={() => this.handleRegisterBtnClick()}> REGISTER </button>
+                                onClick={() => this.handleRegisterBtnClick()}> REGISTER </button>
                             <button className='loginBtn'
-                                    onClick={() => this.handleLoginBtnClick()}> LOGIN </button>
-                                
-                                {this.state.regForm && < RegisterForm
-                                    auth={this.props.auth}
-                                    onSubmitRegister={this.handleSubmitRegister}
-                                    onCancel={this.handleCancelBtn}
-                                />
-                                }
-                                {this.state.logForm && < LoginForm
-                                    auth={this.props.auth}
-                                    onSubmitLogin={this.handleSubmitLogin}
-                                    onCancel={this.handleCancelBtn}
-                                    reReg={this.handleRegisterBtnClick}
-                                />
-                                }
+                                onClick={() => this.handleLoginBtnClick()}> LOGIN </button>
+
+                            {this.state.regForm && < RegisterForm
+                                auth={this.props.auth}
+                                onSubmitRegister={this.handleSubmitRegister}
+                                onCancel={this.handleCancelBtn}
+                            />
+                            }
+                            {this.state.logForm && < LoginForm
+                                auth={this.props.auth}
+                                onSubmitLogin={this.handleSubmitLogin}
+                                onCancel={this.handleCancelBtn}
+                                reReg={this.handleRegisterBtnClick}
+                            />
+                            }
                         </div>
                     }
-                    
-                    {this.props.auth && 
+
+                    {this.props.auth &&
                         <div className='logOut'>
                             <button className='helloBtn'
-                                    onClick={() => this.handleHelloBtnClick()}> Welcome, {this.props.user} ^ </button>
-                                {this.state.logOut &&
-                                    <button className='logOutBtn'
+                                onClick={() => this.handleHelloBtnClick()}> Welcome, {this.props.user} ^ </button>
+                            {this.state.logOut &&
+                                <button className='logOutBtn'
                                     onClick={() => this.handleLogOutBtnClk()}> Logout </button>
-                                }
+                            }
                         </div>
-                        
+
                     }
                 </nav>
             </div>
