@@ -43,36 +43,50 @@ import React, { Component } from 'react';
 import Carousel from 'react-elastic-carousel';
 import MovieItem from '../MovieItem/MovieItem';
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
+import axios from 'axios'
 
 class MovieList extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            moviesList: []
+        }
         this.breakPoints = [
             { width: 1, itemsToShow: 1, itemsToScroll: 1 },
             { width: 460, itemsToShow: 2, itemsToScroll: 1 },
             { width: 708, itemsToShow: 3, itemsToScroll: 1 },
             { width: 908, itemsToShow: 4, itemsToScroll: 1 },
-
-
         ]
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.movies !== this.props.movies) {
-    //         this.setState()
-    //         //console.log('componentDidUpdate', this.props.movies)
-    //     }
+    // componentDidMount(type){
+    //     axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${type}&take=12`)
+    //         .then((response) => {
+    //             console.log(response.data.results);
+    //             this.setState({
+    //                 moviesList: response.data.results
+    //             })
+    //         })
     // }
 
+    componentDidMount() {
+        this.getMoviesList(type);
+    }
+
+    getMoviesList = (type) => {
+        axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${type}&take=12`)
+            .then((response) => {
+                // console.log(response.data.results)
+                this.setState({
+                    moviesList: response.data.results
+                })
+            })
+    }
+
     render() {
-        const {auth, token} = this.props;
-
-        // const authProps = {
-        //     auth,
-        //     token,
-        // };
-
-        let movies = this.props.movies.map((movie, idx) => {
+        const { auth, token } = this.props;
+        let { moviesList } = this.state
+        let movies = moviesList.map(movie => {
             return (
                 <MovieCard
                     key={movie._id}
@@ -83,11 +97,10 @@ class MovieList extends Component {
                     imdbID={movie.imdbID}
                     auth={auth}
                     token={token}
-                    // {...authProps}
+                    type={movie.Type}
                 />
             )
         });
-
 
         return (
             <div style={{
@@ -102,9 +115,9 @@ class MovieList extends Component {
                     initialFirstItem={4}
                     renderPagination={() => {
                         return (
-                          <> </>
+                            <> </>
                         )
-                      }}
+                    }}
                 >
                     {movies}
                 </Carousel>
