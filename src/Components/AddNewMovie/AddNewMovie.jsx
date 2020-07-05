@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Bounce from '../../Theme/Styledcomponents/Bounce';
+import  { createClassName } from '../../utilitary';
 import './AddNewMovie.css';
 
 class AddNewMovie extends React.Component {
@@ -72,17 +73,12 @@ class AddNewMovie extends React.Component {
         event.preventDefault();
         this.isBatmanTitle() ? this.addMovie() : this.setState({ noBatman: true })
     }
-    //creates className depending on theme
-    createClassName(theme, element) {
-        const className = `${element} ${theme}`
-        return className;
-    }
     //creates preview section (label + text)
     renderPreview(value, labelName) {
         const { theme } = this.props;
         return (
-            <p className={this.createClassName(theme, 'pvwLine')}>
-                <span className={this.createClassName(theme)}
+            <p className={createClassName(theme, 'pvwLine')}>
+                <span className={createClassName(theme)}
                 >{labelName}</span>
                 {this.state[value]}
             </p>
@@ -96,12 +92,12 @@ class AddNewMovie extends React.Component {
         return (
             <div className='fieldWrapper'>
                 <label htmlFor={fieldName}
-                    className={this.createClassName(this.props.theme, 'inputLabel')}>{labelName}</label>
+                    className={createClassName(this.props.theme, 'inputLabel')}>{labelName}</label>
                 <input
                     type='text'
                     name={fieldName}
                     id={fieldName}
-                    className={this.createClassName(this.props.theme, 'addField')}
+                    className={createClassName(this.props.theme, 'addField')}
                     value={this.state[fieldName]}
                     onChange={this.handleChange}
                     required={required}
@@ -113,19 +109,19 @@ class AddNewMovie extends React.Component {
         const { theme, onCancel } = this.props;
 
         return (
-            <div className={this.createClassName('addFormContainer', theme)}>
-                <form className={this.createClassName('addForm', theme)}
+            <div className={createClassName('addFormContainer', theme)}>
+                <form className={createClassName('addForm', theme)}
                     onSubmit={this.handleSubmit}
                 >
                     <div className='addPoster'>
                         <div className='imgFrames'></div>
                         <label htmlFor='addPoster'
-                            className={this.createClassName(theme, 'label')}
+                            className={createClassName(theme, 'label')}
                         >Poster URL:</label>
                         <input type='text'
                             id='addPoster'
                             name='imageUrl'
-                            className={this.createClassName(theme, 'addField')}
+                            className={createClassName(theme, 'addField')}
                             value={this.state.imageUrl}
                         />
                         <div className='imgFrames'></div>
@@ -133,8 +129,9 @@ class AddNewMovie extends React.Component {
                     <div className='addDetails'>
                         {this.state.noBatman &&
                             <Bounce>
-                                <h3 className={this.createClassName(theme)}> Batman Forever </h3>
-                            </Bounce>}
+                                <h3 className={createClassName(theme)}> Batman Forever </h3>
+                            </Bounce>
+                        }
                         {this.renderInput('title', 'Title:', true)}
                         {this.state.noBatman &&
                             <span className='error'>This is not a <b>Batman</b> movie!</span>
@@ -150,19 +147,19 @@ class AddNewMovie extends React.Component {
                         {this.renderInput('plot', 'Plot')}
                     </div>
                     <div className='btnsWrapper'>
-                        <button className={this.createClassName(theme, 'Btn')}
+                        <button className={createClassName(theme, 'Btn')}
                             onClick={this.handlePreview}
                         > PREVIEW </button>
                         <button type='submit'
-                            className={this.createClassName(theme, 'Btn')}
+                            className={createClassName(theme, 'Btn')}
                         > ADD </button>
-                        <button className={this.createClassName(theme, 'Btn')}
+                        <button className={createClassName(theme, 'Btn')}
                             onClick={onCancel}
                         > CANCEL </button>
                     </div>
                 </form>
                 {this.state.preview &&
-                    <div className={this.createClassName(theme, 'pvw')}>
+                    <div className={createClassName(theme, 'pvw')}>
                         <img src={this.state.imgUrl} alt='movie poster' />
                         <div className='pvwDetails'>
                             {this.renderPreview('title', 'Title: ')}

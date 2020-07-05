@@ -72,7 +72,7 @@ class Header extends React.Component {
 
     //logic for submit register/login => auth, token, user on MyImdb.state + enable/disable forms in header
     handleSubmitRegister = (data, user) => {
-        this.props.onSubmitRegister(data, user);
+        this.props.onSubmitLog(data, user);
         if(this.props.auth){
             this.setState({
                 regForm: false
@@ -80,7 +80,7 @@ class Header extends React.Component {
         }
     }
     handleSubmitLogin = (data,user) => {
-        this.props.onSubmitLogin(data,user);
+        this.props.onSubmitLog(data,user);
         if(this.props.auth){
             this.setState({
                 logForm: false
