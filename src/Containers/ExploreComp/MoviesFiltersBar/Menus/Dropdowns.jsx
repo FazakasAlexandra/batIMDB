@@ -4,6 +4,7 @@ import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Filter } from './Filter'
 import dropdowns from './dropdowns.json'
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons'
 
 export class Dropdowns extends React.Component {
     constructor(props) {
@@ -81,39 +82,50 @@ export class Dropdowns extends React.Component {
         }
     }
 
-    toggleFilter(dropdownNr, filterNr) {
-        this.setState([...dropdowns].map((dropdown, i) => {
+    toggleFilter(dropdownIdx, filterIdx) {
+        let dropdowns = [...this.state.dropdowns]
+        dropdowns.forEach((dropdown, i) => {
             // stop at the dropdown that contains the target filter
-            if (i === dropdownNr) {
-                dropdown.filters.map((filter, idx) => {
+            if (i === dropdownIdx) {
+                dropdown.filters.forEach((filter, idx) => {
                     // toggles the clicked filter
-                    if (idx === filterNr) {
-                        // toggle acction
+                    if (idx === filterIdx) {
                         filter.filterOn = !filter.filterOn
-                        // turns off other filter that is on inside that dropdown
-                    } else if (idx !== filterNr && filter.filterOn) {
+                    // turns off other filter that is on inside that dropdown
+                    } else if (idx !== filterIdx && filter.filterOn) {
                         filter.filterOn = !filter.filterOn
                     }
-                    return filter
                 })
+            }
+        })
+
+        this.setState([dropdowns], () => {
+            console.log(dropdowns)
+            this.checkActiveFilters()
+        })
+    }
+
+    addValueToJson(value, dropdownNr, filterNr) {
+        let filter = { ...this.state.dropdowns[dropdownNr].filters[filterNr] }
+        filter.value = value
+        
+        this.setState(dropdowns.map((dropdown, i) => {
+            if (i === dropdownNr) {
+                dropdown.filters[filterNr] = filter
             }
             return dropdown
         }), () => {
             this.checkActiveFilters()
         })
-
     }
 
     checkActiveFilters() {
         let { dropdowns } = this.state
         let queryElements = []
-        dropdowns.forEach((dropdown) => {
-            let { dropdownName, dropdownOn, filters } = dropdown
+        dropdowns.forEach(({ dropdownName, dropdownOn, filters }) => {
             let filterWithInput = dropdownName === 'Year' || dropdownName === 'Ratings'
-
             if (dropdownOn) {
-                filters.forEach((filter) => {
-                    let { filterName, filterOn, value } = filter
+                filters.forEach(({ filterName, filterOn, value }) => {
                     if (filterOn) {
                         if (filterWithInput) {
                             if (value) {
@@ -126,56 +138,37 @@ export class Dropdowns extends React.Component {
                 })
             }
         })
-        this.sendQuery(queryElements)
-    }
-
-    sendQuery(queryElements) {
-        if (queryElements.length === 0 && !sessionStorage.getItem('titleQuery')) {
-            this.props.getDefaultMovies(true)
-        } else {
-            //console.log(queryElements)
-            let queryString = this.stringifyQuery(queryElements)
-            sessionStorage.setItem('activeQuery', queryString)
-            this.props.filterMovies(queryString)
-        }
+        this.stringifyQuery(queryElements)
     }
 
     stringifyQuery(queryElements) {
+        // removes last &
         queryElements.pop()
         if (sessionStorage.getItem('titleQuery')) {
             let titleQuery = sessionStorage.getItem('titleQuery')
             titleQuery = queryElements.length > 0 ? `&${titleQuery}` : titleQuery
             queryElements.push(titleQuery)
         }
-        let queryString = queryElements.join("")
-        return queryString
+        this.sendQuery(queryElements.join(""))
     }
 
-    addValueToJson(value, dropdownNr, filterNr) {
-        let filter = { ...this.state.dropdowns[dropdownNr].filters[filterNr] }
-        filter.value = value
-        this.setState([...dropdowns].map((dropdown, i) => {
-            if (i === dropdownNr) {
-                dropdown.filters[filterNr] = filter
-            }
-            return dropdown
-        }), () => {
-            this.checkActiveFilters()
-        })
+    sendQuery(queryString) {
+        if (queryString === "" && !sessionStorage.getItem('titleQuery')) {
+            this.props.getDefaultMovies(true)
+        } else {
+            sessionStorage.setItem('activeQuery', queryString)
+            this.props.filterMovies(queryString)
+        }
     }
 
     getDropdowns() {
         let dropdownComponents = []
-
-        //i = number of the dropdown within state
-        for (let i = 0; i < this.state.dropdowns.length; i++) {
-            let { dropdownOn, dropdownName, filters } = dropdowns[i]
-
+        // i = number of dropdown within dropdowns of the state
+        this.state.dropdowns.forEach(({ dropdownOn, dropdownName, filters }, i) => {
             let arrow = this.getDropdownArrow(dropdownName, dropdownOn, i)
 
-            //idx = number of the filter within dropdown
-            let filterComponents = filters.map((filter, idx) => {
-                let { filterName, filterOn, minYear, maxYear, minRating, maxRating, step } = filter
+            // idx = number of the filter within dropdown
+            let filterComponents = filters.map(({ filterName, filterOn, minYear, maxYear, minRating, maxRating, step }, idx) => {
                 return (
                     <Filter
                         key={idx}
@@ -200,7 +193,7 @@ export class Dropdowns extends React.Component {
             // number of dropdown within the state array is used as key
             let wrapedDropdown = this.wrapDropdown(filterComponents, dropdownName, dropdownOn, arrow, i)
             dropdownComponents.push(wrapedDropdown)
-        }
+        })
 
         return dropdownComponents
     }
