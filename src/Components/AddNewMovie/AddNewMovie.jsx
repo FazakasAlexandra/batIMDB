@@ -76,7 +76,7 @@ class AddNewMovie extends React.Component {
     }
     //creates preview section (label + text)
     renderPreview(value, labelName) {
-        const { theme } = this.props;
+        const { theme } = this.props.theme.type;
         return (
             <p className={createClassName(theme, 'pvwLine')}>
                 <span className={createClassName(theme)}
