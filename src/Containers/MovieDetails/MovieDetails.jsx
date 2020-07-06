@@ -25,17 +25,6 @@ class MovieDetails extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     let { id } = this.props.history.location.state
-    //     Axios.get(`https://movies-app-siit.herokuapp.com/movies/${id}`)
-    //         .then((response) => {
-    //             console.log(response.data)
-    //             this.setState({ movieDetail: response.data }, () => {
-    //                console.log(this.state.movieDetails)
-    //             })
-    //         })
-    // }
-
     componentDidMount() {
         this.getMovieDetails();
     }
