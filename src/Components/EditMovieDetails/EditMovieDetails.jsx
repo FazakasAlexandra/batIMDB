@@ -64,7 +64,7 @@ class EditMovieDetails extends React.Component {
             )
             this.props.history.goBack();
             console.log('response data de la updateMovie', response.data)
-            return response.data;
+            // return response.data;
         }
         catch (error) {
             console.log('aici e eroarea de la catch', error)
@@ -73,7 +73,7 @@ class EditMovieDetails extends React.Component {
 
     }
 
-    saveEditButton = (e) => {
+    saveMovie = (e) => {
         e.preventDefault();
         this.updateMovie();
         console.log('this.state ', this.state);
@@ -82,10 +82,16 @@ class EditMovieDetails extends React.Component {
         e.preventDefault()
         this.props.history.goBack();
     }
-    deleteEditButton = async (e) => {
+    handleDeleteMovie = (e) => { 
+        e.preventDefault();
+        if (window.confirm('Are you sure you wish to delete this item?')){ 
+            this.deleteMovieById();
+        }
+    }
+    deleteMovieById = async () => {
         try {
             console.log('id is:', this.state.id);
-            e.preventDefault();
+            // e.preventDefault();
             const optionsToken = {
                 headers: { 'X-Auth-Token': this.props.token }
             };
@@ -93,13 +99,13 @@ class EditMovieDetails extends React.Component {
                 `https://movies-app-siit.herokuapp.com/movies/${this.state.id}`,
                 optionsToken
             );
-            console.log('response data de la deleteEditButton', response.data);
+            console.log('response data de la deleteMovieById', response.data);
             this.props.history.push(`/editPage/${this.props.id}`)
                 ?
                 this.props.history.goBack()
                 :
                 this.props.history.push('/hompage')
-            return response.data;
+            // return response.data;
         }
         catch (error) {
             this.setState({ error: error });
@@ -166,14 +172,14 @@ class EditMovieDetails extends React.Component {
                     <button
                         type='submit'
                         className='btn'
-                        onClick={this.saveEditButton}
+                        onClick={this.saveMovie}
                     >
                         SAVE
                     </button>
                     <button
                         type='submit'
                         className='btn'
-                        onClick={this.deleteEditButton}
+                        onClick={this.handleDeleteMovie}
                     >
                         DELETE
                     </button>
