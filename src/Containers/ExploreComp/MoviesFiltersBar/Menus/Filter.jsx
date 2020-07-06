@@ -7,20 +7,15 @@ export function Filter(props) {
   let { filterClass, filterClassOn, name, filterOn, filterNumber } = props
 
   function getFilterArrow() {
-    if (filterClass === 'Year' || filterClass === 'Ratings') {
-      let filterArrow = <FontAwesomeIcon icon={filterOn && filterClassOn ?
+   return (<FontAwesomeIcon icon={filterOn && filterClassOn ?
         "angle-down" :
         "angle-right"}
         onClick={() => props.toggleFilter(filterNumber)}
-      />
-
-      return filterArrow
-    }
+      />)
   }
 
   function getFilterInput() {
-    if ((filterOn && filterClass === 'Year') || (filterOn && filterClass === 'Ratings')) {
-      let filterInput = <RangeInput
+    return(<RangeInput
         min={filterClass === 'Year' ? props.minFilterYear : props.minFilterRating}
         max={filterClass === 'Year' ? props.maxFilterYear : props.maxFilterRating}
         filterClass={filterClass}
@@ -28,10 +23,7 @@ export function Filter(props) {
         addValueToJson={(value) => { props.addValueToJson(value) }}
         step={props.step}
         value={props.value}
-      />
-
-      return filterInput
-    }
+      />)
   }
 
   return (
@@ -45,8 +37,8 @@ export function Filter(props) {
         {name}
       </span>
 
-      {getFilterArrow()}
-      {getFilterInput()}
+      {filterClass === 'Year' || filterClass === 'Ratings' ? getFilterArrow() : null}
+      {(filterOn && filterClass === 'Year') || (filterOn && filterClass === 'Ratings') ? getFilterInput() : null}
     </div>
   )
 }

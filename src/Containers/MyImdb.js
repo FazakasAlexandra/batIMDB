@@ -25,7 +25,6 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
-            theme:'dark',
             setTheme: themeDark
         }
     }
@@ -62,18 +61,14 @@ class MyImdb extends Component {
         if (this.state.setTheme == themeDark) {
             this.setState({
                 setTheme: themeLight,
-                theme: 'light'
             })
             localStorage.setItem('themeA', JSON.stringify(themeLight))
-            localStorage.setItem('theme', 'light')
             
         } else {
             this.setState({
-                theme: 'dark',
                 setTheme: themeDark,
             })
             localStorage.setItem('themeA', JSON.stringify(themeDark))
-            localStorage.setItem('theme', 'dark')
         }
     }
 

@@ -145,6 +145,10 @@ class ExploreComp extends React.Component {
         return titleQuery
     }
 
+    setCookie(activeQuery){
+        document.cookie = `lastSearch=${activeQuery};`
+    }
+
     renderNotFound() {
         return (
             <>
@@ -158,7 +162,6 @@ class ExploreComp extends React.Component {
     renderMovies() {
         const { auth, token } = this.props;
         let movies = this.state.moviesList.map(movie => {
-            // console.log('key din displayMovies',movie._id)
             return (<MovieCard
                 key={movie._id}
                 id={movie._id}

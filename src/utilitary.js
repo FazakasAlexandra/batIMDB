@@ -13,7 +13,6 @@ export function getGlobalState(){
     const isAuth = localStorage.getItem('auth');
     const userToken = localStorage.getItem('token');
     const user = localStorage.getItem('user');
-    const theme = localStorage.getItem('theme');
     const themeA = localStorage.getItem('themeA') ?
             JSON.parse(localStorage.getItem('themeA')) :
             themeLight
@@ -22,7 +21,6 @@ export function getGlobalState(){
         auth: isAuth,
         token: userToken,
         user: user,
-        theme: theme,
         setTheme: themeA
     }
 }

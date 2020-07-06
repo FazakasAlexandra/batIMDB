@@ -1,56 +1,14 @@
-/* import React from 'react'
-import MovieCard from '../../../../Components/MovieCard/MovieCard'
-import axios from 'axios'
-import './MovieList.css'
-export class MovieList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            moviesList: []
-        }
-    }
-    componentDidMount() {
-        axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?Type=movie&take=18`)
-            .then((response) => {
-                console.log(response.data.results)
-                this.setState({ moviesList: response.data.results })
-            }
-            )
-    }
-    displayMovies() {
-        let { moviesList } = this.state
-        let movies = moviesList.map(movie => {
-            return (<MovieCard
-                key={movie._id}
-                poster={movie.Poster}
-                title={movie.Title}
-                imdbRating={movie.imdbRating}
-            />)
-        })
-        return movies
-    }
-    render() {
-        return (
-            <div className='moviesList-container'>
-                {this.displayMovies()}
-            </div>
-        )
-    }
-}
-  */
-
 import React, { Component } from 'react';
 import Carousel from 'react-elastic-carousel';
-import MovieItem from '../MovieItem/MovieItem';
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
 import axios from 'axios'
 
 class MovieList extends Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     moviesList: []
-        // }
+        this.state = {
+            moviesList: []
+        }
         this.breakPoints = [
             { width: 1, itemsToShow: 1, itemsToScroll: 1 },
             { width: 460, itemsToShow: 2, itemsToScroll: 1 },
@@ -59,34 +17,36 @@ class MovieList extends Component {
         ]
     }
 
-    // componentDidMount(type){
-    //     axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${type}&take=12`)
-    //         .then((response) => {
-    //             console.log(response.data.results);
-    //             this.setState({
-    //                 moviesList: response.data.results
-    //             })
-    //         })
-    // }
+    componentDidMount() {
+        this.getMoviesList();
+    }
 
-    // componentDidMount() {
-    //     this.getMoviesList(type);
-    // }
+    getMoviesList = () => {
+        axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${this.props.type}&take=100`)
+            .then((response) => {
+                // console.log(response.data.results)
+                let movies = this.addImage(response)
+                this.setState({
+                    // moviesList: response.data.results
+                    moviesList: movies
+                })
+            })
+    }
 
-    // getMoviesList = (type) => {
-    //     axios.get(`http://movies-app-siit.herokuapp.com/movies?Type=${type}&take=12`)
-    //         .then((response) => {
-    //             // console.log(response.data.results)
-    //             this.setState({
-    //                 moviesList: response.data.results
-    //             })
-    //         })
-    // }
+    addImage(response) {
+        let movies = response.data.results.map((movie) => {
+            if (movie.Poster === 'N/A') {
+                movie.Poster = 'https://static.posters.cz/image/750/postere/justice-league-batman-solo-i50997.jpg'
+            }
+            return movie
+        })
+        return movies
+    }
 
     render() {
         const { auth, token } = this.props;
-        // let { moviesList } = this.state
-        let movies = this.props.movies.map(movie => {
+        let { moviesList } = this.state
+        let movies = moviesList.map(movie => {
             return (
                 <MovieCard
                     key={movie._id}
@@ -110,7 +70,7 @@ class MovieList extends Component {
             }} >
                 <Carousel
                     breakPoints={this.breakPoints}
-                    itemsToShow={4}
+                    itemsToShow={5}
                     itemsToScroll={1}
                     initialFirstItem={4}
                     renderPagination={() => {
