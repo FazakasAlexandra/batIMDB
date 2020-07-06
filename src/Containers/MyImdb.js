@@ -63,7 +63,6 @@ class MyImdb extends Component {
                 setTheme: themeLight,
             })
             localStorage.setItem('themeA', JSON.stringify(themeLight))
-            
         } else {
             this.setState({
                 setTheme: themeDark,
@@ -103,7 +102,7 @@ class MyImdb extends Component {
                             render={props => this.state.auth ?
                                 <AddPage {...props}
                                     token={this.state.token}
-                                    theme={this.state.theme}
+                                    theme={this.state.setTheme}
                                     auth={this.state.auth} /> :
                                 <Redirect to="/hompage" />
                             }
@@ -113,7 +112,7 @@ class MyImdb extends Component {
                                 <EditPage {...props}
                                     auth={this.state.auth}
                                     token={this.state.token}
-                                    theme={this.state.theme} /> :
+                                    theme={this.state.setTheme} /> :
                                 <Redirect to="/hompage" />} />
                         <Route path="/movieDetails/:movieId" exact render={props => <MovieDetails {...props} auth={this.state.auth} token={this.state.token} />} />
 

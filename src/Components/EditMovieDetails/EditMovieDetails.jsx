@@ -161,21 +161,21 @@ class EditMovieDetails extends React.Component {
                     <button className='btn'
                         onClick={this.handleBack}
                     >
-                        Back
+                        BACK
                     </button>
                     <button
                         type='submit'
                         className='btn'
                         onClick={this.saveEditButton}
                     >
-                        Save
+                        SAVE
                     </button>
                     <button
                         type='submit'
                         className='btn'
                         onClick={this.deleteEditButton}
                     >
-                        Delete
+                        DELETE
                     </button>
                 </div>
             </form>

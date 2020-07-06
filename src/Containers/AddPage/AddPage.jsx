@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
+import { withTheme } from 'styled-components';
 import AddNewMovie from '../../Components/AddNewMovie/AddNewMovie';
 import './AddPage.css';
 
@@ -28,7 +28,8 @@ class AddPage extends React.Component{
         this.props.history.goBack();
     }
     render(){
-        const containerClass = this.props.theme ==='dark' ? 'addContainer dark' : 'addContainer light';
+        
+        const containerClass = this.props.theme.type ==='dark' ? 'addContainer dark' : 'addContainer light';
         return(
             <div className={containerClass}>
                 {this.state.addForm && 
@@ -53,5 +54,6 @@ class AddPage extends React.Component{
         )
     }
 }
-export default withRouter(AddPage);
+export default withTheme(withRouter(AddPage))
+
 

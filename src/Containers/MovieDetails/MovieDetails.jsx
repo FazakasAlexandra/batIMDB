@@ -74,7 +74,7 @@ class MovieDetails extends React.Component {
                     <p className="infoPlot"><i>{Plot}</i> </p><br />
                     <br /><br />
                     <div className="movieDetails-buttons">
-                        <button className={editClass} onClick={this.editMovie}>Edit Movie</button><br />
+                        <button className={editClass} onClick={this.editMovie}>EDIT MOVIE</button><br />
                         {/* <button className="deleteMovie">Delete Movie</button> */}
                         <button className="closeDetails" onClick={this.closeDetails}>X</button>
                     </div>

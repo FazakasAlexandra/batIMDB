@@ -202,8 +202,8 @@ h3{
             height:0.3em;
         }
         .addPoster label{
-            padding-top: 0.5em;
-            margin-bottom: 0.3em;
+            padding-top: 0.8em;
+            margin-bottom: 0.8em;
             cursor: pointer;
         }
         .addPoster input{
@@ -211,7 +211,7 @@ h3{
             align-self: center;
             margin:0;
             padding:0;
-            margin-bottom: 0.4em;
+            margin-bottom: 0.8em;
         }
         .fieldWrapper{
             max-width:18em;
