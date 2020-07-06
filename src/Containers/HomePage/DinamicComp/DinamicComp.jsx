@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withTheme } from 'styled-components';
 import axios from 'axios';
 import RotateList from 'react-rotate-list';
-import Flash from '../../../Theme/Styledcomponents/Flash';
 import SingleMovie from '../DinamicComp/SingleMovie/SingleMovie';
 import './DinamicComp.css';
 import { Fragment } from 'react';
