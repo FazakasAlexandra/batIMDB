@@ -57,7 +57,7 @@
   border-radius: 0.5em;
   z-index :1;
   padding:1em;
-  margin-top:2em;
+  margin-top:1.5em;
   background-color:#091e32;
   color: #505c7c;
   align-self: flex-end;
@@ -69,7 +69,10 @@
 .searchBar > svg {
   padding-right: 2px;
 }
-
+.searchBar{
+  margin-block-end: 1em;
+  margin-block-start: 1em;
+}
 .search-input-container {
   position: relative; 
 }
@@ -131,8 +134,8 @@
 }
 /* for phone samsung S5 */
 @media only screen 
-  and (min-device-width: 360px) 
-  and (max-device-width: 812px) 
+  and (min-device-width: 300px) 
+  and (max-device-width: 767px) 
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: portrait) { 
   .navBar {
@@ -147,23 +150,21 @@
     padding: 0.1em 0px;
     margin-bottom: 0.2em;
   }
-  
   .logo {
     width: 2.5em;
     height: auto;
     cursor: pointer;
     margin-bottom: 0.2em;
   }
-  
   .searchInput {
     width: 21.3em;
     margin-left: 0;
   }
-  
   .mood {
     width: 1.5em;
     display: flex;
   }
+  
 }
 /* ----for tablet---- */
 @media 
@@ -182,6 +183,6 @@
     margin-bottom: 0.2em;
   }
   .loginBtn {
-    margin-left:0.5em;
+    margin-left:0.4em;
   }
 }

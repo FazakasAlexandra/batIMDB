@@ -53,3 +53,21 @@
         margin-top: 0.3em;
     }
 }
+@media only screen 
+    and (min-width:100px) 
+    and (max-width:599px){
+        .reg-form{
+            position:absolute;
+            left:0;
+            width:100%;
+            margin:0 auto;
+            border-radius: 0.5em;
+            z-index :1;
+            padding:2.5em;
+            margin-top:0.7em;
+            background-color:#091e32;
+            align-self: flex-end;
+            display:flex;
+            flex-direction: column ;
+        } 
+    }
