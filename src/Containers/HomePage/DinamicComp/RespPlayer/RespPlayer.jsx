@@ -13,7 +13,7 @@ class RespPlayer extends Component {
 
     CancelToken = axios.CancelToken;
     source = this.CancelToken.source();
-    abortController = new AbortController();
+    //abortController = new AbortController();
 
     componentDidMount() {
         this.getTrailers();
