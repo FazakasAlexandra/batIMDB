@@ -18,7 +18,7 @@ class MovieDetails extends React.Component {
         // console.log('this.props aici',this.props.location.state)
         if (this.props.auth) {
             this.props.history.push({
-                pathname: `/editPage/${this.props.location.state}`,
+                pathname: `/editPage/${this.props.location.state.id}`,
             });
         } else {
             window.alert('You have to be signed in to Edit Movies')
@@ -30,7 +30,7 @@ class MovieDetails extends React.Component {
     }
 
     getMovieDetails = () => {
-        Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.history.location.state}`)
+        Axios.get(`http://movies-app-siit.herokuapp.com/movies/${this.props.history.location.state.id}`)
             .then((response) => {
                 //console.log(response.data);
                 this.setState({ movieDetail: response.data })
@@ -43,10 +43,10 @@ class MovieDetails extends React.Component {
     }
 
     render() {
-        //console.log(this.props.history);
+        console.log('this.props- mov details', this.props);
         const editClass = this.props.auth ? 'enabledEdit' : 'disabledEdit';
         // const { auth, token, } = this.props;
-        const { Poster, Title, Genre, Year, Runtime, imdbRating, imdbID, Language, Country, Director, Actors, Released, Awards, Plot } = this.state.movieDetail
+        const { Poster, Title, Genre, Year, Runtime, imdbRating, Language, Country, Director, Actors, Released, Awards, Plot } = this.state.movieDetail
         return (
             <div
                 className="movieDetails-container"
@@ -55,7 +55,7 @@ class MovieDetails extends React.Component {
                 <div className="movieDetailsImg">
                     <img src={Poster} alt="movie poster" className='detailsImg' /><br />
                     <div className='trailer'>
-                        <RespPlayer id={imdbID} />
+                        <RespPlayer id={this.props.history.location.state.imdbID} />
                     </div>
 
                 </div>

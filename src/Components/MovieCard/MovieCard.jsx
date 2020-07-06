@@ -33,7 +33,10 @@ class MovieCard extends React.Component {
         this.props.history.push(
             {
                 pathname: `/movieDetails/${this.props.id}`,
-                state: this.props.id
+                state: {
+                    id: this.props.id,
+                    imdbID: this.props.imdbID
+                }
             }
         );
     }

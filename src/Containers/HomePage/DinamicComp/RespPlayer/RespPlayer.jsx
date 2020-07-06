@@ -60,8 +60,8 @@ class RespPlayer extends Component {
                 checkOrigin={false}
                 autoResize={true}
                 allowFullScreen={true} 
-                webkitallowfullscreen={true}
-                mozallowfullscreen={true}
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
             />
         )
     }
