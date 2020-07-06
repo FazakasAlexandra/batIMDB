@@ -43,7 +43,6 @@ class MovieDetails extends React.Component {
     }
 
     render() {
-        console.log('this.props- mov details', this.props);
         const editClass = this.props.auth ? 'enabledEdit' : 'disabledEdit';
         // const { auth, token, } = this.props;
         const { Poster, Title, Genre, Year, Runtime, imdbRating, Language, Country, Director, Actors, Released, Awards, Plot } = this.state.movieDetail
