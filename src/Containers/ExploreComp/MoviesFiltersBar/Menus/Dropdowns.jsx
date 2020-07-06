@@ -4,7 +4,6 @@ import '../../../../Fontawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Filter } from './Filter'
 import dropdowns from './dropdowns.json'
-import { faThumbtack } from '@fortawesome/free-solid-svg-icons'
 
 export class Dropdowns extends React.Component {
     constructor(props) {
@@ -76,8 +75,14 @@ export class Dropdowns extends React.Component {
     updateActiveQuery(name) {
         if (sessionStorage.getItem('activeQuery') !== null) {
             let activeQuery = sessionStorage.getItem('activeQuery')
-            if (activeQuery.includes(name) || activeQuery.includes('imdbRating') && !activeQuery.includes('&')) {
+            let includesRatings = activeQuery.includes('imdbRating') || activeQuery.includes('imdb')
+
+            if ((activeQuery.includes(name) || includesRatings) && !activeQuery.includes('&')) {
                 sessionStorage.removeItem('activeQuery')
+            } else if ((activeQuery.includes(name) || includesRatings) && activeQuery.includes('&')) {
+                let removedPart = activeQuery.slice(0,activeQuery.indexOf('&')+1)
+                let updatedQuery = activeQuery.replace(removedPart, "")
+                sessionStorage.setItem('activeQuery', updatedQuery)
             }
         }
     }
@@ -91,7 +96,10 @@ export class Dropdowns extends React.Component {
                     // toggles the clicked filter
                     if (idx === filterIdx) {
                         filter.filterOn = !filter.filterOn
-                    // turns off other filter that is on inside that dropdown
+                        if(!filter.filterOn){
+                            this.updateActiveQuery()
+                        }
+                        // turns off other filter that is on inside that dropdown
                     } else if (idx !== filterIdx && filter.filterOn) {
                         filter.filterOn = !filter.filterOn
                     }
@@ -100,7 +108,6 @@ export class Dropdowns extends React.Component {
         })
 
         this.setState([dropdowns], () => {
-            console.log(dropdowns)
             this.checkActiveFilters()
         })
     }
@@ -108,7 +115,7 @@ export class Dropdowns extends React.Component {
     addValueToJson(value, dropdownNr, filterNr) {
         let filter = { ...this.state.dropdowns[dropdownNr].filters[filterNr] }
         filter.value = value
-        
+
         this.setState(dropdowns.map((dropdown, i) => {
             if (i === dropdownNr) {
                 dropdown.filters[filterNr] = filter
@@ -158,7 +165,12 @@ export class Dropdowns extends React.Component {
         } else {
             sessionStorage.setItem('activeQuery', queryString)
             this.props.filterMovies(queryString)
+            this.setCookie(queryString)
         }
+    }
+
+    setCookie(activeQuery){
+        document.cookie = `lastSearch=${activeQuery};`
     }
 
     getDropdowns() {
