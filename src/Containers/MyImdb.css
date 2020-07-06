@@ -13,4 +13,13 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.footer{
+  width:100%;
+  text-align: center;
+  padding: 2em 0;
+  background-color:#091e32;
+  color: #838a9c;
+ 
+}
+
 

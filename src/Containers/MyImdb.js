@@ -117,6 +117,9 @@ class MyImdb extends Component {
                         <Route path="/movieDetails/:movieId" exact render={props => <MovieDetails {...props} auth={this.state.auth} token={this.state.token} />} />
 
                     </Switch>
+                    <div className='footer'>
+                        <span>This will be the footer</span>
+                    </div>
                 </div>
             </ThemeProvider>
         );
