@@ -15,6 +15,7 @@ import AddPage from '../Containers/AddPage/AddPage';
 import EditPage from '../Containers/EditPage/EditPage';
 import MovieDetails from '../Containers/MovieDetails/MovieDetails';
 import { ThemeProvider } from 'styled-components';
+import { getGlobalState, storeGlobalState, clearLocalstorage } from '../utilitary';
 
 class MyImdb extends Component {
     constructor(props) {
@@ -24,52 +25,27 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
-            setTheme: themeDark,
-            theme: 'dark'
+            theme:'dark',
+            setTheme: themeDark
         }
     }
-    //logic to take auth, token, user from localStorage and put it back on state on refresh
+    //logic to take auth, token, user,theme from localStorage and put it back on state on refresh
     componentDidMount = () => {
-        const isAuth = localStorage.getItem('auth');
-        const userToken = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
-        const theme = localStorage.getItem('theme');
-        //console.log("Auth pe storage:", isAuth, "token:", userToken, 'user:', user)
-        this.setState({
-            auth: isAuth,
-            token: userToken,
-            user: user,
-            theme: theme
-        })
-
+        this.setState(getGlobalState());
+        
         if (sessionStorage.getItem('titleQuery')) {
             sessionStorage.removeItem('titleQuery')
         }
     }
-    //logic for success register/login => auth:true, token pe state (un-comment console.log for token)
-    handleSubmitRegister = (data, user) => {
+    //logic for success register/login => auth, token, user on state and localStorage
+    handleSubmitLog = (data, user) => {
         this.setState({
             auth: data.authenticated,
             token: data.accessToken,
             user: user
+        },() => {
+            storeGlobalState(data.authenticated, data.accessToken, user)
         })
-        //keep data in storage 
-        localStorage.setItem('auth', data.authenticated);
-        localStorage.setItem('token', data.accessToken);
-        localStorage.setItem('user', user)
-        //console.log("Auth pe state:", this.state.auth, "token:", this.state.token, this.state.user)
-    }
-    handleSubmitLogin = (data, user) => {
-        this.setState({
-            auth: data.authenticated,
-            token: data.accessToken,
-            user: user
-        })
-        //keep data in storage 
-        localStorage.setItem('auth', data.authenticated);
-        localStorage.setItem('token', data.accessToken);
-        localStorage.setItem('user', user)
-        //console.log("Auth pe state la logat:", this.state.auth, "token:", this.state.token, this.state.user)
     }
     //logic for success logout, removing all data from storage, re-setting state
     handleLogOut = () => {
@@ -78,9 +54,7 @@ class MyImdb extends Component {
             token: '',
             user: ''
         }, () => {
-            localStorage.removeItem('auth');
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
+            clearLocalstorage();
         })
     }
 
@@ -89,17 +63,17 @@ class MyImdb extends Component {
             this.setState({
                 setTheme: themeLight,
                 theme: 'light'
-            }, () => {
-                localStorage.setItem('theme', this.state.theme);
-            });
+            })
+            localStorage.setItem('themeA', JSON.stringify(themeLight))
+            localStorage.setItem('theme', 'light')
+            
         } else {
             this.setState({
+                theme: 'dark',
                 setTheme: themeDark,
-                theme: 'dark'
-            }, () => {
-                localStorage.setItem('theme', this.state.theme);
-            });
-
+            })
+            localStorage.setItem('themeA', JSON.stringify(themeDark))
+            localStorage.setItem('theme', 'dark')
         }
     }
 
@@ -109,7 +83,7 @@ class MyImdb extends Component {
         })
     }
 
-    render() {
+    render() {        
         //console.log("Auth/token/user pe state dupa refresh:", this.state.auth, "token:", this.state.token)
         return (
             <ThemeProvider theme={this.state.setTheme} >
@@ -119,8 +93,7 @@ class MyImdb extends Component {
                         auth={this.state.auth}
                         user={this.state.user}
                         token={this.state.token}
-                        onSubmitRegister={this.handleSubmitRegister}
-                        onSubmitLogin={this.handleSubmitLogin}
+                        onSubmitLog={this.handleSubmitLog}
                         onLogout={this.handleLogOut}
                         themeFunction={this.handlleToglleTheme}
                     />
@@ -134,9 +107,9 @@ class MyImdb extends Component {
                             exact
                             render={props => this.state.auth ?
                                 <AddPage {...props}
-                                    auth={this.state.auth}
                                     token={this.state.token}
-                                    theme={this.state.theme} /> :
+                                    theme={this.state.theme}
+                                    auth={this.state.auth} /> :
                                 <Redirect to="/hompage" />
                             }
                         />

@@ -19,7 +19,6 @@ class Header extends React.Component {
             regForm: false,
             logForm: false,
             logOut: false,
-            theme: 'light',
         }
     }
     /* componentDidUpdate () */
@@ -72,25 +71,26 @@ class Header extends React.Component {
 
     //logic for submit register/login => auth, token, user on MyImdb.state + enable/disable forms in header
     handleSubmitRegister = (data, user) => {
-        this.props.onSubmitRegister(data, user);
-        if (this.props.auth) {
+        this.props.onSubmitLog(data, user);
+        if(this.props.auth){
             this.setState({
                 regForm: false
             })
         }
     }
-    handleSubmitLogin = (data, user) => {
-        this.props.onSubmitLogin(data, user);
-        if (this.props.auth) {
+    handleSubmitLogin = (data,user) => {
+        this.props.onSubmitLog(data,user);
+        if(this.props.auth){
             this.setState({
                 logForm: false
             })
         }
     }
-    //logic for logout section
+    //logic for logout section  /  opens logout option
     handleHelloBtnClick = () => {
         this.state.logOut ? this.setState({ logOut: false }) : this.setState({ logOut: true });
     }
+    //logs out from server
     handleLogOutBtnClk = () => {
         //console.log(this.props.token)
         const headerToken = { headers: { 'X-Auth-Token': this.props.token } };

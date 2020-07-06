@@ -338,3 +338,15 @@
     }
 
 }
+@media 
+  (max-width: 620px) {
+    .bars-container .fa-w-14{
+        margin-top:1.1em;
+    }
+}
+@media 
+  (max-width: 565px) {
+    .bars-container .fa-w-14{
+        margin-top:1.5em;
+    }
+}

@@ -71,7 +71,7 @@ class LoginForm extends React.Component{
                 {
                     this.state.forgotPass &&
                         <p className='forgotErr'>
-                            The only way back is to <br/>
+                            The only way back is to <br />
                             <button className='reReg'
                                     onClick={this.props.reReg}>Register</button>
                             again.

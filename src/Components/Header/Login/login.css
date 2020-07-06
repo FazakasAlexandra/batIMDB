@@ -3,7 +3,7 @@
     border-radius: 0.5em;
     z-index :1;
     padding:1.5em;
-    margin-top:2.5em;
+    margin-top:1.5em;
     background-color:#091e32;
     align-self: flex-end;
     display:flex;
@@ -51,4 +51,23 @@ p {
 .reReg {
     color:#fdff00;
     padding-right:0.3em;
+}
+/* ----for tablet---- */
+@media (min-device-width: 768px) 
+  and (max-device-width: 1280px) {
+    .log-form{
+        margin-left: -5em;
+    }
+}
+
+/* for phone samsung S5 */
+@media only screen 
+  and (min-device-width: 360px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    .log-form{
+        margin-left: 0.2em;
+        margin-top: 0.3em;
+    }
 }
