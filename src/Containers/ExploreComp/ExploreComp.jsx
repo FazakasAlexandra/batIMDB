@@ -10,19 +10,22 @@ class ExploreComp extends React.Component {
         super(props)
         this.state = {
             moviesList: [],
-            moviesFound: true
+            moviesFound: true,
+            noMoreMovies: false,
+            moviesAreFiltered: false,
+            moviesNumber: 15
         }
     }
 
     componentDidMount() {
         this.getDefaultMovies()
-        if(sessionStorage.getItem('activeQuery')){
+        if (sessionStorage.getItem('activeQuery')) {
             sessionStorage.removeItem('activeQuery')
         }
     }
 
-    componentWillUnmount(){
-        if(sessionStorage.getItem('activeQuery')){
+    componentWillUnmount() {
+        if (sessionStorage.getItem('activeQuery')) {
             sessionStorage.removeItem('activeQuery')
         }
     }
@@ -30,7 +33,7 @@ class ExploreComp extends React.Component {
     componentDidUpdate() {
         if (this.props.emptySearch && !sessionStorage.getItem('activeQuery')) {
             this.getDefaultMovies()
-        } else if(this.props.emptySearch && sessionStorage.getItem('activeQuery')){
+        } else if (this.props.emptySearch && sessionStorage.getItem('activeQuery')) {
             this.filterMovies(sessionStorage.getItem('activeQuery'))
         }
     }
@@ -40,10 +43,12 @@ class ExploreComp extends React.Component {
         if (areFiltersOff) {
             this.setState({ moviesFound: true })
         }
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=15`)
+        console.log(this.state.moviesNumber)
+        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=${this.state.moviesNumber}`)
             .then((response) => {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies })
+                this.setState({moviesAreFiltered : false})
             })
     }
 
@@ -64,13 +69,12 @@ class ExploreComp extends React.Component {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies }, () => {
                     if (this.state.moviesList.length < 1) {
-                        this.setState({ moviesFound: false })
+                        this.setState({ moviesFound: false, moviesAreFiltered: true, moviesNumber:15 })
                     } else {
-                        this.setState({ moviesFound: true })
+                        this.setState({ moviesFound: true, moviesAreFiltered: true, moviesNumber:15 })
                     }
                 })
-            }
-            )
+            })
     }
 
     isSearchByTitle() {
@@ -97,14 +101,14 @@ class ExploreComp extends React.Component {
         return processedQuery
     }
 
-    addTitle(activeQuery){
+    addTitle(activeQuery) {
         // add title to activeQuery
         let processedQuery = activeQuery.concat(`&${this.getTitleQuery()}`)
         this.updateActiveQuery(processedQuery)
         return processedQuery
     }
 
-    replaceTitle(activeQuery) { 
+    replaceTitle(activeQuery) {
         // remove previous title from activeQuery
         // add actual title to activeQuery
         let indexTitle = activeQuery.indexOf('Title')
@@ -112,12 +116,12 @@ class ExploreComp extends React.Component {
         // case 1 : 'Genre=Comedy&Title=Joker&Language=English'
         // case 2 : 'Title=Joker&Genre=Comedy'
         if (indexAnd !== -1) {
-            let oldTitle = activeQuery.slice(indexTitle, indexAnd+1)
-            let processedQuery = activeQuery.replace(oldTitle,`${this.getTitleQuery()}&`)
+            let oldTitle = activeQuery.slice(indexTitle, indexAnd + 1)
+            let processedQuery = activeQuery.replace(oldTitle, `${this.getTitleQuery()}&`)
             this.updateActiveQuery(processedQuery)
 
             return processedQuery
-        // case 3 : 'Genre=Comedy&Title=Joker' 
+            // case 3 : 'Genre=Comedy&Title=Joker' 
         } else {
             let oldTitle = activeQuery.slice(indexTitle, activeQuery.length)
             let processedQuery = activeQuery.replace(oldTitle, this.getTitleQuery())
@@ -127,7 +131,7 @@ class ExploreComp extends React.Component {
         }
     }
 
-    updateActiveQuery(processedQuery){
+    updateActiveQuery(processedQuery) {
         sessionStorage.setItem('activeQuery', processedQuery)
     }
     getMoviesByTitle() {
@@ -145,7 +149,7 @@ class ExploreComp extends React.Component {
         return titleQuery
     }
 
-    setCookie(activeQuery){
+    setCookie(activeQuery) {
         document.cookie = `lastSearch=${activeQuery};`
     }
 
@@ -158,7 +162,6 @@ class ExploreComp extends React.Component {
             </>
         )
     }
-
     renderMovies() {
         const { auth, token } = this.props;
         let movies = this.state.moviesList.map(movie => {
@@ -172,10 +175,25 @@ class ExploreComp extends React.Component {
                 token={token}
             />)
         })
-
         return movies
     }
-
+    getMoreMovies() {
+        //let updatedMoviesNumber = parseInt(this.state.skip)+15
+        //console.log(updatedMoviesNumber)
+        this.setState({ moviesNumber: this.state.moviesNumber + 15 }, () => {
+            console.log('more movies')
+            if (this.state.moviesNumber < 105) {
+                this.getDefaultMovies()
+                this.removeActiveQuery()
+            } else {
+                this.setState({ noMoreMovies: true })
+                this.removeActiveQuery()
+            }
+        })
+    }
+    removeActiveQuery(){
+        if(sessionStorage.getItem('activeQuery')) sessionStorage.removeItem('activeQuery')
+    }
     render() {
         return (
             <div className="exploreComp-container"
@@ -189,9 +207,9 @@ class ExploreComp extends React.Component {
                     {this.state.moviesFound ? this.renderMovies() : this.renderNotFound()}
                     {this.isSearchByTitle()}
                 </div>
+                {this.state.noMoreMovies || this.state.moviesAreFiltered? null : <p id="more" onClick={() => this.getMoreMovies()}>MORE</p>}
             </div>
         )
     }
 }
-
 export default withTheme(ExploreComp)
