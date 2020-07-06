@@ -70,7 +70,7 @@ class MovieList extends Component {
             }} >
                 <Carousel
                     breakPoints={this.breakPoints}
-                    itemsToShow={4}
+                    itemsToShow={5}
                     itemsToScroll={1}
                     initialFirstItem={4}
                     renderPagination={() => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import './EditPage.css';
 import { withRouter } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 import EditMovieDetails from '../../Components/EditMovieDetails/EditMovieDetails';
 import axios from 'axios';
 
@@ -34,7 +35,7 @@ class EditPage extends React.Component {
     render() {
         const { movieDetail, error } = this.state;
         const { auth, token, } = this.props;
-        const containerClass = this.props.theme ==='dark' ? 'addContainer dark' : 'addContainer light';
+        const containerClass = this.props.theme.type ==='dark' ? 'addContainer dark' : 'addContainer light';
         // if (error) {
         //     return (
         //         <div>
@@ -53,7 +54,7 @@ class EditPage extends React.Component {
                                 movieDetail={movieDetail}
                                 auth={auth}
                                 token={token}
-                                theme={this.props.theme}
+                                theme={this.props.theme.type}
                             />
                         )
                         :
@@ -66,4 +67,4 @@ class EditPage extends React.Component {
     }
 }
 
-export default withRouter(EditPage);
+export default withTheme(withRouter(EditPage));

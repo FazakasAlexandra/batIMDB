@@ -76,7 +76,7 @@ class AddNewMovie extends React.Component {
     }
     //creates preview section (label + text)
     renderPreview(value, labelName) {
-        const { theme } = this.props;
+        const { theme } = this.props.theme.type;
         return (
             <p className={createClassName(theme, 'pvwLine')}>
                 <span className={createClassName(theme)}
@@ -90,7 +90,7 @@ class AddNewMovie extends React.Component {
         if (required) {
             labelName += ' *';
         }
-        const { theme } = this.props;
+        const  theme  = this.props.theme.type;
         return (
             <div className='fieldWrapper'>
                 <label htmlFor={fieldName}
@@ -108,8 +108,8 @@ class AddNewMovie extends React.Component {
         );
     }
     render() {
-        const { onCancel, theme } = this.props;
-       
+        const { onCancel } = this.props;
+        const  theme  = this.props.theme.type;
         return (
             <div className={createClassName('addFormContainer', theme)}>
                 <form className={createClassName('addForm', theme)}
