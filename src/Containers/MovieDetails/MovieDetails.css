@@ -1,5 +1,5 @@
 .movieDetails-container{
-    width: 60rem;
+    width: 50rem;
     margin: 6rem  auto;
     min-height: 12rem;
     background-color: #2E2B2B;
@@ -22,7 +22,6 @@
 }
 .detailsImg{
     width: 100%;
-    /* max-height: 25rem; */
 }
 p{
     color: lightyellow;
@@ -35,8 +34,7 @@ p{
     background-color: yellow;
 }
 .infoPlot{
-    display: flex;
-    flex-shrink: shrink;
+   width: 25rem;
 }
 /* 
 .deleteMovie{
@@ -66,7 +64,7 @@ i{
 .closeDetails{
     position: absolute;
     Z-index: 1;
-    right: 15%;
+    right: 20%;
     top: 6rem;
     padding: 0.3rem;
     background-color: orangered;
