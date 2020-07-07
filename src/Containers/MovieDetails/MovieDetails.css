@@ -33,17 +33,6 @@ p{
     border: none;
     background-color: yellow;
 }
-/* .infoPlot{
-   max-width: 25rem;
-} */
-/* 
-.deleteMovie{
-    width: 6rem;
-    padding: 0.2rem;
-    color: white;
-    background-color: red;
-    border: none;
-} */
  .movieDetails-buttons{
     display: flex;
     flex-direction: column;
@@ -64,8 +53,8 @@ i{
 .closeDetails{
     position: absolute;
     Z-index: 1;
-    right: 20%;
-    top: 6rem;
+    right: 22%;
+    top: 7rem;
     padding: 0.3rem;
     background-color: orangered;
 }
