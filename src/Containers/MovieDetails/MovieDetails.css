@@ -33,9 +33,9 @@ p{
     border: none;
     background-color: yellow;
 }
-.infoPlot{
-   width: 25rem;
-}
+/* .infoPlot{
+   max-width: 25rem;
+} */
 /* 
 .deleteMovie{
     width: 6rem;
@@ -102,6 +102,9 @@ i{
     .trailer{
         margin-top: 5rem;
     }
+    .movieDetailsInfo{
+        max-width: 35rem;
+    }
 }
 
 @media(max-width: 45rem){
@@ -118,11 +121,29 @@ i{
         flex-direction: column;
         margin-left: 7.5rem;
     }
+    .movieDetailsInfo{
+        max-width: 25rem;
+    }
 }
 
 @media(max-width: 35rem){
     .movieDetails-container{
         margin-top: 8rem;
+    }
+    .movieDetailsInfo{
+        max-width: 25rem;
+    }
+}
+
+@media(max-width: 30rem){
+    .movieDetails-container{
+        margin-top: 8rem;
+    }
+    .movieDetailsInfo{
+        max-width: 20rem;
+    }
+    .movieDetailsImg{
+        margin-left: 1rem;
     }
 }
 
