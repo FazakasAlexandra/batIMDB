@@ -45,9 +45,11 @@
   color:#fdff00;
   font-family:'Ubuntu', sans-serif;
   font-size: large;
+  cursor: pointer;
 }
 .disabledAdd {
   color: #505c7c;
+  cursor: pointer;
 }
 .loginBtn {
   margin-left:5em;
@@ -61,10 +63,12 @@
   background-color:#091e32;
   color: #505c7c;
   align-self: flex-end;
+  cursor: pointer;
 }
 .logOut{
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 .searchBar > svg {
   padding-right: 2px;
