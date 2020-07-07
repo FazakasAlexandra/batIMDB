@@ -37,14 +37,8 @@ class MovieDetails extends React.Component {
             })
     }
 
-
-    // closeDetails = () => {
-    //     this.props.history.push('/hompage');
-    // }
-
     render() {
         const editClass = this.props.auth ? 'enabledEdit' : 'disabledEdit';
-        // const { auth, token, } = this.props;
         const { Poster, Title, Genre, Year, Runtime, imdbRating, Language, Country, Director, Actors, Released, Awards, Plot } = this.state.movieDetail
         return (
             <div
@@ -75,8 +69,6 @@ class MovieDetails extends React.Component {
                     <br /><br />
                     <div className="movieDetails-buttons">
                         <button className={editClass} onClick={this.editMovie}>EDIT MOVIE</button><br />
-                        {/* <button className="deleteMovie">Delete Movie</button> */}
-                        {/* <button className="closeDetails" onClick={this.closeDetails}>X</button> */}
                     </div>
 
                 </div>
