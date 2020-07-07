@@ -46,7 +46,7 @@ class MovieCard extends React.Component {
         return (
             <div
                 className='movieCard'
-                style={{ backgroundColor: this.props.theme.colorBackground.nav }}
+                // style={{ backgroundColor: this.props.theme.colorBackground.nav }}         
             >
                 {/* <img src={ poster } alt="movie poster" className='cardImg' /> */}
                 <div style={{ backgroundImage: "url(" + poster + ")" }} className='cardImg' />
