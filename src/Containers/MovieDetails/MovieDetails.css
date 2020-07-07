@@ -145,6 +145,7 @@ i{
     color: orange;
     font-family:'Ubuntu', sans-serif;
     font-size: large;
+    font-weight: bold;
     cursor: pointer;
     margin: auto 0;
     padding: 0.5em 1em;
