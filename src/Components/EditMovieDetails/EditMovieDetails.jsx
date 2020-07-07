@@ -100,12 +100,8 @@ class EditMovieDetails extends React.Component {
                 optionsToken
             );
             console.log('response data de la deleteMovieById', response.data);
-            this.props.history.push(`/editPage/${this.props.id}`)
-                ?
-                this.props.history.goBack()
-                :
-                this.props.history.push('/hompage')
-            // return response.data;
+            this.props.history.push('/hompage');
+            
         }
         catch (error) {
             this.setState({ error: error });
@@ -262,3 +258,10 @@ export default withRouter(EditMovieDetails);
         //         console.log('DELETE: aici e eroarea de la catch', error)
         //     })
         // }
+        //---------after delete movie chose path---
+        // this.props.history.push(`/editPage/${this.props.id}`)
+            //     ?
+            //     this.props.history.goBack()
+            //     :
+            //     this.props.history.push('/hompage')
+            // return response.data;
