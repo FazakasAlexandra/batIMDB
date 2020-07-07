@@ -25,6 +25,7 @@ class MyImdb extends Component {
             auth: false,
             user: '',
             token: '',
+            isOut: null,
             setTheme: themeDark
         }
     }
@@ -41,9 +42,11 @@ class MyImdb extends Component {
         this.setState({
             auth: data.authenticated,
             token: data.accessToken,
-            user: user
+            user: user,
+            isOut:null
         },() => {
             storeGlobalState(data.authenticated, data.accessToken, user)
+            console.log(data.authenticated, data.accessToken, user)
         })
     }
     //logic for success logout, removing all data from storage, re-setting state
@@ -51,7 +54,8 @@ class MyImdb extends Component {
         this.setState({
             auth: false,
             token: '',
-            user: ''
+            user: '',
+            isOut:true
         }, () => {
             clearLocalstorage();
         })
@@ -99,7 +103,7 @@ class MyImdb extends Component {
                         <Route path="/" exact component={HomePage} />
                         <Route path='/addPage'
                             exact
-                            render={props => this.state.auth ?
+                            render={props => this.state.isOut == null ?
                                 <AddPage {...props}
                                     token={this.state.token}
                                     theme={this.state.setTheme}
