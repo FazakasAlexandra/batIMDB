@@ -47,6 +47,11 @@
   font-size: large;
   cursor: pointer;
 }
+.navBar>button:hover,
+.navBar>div>button:hover{
+  color:#cfcf1b;
+  transition: color .4s;
+}
 .disabledAdd {
   color: #505c7c;
   cursor: pointer;
