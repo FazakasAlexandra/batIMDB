@@ -171,6 +171,7 @@ class ExploreComp extends React.Component {
                 poster={movie.Poster}
                 title={movie.Title}
                 imdbRating={movie.imdbRating}
+                imdbID={movie.imdbID}
                 auth={auth}
                 token={token}
             />)

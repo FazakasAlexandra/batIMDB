@@ -50,14 +50,6 @@ b{
 i{
     color: darkgray;
 }
-/* .closeDetails{
-    position: absolute;
-    Z-index: 1;
-    right: 22%;
-    top: 7rem;
-    padding: 0.3rem;
-    background-color: orangered;
-} */
 
 @media(max-width: 75rem){
     .movieDetails-container{
@@ -71,9 +63,6 @@ i{
         max-width: 5rem;
         flex-direction: column;
     }
-    /* .closeDetails{
-        display: none;
-    } */
 }
 
 @media(max-width: 50rem){
