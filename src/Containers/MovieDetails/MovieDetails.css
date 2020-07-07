@@ -24,14 +24,14 @@
     width: 100%;
 }
 p{
-    color: lightyellow;
+    color: darkgrey;
 }
 .editMovie{
     width: 6rem;
     height: 1.3rem;
     padding: 0.2rem;
     border: none;
-    background-color: yellow;
+    background-color: orange;
 }
  .movieDetails-buttons{
     display: flex;
@@ -48,16 +48,16 @@ b{
     color: orange;
 }
 i{
-    color: lemonchiffon;
+    color: darkgray;
 }
-.closeDetails{
+/* .closeDetails{
     position: absolute;
     Z-index: 1;
     right: 22%;
     top: 7rem;
     padding: 0.3rem;
     background-color: orangered;
-}
+} */
 
 @media(max-width: 75rem){
     .movieDetails-container{
@@ -71,9 +71,9 @@ i{
         max-width: 5rem;
         flex-direction: column;
     }
-    .closeDetails{
+    /* .closeDetails{
         display: none;
-    }
+    } */
 }
 
 @media(max-width: 50rem){
@@ -142,7 +142,7 @@ i{
     background-color:inherit;
     border:none;
     outline:none;
-    color:#fdff00;
+    color: orange;
     font-family:'Ubuntu', sans-serif;
     font-size: large;
     cursor: pointer;

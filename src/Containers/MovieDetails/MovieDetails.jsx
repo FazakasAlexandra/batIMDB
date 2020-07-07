@@ -38,9 +38,9 @@ class MovieDetails extends React.Component {
     }
 
 
-    closeDetails = () => {
-        this.props.history.push('/hompage');
-    }
+    // closeDetails = () => {
+    //     this.props.history.push('/hompage');
+    // }
 
     render() {
         const editClass = this.props.auth ? 'enabledEdit' : 'disabledEdit';
@@ -49,7 +49,7 @@ class MovieDetails extends React.Component {
         return (
             <div
                 className="movieDetails-container"
-                // style={{backgroundColor: this.props.theme.colorBackground.primary }}
+                style={{backgroundColor: this.props.theme.colorBackground.primary }}
             >
                 <div className="movieDetailsImg">
                     <img src={Poster} alt="movie poster" className='detailsImg' /><br />
@@ -76,7 +76,7 @@ class MovieDetails extends React.Component {
                     <div className="movieDetails-buttons">
                         <button className={editClass} onClick={this.editMovie}>EDIT MOVIE</button><br />
                         {/* <button className="deleteMovie">Delete Movie</button> */}
-                        <button className="closeDetails" onClick={this.closeDetails}>X</button>
+                        {/* <button className="closeDetails" onClick={this.closeDetails}>X</button> */}
                     </div>
 
                 </div>
