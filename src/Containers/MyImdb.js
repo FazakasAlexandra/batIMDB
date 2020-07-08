@@ -122,7 +122,7 @@ class MyImdb extends Component {
 
                     </Switch>
                     <div className='footer'>
-                        <span>Powered by BatmanTeam: <i>MARIUS Mihut,</i> <i>DANIEL Selistean,</i> <i>ANDREEA Mandiuc,</i> <i>ALEXANDRA Fazakas</i> si <i>ALEXANDRU Besa !</i></span>
+                        <span>Powered by BatmanTeam: <i>MARIUS Mihut,</i> <i>DANIEL Selistean,</i> <i>ANDREEA Mandiuc,</i> <i>ALEXANDRA Fazakas,</i> <i>ALEXANDRU Besa !</i></span>
                     </div>
                 </div>
             </ThemeProvider>
@@ -131,12 +131,3 @@ class MyImdb extends Component {
 }
 
 export default withRouter(MyImdb);
-
-
-{/* <Route path="/movieDetails/:movieId"
-    render={props => this.state.auth ?
-        <MovieDetails {...props}
-            auth={this.state.auth}
-            token={this.state.token}
-        /> :
-        <Redirect to="/hompage" />} /> */}
