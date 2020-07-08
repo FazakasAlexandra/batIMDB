@@ -122,7 +122,7 @@ class MyImdb extends Component {
 
                     </Switch>
                     <div className='footer'>
-                        <span>This will be the footer</span>
+                        <span>Powered by BatmanTeam: <i>MARIUS Mihut,</i> <i>DANIEL Selistean,</i> <i>ANDREEA Mandiuc,</i> <i>ALEXANDRA Fazakas</i> si <i>ALEXANDRU Besa !</i></span>
                     </div>
                 </div>
             </ThemeProvider>

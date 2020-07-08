@@ -21,5 +21,14 @@
   color: #838a9c;
  
 }
+span {
+  font-size: large;
+  font-weight: bold;
+  color: orangered;
+}
+
+span i{
+  color: greenyellow;
+}
 
 
