@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Carousel from 'react-elastic-carousel';
 import MovieCard from '../../../../Components/MovieCard/MovieCard'
+import './MovieList.css'
 import axios from 'axios'
 
 class MovieList extends Component {
