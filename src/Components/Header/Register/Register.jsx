@@ -36,7 +36,7 @@ class RegisterForm extends React.Component{
                 
             }).catch(error=>{
                 //console.log("register error msg:", error)
-                this.setState({ registerError : 'Server Error. Try again!' })
+                this.setState({ registerError : 'This username already exists. Please choose another one!' })
             })
 
         }else if (userName.length < 3 || password.length < 3) {

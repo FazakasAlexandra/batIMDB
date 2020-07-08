@@ -2,7 +2,7 @@ import React from 'react';
 import { withTheme } from 'styled-components';
 import axios from 'axios';
 import Bounce from '../../Theme/Styledcomponents/Bounce';
-import  { createClassName } from '../../utilitary';
+import { createClassName } from '../../utilitary';
 import './AddNewMovie.css';
 
 class AddNewMovie extends React.Component {
@@ -76,7 +76,7 @@ class AddNewMovie extends React.Component {
     }
     //creates preview section (label + text)
     renderPreview(value, labelName) {
-        const  theme  = this.props.theme.type;
+        const theme = this.props.theme.type;
         return (
             <p className={createClassName(theme, 'pvwLine')}>
                 <span className={createClassName(theme)}
@@ -85,12 +85,12 @@ class AddNewMovie extends React.Component {
             </p>
         )
     }
-    //creates input section (label + text)
+    //creates input section (label + input)
     renderInput = (fieldName, labelName, required) => {
         if (required) {
             labelName += ' *';
         }
-        const  theme  = this.props.theme.type;
+        const theme = this.props.theme.type;
         return (
             <div className='fieldWrapper'>
                 <label htmlFor={fieldName}
@@ -109,7 +109,7 @@ class AddNewMovie extends React.Component {
     }
     render() {
         const { onCancel } = this.props;
-        const  theme  = this.props.theme.type;
+        const theme = this.props.theme.type;
         return (
             <div className={createClassName('addFormContainer', theme)}>
                 <form className={createClassName('addForm', theme)}
