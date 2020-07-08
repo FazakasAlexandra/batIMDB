@@ -180,7 +180,7 @@
   (min-device-width: 768px) 
   and (max-device-width: 1280px) {
   .navBar {
-    width:98%;
+    width: 85%;
     margin: 0.2em auto;
     display: flex;
     flex-flow: row wrap;
