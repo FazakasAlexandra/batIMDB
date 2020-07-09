@@ -19,22 +19,20 @@ class ExploreComp extends React.Component {
 
     componentDidMount() {
         this.getDefaultMovies()
-        if (sessionStorage.getItem('activeQuery')) {
-            sessionStorage.removeItem('activeQuery')
-        }
+        sessionStorage.removeItem('activeQuery')
+        sessionStorage.removeItem('queryString')
     }
 
     componentWillUnmount() {
-        if (sessionStorage.getItem('activeQuery')) {
-            sessionStorage.removeItem('activeQuery')
-        }
+        sessionStorage.removeItem('activeQuery')
     }
 
     componentDidUpdate() {
         if (this.props.emptySearch && !sessionStorage.getItem('activeQuery')) {
             this.getDefaultMovies()
         } else if (this.props.emptySearch && sessionStorage.getItem('activeQuery')) {
-            this.filterMovies(sessionStorage.getItem('activeQuery'))
+            let activeQueryObj = JSON.parse(sessionStorage.getItem('activeQuery'))
+            this.filterMovies(this.processActiveQueryObj(false, activeQueryObj))
         }
     }
 
@@ -43,12 +41,11 @@ class ExploreComp extends React.Component {
         if (areFiltersOff) {
             this.setState({ moviesFound: true })
         }
-        console.log(this.state.moviesNumber)
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=${this.state.moviesNumber}`)
             .then((response) => {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies })
-                this.setState({moviesAreFiltered : false})
+                this.setState({ moviesAreFiltered: false })
             })
     }
 
@@ -64,14 +61,15 @@ class ExploreComp extends React.Component {
 
     filterMovies(query) {
         console.log(query)
+        sessionStorage.setItem('queryString', query)
         Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${query}`)
             .then((response) => {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies }, () => {
                     if (this.state.moviesList.length < 1) {
-                        this.setState({ moviesFound: false, moviesAreFiltered: true, moviesNumber:15 })
+                        this.setState({ moviesFound: false, moviesAreFiltered: true, moviesNumber: 15 })
                     } else {
-                        this.setState({ moviesFound: true, moviesAreFiltered: true, moviesNumber:15 })
+                        this.setState({ moviesFound: true, moviesAreFiltered: true, moviesNumber: 15 })
                     }
                 })
             })
@@ -80,73 +78,36 @@ class ExploreComp extends React.Component {
     isSearchByTitle() {
         if (localStorage.getItem('search')) {
             if (sessionStorage.getItem('activeQuery')) {
-                let activeQuery = sessionStorage.getItem('activeQuery')
-                if (activeQuery.includes('Title')) {
-                    // a) filter movies with activeQuery and title
-                    // a) 1. replace previous title within activeQuery
-                    this.filterMovies(this.processActiveQuery(true, activeQuery))
-                } else {
-                    // a) 2. add new title to activeQuery
-                    this.filterMovies(this.processActiveQuery(false, activeQuery))
-                }
+                let activeQueryObj = JSON.parse(sessionStorage.getItem('activeQuery'))
+                this.filterMovies(this.processActiveQueryObj(true, activeQueryObj))
             } else {
-                // b) filter movies only by title
-                this.getMoviesByTitle()
+                let titleQuery = this.getTitle()
+                this.filterMovies(`Title=${titleQuery}`)
             }
         }
     }
 
-    processActiveQuery(queryIncludesTitle, activeQuery) {
-        let processedQuery = queryIncludesTitle ? this.replaceTitle(activeQuery) : this.addTitle(activeQuery)
-        return processedQuery
-    }
-
-    addTitle(activeQuery) {
-        // add title to activeQuery
-        let processedQuery = activeQuery.concat(`&${this.getTitleQuery()}`)
-        this.updateActiveQuery(processedQuery)
-        return processedQuery
-    }
-
-    replaceTitle(activeQuery) {
-        // remove previous title from activeQuery
-        // add actual title to activeQuery
-        let indexTitle = activeQuery.indexOf('Title')
-        let indexAnd = activeQuery.indexOf('&', indexTitle)
-        // case 1 : 'Genre=Comedy&Title=Joker&Language=English'
-        // case 2 : 'Title=Joker&Genre=Comedy'
-        if (indexAnd !== -1) {
-            let oldTitle = activeQuery.slice(indexTitle, indexAnd + 1)
-            let processedQuery = activeQuery.replace(oldTitle, `${this.getTitleQuery()}&`)
-            this.updateActiveQuery(processedQuery)
-
-            return processedQuery
-            // case 3 : 'Genre=Comedy&Title=Joker' 
-        } else {
-            let oldTitle = activeQuery.slice(indexTitle, activeQuery.length)
-            let processedQuery = activeQuery.replace(oldTitle, this.getTitleQuery())
-            this.updateActiveQuery(processedQuery)
-
-            return processedQuery
+    processActiveQueryObj(isTitle, activeQueryObj) {
+        if (isTitle) {
+            activeQueryObj.Title = this.getTitle()
+            sessionStorage.setItem('activeQuery', JSON.stringify(activeQueryObj))
         }
+
+        let queryString = ""
+        Object.keys(activeQueryObj).forEach(key => {
+            queryString += `${key}=${activeQueryObj[key]}&`
+        })
+
+        // returns the queryString without the last &
+        return queryString.slice(0, -1)
     }
 
-    updateActiveQuery(processedQuery) {
-        sessionStorage.setItem('activeQuery', processedQuery)
-    }
-    getMoviesByTitle() {
-        let titleQuery = this.getTitleQuery()
-        this.filterMovies(titleQuery)
-    }
-
-    getTitleQuery() {
-        let title = localStorage.getItem('search')
-        let queryElements = ['Title=', title]
-        let titleQuery = queryElements.join("")
-        sessionStorage.setItem('titleQuery', titleQuery)
+    getTitle() {
+        let title = localStorage.getItem('search') //// null if empty
+        sessionStorage.setItem('titleQuery', title)
         localStorage.removeItem('search')
-
-        return titleQuery
+        console.log('getTitle function', title) //// returns null if last letter deleted
+        return title
     }
 
     setCookie(activeQuery) {
@@ -192,8 +153,8 @@ class ExploreComp extends React.Component {
             }
         })
     }
-    removeActiveQuery(){
-        if(sessionStorage.getItem('activeQuery')) sessionStorage.removeItem('activeQuery')
+    removeActiveQuery() {
+        if (sessionStorage.getItem('activeQuery')) sessionStorage.removeItem('activeQuery')
     }
     render() {
         return (
@@ -208,7 +169,7 @@ class ExploreComp extends React.Component {
                     {this.state.moviesFound ? this.renderMovies() : this.renderNotFound()}
                     {this.isSearchByTitle()}
                 </div>
-                {this.state.noMoreMovies || this.state.moviesAreFiltered? null : <p id="more" onClick={() => this.getMoreMovies()}>MORE</p>}
+                {this.state.noMoreMovies || this.state.moviesAreFiltered ? null : <p id="more" onClick={() => this.getMoreMovies()}>MORE</p>}
             </div>
         )
     }

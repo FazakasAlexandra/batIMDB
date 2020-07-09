@@ -72,15 +72,15 @@ class Header extends React.Component {
     //logic for submit register/login => auth, token, user on MyImdb.state + enable/disable forms in header
     handleSubmitRegister = (data, user) => {
         this.props.onSubmitLog(data, user);
-        if(this.props.auth){
+        if (this.props.auth) {
             this.setState({
                 regForm: false
             })
         }
     }
-    handleSubmitLogin = (data,user) => {
-        this.props.onSubmitLog(data,user);
-        if(this.props.auth){
+    handleSubmitLogin = (data, user) => {
+        this.props.onSubmitLog(data, user);
+        if (this.props.auth) {
             this.setState({
                 logForm: false
             })
@@ -109,10 +109,10 @@ class Header extends React.Component {
     }
 
     storeSeach = (event) => {
+        console.log('storeSearch function value', event.target.value) ///
         if (event.target.value === '') {
-            this.exploreFunction(true)
             this.updateActiveQuery()
-            sessionStorage.removeItem('titleQuery')
+            this.exploreFunction(true)
         } else {
             localStorage.setItem('search', event.target.value)
             this.exploreFunction()
@@ -121,20 +121,13 @@ class Header extends React.Component {
     }
 
     updateActiveQuery() {
+        console.log('update function')
+        sessionStorage.removeItem('titleQuery')
+
         if (sessionStorage.getItem('activeQuery')) {
-            let activeQuery = sessionStorage.getItem('activeQuery')
-            // case at least one filters remains on after search bar became empty :
-            // Genre=Comedy&Title=Joker : icludes &
-            if (activeQuery.includes('&')) {
-                let indexOfTitle = activeQuery.indexOf('Title') - 1 // -1 to include the & 
-                let titleToReplace = activeQuery.slice(indexOfTitle, activeQuery.length)
-                let updatedActiveQuery = activeQuery.replace(titleToReplace, "")
-                sessionStorage.setItem('activeQuery', updatedActiveQuery)
-            // case no other fitler remains on after seachbar became empty :
-            // Title=Joker : does not include &
-            } else {
-                sessionStorage.removeItem('activeQuery')
-            }
+            let activeQuery = JSON.parse(sessionStorage.getItem('activeQuery'))
+            delete activeQuery['Title']
+            sessionStorage.setItem('activeQuery', JSON.stringify(activeQuery))
         }
     }
 
