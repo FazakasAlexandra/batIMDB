@@ -73,17 +73,15 @@ export class Dropdowns extends React.Component {
     }
 
     updateActiveQuery(name) {
-        if (sessionStorage.getItem('activeQuery') !== null) {
-            let activeQuery = sessionStorage.getItem('activeQuery')
-            let includesRatings = activeQuery.includes('imdbRating') || activeQuery.includes('imdb')
-
-            if ((activeQuery.includes(name) || includesRatings) && !activeQuery.includes('&')) {
-                sessionStorage.removeItem('activeQuery')
-            } else if ((activeQuery.includes(name) || includesRatings) && activeQuery.includes('&')) {
-                let removedPart = activeQuery.slice(0,activeQuery.indexOf('&')+1)
-                let updatedQuery = activeQuery.replace(removedPart, "")
-                sessionStorage.setItem('activeQuery', updatedQuery)
+        if (sessionStorage.getItem('activeQuery')) {
+            let activeQuery = JSON.parse(sessionStorage.getItem('activeQuery'))
+            let hasimdbPropriety = activeQuery.hasOwnProperty('imdbRating')
+            if (hasimdbPropriety) {
+                delete activeQuery['imdbRating']
+            } else {
+                delete activeQuery[name]
             }
+            sessionStorage.setItem('activeQuery', JSON.stringify(activeQuery))
         }
     }
 
@@ -96,8 +94,8 @@ export class Dropdowns extends React.Component {
                     // toggles the clicked filter
                     if (idx === filterIdx) {
                         filter.filterOn = !filter.filterOn
-                        if(!filter.filterOn){
-                            this.updateActiveQuery()
+                        if (!filter.filterOn) {
+                            this.updateActiveQuery(dropdown.dropdownName)
                         }
                         // turns off other filter that is on inside that dropdown
                     } else if (idx !== filterIdx && filter.filterOn) {
@@ -127,50 +125,57 @@ export class Dropdowns extends React.Component {
     }
 
     checkActiveFilters() {
-        let { dropdowns } = this.state
-        let queryElements = []
-        dropdowns.forEach(({ dropdownName, dropdownOn, filters }) => {
+        let obj = {}
+
+
+        this.state.dropdowns.forEach(({ dropdownName, dropdownOn, filters }) => {
             let filterWithInput = dropdownName === 'Year' || dropdownName === 'Ratings'
             if (dropdownOn) {
                 filters.forEach(({ filterName, filterOn, value }) => {
                     if (filterOn) {
                         if (filterWithInput) {
                             if (value) {
-                                queryElements.push(dropdownName === 'Ratings' ? 'imdbRating' : dropdownName, '=', value, '&')
+                                let inputFilterName = dropdownName === 'Ratings' ? 'imdbRating' : dropdownName
+                                obj[inputFilterName] = value
                             }
                         } else {
-                            queryElements.push(dropdownName, '=', filterName, '&')
+                            obj[dropdownName] = filterName
                         }
                     }
                 })
             }
         })
-        this.stringifyQuery(queryElements)
+        this.stringifyQuery(obj)
     }
 
-    stringifyQuery(queryElements) {
-        // removes last &
-        queryElements.pop()
+    stringifyQuery(queryObject) {
         if (sessionStorage.getItem('titleQuery')) {
+            console.log(sessionStorage.getItem('titleQuery'))
             let titleQuery = sessionStorage.getItem('titleQuery')
-            titleQuery = queryElements.length > 0 ? `&${titleQuery}` : titleQuery
-            queryElements.push(titleQuery)
+            queryObject.Title = titleQuery
         }
-        this.sendQuery(queryElements.join(""))
+
+        let queryString = ""
+        Object.keys(queryObject).forEach(key => {
+            queryString += `${key}=${queryObject[key]}&`
+            console.log(queryObject[key])
+        })
+        //slice to remove the last &
+        this.sendQuery(queryString.slice(0, -1), queryObject)
     }
 
-    sendQuery(queryString) {
+    sendQuery(queryString, queryObject) {
         if (queryString === "" && !sessionStorage.getItem('titleQuery')) {
             this.props.getDefaultMovies(true)
         } else {
-            sessionStorage.setItem('activeQuery', queryString)
+            sessionStorage.setItem('activeQuery', JSON.stringify(queryObject))
             this.props.filterMovies(queryString)
             this.setCookie(queryString)
         }
     }
 
-    setCookie(activeQuery){
-        document.cookie = `lastSearch=${activeQuery};`
+    setCookie(queryString) {
+        document.cookie = `lastSearch=${queryString};`
     }
 
     getDropdowns() {
