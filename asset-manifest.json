@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/batimdb/static/css/main.44291949.chunk.css",
+    "main.js": "/batimdb/static/js/main.47f715d3.chunk.js",
+    "main.js.map": "/batimdb/static/js/main.47f715d3.chunk.js.map",
+    "runtime-main.js": "/batimdb/static/js/runtime-main.3ab693fe.js",
+    "runtime-main.js.map": "/batimdb/static/js/runtime-main.3ab693fe.js.map",
+    "static/css/2.6784e784.chunk.css": "/batimdb/static/css/2.6784e784.chunk.css",
+    "static/js/2.9d72e595.chunk.js": "/batimdb/static/js/2.9d72e595.chunk.js",
+    "static/js/2.9d72e595.chunk.js.map": "/batimdb/static/js/2.9d72e595.chunk.js.map",
+    "index.html": "/batimdb/index.html",
+    "precache-manifest.ceb312051ce71dcd23851a019d11dad0.js": "/batimdb/precache-manifest.ceb312051ce71dcd23851a019d11dad0.js",
+    "service-worker.js": "/batimdb/service-worker.js",
+    "static/css/2.6784e784.chunk.css.map": "/batimdb/static/css/2.6784e784.chunk.css.map",
+    "static/css/main.44291949.chunk.css.map": "/batimdb/static/css/main.44291949.chunk.css.map",
+    "static/js/2.9d72e595.chunk.js.LICENSE.txt": "/batimdb/static/js/2.9d72e595.chunk.js.LICENSE.txt",
+    "static/media/frameBlack1.png": "/batimdb/static/media/frameBlack1.acc98809.png",
+    "static/media/frameBlackLong.png": "/batimdb/static/media/frameBlackLong.1f5d2f8f.png",
+    "static/media/frameYellow.png": "/batimdb/static/media/frameYellow.15586deb.png",
+    "static/media/frameYellowLong.png": "/batimdb/static/media/frameYellowLong.558b1461.png",
+    "static/media/index.css": "/batimdb/static/media/roboto-latin-900-normal.bb1e4dc6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ab693fe.js",
+    "static/css/2.6784e784.chunk.css",
+    "static/js/2.9d72e595.chunk.js",
+    "static/css/main.44291949.chunk.css",
+    "static/js/main.47f715d3.chunk.js"
+  ]
+}
