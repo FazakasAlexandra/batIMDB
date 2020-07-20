@@ -41,7 +41,7 @@ class ExploreComp extends React.Component {
         if (areFiltersOff) {
             this.setState({ moviesFound: true })
         }
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?take=${this.state.moviesNumber}`)
+        Axios.get(`https://ancient-caverns-16784.herokuapp.com/movies?take=${this.state.moviesNumber}`)
             .then((response) => {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies })
@@ -62,7 +62,7 @@ class ExploreComp extends React.Component {
     filterMovies(query) {
         console.log(query)
         sessionStorage.setItem('queryString', query)
-        Axios.get(`http://ancient-caverns-16784.herokuapp.com/movies?${query}`)
+        Axios.get(`https://ancient-caverns-16784.herokuapp.com/movies?${query}`)
             .then((response) => {
                 let movies = this.addImage(response)
                 this.setState({ moviesList: movies }, () => {
@@ -103,10 +103,10 @@ class ExploreComp extends React.Component {
     }
 
     getTitle() {
-        let title = localStorage.getItem('search') //// null if empty
+        let title = localStorage.getItem('search')
         sessionStorage.setItem('titleQuery', title)
         localStorage.removeItem('search')
-        console.log('getTitle function', title) //// returns null if last letter deleted
+        console.log('getTitle function', title) 
         return title
     }
 
@@ -140,8 +140,6 @@ class ExploreComp extends React.Component {
         return movies
     }
     getMoreMovies() {
-        //let updatedMoviesNumber = parseInt(this.state.skip)+15
-        //console.log(updatedMoviesNumber)
         this.setState({ moviesNumber: this.state.moviesNumber + 15 }, () => {
             console.log('more movies')
             if (this.state.moviesNumber < 105) {
